@@ -1,0 +1,133 @@
+{
+  "client_date": "2026-11-10",
+  "purpose": "Minimal authenticated access checks for vision and text embeddings.",
+  "vision_input_image": "demo_data/sentinel2/doukkala_2025-02-14_rgb_10m.png",
+  "requests_attempted": 4,
+  "results": [
+    {
+      "model": "gemini-3.8-flash",
+      "method": "generateContent",
+      "status": "failed",
+      "http_status": 503,
+      "error": {
+        "code": 503,
+        "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+        "status": "UNAVAILABLE"
+      },
+      "elapsed_seconds": 7.17
+    },
+    {
+      "model": "gemini-embedding-001",
+      "method": "embedContent",
+      "status": "passed",
+      "http_status": 200,
+      "dimensions": 3072,
+      "vector_l2_norm": 1.0,
+      "usage": null,
+      "elapsed_seconds": 0.52
+    },
+    {
+      "model": "gemini-3.5-flash-lite",
+      "method": "generateContent",
+      "status": "passed",
+      "http_status": 200,
+      "finish_reason": "STOP",
+      "model_version": "gemini-3.5-flash-lite",
+      "usage": {
+        "promptTokenCount": 1123,
+        "candidatesTokenCount": 37,
+        "totalTokenCount": 1160,
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1089
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 34
+          }
+        ],
+        "serviceTier": "standard"
+      },
+      "answer": "The satellite image shows two visible agricultural field patterns: rectangular grids of small, uniformly sized plots arranged in dense checkerboard blocks, and larger, elongated rectangular strips oriented parallel to each other.",
+      "elapsed_seconds": 1.94
+    }
+  ],
+  "billing_note": "User confirmed that the key project shows Free tier in AI Studio. Independent browser verification was blocked by automatic approval review after redirect to accounts.google.com; no access was attempted beyond that rejection and no billing settings were changed.",
+  "key_handling": "Loaded from local .env; sent only in the Google API authentication header; never printed or included in the report.",
+  "attempt_history": [
+    {
+      "model": "gemini-3.8-flash",
+      "method": "generateContent",
+      "status": "failed",
+      "http_status": 503,
+      "error": {
+        "code": 503,
+        "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+        "status": "UNAVAILABLE"
+      },
+      "elapsed_seconds": 6.11
+    },
+    {
+      "model": "gemini-embedding-001",
+      "method": "embedContent",
+      "status": "passed",
+      "http_status": 200,
+      "dimensions": 3072,
+      "vector_l2_norm": 1.0,
+      "usage": null,
+      "elapsed_seconds": 0.52
+    },
+    {
+      "model": "gemini-3.8-flash",
+      "method": "generateContent",
+      "status": "failed",
+      "http_status": 503,
+      "error": {
+        "code": 503,
+        "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+        "status": "UNAVAILABLE"
+      },
+      "elapsed_seconds": 7.17
+    },
+    {
+      "model": "gemini-3.5-flash-lite",
+      "method": "generateContent",
+      "status": "passed",
+      "http_status": 200,
+      "finish_reason": "STOP",
+      "model_version": "gemini-3.5-flash-lite",
+      "usage": {
+        "promptTokenCount": 1123,
+        "candidatesTokenCount": 37,
+        "totalTokenCount": 1160,
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1089
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 34
+          }
+        ],
+        "serviceTier": "standard"
+      },
+      "answer": "The satellite image shows two visible agricultural field patterns: rectangular grids of small, uniformly sized plots arranged in dense checkerboard blocks, and larger, elongated rectangular strips oriented parallel to each other.",
+      "elapsed_seconds": 1.94
+    }
+  ],
+  "billing_tier_user_reported": "Free tier",
+  "billing_tier_independently_verified": false,
+  "model_catalog_requests": 1,
+  "fallback_note": "One alternative vision model tested after gemini-3.8-flash returned HTTP 503 on both attempts. No application model configuration was changed.",
+  "billing_tier_user_confirmed": true,
+  "successful_vision_candidate": "gemini-3.5-flash-lite",
+  "corpus_embedding_status": "Not started; only one synthetic sentence was embedded for the smoke test.",
+  "vision_image_input_confirmed_by_usage_metadata": true,
+  "documentation_sources": {
+    "billing": "https://aistudio.google.com/docs/billing",
+    "embedding_pricing": "https://aistudio.google.com/docs/pricing#gemini-embedding",
+    "vision_fallback_pricing": "https://aistudio.google.com/docs/pricing#gemini-3.5-flash-lite"
+  }
+}

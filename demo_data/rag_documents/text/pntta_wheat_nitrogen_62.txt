@@ -1,0 +1,799 @@
+BULLETIN MENSUEL D'INFORMATION ET DE LIAISON DU PNTTA
+
+TRANSFERT DE TECHNOLOGIE
+EN AGRICULTURE
+
+62 ● Novembre 1999●
+
+Introduction
+Du fait du rôle critique de l'azote et sa disponibilité
+limitée, la conduite de la fertilisation azotée est un
+aspect extrêmement important de la production
+des plantes. Plusieurs méthodes ont été développées pour le raisonnement de la fertilisation azotée
+des cultures. L'élaboration de normes d'interprétation de la fertilité azotée des sols (N soil test
+Calibration) est basée sur les relations observées
+entre un indice de fertilité des sols (N Minéral,
+N-NO3-, N-NH4+, indice de disponibilité de l'azote)
+et la réponse de la plante. Une autre méthode est
+celle du bilan prévisionnel de l'azote qui tient
+compte des besoins de la plante et des fournitures
+en azote du sol. Une méthode plus élaborée pour le
+développement des recommandations en matière
+de fertilisation azotée est l'utilisation d'un modèle
+qui prédit les besoins et les fournitures quotidiens
+en azote à partir de différentes sources durant le
+cycle de développement de la plante. Il s'agit de
+décrire les effets de l'azote ou sa déficience en
+terme de processus de croissance qui déterminent
+le rendement et de prédire sur cette base les
+quantités requises pour un rendement objectif.
+L’élaboration de références régionales constitue une
+étape nécessaire, quelle que soit la méthode
+adoptée. Dans ce qui suit, nous avons revu les
+travaux de recherche sur la fertilisation et nutrition
+azotées au Maroc afin de faire ressortir ces relations
+et références utiles en vue de l'élaboration de
+recommandations en matière de fertilisation azotée
+en Bour et en irrigué.
+
+Fertilisation azotée des blés en
+Bour favorable
+Production de matière sèche
+La production de matière sèche correspond au
+produit de la durée de la période de production et
+du taux moyen d'accumulation de matière sèche
+durant cette période.
+Phénologie
+Le développement des plantes est déterminé par le
+génotype et par l'environnement, notamment la
+longueur du jour et la température. N n'a pas
+d'effets directs sur la phénologie de la plante. Mais
+une déficience en N peut causer la fermeture des
+stomates à des potentiels hydriques plus élevés ou
+une réduction de prélèvement de l'eau du fait
+d'une résistance racinaire plus importante et donc
+une diminution de la transpiration. Ceci se traduit
+par des températures plus élevées de la plante qui
+
+résultent en un développement plus accéléré, en
+d'autres termes des durées de phases plus courtes.
+Accumulation de la matière sèche
+Les quantités d'azote apportées affectent très
+fortement la production de matière sèche. L'augmentation de la matière sèche totale (MST) est
+proportionnelle à la dose d'azote appliquée. Cependant, les doses supérieures à 120 kg N/ha n'ont
+pas amélioré la production de MS en Bour. La date
+d'application s'est avérée également importante,
+les apports en début de cycle (jusqu'au stade B) se
+sont traduits par de plus grandes productions de
+MS comparés aux apports tardifs (Figure 1). Les
+taux d'accumulation de la MS durant la phase
+linéaire (B-anthèse) ont varié de 68 à 290 kg/ha
+jour. Au Gharb, ce taux a été en moyenne de 150
+kg/ha/j comparé à 35 kg/ha/j durant la phase A-B.
+Tout au long du cycle, la MST s'est avérée fortement corrélée à l'azote absorbé (figure 2). Ces
+résultats montrent que les différences en matière
+d'absorption de l'azote se traduisent sur les processus de croissance et de développement et causent
+des variations en MS produite.
+Les traitements avec des apports en début de cycle
+ont développé une surface foliaire plus importante
+par rapport aux traitements sans apport ou à
+apport tardif (Figure 3). La surface foliaire s'est
+avérée fortement corrélée à l'absorption de N, et
+aussi au rendement grain indiquant le rôle des
+surfaces assimilatrices dans l'absorption et la
+production de grain.
+
+Assimilation de l'azote
+
+n°
+
+62
+
+Fertilisation azotée
+●
+●
+●
+●
+
+Fertilisation azotée du blé en Bour favorable......p.1
+Recommandations pour la fertilisation azotée
+du blé en Bour................................................. p.2
+Fertilisation azotée du blé en irrigué................... p.3
+Recommandations pour la fertilisation azotée
+du blé en irrigué.............................................. p.4
+
+14
+N40-0-80
+N40-40-40
+
+12
+MST (tonne/ha)
+
+Fertilisation azotée
+des
+céréales
+Cas des blés en Bour et en irrigué
+
+PNTTA
+SOMMAIRE
+
+10
+
+N40-80-0
+N0-0-0
+
+(Apports au stades A, B et Anthèse
+
+Anthèse
+
+)
+
+8
+
+Maturité
+
+6
+
+Post-anthèse
+
+4
+2
+
+Stade B
+Stade A
+
+0
+50
+
+75
+
+100
+
+125
+
+150
+
+175
+
+Jours après semis
+
+Figure 1: Evolution de la matière sèche totale (MST) du blé
+en fonction du régime de fertilisation azotée
+Matière sèche totale (qx/ha)
+
+●N°
+
+250
+Irrigué, Tadla 90-91
+
+200
+150
+
+Bour, Gharb 89-90
+
+100
+50
+0
+50
+
+100
+
+150
+
+200
+
+250
+
+300
+
+350
+
+Azote absorbé (kg/ha)
+
+Figure 2: Relation entre la matière sèche totale (MST) du
+blé et l'azote absorbé, en bour et en irrigué
+Surface foliaire (cm2/plante)
+
+MADRPM/DERD
+
+400
+300
+200
+
+Concentration
+100
+L'absorption de l'azote dépend de la demande par
+N0-0-0
+N40-40-40
+la plante et de la disponibilité de N dans le sol. Au
+N40-80-0
+N40-0-80
+0
+fur et à mesure que l'accumulation d'hydrates de
+Gonflement
+Anthèse
+Anthèse+30j
+carbone progresse, le ratio N/biomasse totale dans
+Stade du blé
+les différentes parties de la plante diminue, même Figure 3: Evolution de la surface foliaire du blé en fonction
+lorsque l'N est présent en surplus. La teneur en du régime de fertilisation azotée
+azote de la plante entière diminue progressivement
+durant le cycle de la plante, en moyenne, de 45,2
+g/kg au stade A à 13,0 g/kg à la maturité, durant
+les campagnes 1987 et 88 au Gharb.
+L'effet de l'azote sur les teneurs en N a été hautement significatif, augmentant la teneur proportionnellement à la quantité d'azote apportée en
+début de cycle. La concentration en azote des
+feuilles diminue de 14,3 à l'anthèse à 7,5 g/kg à la
+maturité, les valeurs correspondantes dans les tiges
+sont 12,7 à l'anthèse et 5,5 g/kg à la maturité.
+
+Programme National de Transfert de Technologie en Agriculture (PNTTA), DERD, B.P: 6598, Rabat, http://altern.org/cntta/
+Bulletin réalisé à l'Institut Agronomique et Vétérinaire Hassan II, B.P:6446, Rabat, Tél-Fax: (7) 77-80-63, DL: 61/99, ISSN: 1114-0852
+Transfert de Technologie en Agriculture
+
+Page 1
+
+N°62/Novembre 1999
+
+La concentration en azote des grains (GNG) varie
+grossièrement entre 14 et 35 g/kg. Cette variation
+est associée plus à des variations environnementales que génétiques. Au Gharb, la CNG a varié entre
+16,5 pour le témoin et 24,5 g/kg pour 120 kg N/ha,
+montrant l'effet positif de l'azote. L'application
+tardive de l'azote améliore surtout la CNG. L'application de 80 kg N/ha à l'anthèse a augmenté la CNG
+de 25 à 36 g/kg. Les CNG observées au Maroc, en
+bour, sont généralement assez élevées par rapport à
+ce qui a été rapporté ailleurs. Les limitations qui
+s'exercent sur la synthèse et/ou le transport des
+hydrates de carbone dans le grain ne semblent pas
+opérer sur le transport de l'azote au grain ce qui se
+traduit par une faible dilution de l'azote du grain.
+Absorption de l'azote
+Emergence - Stade A
+Durant cette phase les prélèvements de l'azote sont
+généralement faibles, mais largement dépendants
+des conditions de l'environnement. Au Gharb,
+durant la campagne 1986-87, la culture de blé a
+prélevé 12 à 15 kg N/ha durant cette phase, alors
+qu'à Meknès l'absorption de N durant la même
+période a atteint 30 kg/ha. Il ressort donc, que les
+besoins en N durant cette phase sont généralement faibles et peuvent être satisfaits à partir de
+l'azote du sol.
+Stade A - Stade B
+La quantité maximale prélevée durant cette phase
+a été de 120 kg/ha à Merchouch durant un cycle
+pluvieux et pour un sol initialement riche en N.
+Dans la même région, on a trouvé 30 kg/ha à
+cause d'une sécheresse en début de cycle et 90
+kg/ha en année moyenne. L'absorption durant
+cette période est fonction des conditions du milieu
+et est plus élevée pour les semis précoces.
+Stade B - Anthèse
+Cette période correspond à la phase linéaire de
+prélèvement de N. Les taux journaliers de prélèvement enregistrés à Meknès varient de 1,5 à 2,7 kg
+N/ha/jour. A Merchouch, les taux observés sont de
+1,25 ; 2,3 et 3,4. Des résultats comparables ont été
+rapportés en France, 2,0 à 2,5 kg N/ha/jour. En
+conditions arides, les taux d'accumulation de N
+sont plus faible et ne dépassent pas 1 kg/ha/jour.
+Anthèse-Maturité
+Les quelques études qui ont suivi l'absorption de N
+durant cette phase montrent que celle-ci continue
+durant cette période. La quantité maximale absorbée a été observée au stade pâteux à Meknès. Au
+Gharb, l'absorption de N a continué jusqu'à 15
+jours après anthèse (JAA) et même jusqu'à 30 JAA.
+
+Distribution de N dans la plante
+L'azote absorbé est réparti entre les feuilles, les
+tiges, les racines et les grains en proportion à leur
+demande respective. En Moyenne, l'azote des
+feuilles et tiges à l'anthèse a représenté respectivement 30 et 42 % de l'N total de la plante au Gharb.
+Lorsque les feuilles vieillissent, une partie de leur N
+peut être transférée à d'autres tissus qui présentent
+une demande en N non satisfaite. En 1987, La
+quantité de N dans les feuilles et tiges a diminué
+respectivement de 42,5 et 67,2 kg/ha à l'anthèse à
+23,7 et 20,2 kg/ha à la maturité pour Nasma, ce
+qui indique une remobilization de l'N vers les
+grains.
+
+Transfert de Technologie en Agriculture
+
+Composantes du rendement
+La formation des composantes du rendement
+(talles, épis, épillets, fleurs et grains) est déterminée par la fourniture d'assimilats nécessaires pour
+la création d'organes viables. L'effet de N sur les
+composantes de rendement se fait donc largement
+à travers son effet sur l'assimilation carbonée.
+Cependant, le tallage est directement affecté par N
+et par la fourniture d'assimilats. La surface foliaire
+et le tallage sont importants à considérer en
+réponse à N du fait qu'ils résultent en une augmentation des capacités des sources et sites.
+Le rendement grain peut être subdivisé en ses deux
+principales composantes: nombre de grains par
+unité de surface (NG/m2) et poids moyen d'un
+grain (PMG). La variation du rendement grain peut
+être largement associée à la variation du NG/m2 à
+Meknès et au Gharb. Le nombre de grain par unité
+de surface est fonction du nombre de talles/m2 qui
+a été augmenté par l'application de N en début de
+cycle.
+Une dose de 40 à 50 kg N/ha semble suffisante
+pour la phase de tallage. Aussi NG/m2 est largement dépendant de MST au stade B, les coefficients de corrélation moyens à Merchouch et au
+Gharb sont respectivement de 0,75 et 0,63. Les
+applications précoces de N ont un effet favorable
+sur la monté des talles en épi et sur le nombre
+d'épillets par épi et la fertilité de l'épi a été améliorée par l'apport au stade B.
+Les applications précoces d'azote ont un effet
+négatif sur PMG. Peu ou pas d'application d'azote
+en début de cycle résulte en moins de NG/m2 et
+donc moins de compétition entre grains. L'apport
+tardif de N a significativement augmenté le PMG
+par rapport à l'apport précoce.
+
+Relation Rendement - Absorption
+
+Recommandations
+
+Fertilisation azotée du blé en Bour Favorable
+
+Dose
+Calculer la dose selon la formule suivante:
+Dose de N à apporter (kg N/ha) = G x (R – r) / CUA
+G (Quantité de N requise pour produire 1 quintal de
+grain) = 3.5 à 4 kg de N par quintal de grain
+R = Rendement objectif en qx/ha
+r = Rendement permis par la fertilité propre du sol
+(témoin sans N) en qx/ha
+CUA (Coefficient d’utilisation apparent de N de
+l’engrais) = 50%
+Exemple: Pour un rendement objectif de 30 qx/ha
+et un rendement témoin de 15 qx/ha, la dose est de
+120 kg de N/ha
+● Ajuster la dose selon le précédent cultural et
+selon un éventuel apport de fumier
+● Ajuster la dose si le rendement objectif est significativement différent, ajouter 7 kg de N par
+quintal supplémentaire
+
+Date
+Faire coïncider les apports avec les périodes de
+grand besoin du blé pour une meilleure efficience
+de N
+● 1/3 de la dose au semis, pour moins de risque de
+lessivage
+● 2/3 de la dose au stade A (3-4 feuilles), risque
+de pertes par insolubilisation si l'apport est fait
+plus tardivement
+
+Forme
+●
+
+Sulfate d’ammonium au semis
+
+L'efficience d'utilisation de N (EUN), exprimée en ● Ammonitrate ou Urée au stade A
+kg de grain produits par kg de N absorbé, est
+définie comme étant la quantité de grains produite Cette définition suppose que l'efficience d'absorppar unité d'azote absorbé. Les recherches conduites tion de l'azote par la plante soit identique aussi
+au Maroc ont montré une grande variabilité de EUN bien pour les parcelles fertilisées que pour celles
+avec les conditions environnementales. En non fertilisées.
+moyenne, 16,5 kg de grain ont été produits par kg
+d'azote absorbé à Merchouch; 20,0 à Meknès et 30 Le CUA est assez variable en Bour. A Merchouch,
+au Gharb. EUN est plus élevée pour le témoin au des valeurs de l'ordre de 44 à 92 % ont été obserGharb indiquant que l'apport d'azote augmente vées, alors que la moyenne au Gharb a été de 65
+plus l'absorption de N que le rendement grain. EUN %. Ceci est conforme aux résultats trouvés ailleurs.
+est plutôt faible dans nos conditions comparée à Parmi 72 expérimentations conduites par ICARDA,
+33 à 55 kg grain/kg N enregistrés ailleurs aux 50 % des CUA étaient entre 25 et 45 % alors que
+faibles taux d'absorption. A des taux de prélève- 75 % étaient entre 20 et 60 % avec une moyenne
+de 43,8% ■.
+ment plus élevés, la concentration
+de N augmente dans l'organe Figure 4: Relation "Absorption-Rendement" et "Apportrécolté mais l'EUN diminue (Figure Absorption" pour le blé
+4). Enfin, un plafond est atteint où
+une absorption plus élevée ne se
+traduit pas par une augmentation
+du rendement parce que N n'est
+plus le facteur limitant la croissance. EUN est intimement liée au
+métabolisme du carbone et est
+largement affectée par les conditions de milieu.
+
+Relation Absorption-Apport
+L'absorption de N a été proportionnelle à la quantité apportée pour
+toute la gamme de traitements
+utilisés (Figure 4). Le coefficient
+d'utilisation apparent de l'engrais
+est défini comme suit:
+CUA = (Nf - Nt)/X x 100
+Nf: quantité d'azote absorbée par
+la culture fertilisée (kg/ha)
+Nt: quantité d'azote absorbée par
+la culture témoin non fertilisée
+(kg/ha)
+X: dose d'azote apportée (kg/ha).
+Page 2
+
+N°62/Novembre 1999
+
+Fertilisation azotée des blés en Assimilation de l'azote
+Durant la phase "levée-stade
+irrigué
+Fertilisation en culture irriguée
+La pratique de l’irrigation implique des rendements plus élevés, donc des exportations plus
+importantes ce qui peut conduire plus rapidement
+à l’apparition de carences nouvelles auxquelles il
+faudra veiller.
+● La teneur des eaux d’irrigation peut modifier
+également l’équilibre de la nutrition minérale de la
+plante (eau riche en Mg par exemple).
+● Elle implique souvent des pertes plus importantes par lixiviation.
+● Elle accroît la minéralisation de la matière
+organique (minéralisation moins tributaires des
+fluctuations saisonnières du climat).
+● Elle régularise l’absorption des éléments en
+maintenant des conditions hydriques favorables et
+justifie, dans le cas de l’azote surtout, le fractionnement des apports.
+● Elle permet de modifier la pratique de la fertilisation par l’emploi d’engrais liquides.
+●
+
+Production de matière sèche
+La production de la matière sèche du blé est affectée d'une manière hautement significative par
+l'apport de l'azote, elle a varié entre 80 et 160
+qx/ha (Figure 5). Elle augmente de façon proportionnelle à la quantité d'azote appliquée tant que
+les conditions ou facteurs du milieu restent favorables. En irrigué au Tadla, un apport supérieur à 160
+kgN/ha n'a pas engendré des augmentations nettes
+de la biomasse aérienne sur les variétés Tegyey 32
+et Marchouch 8. L'élaboration de la matière sèche
+est aussi très dépendante de la date d'apport de
+l'azote. Les études menées dans ce sens ont
+montré que les apports précoces permettent
+l'obtention d'un rendement élevé en matière sèche
+totale. C'est ainsi que, généralement, l'apport
+bloqué au stade A (120 à 160 Kg N/ha) a produit
+une quantité de matière sèche significativement
+supérieure à celle produite par la même dose
+fractionnée en deux apports (au stade A et au
+stade B). La matière sèche totale est étroitement
+corrélée aux quantités d'azote apportées jusqu'au
+stade B. Les coefficients de corrélation sont très
+hautement significatifs, aussi bien pour Nasma 149
+que Tegyey 32. En irrigué au Gharb, l'apport tardif
+d'azote n'a pas amélioré le rendement en matière
+sèche totale. Aussi, la production de la matière
+sèche totale est très dépendante de la quantité
+d'azote absorbée, le métabolisme de l'azote et celui
+du carbone étant deux processus interdépendants.
+Ceci peut être confirmé par des corrélations hautement significatives entre l'azote absorbé à la
+maturité et la matière sèche totale (Figure 2).
+
+A", l'absorption de
+l'azote est faible et dépend des conditions de l'environnement et du niveau de fertilité du sol. A partir
+du début tallage, les besoins augmentent. La phase
+"stade B-anthèse" est une phase à grand besoin du
+fait de l'existence d'une certaine compétition entre
+la croissance reproductive (élaboration des composantes de l'épi) et la croissance végétative (production de matière sèche). Le taux d'accumulation de
+l'azote durant cette phase est 1,7 à 2,6 Kg N/ha/j
+pour Marzak et Marchouch 8. La quantité d’azote
+absorbée avant l'anthèse représente 70% à 80% de
+l'azote total assimilé (Figure 6).
+Les quantités d'azote absorbées sont proportionnelles aux quantités d'azote apportées. La quantité
+absorbée en irrigué est en moyenne de 150 kg
+N/ha, elle varie pour le témoin entre 36 et 129 kg
+N/ha alors que pour les traitements fertilisés, elle
+est de 62 à 267 kg N/ha. Les quantités moyennes
+d’azote assimilées sont comparables pour Marzak et
+Marchouch, soit respectivement 153,9 et 155,5
+kg/ha. Quant à l'effet fractionnement de l'azote, la
+supériorité de l’apport bloqué au stade A par
+rapport à la même dose fractionnée en deux
+apports au stade A et au stade B a été confirmée.
+Les faibles absorptions réalisées par la dose
+fractionnée sont dues à la réduction relative de la
+surface foliaire en début de cycle par rapport à la
+dose non fractionnée. Des conditions climatiques
+favorables en fin de cycle s’avèrent déterminantes
+pour l’assimilation tardive de l’azote par le blé;
+dans de tels cas, les quantités absorbées pour les
+fractionnements sont au moins comparables à
+celles de l’apport bloqué au stade A.
+La production de matière sèche plus importante en
+irrigué fait que la dilution de l'azote des grains est
+plus grande. Il en résulte des teneurs en N des
+grains généralement plus faibles en irrigué par
+rapport à ce qui a été obtenu dans le Bour.
+Celles-ci ont varié entre 18,0 g/kg au Gharb et 20,2
+à 22,0 g/kg au Tadla. En irrigué, la teneur en azote
+du grain varie proportionnellement aux doses
+d'azote apportées, les teneurs les plus faibles ont
+été observées pour les témoins sans azote. La
+teneur en azote des grains dépend aussi de la date
+d'apport d'azote, il y a une supériorité de la dose
+fractionnée (stade A et stade B) par rapport à
+l'apport bloqué au stade A en matière de teneur en
+azote des grains.
+
+Effet de l'azote sur l'élaboration du
+rendement
+
+Les rendements grain moyens en irrigué au Tadla
+ont varié de 38,5 à 65,8 qx/ha pour le blé tendre
+(Marchouch 8) et de 42,1 à 65,9 qx/ha pour le blé
+dur (Marzak). L'effet de l'azote est hautement
+significatif sur le rendement grain (Figure 7), les
+témoins ont réalisé les rendements grain les plus
+faibles. La comparaison des résultats sur plusieurs
+années dans les conditions de Tadla fait ressortir
+une variabilité inter et intra-annuelle notable. C'est
+ainsi que la dose (160 kg N/ha) fractionnée en
+deux apports (40 et 120 kg N/ha), a permis un
+rendement moyen de 44,6 qx/ha pour la variété
+Marchouch 8 en 1992; alors qu’en 1993 et 1994,
+les rendements moyens obtenus avec la même
+dose (160 kg N/ha) (53 et 107 kg N/ha) sont de
+62,0 et 64,0 qx/ha, respectivement, pour
+Figure 5: Effet de l'apport d'azote sur la production de Marchouch 8 et Marzak. Mais en cas de coupures
+matière sèche totale (MST) en irrigué
+N bsorbé (Kg N/ha)
+
+200
+N0 (0 kgN/ha)
+N1(160 kgN/ha)
+
+N2 (53+107 kgN/ha)
+N3 (80+80 kgN/ha)
+
+N4 (107+53 kgN/ha)
+
+150
+100
+50
+0
+Stade A
+
+Stade B
+
+Anthèse
+
+Maturité
+
+Stade
+
+Figure 6: Courbe d'absorption de l'azote par le blé irrigué
+(moyenne de 4 sites)
+Transfert de Technologie en Agriculture
+
+Figure 7: Effet de l'apport d'azote sur le rendement grain
+en irrigué
+Page 3
+
+d’eau ou de semis tardif (précédent coton), les
+rendements moyens sont plus faibles (46,8 pour
+Marchouch et 44,5 pour Marzak). Les fractionnements se sont avérés supérieurs à l’apport bloqué
+au stade A en matière d’élaboration du rendement.
+Les meilleurs rendements grain ont été généralement réalisés au niveau des sites à précédent
+betterave, ils sont de l'ordre de 75,0 qx/ha.
+
+Effet de l'azote sur le nombre de grains
+par unité de surface
+Le NG par unité de surface est la composante
+principale la plus déterminante du rendement
+grain. De fortes corrélations ont été trouvées entre
+le NG/m² et le rendement grain, les coefficients de
+corrélation sont de 0,8 pour Marchouch 8 et de 0,9
+pour Marzak. Cette composante est influencée par
+la nutrition azoté. En irrigué au Tadla, le nombre
+de grains par m² augmente avec l'apport de l'azote.
+Au Gharb, cette composante a été nettement
+améliorée lorsque les doses apportées au début de
+la montaison sont élevées. Le nombre de grains
+par unité de surface dépend aussi de la date
+d'apport de l'azote, mais aucune différence significative n’a été trouvée entre les fractionnements de
+l'azote appliqués aux stades A et B.
+Tallage herbacé
+L’effet de l’azote est hautement significatif sur la
+production des talles herbacées. En effet, l'apport
+de 120 kg N/ha au stade A a permis de produire
+5,2 contre 4,3 talles par pied pour le témoin sur
+Tegyey 32 et l'apport de 40 kg N/ha au stade A a
+permis de produire 4,0 talles par pied contre 3,5
+pour le témoin sur Marchouch 8. D'autre part,
+l'importance des apports précoces (stade A) sur la
+production des talles herbacées a été mise en
+évidence; les traitements ayant reçu 160 et 107 Kg
+N/ha au stade A se sont montrés supérieurs en
+nombre de talles herbacées à ceux ayant reçu
+seulement 53 kg N/ha au stade A.
+Tallage épi
+Le tallage épi peut être apprécié par le coefficient
+de tallage épi (CTE) (nombre d'épis par pied). Les
+travaux menés sur la fertilisation azotée montrent
+que l'apport de l'azote améliore considérablement le
+CTE, comparativement au témoin non fertilisé.
+L’application de tout l'azote (120 Kg N/ha) au
+stade A se traduit par un CTE d'environ 2,6 et un
+NE/m2 significativement plus élevé que ceux des
+traitements ayant reçu 40 et 0 kg N/ha au stade A.
+Cependant, des fractionnements avec moins d'azote
+au stade A peuvent résulter en un tallage herbacé
+plus faible et donc un taux de survie des talles plus
+élevé. L'apport de quantités élevées d'azote au
+stade A a entraîné une production très importante
+de talles herbacées. Il en résulte des phénomènes
+de compétition au sein de la population herbacée
+vis à vis de la lumière, l'eau et les éléments
+minéraux, et par conséquent des faibles CTE. Par
+ailleurs, les CTE en 1993 sont dans l'ensemble assez
+faibles par rapport à ceux obtenus en 1992 à cause
+principalement des forts peuplements pieds réalisés
+au niveau des essais conduits dans le Tadla en
+irrigué lors de la campagne 1992-93.
+Nombre de grains par épi (NG/E)
+Celui-ci est déterminé par le nombre
+d’épillets potentiels
+par épi et la fertilité
+de l’épi. Pour les
+variétés Marchouch
+8 et Marzak, les
+niveaux les plus
+élevés du nombre
+d'épillets potentiels
+ont été obtenus
+avec des traitements ayant reçu
+des apports élevés
+d'azote au stade A.
+Ceci peut être expliqué par le fait que
+le nombre d'épillets
+N°62/Novembre 1999
+
+potentiels par épi se détermine au cours de la
+phase A-B durant laquelle les besoins en azote de
+la plante sont élevés. Une meilleure disponibilité
+de l'azote au début de la montaison entraîne une
+amélioration de la fertilité de l'épi.
+
+d'utilisation apparent de l'engrais reste faible. Cette
+faible utilisation par la plante des engrais azotés
+s'explique soit par la richesse initiale du sol en Fertilisation azotée du blé en irrigué
+azote (précédents betterave et maraîchage), soit
+par l'infestation par les mauvaises herbes (autres Dose
+précédents). Durant la campagne 1993-94, cepenEffet de l'azote sur le PMG
+le CUA a été plus élevé (63% en moyenne), Calculer la dose selon la formule suivante:
+Le poids moyen d'un grains se détermine durant la dant,
+probablement
+du fait des conditions climatiques Dose de N à apporter (kg N/ha) = G x (R – r) / CUA
+phase de remplissage des grains, après anthèse. favorables (Tableau
+2).
+G (Quantité de N requise pour produire 1 quintal de
+L'activité photosynthétique pendant cette période
+constitue la source principale d’assimilats pour la Tableau 2: Coefficients d'utilisation apparent des engrais grain) = 3 kg de N par quintal de grain
+croissance du grain. Celle-ci dépend beaucoup des (CUA) en %
+R = Rendement objectif en qx/ha
+conditions du milieu, notamment, les conditions
+r = Rendement permis par la fertilité propre du sol
+Précédent
+hydriques et la nutrition azotée. En fait, les dose Apport
+(témoin sans N) en qx/ha
+Betterave Céréale Sésame
+Coton
+élevées apportées en début de cycle se traduisent d'azote
+Marzak
+Marzak
+Marchouch 8 CUA (Coefficient d’utilisation apparent de N de
+par l'élaboration de plus de matière sèche au début (kgN/ha)
+du cycle et un faible PMG. Une supériorité signifi93-94 92-93 93-94 92-93 93-94 92-93 l’engrais) = 60%
+cative du témoin non fertilisé (49,2 g pour
+56,6 56,3 58,3 49,9 47,6 38,4 Pour un rendement objectif de 55 qx/ha et un
+160
+Marchouch et 59,3 g pour Marzak) par rapport à la 53 + 107 75,9 37,2 64,2 50,0 60,2 48,2 rendement témoin de 25 qx/ha, la dose est de 150
+dose de 160 Kg N/ha fractionnée différemment
+kg de N/ha
+entre les stades A et B (soit respectivement en 80 + 80 62,2 38,6 66,9 53,2 51,4 33,6
+● Ajuster la dose selon le précédent cultural et
+61,4
+58,1
+70,4
+53,7
+50,4
+41,1
+107
++
+53
+moyenne 43,8 et 54,4 g pour Marchouch et
+Marzak) a été observée. Ceci peut être expliqué par Moyenne 64,0 47,6 65,0 51,7 52,4 40,3 selon un éventuel apport de fumier
+une certaine compensation du faible nombre de Le fractionnement de l'engrais s'est fait en deux apports, l'un au stade A, l'autre au stade B ● Ajuster la dose si le rendement objectif est signisites (NG/m2) élaborés en début de cycle par un Normes d'interprétation de la fertilité ficativement différent, ajouter 5 kg de N par
+poids de grains plus élevé dans le cas du témoin et
+quintal supplémentaire
+par une compétition entre les sites dans le cas des azotée des sols
+La
+prédiction
+des
+besoins
+en
+azote
+est
+un
+élément
+Date
+traitements fertilisés. Un apport précoce de l'azote
+entraîne un grand nombre de grains par unité de clef quant au raisonnement de la fertilisation Faire coïncider les apports avec les périodes de
+surface et donc une forte compétition pour les azotée. Des méthodes plus simples à manipuler grand besoin du blé, pour une meilleure efficience
+assimilats entre les grains. Le fractionnement s'est autre que la méthode du bilan prévisionnel ont été de N
+avéré supérieur à l'apport bloqué, mais entre développées. Il s'agit essentiellement d'établir des
+fractionnements azotés (160 Kg N/ha fractionné corrélations et des régressions entre les niveaux de ● Pas d'apport au semis: besoins faibles de la levée
+entre les stades A et B), aucune différence signifi- fertilité naturelle des sols et la réponse des cultures au stade A et plus la période entre l'apport et les
+aux apports d'engrais minéraux. L'objectif primor- prélèvements par la plante est longue, plus les
+cative n’a été enregistrée.
+reste la détermination d'une formule de fertili- risques de perte sont importants
+Efficience d'utilisation de l'azote (EUN) dial
+sation optimale, et par conséquent, la réduction du ● Apporter la 1/2 de la dose au stade A (3-4
+En irrigué dans la région de Tadla, l'EUN moyenne a coût des engrais azotés, tout en assurant un
+feuilles)
+oscillé autour de 35,0 pour Marchouch et 37,5 kg meilleur rendement.
+de grains par kg d'azote absorbé pour Marzak Le niveau de fertilité azotée du sol peut être ● Apporter la 1/2 de la dose au stade B (début
+(Tableau 1). Cette efficience se situe dans les exprimé par l’azote minéral, nitrique ou ammonia- montaison)
+normes rapportées dans la littérature, soit 33,0 kg cal initial du sol ainsi que par l’indice d’incubation Forme
+de grains/kg d'azote absorbé.
+anaérobique. Des relations édifiantes, hautement ● Ammonitrate ou Urée
+Plusieurs études ont montré l'effet de l'azote sur ce significatives ont été trouvées entre le rendement
+paramètre, les meilleurs efficiences d'utilisation de grain du témoin, sans apport de N, et les teneurs culturales, le coût de l'unité d'azote et enfin le prix
+l'azote correspondent au témoin non fertilisé. Les du sol en nitrates (Figure 8) et en N minéral du produit récolté. Les doses optimales ainsi calcufortes doses augmentent plus les quantités d'azote (Figure 9).
+lées varient de 120 à 180 kg N/ha, selon le site.
+absorbé que les rendements grains.
+Détermination des doses optimales de N En conclusion de cette partie sur la fertilisation
+Coefficient d'utilisation apparent de Le prix croissant des engrais conduit de plus en azotée en irrigué nous pouvons retenir les points
+l'azote (CUA)
+plus à alourdir les charges que l'agriculteur est suivants:
+Dans les conditions du champ, divers facteurs amené à supporter pour obtenir un rendement ● Compte tenu des quantités d'azote absorbées
+compromettent l'utilisation des engrais, notam- satisfaisant. D'où la nécessité d'une bonne gestion par les nouvelles variétés productives, du coeffiment, les facteurs environnementaux et les techni- qui consiste à améliorer les rendements et à cient d'itilisation apparent faible des engrais
+ques culturales. En irrigué au Tadla, le coefficicent maximiser le profit. Il est donc crucial de détermi- azotés, de l'azote fourni par le sol et des risques
+une dose économiquement optimale, qui d'entraînement des nitrates en profondeur; 160 kg
+Tableau 1: Efficience d'utilisation de l'azote absorbé (EUN) ner
+donnera le profit maximum pour l'agriculteur, N/ha constitue la dose de moindre risque en
+en kg de grains par kg d'azote absorbé
+autrement dit, l'augmentation maximale du gain irrigué, permettant les meilleurs rendements.
+Précédent
+de l'agriculteur provenant de la dose d'azote ● Les apports fractionnés se sont avérés supérieurs
+Apport
+Betterave Céréale Sésame
+Coton
+appliquée.
+à l'apport bloqué au stade A en matière d'élaborad'azote
+Marzak
+Marzak
+Marchouch 8 Selon le modèle quadratique liant le profit (Y) à la tion du rendement.
+(kgN/ha)
+93-94 92-93 93-94 92-93 93-94 92-93 dose d'azote (N):
+● L'histoire culturale et la richesse initiale du sol
+en N sont déterminantes quant à la réponse du blé
+50,2 51,6 45,7 45,4 41,0 42,4
+0
+Y = b1 N + b2 N² (1)
+35,3 40,5 35,9 47,7 29,5 32,5 (b1 et b2 des coefficients de régression, variables à l'apport d'azote. D'où la nécessité de nuancer les
+160
+53 + 107 31,2 47,5 35,5 43,2 28,3 28,6 selon les sites), la dose optimale est définie comme apports selon ces paramètres.
+● L'azote nitrique en début de cycle (après les 1ères
+80 + 80 43,3 43,6 35,0 47,6 30,5 32,8 étant:
+pluies) et l’azote minéral initial constituent de
+N optimale = - b1 / 2b2 (2)
+107 + 53 36,5 41,3 34,2 44,3 29,5 30,0
+bons indices de fertilité des sols ■.
+Moyenne 37,5 44,9 37,3 45,7 31,8 33,0 Cette dose optimale dépend de plusieurs paramèPar Dr. F. Mosseddaq et Dr. L. Moughli
+tres
+à
+savoir:
+l'efficacité
+de
+l'engrais,
+les
+techniques
+Le fractionnement de l'engrais s'est fait en deux apports, l'un au stade A, l'autre au stade B
+Institut Agronomique et Vétérinaire Hassan II
+
+Recommandations
+
+Figure 8: Relation entre la teneur en nitrate dans les 0-60 Figure 9: Relation entre la teneur en azote minéral dans
+cm avant le semis et le rendement grain du blé du témoin les 0-60 cm avant le semis et le rendement grain du blé du
+témoin (sans apport d'azote)
+(sans apport d'azote)
+Transfert de Technologie en Agriculture
+
+Page 4
+
+N°62/Novembre 1999
+
+

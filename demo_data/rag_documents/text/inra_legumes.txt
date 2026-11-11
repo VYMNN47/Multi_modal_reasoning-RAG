@@ -1,0 +1,927 @@
+ÿ
+
+la Con gi 8 agen
+Institut Nalional dela Recherche Agronomique
+
+POUR LE CONSEIL AGRICOLE
+
+LENTILLE
+POIS CHICHE
+FÈVE
+
+GUIDE PRATIQUE
+
+POUR LE CONSEIL AGRICOLE
+
+LENTILLE
+POIS CHICHE
+FÈVE
+4 M Description de la plante
+5 M Choix des variétés à cultiver
+6 M Préparation du sol
+7 M Le semis direct
+8 H Implantation
+9 M Fertilisation
+11 M Entretien de la culture
+14 B Protection contre les maladies et ravageurs
+17 M Gestion de l’eau
+18 M Récolte
+19 M Stockage
+20 M ANNEXES
+principales céréales cultivées au Maroc, ce nouveau guide pratique
+
+concerne les trois grandes cultures de légumineuses alimentaires
+que les agriculteurs marocains s'efforcent à perdurer dans leurs champs
+malgré les obstacles d'ordre techniques et économiques auxquels ils font
+face avec beaucoup de détermination.
+
+D ans le même esprit de l'édition antécédente qui s'est intéressée aux
+
+L'importance de ces cultures est indéniable sur tous les plans. Nous avons
+choisi d'établir ce guide pour apporter notre soutien et celui des experts
+de l’Institut National de la Recherche Agronomique dans ce domaine. En
+effet, la science ne cesse de se pencher sur les problématiques d'ordre
+technique pour trouver des solutions que nous rapportons sur cette
+édition à l’état d’art actuelle.
+
+Ce guide s'inscrit dans la continuité de celui édité auparavant. Nous
+allons revenir brièvement sur les bonnes pratiques qui y ont été détaillées,
+tout en mettant l'accent sur les particularités qui concernent les trois
+espèces de fabacées, lentille, pois chiche et fève.
+
+Ce guide est également réalisé avec l'appui financier du KAFACI. II a
+mobilisé une équipe multidisciplinaire de diverses spécialités. L'équipe
+d'édition comprend Messieurs KRADI Chafik, DAHAN Rachid, MOUAAID
+Abdelali, TIRAZI Reddad et HADDASKAR El Mostafa. Ils ont procédé à la
+collecte de l'information, la synthèse, la conception, la mise en forme du
+guide, la lecture finale et sa correction. Mes remerciements vont aux
+spécialistes qui ont contribués par leur lecture, vérification et
+amélioration du contenu de ce guide.
+
+KRADI Chafik
+Coordinateur de l’équipe
+
+Avertissement: Les informations contenues dans ce manuel sont considérées comme
+exactes et à jour au moment de l'impression. Toutefois, nous déclinons toute responsabilité
+pour la façon dont l'information est utilisée.
+Feuilles
+
+e Composées pennées, varient
+em pour sie
+
+activité photosynthétique. .
+e Folioles larges dans le cas de Fruit
+fève, terminées par une vrille
+dans le cas de lentille, et
+généralement à folioles dentées
+dans le cas de pois chiche.
+
+e Graines de forme ovale parfois
+aplaties contenues dans une gousse.
+
+Tige
+e Dressée, ramifiée à la base
+et parfois rameuse.
+
+Racines
+
+e De type pivotant avec une racine
+principale et des racines latérales. Ces
+racines forment des nodosités grâce à
+la symbiose avec des bactéries du
+type Rhizobium qui ont la capacité
+de transformer l'azote aérien en
+forme utilisable par la plante hôte.
+
+Le choix des variétés à cultiver émane de l'objectif d'avoir des rendements les plus élevés,
+avec un coût avantagé à la production, compte tenu des besoins du marché et de la
+qualité exigée. Un compromis doit être fait pour concilier ces critères à la précocité qui
+évite à la culture la sécheresse de fin de cycle, et la résistance génétique aux maladies.
+
+L'utilisation des semences sélectionnées et certifiées est parmi les facteurs de production
+essentiels ayant été à l'origine des progrès spectaculaires de l'agriculture moderne. Le choix
+de la variété revêt une importance considérable. Dans le cas des fabacées, la variété doit
+avoir les caractéristiques suivantes :
+
+e Un système racinaire profond (-50 cm) avec une bonne nodulation répartie sur une
+profondeur de 10 à 12 cm et un système végétatif permettant une meilleure réception des
+radiations photosynthétiques actives avec des ramifications primaires et secondaires assez
+épaisses et équilibrées conférant à la plante un port dressé ou semi-étalé.
+
+e Une floraison synchrone et de courte durée et une insensibilité au photopériodisme (pour
+la lentille et le pois chiche) et une auto-fertilité élevée, chute des fleurs réduite et résistance
+à la verse (pour la fève).
+
+e Une haute fertilité liée à un nombre élevé d'inflorescence par tige, de gousses par
+inflorescence ou de graïnes par gousses, avec une maturité synchrone et des gousses non
+déhiscentes.
+
+e Un développement végétatif précoce.
+
+e Un degré de tolérance aux conditions du stress physique (froid, sécheresse, chaleur) et une
+résistance génétique aux maladies.
+
+e Une bonne qualité culinaire.
+
+Les variétés les plus présentes sur le marché des semences au Maroc sont rapportées en
+annexe 1.
+
+IMPORTANT
+
+Les semences sélectionnées
+sont généralement
+disponibles chez les sociétés
+semencières dans les zones
+de production. Pour pallier
+aux problèmes de non
+disponibilité récurrente,
+plusieurs groupements de
+producteurs produisent leur
+propres semences auec
+l'appui des pouvoirs publics
+dans le cadre de projets de
+développement. Contacter
+wWww.inra.org.ma
+
+Préparation du sol
+
+Préférences aux sols des trois espèces
+
+e La fêve préfère les terres argilo-calcaires profondes ayant une bonne réserve utile et de
+fertilité modérée. Elle craint les sols pauvres et secs ainsi que les sols très humides. Le pH
+favorable se situe entre 6,5 et 8. Concernant la salinité, la DLS 50% se situe au voisinage de
+9mm hos/cm ; des teneurs en sels sodiques de 25 à 35mg/1009 de sel inhibent
+complétement la germination et la formation des nodules.
+
+e La lentille s'adapte à plusieurs types de sols. Les meilleurs se situent entre argileux
+perméables et sablonneux. Les sols trop fertiles ou trop humides sont à éviter. La lentille se
+développe aussi bien en sols acides (6 — 6,5), ou alcalin (7,5 — 9). Cependant, pour un pH
+supérieur à 9, la nodulation et les rendements sont très réduits.
+
+e Le pois chiche se cultive de préférence sur des sols assez lourds, pourvu qu'ils soient bien
+drainés (l'excès d'humidité rend la plante très sensible aux maladies). S'il présente encore
+une certaine adaptation à des sols meubles sablo-argileux, les sols sableux ou trop calcaires
+sont, par contre, à déconseiller pour sa culture (les grains obtenus sur sol calcaire cuisent
+mal).
+
+Place dans les systèmes de cultures
+
+Les légumineuses alimentaires sont cultivées comme précédent des céréales ou en
+association avec d'autres espèces. En général, la rotation biennale céréales-légumineuses
+est meilleure que blé-jachère. l'écart est d'autant plus important quand on apporte des
+engrais phospho-potassiques sur les légumineuses et que le système Rhizobia-nodules est
+soit efficient de point de vue fixation azotée.
+
+IMPORTANT
+
+Le labour n'est pas une technique sans inconvénients. Elle est parfois condamnée de
+
+pratique destructrice des sols, surtout en zones semi-arides. On a inventé le zéro labour
+qui est l'une des techniques utilisées dans l'agriculture de conservation. Ce système est
+vivement recommandé par les chercheurs de l'INRA.
+
+Quand travailler le sol ?
+
+Dans certaines situations quand le travail du sol est exigé, labourer juste après la moisson de
+la récolte précédente. Dans ce cas, l'humidité du sol convient mieux que quand le sol se
+dessèche et durcis.
+
+Ilest recommandé d'utiliser les outils à dents (Chisel, Rouleau, Sweep) afin de permettre la
+conservation de l’eau et du sol.
+
+Outils de labour Outils de préparation de lit de semences
+
+y Se dy hs
+Le Semis Direct (Rappel)
+
+Le système de semis direct
+
+Le zéro labour et le maintien d'une partie des résidus en surface et les racines permet à ce
+sol () une meilleure infiltration et conservation de l'eau (if) une augmentation de la
+séquestration du carbone et donc une amélioration de la matière organique (ii) une
+protection contre les érosions physiques et chimiques et (iv) une activité biologique plus
+intense.
+
+2 d'un bon mulch qui répondra
+à l’axiome de la couverture
+végétale en Agriculture de
+Conservation.
+
+Le semis direct présente la solution des grandes cultures pour l'agriculture pluviale.
+L'élevage et le pâturage n'entravent en rien l'adoption du semis direct mais les pratiques
+doivent changer. La simplification des façons agricoles par l'élimination des travaux du sol
+devrait permettre aux agriculteurs de mieux préparer leurs campagnes agricoles.
+L'introduction de cultures fourragères est une technique qui permet de réduire lee stock
+des semences des adventices dans le sol, d'interrompre les cycles des prédateurs et de
+produire de l'aliment pour l'élevage à moindre coût.
+
+Le semis direct ne se résume pas à l'utilisation d'un semoir ni à l'élimination des travaux du
+sol, c'est plutôt un système de gestion des sols et des cultures qui permet la conservation des
+ressources naturelles (sols et eaux).
+
+Implantation
+
+Le semis de lentille, de pois chiche d'hiver et de fève sèche doit se faire pendant que les
+températures sont encore clémentes pour permettre à la semence de germer et d'atteindre
+un certain stade de croissance avant la chute des températures. Habituellement, les semis
+sont effectués entre novembre et décembre.
+
+En culture de fève primeur, les semis sont effectués en août-septembre, de façon à obtenir
+la production en vert entre décembre et janvier. Quant à la culture de pois chiche de
+printemps, le semis s'effectue habituellement entre le 15 février et le 15 mars.
+
+La quantité dépend du mode de semis, des écartements appliqués, du poids de mille grains
+et de la faculté germinative. Cette quantité se situe autour de 50 kg/ha pour la lentille, 80
+kg/ha pour le pois chiche et 120 kg pour la fève.
+
+Peuplement visé (en plantes/m2) x PMG (en grammes)
+
+Dose d Î kg/ha) =
+Die desenim (en RIRE Faculté germinative du lot (en %)
+
+Généralement, on sème avec des écartements permettant d'intervenir avec une bineuse
+interrangs pour mieux maîtriser l'enherbement
+
+4 à 8 cm
+
+12 à 18 cm
+
+12 à 18 cm
+
+Lentille Pois chiche Fève
+
+On peut aussi pratiquer le semis en lignes jumelées de un à deux mètres d'écartement entre
+double lignes distancées de 20 à 30 cm. Cette pratique peut être considérée comme jachère
+travaillée. On peut également pratiquer des interlignes serrées de 35 cm dans le cas de la
+lentille à condition de maîtriser le désherbage chimique.
+
+On sème à la main, à l’aide d'une houe ou bien à la charrue. Dans les deux cas, on ouvre
+des sillons à la profondeur voulue (la profondeur d'enfouissement des graines doit être de
+l’ordre de 5 ou 6 cm), on y place les graïnes, on recouvre enfin, soit à la houe, soit à la herse.
+
+On peut aussi travailler au semoir ordinaire, convenablement réglé.
+Chez la lentille et le pois chiche, des traitements de semences par l’AIB ou l'AIA améliorent
+la levée et la précocité.
+
+A noter
+
+L'analyse de l'élaboration du rendement montre qu'il y a (i) Un effet prédominant de la densité
+du peuplement et de la date de semis sur le rendement et ses composantes (ii) Un effet structure
+
+moins important se manifestant essentiellement sur les ramifications (iii) Un effet interaction
+densité x structure essentiellement sur les ramifications. Ceci dénote l'importance de ces facteurs
+qui, par une combinaison optimale, permettent d'obtenir des rendements potentiels.
+
+Fertilisation
+
+La fertilisation est une étape importante dans la production agricole. Elle doit être
+correctement évaluée pour se situer à l'optimum économique de la production. Cependant, il
+est nécessaire d'adapter le niveau de fertilisation au niveau de production permis par le
+potentiel génétique d'une espèce donnée. Les progrès dans ce domaine se situent surtout dans
+les méthodes de diagnostic (analyses du sol et plantes), dans la compréhension des interactions
+entre les éléments minéraux, et dans les techniques de fertilisation de manière à répondre le
+plus précisément possible aux besoins des cultures en croissance tout en limitant les effets sur le
+milieu naturel.
+
+Particularités de la fertilisation des fabacées
+
+Les racines sont formées d'un pivot principal pouvant atteindre 36 cm et des racines latérales.
+Ces dernières sont soit superficielles très ramifiées localisées dans les 15 premiers centimètres,
+rencontrées surtout chez les écotypes à petites graines dans les sols alluviaux, soit profondes
+pouvant atteindre 36 cm de profondeur, caractéristique des écotypes à graines larges cultivés
+dans les sols lourds, soit intermédiaires, celle-ci portent des nodules de forme ronde ou allongée
+contenant des bactéries Rhizobium lésuminosarium fixatrices d'azote.
+
+Il'est connu que le système racinaire des fabacées est moins développé que celui des céréales.
+Dans le cas de contraintes d'ordres physico-chimiques au sol, des problèmes de nutrition
+phospho-potassiques peuvent surgir. Ceci montre l'intérêt d'une bonne structuration du sol, de
+localisation de la fumure phospho-potassique essentiellement à des niveaux moyens (15-25
+cm) tout près des semences. Dans certains cor, il sera judicieux d'utiliser quelques techniques
+pour surmonter ces contraintes, comme l'ajout de mycorhize, de bactéries solubilisant le
+phosphore ou la fertilisation foliaire.
+
+Concernant la nodulation, le tissus bactéroïde n'atteint 50% de sa masse totale qu'après
+quarante jours après les semis d'où l'intérêt des petits apports d'azote avant les semis pour le
+démarrage de la culture.
+
+On peut dans certains cas pratiquer l'inoculation par des bactéries Rhizobium
+Leguminosarium qui fixent l'azote atmosphérique à raison de 210 kg/ha et 840 mg/plante en
+moyenne. Toutefois, plusieurs facteurs édaphiques, biotiques (Sitones), abiotiques
+(température, sécheresse) ou génétiques (de la souche, sa compétitivité ou celle de l'hôte) ainsi
+que les interactions (souche Variété) influent sur la fixation symbiotique de l'Azote et doivent
+être pris en considération pour obtenir une réponse significative. L'inoculation peut être faite
+soit en traitant les semences soit en inoculant le sol immédiatement avant ou après les semis.
+
+RAPPEL
+
+Pour une bonne utilisation des engrais, il faut considérer les quatre points suivants :
+
+e Le choix d'une source d'engrais adéquate.
+
+e Bien calculer la dose et prendre en considération le rendement objectif et les fournitures du sol.
+e Apporter l'engrais à l'emplacement approprié dans les conditions climatiques et
+environnementales appropriées.
+
+e Choisir le moment d'apport opportun pour coïncider avec les stades de croissance où la
+demande en éléments nutritifs par les plantes est élevée.
+Fertilisation
+
+Fertilisation azotée
+
+Apporter au moment du semis une quantité de 10 à 20 Kg d'azote selon la nature du sol et
+sa fertilité initiale. Cette quantité pourra combler les besoins initiaux des cultures avant le
+développement des nodosités sur les racines.
+
+Fertilisation phospho-potassique
+
+Les apports phospho-potassiques sont faits au moment de la préparation du sol. Il est
+recommandé d'éviter leur contact avec les graïnes. En général, la réponse est plus
+significative pour le phosphore (P205) particulièrement dons les zones arides et semi-arides.
+Tandis que les doses croissantes de potasse améliorent la qualité culinaire.
+
+La quantité d'engrais phospho-potassique doit se voir en baisse si le gradient d'aridité du
+climat est croissant et/ou de richesse initiale du sol est croissante. Pour cela, nous
+recommandons vivement des analyses du sol, et dans le cas échéant, de consulter les
+services compétents de l'ONCA qui peuvent conseiller selon les formules régionales
+contenues dans le site fertimap.ma.
+
+Ici, et à titre d'indication, nous donnons quelques références dans des situations fréquentes
+au Maroc pour une production satisfaisante de ces cultures.
+
+Niveau de production visé Niveau de production visé Niveau de production visé
+
+FÈVE POIS CHICHE (hiver) LENTILLE
+25 qx/ha 20 qx/ha 20 qx/ha
+
+P20O: : 70 unités PO: : 50 unités PO: : 50 unités
+K20 : 50 unités K:0 : 40 unités K:0 : 30 unités
+
+Autres éléments
+
+En plus du souffre que l'on peut apporter dons les engrais complexes, ces trois fabacées
+requièrent certains oligoéléments, particulièrement le fer, le manganèse et le zinc. Au cas
+où les analyses du sol révèlent l'absence de l’un de ces oligoéléments, ou bien en cas
+d'apparition de symptômes de carences sur les plantes, corriger cette situation.
+
+Toujours penser aux Bonnes
+Pratiques Agricoles
+
+La structure du sol et sa fertilité évoluent en fonction de la
+rotation et de l'apport en matière organique par restitution des
+
+débris des cultures précédentes ou épandage de fumier. Ceci
+contribuera aussi à favoriser l'activité microbienne dans le sol.
+Aussi, le drainage et la décompactation doivent être des soucis au
+moment de l'élaboration du train technique.
+
+Entretien au champ
+
+Binage et sarclage
+
+Le premier est effectué 20 jours après la levée pour casser la croûte de battance et lutter
+contre les premières mauvaises herbes. D'autres binages et sarclages doivent être effectués
+un peu avant la floraison. En haute densité, éviter les binages trop fréquents.
+
+Buttage
+
+À effectuer avant la floraison, quand la plante atteint une hauteur d'environ 20 em. Le
+buttage consiste à ramener la terre en forme de « butte » au pied des plantes pour
+renforcer l'émission de racines latérales et favoriser la croissance, et recouvrir une partie des
+plantes pour éviter la verse.
+
+Régulation de la croissance
+
+Chez la fève en culture moderne, la pratique de l'écimage ou l'utilisation de certains
+retardants de croissance pour freiner la végétation très luxuriante des variétés à port
+indéterminé aident à l'amélioration de la production.
+
+En semis tardif de lentille, un traitement foliaire par des sels sodiques de Naphtyl acétique
+appliqué 50 jours après les semis permet la réduction de la période végétative.
+
+Pollinisation en champs de fève
+
+La fève, contrairement à la lentille et le pois chiche, est une espèce intermédiaire entre
+allogame et autogame (taux d'allogamie 14 à 35 % ou même plus). Les principaux
+pollinisateurs des fèves sont les bourdons (genre bombus) et les abeilles (genre Apis).
+D'autres insectes de la famille des Thysanoptères, staphylinides, sitones peuvent jouer un
+rôle dans ce sens. Il y a également l'effet mécanique du vent qui assure le "tripping”.
+
+En tant que facteur de production, la pollinisation a une incidence sur (ï) Le rendement
+qui, sous l'action d'une bonne pollinisation peut être amélioré de 25 à 50%. On attribue
+35% de la production à ce facteur (ii) La précocité (iii) La qualité, surtout la teneur
+protéique et la taille des graines (iv) La fertilité. Pour une bonne pollinisation, il faut en
+moyenne deux colonies d'abeilles/ha.
+
+Fève en floraison Pois chiche en floraison Lentille en floraison
+
+Entretien au champ
+
+La première étape de la stratégie de désherbage est la prévention par (i) Limitation des
+sources d'infestation, (ii) Pratique d’une rotation diversifiée intégrant des cultures plus
+compétitives envers les mauvaises herbes et nettoyante (iii) Un bon semis qui favorisera
+une levée rapide et égale de la culture qui va concurrencer au mieux les mauvaises herbes
+(iv) Pratique de la jachère travaillée pendant l'été.
+
+Le désherbage manuel reste une pratique très répandue chez les agriculteurs malgré son
+coût élevé qui permet d'éviter des pertes importantes de rendement vu la faible
+compétitivité des fabacées, surtout au stade plantule. L'arrachage des plants de mauvaises
+herbes peut être précédé d’un passage de bineuse entre les rangs. Toutefois, en haute
+densité, il est impératif de procéder au désherbage chimique.
+
+La lutte contre les graminées chez les fabacées offre la possibilité et l'avantage de
+l'utilisation des herbicides non sélectifs des graminées. Ces herbicides s'utilisent en post-leuée.
+Cependant, on ne peut pas utiliser d'herbicides anti-dicotylédone pendant la culture. Ils
+sont principalement apporté en pré-semi ou pré-levée (voir annexe).
+
+Les herbicides anti-graminées et anti-dicotylédones de pré-levée ont la particularité
+d'éliminer sélectivement certaines espèces graminées et d'autres à larges feuilles avec un
+risque de ne pas éliminer la totalité des mauvaises herbes.
+
+Entretien au champ
+Cas de l’orobanche
+
+L'orobanche est une plante parasite stricte dépourvue
+de chlorophylles. Elle s'attaque à de nombreuses plantes
+cultivées dont les fabacées. Le développement de ces
+dernières reste tribut aire du degré de contrôle de ce
+parasite, surtout dans sa forme spécifique ©. Crenata.
+Plusieurs techniques de lutte ont été développées sans
+parvenir à une lutte efficace à 100%. Toutefois,
+l'arrachage manuel et le brûlis des hampes florales,
+avant la maturation des graines, sont une solution
+pratique qui peut éradiquer le fléau à long terme.
+
+Certaines techniques diminuent significativerment
+
+linfest ation p ar l’orobanche au champ. On peut citer :
+
+e La rotation dans le cas où d'autres spéculations, autres
+que les plantes hôtes sensibles, peuvent être insérées.
+
+e Les plantes pièges qui provoquent la germination de
+l'orobanche sans que leur production soit affectée.
+
+e Les dates de semis tardives permettant aux cultures
+d'échapper aux grandes attaques de l'orobanche.
+
+e La fertilisation azotée et potassique élevée qui peut
+réduire les infestations.
+
+e La solarisation qui est une méthode de lutte physique
+qui consiste à couvrir le sol avec un paillage en plastique
+de polyéthylène pendant quelques jours avant les semis.
+
+Certains insectes phytophages et champignonstels que la Fusarium oxysporumf. sp.
+orthoceras ont été signalés comme agents parasites de l'orobanche.
+
+Le glyphosate est un herbicide systématique total qui a confirmé son efficacité sur la
+culture de fève. Le glyphosate est aussi utilisé sur la lentille, mais à des doses plus réduites
+que celles appliquées dans les fèves, soit 2 fois 40 g/ha au stade tubercule du parasite.
+
+Les herbicides du groupe des imidazolinones ont donné des résult ats satisfaisants pour le
+contrôle de l'orobanche en application pré-levée et post-levée. Au Maroc, ces derniers
+contrôlent ©. crenat a sur fêve par application pré-levée de l'imazethapyr (00 g m.ajha)
+ou l'imazaquine (25 g m.a/ha) (voir annexe).
+
+On peut stimuler chimiquement la germination des graines de l’orobanche pour les
+détruire avant Pinstallation de la culture. Une autre méthode chimique consiste à la
+désinfection du sol.
+
+Protection contre les maladies et ravageurs
+Principales maladies et ravageurs
+
+Botrytis cinerea PERS
+Botrytis fabae SARD
+
+Ascochytose de fève
+(ou Anthracnose)
+
+“* Ascochyta faba
+
+Rouille
+Uromyces viciae- fabae
+
+Mildiou
+
+Sitone
+Peronospora viciae Sitona lineatus
+
+Cercosporiose
+Cercospora Zonata
+
+Puceron noir
+Aphis fabae
+Protection contre les maladies et ravageurs
+Principales maladies et ravageurs
+
+Rouiïlle brune
+Pen rt de lentille Uromyces pisi.
+Ascochyta lentis et U. viciae-fabae
+
+Anthracnose de lentille
+Colletotrichum trancatum
+
+Pourriture des racines et des tiges
+Rhizoctonia solani, Fusarium sp.
+Sclerotinia pythium and Botrytis sp
+
+Pois chiche
+
+K VE) Anthraënose
+
+% Ascochyta rabiei
+Pourriture grise
+
+Botrytis cinerea
+
+Pourriture des racines et des tiges
+Sclerotinia sclerotiorum and $ minor La mineuse des feuilles
+Fusarium sp. Liriomyza cicerina
+
+Protection contre les maladies et ravageurs
+Stratégie de protection
+
+e Établir l'historique de la parcelle et ne cultiver la même
+fabacée sur la même parcelle qu'une fois tous les trois
+ans au minimum en veillant, dans le mesure du
+
+possible, à l'éloignement des champs de semis de
+l'année en cours de ceux où d'autres fabacées
+ont été cultivées l'année antécédente.
+
+e Le choix variétal est critique. Idéalement,
+semer une variété résistante à
+l'anthracnose et aux maladies fréquentes
+dans la région. Répartir le risque en
+cultivant plus qu'une variété.
+
+e Utiliser les semences de parcelles où
+les maladies et virus n'ont pas été
+détectés. Effectuer un traitement
+fongique des semences, en particulier
+dans les situations à haut risque de
+maladie.
+
+e Manipuler la date de semis, la dose de
+semis et les écartements pour prévoir de
+retarder le moment de fermeture du
+couvert. Généralement en cas de risques,
+ne pas semer trop tôt, même avec une
+variété résistante de l'anthracnose.
+
+e En cas d'utilisation d'une variété sensible à
+l'Ascochyta, semer plus profondément que la
+normale.
+
+e Réduire les sources de la maladie et prévenir
+leur propagation par des mesures hygiéniques.
+
+e Les variétés résistantes à l'Ascochyta nécessitent
+encore un traitement fongique foliaire à la formation
+des gousses (Voir annexes). Le succès de l'opération
+dépend de la surveillance, de l'instantanéité de la
+pulvérisation et du choix correcte du fongicide. La détection
+précoce et l'identification de la maladie sont essentielles.
+
+e Contrôler les pucerons et les virus par surveillance et élimination
+des plantes hôtes
+
+e Récolter précocement pour minimiser l'infection des semences par des
+maladies.
+Gestion de l’eau
+
+Le pois chiche présente une meilleure résistance à la sécheresse que la plupart des autres
+plantes de la tribu des viciées. Son enracinement lui permet de puiser l'eau des couches
+profondes. Sa culture peut donc être entreprise dans des régions à faible pluviométrie.
+
+La lentille est généralement cultivée en bour sans supplément d'irrigation dans les zones à
+pluviométrie située entre 300 et 450 mm.
+
+Le coefficient d'utilisation de l'eau (matière sèche produite par unité d'eau utilisée) en zone
+semi-aride est de 0,67 — 1,67 mg MS/g d'eau.
+
+La lentille utilise l'eau avec la même luxuriance que les céréales. Les besoins sont estimés à
+364-391 mm. La période de floraison constitue le stade critique pour la lentille. En culture
+irriguée, elle craint les excès d'eau qui affectent aussi bien la croissance que la nodulation par
+manque d'oxygène.
+
+La fève est parmi les espèces légumineuses les plus sensibles à la sécheresse, qui, lorsqu'elle est
+prolongé, se traduit par (ï) Une diminution de la croissance des feuilles et de l’Indice de
+Récolte (ii) Une diminution de la hauteur de plantes (ii) Une diminution de la période de
+floraison et du nombre de fleurs formant des gousses (iv) Une affectation du système
+hôte-rhizobium-nodule avec des possibilités d'adaptation, et les phénomènes peuvent être
+réversibles jusqu'à une certaine limite (v) Une diminution par conséquent du rendement.
+
+La limite écologique de culture en bour est caractérisée par l'ischyète 300 mm. Au-dessous
+de cette limite, la fève est Irriguée. Cette limite correspond également aux régions ayant plus
+de 40 jours de pluie/an et moins de six mois secs. Le coefficient de transpiration est de 736 en
+zone semi-aride et 282 en zone humide.
+
+La fève ne semble pas présenter de stade
+particulièrement critique, mais elle est plutôt
+sensible à la plupart de ses stades de
+développement.
+
+En culture irriguée, il est plutôt favorable de
+maintenir une bonne humidité pendant la
+seconde phase de végétation suivi d'un
+petit arrêt pendant la phase de floraison
+et de maintenir ensuite une bonne
+alimentation hydrique durant la phase
+nouaison-remplissage des gousses.
+
+A savoir
+
+En cas d'année sèche en mode
+de conduite bour, certains
+agriculteurs utilisent des
+anti-transpirants pour réguler en
+baisse Palimentation hydrique
+des fabacées.
+Récolte
+
+Récolte de la fève
+
+Suivant les objectifs, la récolte peut être destinée à plusieurs fins (i) Récolte des grains entre
+la mi-Mai et Juin (ii) Récolte des gousses Vertes pour le marché en frais entre
+décembre-janvier pour les primeurs et mars-avril pour le marché de saison (iii) Récolte de
+la plante en vert toute entière pour l'affouragement. Le maximum de MS est atteint 45
+jours avant la maturité complète.
+
+Pour les grains, la récolte de toute la plante se fait manuellement ou avec une faucheuse
+lorsque les gousses brunissent. La récolte mécanique doit être effectuée quand la teneur en
+humidité des graines avoisine les 13%. Le battage des gousses après séchage se fait à la
+machine ou sur une aire de battage.
+
+L'opération peut être entièrement mécanisée dans le cas de la féverole, ce qui reste difficile
+
+pour la fève à graine large (non concassée). Toutefois, la Variété doit produire des gousses
+à partir de 25 cm au-dessus du sol et doit être de préférence à port déterminé.
+
+Récolte de pois chiche
+
+La récolte s'effectue aux mois de juin
+et juillet à complète maturité. On
+procède par arrachage à la
+main et mise en botte
+(certaines Variétés à port
+dressé peuvent être récoltées ff
+mécaniquement). Le battage
+s'effectue le plus souvent au
+fléau (après séchage sur l'aire
+à battre), quelquefois
+
+FE €
+mécaniquement. On ne stockera
+les graines qu'après dessiccation
+parfaite.
+
+Récolte de lentille
+
+C'est une des opérations les plus coûteuses chez la
+lentille. La récolte est faite généralement manuellement à la
+faucille quelques jours avant la maturité complète. Le choix de la date de récolte joue un
+rôle très important. En effet, s’il est trop précoce, la qualité de la récolte est dépréciée. S'il
+est trop tardif, il y a risque d'égrainage, particulièrement avec les Variétés sensibles à cet
+effet. Il faut bien considérer que la période critique pour la récolte est très courte (teneur
+en eau des graines -14%). La récolte doit être rapide est faite de préférence le matin. Le
+battage peut être fait d'une manière traditionnelle (dépiquage après ramassage en
+andains) ou battage avec une moissonneuse-batteuse ou une batteuse à poste fixe. Dans
+les grandes exploitations, l'opération peut être entièrement mécanisée par combinaison de
+faucheuses ramasseuses et batteuses ou utilisation de matériel spécifique à ces opérations
+adapté pour la lentille en particulier.
+Stockage
+
+Les légumineuses sont plus sensibles aux conditions de stockage que les céréales.
+Dommages mécaniques, haute température, humidité relative élevée, haute teneur en
+humidité des graines, exposition à la lumière et période de stockage prolongée sont autant
+de conditions nuisibles à la qualité des graines. Elles peuvent provoquer une altération de
+la qualité commerciale et culinaire caractérisée principalement par une durée plus longue
+de cuisson, une mauvaise appétence, une diminution de la qualité de la protéine, et une
+couleur des graines assombrie.
+
+Dans des conditions de stockage optimales, les graines des légumineuses alimentaires
+peuvent être conservées durant un an avant de commencer à perdre en digestibilité selon
+les conditions et la durée de stockage.
+
+Les bruches chinoises Callosobruchus chinensis sont les
+principaux insectes qui attaquent les légumineuses
+alimentaires dans les aires de stockage. Ces
+redoutables insectes commencent leur cycle de vie
+
+à l'intérieur des graines dans les champs, parfois
+pendant l'entreposage, et commencent à
+creuser des galeries dans les graines. $i deux ou
+trois générations ont eu le temps de se
+développer, les dégâts peuvent être très
+importants. Ils sont parfois plusieurs dans un
+même grain miné par des galeries.
+
+Moyens de lutté
+
+Depuis l'apparition des insecticides chimiques,
+on a utilisé d'innombrables molécules sans trop
+se soucier des conséquences sur la santé du
+consommateur final. Le sinistre lindane en a fait
+partie, avant d'être remplacé par des
+organophosphorés ou des pyréthrinoïdes de synthèse.
+Par contre, on utilise encore largement dans les entrepôts
+des fumigations à base de phosphore d'aluminium,
+extrêmement toxiques et dangereuses pour l'environnement.
+
+Points clés
+
+e Les légumineuses alimentaires doivent être stockées en conditions d'humidité de moins
+de 14% tout en veillant au refroidissement et à l'aération du lieu de stockage.
+
+e Une hygiène méticuleuse depuis la réception des récoltes est la première ligne de
+défense contre l'incursion des organismes nuisibles.
+
+e Pour les stochages de long terne, la furnigation est la seule option disponible pour
+lutter contre les ravageurs, ce qui nécessite une possibilité de contrôle de l'étanchéité du
+lieu de stochage.
+I Quelques variétés de fabacées
+
+M Principaux pesticides homologués
+
+M Période de surveillance des principales maladies fongiques
+
+Variétés de fève Jgall liai
+
+gl jo
+Calibre des grains
+Técoce als Karabiga =
+uug Lobab œ
+Demi précoce U2l5- Defès e
+
+üols Carmen œ
+
+&iolls4i Aqualonga œ
+
+Variétés de féverole älygall élan
+
+Sensibilité
+
+O000 ©
+
+OO
+O0
+1)
+
+| &sle Alfia 305 æ e) O OÔO
+Demitardif ‘le Alfia 317 e [e) O (e)
+au Afiasa @ 000
+intouus @ Petites graines BBSV aus @) BBSVirus
+ülusiouns @ Graines moyennes jgygangéaumull ÔO Cercosporiose
+
+puis gas eo Grosses graines
+
+Ugo O Botrytis
+ugé wbl O Ascochyta
+
+isail a Rouille
+
+ANNEXE 1
+
+Quelques variétés de fabacées
+
+Variétés de lentille Uusll él
+
+Dgaail pass &ogléo/ënuulus
+Calibre des grains Sensibilité
+
+Très précoce is Précoz | o ®
+
+2. ägü Chakhof | O
+
+FLE äglüll Chaouia w @
+
+és Abda e (:]
+
+Jliotèai L24 e @
+Semi tardif äosil Hamria @
+ëkj Zaâria oO
+
+Ps Bichette [2 @
+
+Variétés de pois chiche uno=lliélini
+
+J$o
+
+Précoce sg2lj Zahor | © Ô
+
+cho Moubarak © Ce]
+
+ee oui Farihane @ le)
+Semni-précoce wéyc Arifi &
+säÿ Rizki L ]
+“Lol Douiyet ®
+
+uñgéull gli le] Résistant à l’Ascochyta
+jgislbll rogläo O Résistant à l'anthracnose
+
+hab É Résistant à larouille … “%%-#@@Craines moyennes
+
+ênès vus @ @Petites graines
+
+isa Julius © Sensible à la rouille us vus @ Grosses graines
+
+Herbicides des cultures de fève et féverole
+
+Nom Commercial Matière (s) Active (s) Teneur Ennernis Dose PC DAR {j)
+FUSILADE SUPER Fluazifop-P-butyl 125 g/l Graminées Let 2,5 l/ha 42 j
+FOCUS ULTRA Cycloxydime 100 g/l Graminées 1-1,5 l/ha -
+STRATOS ULTRA Cycloxydime 100 g/l Graminées 1-1,5 l/ha -
+ILLOXAN 36 CE Diclofop-méthyl 360 g/l Graminées 3 1/ha -
+PANTERA 40 EC Quizalofop-P-Tefuryl 40 g/l Graminées 11/ha 60 j
+ILLOXAN 36 CE Diclofop-méthyl 360 g/l Graminées 3 l/ha -
+PANTERA 40 EC Quizalofop-P-Tefuryl 40 g/l Graminées 11/ha 60 j
+Prowl 300/Herbadox |Pendiméthaline 300g/L-455 g/L|Graminées et  |4 L/ha - 2,8 L/ha
+
+dicotylédones
+
+prélevée
+Gallant super Haloxyfop 104 g/L Graminées en [0,5 L/ha
+
+tallage
+CENTAURE Glyphosate -sel 360 g/l Orobanche 167 cc/ha -
+
+d'isopropylamine [IPA)
+CIBLE Glyphosate -sel d'isopropylamine (IPA) 360 g/l Orobanche 167 cc/ha -
+CLINIC Glyphosate -sel d'isopropylamine (IPA) 360 g/l Orobanche 167 cc/ha -
+GLYSTER Glyphosate -sel 360 g/l Orobanche 167 cc/ha -
+d'isopropylamine (IPA)
+ROUND UP Glyphosate 360 g/l Orobanche 0,167 l/ha -
+SIKOSTO 360 SL Glyphosate -sel d'isopropylamine (IPA) 360 g/l Orobanche 167 cc/ha -
+| Ouragan Sulfosate Orobanche 130 cc/ha
+Pour la lutte contre l'orobanche, traiter deux fois dans l'espace de 15 jours en général en début floraison.
+La moitié des doses préconisée pour la culture de fève peut être utilisée pour la lentille.
+._ Le, < £ . e .
+insecticides utilisés en cultures de légumineuses alimentaire
+Nom Commercial Matière {s) Active (s) Teneur Ennemis Dose PC DAR (j)
+
+GENERAL VAP Dichlorvos (DDUP) 500 g/l Pucerons 200 cc/hl 7]
+Décis FLUX Deltamétrine 25 g/l Pucerons 0,3 l/ha
+DIMETHOATE 40 EC Diméthoate 400 g/l Pucerons 11/ha 30 j
+Karaté 5 EC lamda-cyalothrine 25 g/l Pucerons 250 cc/ha
+Malyphos 50 Malathion 500 g/l Pucerons 125 cc/hl
+Pirimor 50 DG Pirimicarbe 0,5 Pucerons 500 g/l
+Warrant 200 SL Imidaclopride 200 g/l Mineuses, pucerons 50 cc/hl
+Vertimec 018 EC Abamectin 18 g/l Mineuses, pucerons 0,51/ha
+Phostoxin pilules Phosphure d'aluminium Taupes en stockage 56% (FT)
+MALAPOUDRE Malathion 2% Insectes de stockage 50 g/qx -
+SIF MALATHION POUDRAGE Malathion 4% Insectes de stockage 25 g/qx -
+
+Fongicides utilisés en cultures de légumineuses alimentaire
+
+= Matière (s) :
+Nom Commercial Active (<) Teneur Dose PC DAR (j)
+ZIRAM 90 Zirame 90% 200 g/hl 15)
+Dithane M 22 Manèbe 0,8 201 g/hl 15)
+
+Fève et féverole
+
+Deux Six Début Jeunes Fin
+Levée feuilles feuilles floraison gousses floraison Maturité
+
+Botrytis
+
+Pois chiche
+
+Sept Dix
+Levée nœuds nœuds Floraison Gousses Maturité
+
+Lentille
+
+Leuée Plantule Floraison Gousses Maturité
+
+Botrytis Anthracnose Rouille Fusariose
+Apparition sur les Apparition de tâches Apparition de tâches Flétrissement des
+feuilles de petites brunes de petit sous forme de pustules feuilles et décoloration
+tâches de couleur diarnètre au centre de couleur rouge sur les en vert terne, puis
+chocolat au centre plus grisâtre qui se feuilles entourées, dans  jaunissement du
+claire, accompagné développent au tâches certains cas, de halo feuillage avant de se
+souvent de fine stries de pourtour sombre jaunâtre. Les pustules manifester par un
+rougeûtre sur la tige. avec un centre clair en développent ensuite dessèchement de la
+présence de une masse de spores tige à partir du collet.
+nombreuses brunes pour recouvrir
+
+ponctuations noires qui la plante.
+finissent par enrouler
+les feuilles.
+Document réalisé
+avec le soutien financier du
+
+KOREA - AFRICA FOOD
+AND AGRICULTURE
+COOPERATION INITIATIVE
+
+pe |
+GP ol (ge agrn
+IotutMaoal de a Rech Agronomique
+
+Avenue de la Victoire Rabat, Maroc BP 415 RP Rabat, Maroc
+Tél:+212 0887 77 26 54 Fax : +212 0537 77 00 49
+
+www.inra.org.ma
+

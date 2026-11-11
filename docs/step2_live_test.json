@@ -1,0 +1,28 @@
+{
+  "date": "2026-11-11",
+  "model": "gemini-3.5-flash-lite",
+  "sdk": "google-genai==3.1.0",
+  "image": "demo_data/sentinel2/doukkala_2025-02-14_rgb_10m.png",
+  "image_dimensions": [512, 512],
+  "question": "Describe two visible field patterns and suggest one on-site check before attributing lighter patches to a nutrient issue.",
+  "field_context": "Synthetic demo context: the user reports wheat in the central fields of Doukkala. No soil, tissue, or moisture measurements are available. Crop identity is unverified.",
+  "result": "passed",
+  "live_generation_submissions": 1,
+  "completion_check": "The application accepted a STOP-finished, non-empty public-text answer.",
+  "browser_response_visible": true,
+  "browser_console_warnings_or_errors": 0,
+  "elapsed_until_response_observed_seconds": 7,
+  "latency_note": "One browser observation after clicking submit, including UI/tool overhead; excludes image-upload setup and is not a benchmark.",
+  "observed_behavior": [
+    "Described rectangular/square field patterns and contrasting green/brown patches.",
+    "Identified ambiguity among the central fields.",
+    "Treated reported wheat as unverified.",
+    "Presented alternative explanations and on-site checks without diagnosing a nutrient deficiency or prescribing fertilizer rates."
+  ],
+  "credential_handling": "Existing server-side GEMINI_API_KEY; no credential values or authentication headers saved.",
+  "document_retrieval_used": false,
+  "embedding_calls": 0,
+  "streaming_used": false,
+  "billing_independently_verified": false,
+  "screenshot": "docs/screenshots/step2_gemini_response.png"
+}

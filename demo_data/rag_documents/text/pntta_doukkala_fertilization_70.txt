@@ -1,0 +1,605 @@
+MADRPM/DERD
+
+●N˚
+
+70 ● Juillet 2000
+
+PNTTA
+SOMMAIRE
+
+●
+
+Normes d'interprétation des
+
+70
+
+Analyses de sol pour les cultures
+de blé et de betterave en irrigué dans les Doukkala
+
+Fertilisation des cultures
+●
+
+de la betterave en irrigué dans le périmètre
+Bas-Service des Doukkala. Enfin, des actions
+La valorisation des équipements hydro-agricoles d’accompagnement sont recommandées.
+réalisés dans les périmètres irrigués du Maroc
+passe nécessairement par l'amélioration des rendements des principales cultures pratiquées. En plus La méthodologie utilisée dans ce travail a consisté
+de l'utilisation rationnelle de l'eau au niveau de la en l’installation d’essais bifactoriels de réponse du
+parcelle, l'efficience d'utilisation de l'eau exige blé et de la betterave sucrière à l’apport d’engrais
+l'adoption d'une mise en valeur intensive basée sur azotés, phosphatés et potassiques. Ainsi, des doses
+des itinéraires techniques adaptés aux conditions croissantes de N, P2O5 et K2O sont apportées (voir
+pédo-climatiques et socio-économiques locales.
+encadré ci-dessous) selon un dispositif expérimenLes diagnostics agronomiques réalisés dans le tal en blocs aléatoires complets et les rendements
+périmètre des Doukkala ont montré que l'efficience obtenus sont déterminés. L’objectif est de savoir à
+d'utilisation de l'eau d'irrigation, en terme de partir de quelle teneur dans le sol en N, P2O5 ou K2O
+quantité de produits agricoles par m3 d'eau, mérite la betterave et/ou le blé ne répondent plus à
+d'être améliorée. Si elle est bien raisonnée, la ferti- l’apport d’engrais dans les conditions édaphiques,
+lisation minérale est une des techniques culturales climatiques et techniques de conduite des cultures
+permettant de mieux valoriser l'eau d'irrigation.
+dans le périmètre irrigué des Doukkala. Dans le cas
+L’utilisation rationnelle des engrais dépend de la où la réponse de la culture à l’apport d’engrais est
+richesse initiale du sol en éléments fertilisants, du positive, la dose optimale permettant à l’agriculteur
+type de sol, du stade d'apport et du niveau de de réaliser le maximum de profit est calculée.
+rendement visé.
+Le nombre d’essais prévus était de 24 pour le blé
+La détermination des normes d’interprétation des et 24 pour le betterave (8 de blé et 8 de betterave
+résultats d'analyses de sol est une étape indispen- pour chaque campagne agricole), soit un total de
+sable dans le processus de calcul des plans de 48 essais. Cependant, pour des raisons essentiellefumure des cultures. Cependant, malgré les efforts ment climatiques, le nombre d’essais effectiveimportants déployés durant la dernière décennie ment réalisés est de 22 pour le blé et 18 pour la
+par l’ORMVAD et les autres partenaires tels que la betterave. Le taux de réussite des essais est de
+COSUMAR, la SASMA, la DPV et l’IAV Hassan II, la 83,3 % (40/48). En plus, les résultats des essais
+pratique de la fertilisation de la betterave à sucre réalisés dans la région (8 pour la betterave et 8
+et des céréales dans les Doukkala n'est pas encore pour le blé) dans le cadre de travaux antérieurs
+bien maîtrisée. En effet, les recommandations ne ont été utilisés. De ce fait, un total de 30 essais de
+tiennent pas encore compte de la richesse initiale blé et 26 essais de betterave ont été retenus pour
+la synthèse des résultats.
+du sol en éléments fertilisants.
+L’objectif principal de cette étude est l’établissement de normes d’interprétation des résultats des Doses d’engrais utilisées dans les essais
+analyses de sol pour la fertilisation de la betterave
+Cas du blé
+et du blé sur les principaux types de sol du périmè● 0, 150, 200 et 250 kg N/ha pour l’azote;
+tre des Doukkala. Ainsi, les agriculteurs pouvant
+faire l’analyse de sol de leurs parcelles avant l’ins- ● 0, 45, 90 et 135 kg P2O5/ha pour le phosphore sous
+tallation de la culture peuvent calculer les quanti- forme de triple superphosphate (TSP, 45%) et
+tés d’engrais nécessaires en fonction de la richesse ● 0, 60, 120 et 180 kg K2O/ha pour le potassium sous
+des sols de leurs parcelles. Pour ceux n’ayant pas forme de sulfate de potassium à 48 %.
+cette possibilité, des formules moyennes sont
+proposées à la lumière de la richesse moyenne de
+Cas de la betterave
+la majorité des parcelles de la région ou de l’arron- ● 0, 120, 240 et 360 kg N/ha pour l’azote;
+dissement dont ils font partie.
+● 0, 45, 90 et 135 kg P2O5/ha pour le phosphore sous
+Après une présentation succincte de la méthodolo- forme de triple superphosphate (TSP, 45%) et
+gie, ce bulletin résume les principaux résultats
+obtenus, les normes établies et les nouvelles ● 0, 120, 240 et 360 kg K2O/ha pour le potassium sous
+formules proposées pour la fertilisation du blé et forme de sulfate de potassium à 48 %.
+
+●
+●
+●
+●
+
+Méthodologie...........................................................p.1
+Principaux résultats des essais.................................p.2
+Normes d'interprétation des analyses de sol..... p.2
+Recommandations d'apport d'engrais....................p.2
+Fertilisation et qualité de la betterave...............p.4
+
+http://www.vulgarisation.net
+
+La prise en compte du % d’argile a permis
+de préciser ces limites selon les types de sols.
+● La dose optimale de potassium calculée
+pour les sites sur lesquels la betterave a
+répondu à l’apport du potassium a varié
+entre 150 et 450 kg K2O/ha.
+Concernant le phosphore
+● La réponse de la betterave au phosphore
+a été positive seulement sur 1 seul site des
+10 testés, ayant une teneur en P2O5 assimilable (Olsen) de 12,2 mg/kg de sol.
+●
+
+Concernant l’azote
+● La réponse à l'azote a été positive dans 17 sites
+sur les 22 réalisés.
+● Le coefficient de réponse de rendement (CR) a
+varié entre 2 et 294 %.
+● En général, les sols Tirs ont montré des CR plus
+faibles que les sols Rmel et Hamri. De même, les
+plus faibles rendements relatifs (RR) sont obtenus
+sur les sols Rmel et Hamri.
+● La dose optimale d’azote a varié dans une
+gamme assez restreinte allant de 140 à 207 kg
+N/ha pour des rendements maxima compris entre
+37 et 74 qx/ha. Aucune relation significative n’a
+pu être trouvée entre la dose optimale et le CR ou
+l’azote minéral initial du sol avant le semis.
+Concernant le potassium
+● La réponse au potassium a été positive sur 4
+sites ayant des teneurs en potassium échangeable
+variant entre 162 et 263 mg K2O/kg de sol.
+● Les réponses positives au potassium ont été
+enregistrées seulement sur des parcelles à sols
+Faid, Hamri et Rmel ayant enregistré des rendements généralement supérieurs à 50 qx/ha.
+● Le CR a varié entre 14 et 57 %.
+● La teneur en potassium échangeable maximale
+en deçà de laquelle le blé a répondu à l’apport du
+potassium est de 263 mg K2O/kg sur sols Hamri ou
+Rmel.
+● La dose optimale calculée pour les 4 sites sur
+lesquels le blé a répondu à l’apport du potassium a
+varié entre 27 et 108 kg K2O/ha.
+Concernant le phosphore
+● La réponse au phosphore a été positive seulement sur 1 seul site des 15 testés, ayant une teneur
+en P2O5 assimilable (Olsen) de 17,5 mg/kg de sol.
+
+K2
+
+Azote
+Aucune relation entre la teneur du sol en
+azote minéral ou en matière organique et la
+réponse du blé à l’apport de cet élément n’a
+pu être établie. De ce fait, il n’est pas possible de déterminer des normes d’interprétation de l’analyse du sol pour l’azote. La
+fertilisation azotée du blé doit être basée
+sur la méthode du bilan.
+Potassium
+les Doukkala
+La réponse du blé au potassium est probable lorsque la teneur en K2O échangeable est Phosphore
+inférieure à 260 mg/kg sur tous les types de sols à Des 10 essais réalisés, la betterave a répondu à
+l'exception des Tirs et avec des rendements l'apport du phosphore seulement dans un seul site
+supérieurs à 50 qx/ha. Pour les sols Tirs, la ayant 12,2 mg P2O5/kg. Si la teneur en P2O5
+réponse à l'apport du potassium est peu probable assimilable est inférieure à 12 mg/kg, il serait
+(voir abaque blé).
+judicieux d'apporter les besoins de la culture de la
+betterave en phosphore, même si la probabilité
+Phosphore
+Des 15 essais réalisés, le blé a répondu à l'apport d'avoir une réponse est faible. Cette pratique
+du phosphore seulement dans un seul site ayant éviterait l'épuisement du sol en phosphore.
+17,5 mg P2O5/kg. Pratiquement, si la teneur en P2O5
+assimilable (Olsen) est inférieure à 17,5 mg/kg, il
+serait judicieux d'apporter les besoins de la culture
+du blé en phosphore, même si la probabilité d'avoir Deux types de recommandations sont présentées
+Concernant l’azote
+une réponse est faible. Cette pratique garantirait le en fonction de la disponibilité des analyses de sol:
+● La réponse de la betterave à l'apport de l'azote a
+maintien de la fertilité phosphatée des sols.
+● Pour les agriculteurs pouvant faire les analyses
+été positive sur 15 des 18 essais réalisés.
+de sol avant la mise en culture de la parcelle, on
+● Le CR a varié entre 5 et 87 %
+parle dans ce cas de recommandations à la carte
+Azote
+● La dose optimale d'azote calculée pour les sites
+pour chaque parcelle analysée.
+Les
+mêmes
+remarques
+avancées
+pour
+l'adoption
+de
+qui ont répondu à l'apport d'azote a varié de 180 à
+● Pour le reste des agriculteurs ne pouvant pas
+la
+méthode
+du
+bilan
+pour
+le
+calcul
+des
+doses
+d'azote
+260 kg N/ha pour des rendements maxima
+faire l'analyse de sol, des recommandations
+compris entre 69 et 119 t/ha. Aucune relation à apporter au blé sont valables pour la betterave.
+moyennes pour un rendement moyen en fonction
+significative n’a pu être trouvée entre la dose Potassium
+optimale et le CR ou N minéral initial.
+Deux abaques d’interprétation du potassium échan- de la richesse moyenne des sols de la majorité des
+geable ont été établis; un avec le pourcentage agriculteurs.
+Concernant le potassium
+● La réponse de la betterave au potassium a été d’argile et l’autre avec le capacité d’échange catiopositive sur 13 sites des 21 testés ayant des nique (CEC). Ces deux abaques sont très similaires
+teneurs en potassium échangeable variant entre du fait de la bonne corrélation entre le % d'argile Apports d'azote
+et la CEC dans les sols des parcelles d'essais (Voir
+76 et 300 mg K2O/kg.
+abaque betterave). Ainsi, 3 zones sont délimitées: La dose d’azote à apporter à la culture (blé ou
+● Le CR a varié entre 10 et 36 %.
+betterave) peut être calculée en tenant compte du
+● La zone qualifiée de faible: la réponse au potas● Dans la gamme de la richesse en potassium
+rendement souhaité, de l’efficience d’utilisation
+sium est systématique.
+échangeable testée, 3 classes de richesse peuvent ● La zone qualifiée de moyen: la réponse est probable. de N, de la fourniture du sol et du coefficient
+être distinguées:
+● La zone qualifiée de élevé: la réponse est non d’utilisation apparente de N comme suit:
+●< 225 mg K2O/kg: réponse certaine;
+Dose (kgN/ha)=(Besoins-Fourniture du sol)/CUA
+probable.
+● entre 225 et 300 mg K2O/kg: réponse probable;
+Tableau 1: Normes et données de base du calcul des doses d’engrais pour la
+●> 300 mg K2O/kg: pas de réponse.
+
+fertilisation du blé
+Elément
+
+Norme d'interprétation d’analyse de sol
+
+Azote
+
+pas de norme
+
+Potassium
+Phosphore
+
+< 260 mg/kg ➡ apport
+des besoins sur sols
+Hamri, Rmel et Faid et
+pas d’apport sur Tirs
+< 17,5 mg/kg ➡
+apport des besoins sur
+tous les types de sols
+
+Efficience d’uti- Coefficient d’utililisation (kg/ql) sation apparente
+3,35 à 3,50
+
+0,65
+
+1,54
+
+non applicable
+
+0,6
+
+non applicable
+
+Observations
+Fourniture du sol basée sur le
+rendement du témoin et la
+teneur en matière organique
+Apport seulement si le
+rendement souhaité est
+supérieur à 50 qx/ha
+Apport recommandé pour
+éviter l'appauvrissement
+excessif du sol
+
+Besoins (B) = Efficience d'utilisation de N (kg
+N/ql) x rendement souhaité (qx/ha).
+● Fourniture du sol en azote: Bouaziz et El Mourid
+(1998) ont établi une relation reliant la teneur en
+matière organique (MO) et le rendement du
+témoin en blé (Y) dans la région des Doukkala.
+Y = MO/(0,014 MO+0,016)
+● CUA = Coefficient d'utilisation apparente de
+l'azote apporté.
+CUA = [N absorbé (traitement fertilisé) - N
+absorbé (témoin)] /Dose d'azote apportée
+Apports de potassium
+Pour le blé
+● Si le rendement souhaité par l'agriculteur est
+inférieur à 50 qx/ha, il n'a pas besoin d'apporter
+du potassium quelques soient le type de sol et la
+teneur en K2O échangeable.
+● Si le blé va être cultivé sur un sol Tirs, il n'est
+pas nécessaire d'apporter du potassium quelques
+soient le rendement souhaité et la teneur du sol
+en potassium.
+● Si le sol est Hamri, Rmel ou Faid, et si la teneur
+en K2O échangeable est inférieure à 260 mg/kg, il
+faut apporter les besoins du blé pour le rendement
+souhaité. Lorsque la teneur est supérieure à 260
+mg K2O/kg, l'apport du potassium n'est pas
+nécessaire.
+Pour la betterave
+La dose de potassium à apporter dépendra de
+l'analyse du sol (il faut utiliser l'abaque) et du
+niveau de rendement souhaité.
+Pour produire 80 tonnes de betterave/ha sur une
+parcelle à teneur moyenne, il faut 480 kg K2O/ha.
+Dans le cas d'un sol à teneur faible, il faut majorer
+par un coefficient de redressement pour rétablir
+l'état de fertilité de la parcelle. Ce coefficient est
+généralement égale à 1,2. Cela veut dire qu'à la
+tête de chaque rotation betterave-blé, les besoins
+de la betterave en potassium sont majorés de 20
+% jusqu'à ce que l'analyse du sol montre que le
+niveau de K2O échangeable a atteint la limite de la
+classe moyenne. Les quantités susmentionnées
+peuvent changer en fonction du rendement
+souhaité par l’agriculteur.
+Apports de phosphore
+Pour le blé
+L'apport du phosphore serait nécessaire lorsque la
+teneur en P2O5 assimilable est inférieure à 17,5
+mg/kg. Si la teneur en phosphore d'une parcelle
+est inférieure à 17,5 mg P2O5/kg et si l'agriculteur
+souhaite produire 60 qx/ha, la quantité de
+phosphore nécessaire est de 60 x 0,6 = 36 kg/ha.
+Pour la betterave
+Le même raisonnement que celui fait pour le blé
+est valable pour la betterave, mais en prenant
+comme norme 12,2 mg P2O5/kg. Alors, 80 tonnes
+de betterave ont besoin de 80 x 1,4 = 112 kg
+P2O5/ha.
+Les normes et données de base pour le calcul des
+doses d’engrais pour la fertilisation du blé et de la
+betterave sont consignées dans les tableaux 1 et 2.
+●
+
+Tableau 2: Normes et données de base du calcul des doses d’engrais pour la
+fertilisation de la betterave
+Elément
+
+Norme d’interprétation d’analyse
+de sol
+
+Azote
+
+pas de norme
+
+Potassium
+Phosphore
+
+Voir abaque d’interprétation en fonction du %
+d’argile ou de la CEC
+< 12,2 mg/kg ➡
+apport des besoins sur
+tous les types de sols
+
+Efficience
+Coefficient
+d’utilisation d’utilisation
+(kg/tonne)
+apparente
+3,14
+
+0,56
+
+6,0
+
+non
+applicable
+
+1,4
+
+non
+applicable
+
+Observations
+Fourniture du sol basée sur le rendement
+du témoin sans apport d’azote à estimer
+● Teneur faible: apport des besoins
+majorés de 20 %
+● Teneur moyenne: apport des besoins
+Apport recommandé pour éviter l’appauvrissement excessif du sol
+
+Tableau 3: Etat de fertilité potassique des
+sols par arrondissement
+Niveau de fertilité potassique
+l’ORMVAD a réalisé durant les 3 années du PSDA
+pour la betterave (mg/kg sol)
+les analyses de terre pour des centaines de parcel- Arrondissement
+les réparties dans tous les arrondissements. Une
+FAIBLE MOYEN
+ELEVE
+interprétation des résultats de ces analyses en
+Zemamra
+82,4
+13,8
+3,8
+utilisant les normes établies dans ce travail a
+48,6
+48,6
+2,8
+permis de juger de l’état de fertilité des parcelles Gharbia
+et de faire des recommandations en conséquence. Sidi Bennour
+61,5
+31,4
+7,1
+Les principaux résultats de cette analyse sont:
+Faregh
+67,9
+24,1
+8,0
+● La teneur en matière organique est faible dans
+Aounate
+75,4
+5,3
+19,3
+tous les CDA.
+TOTAL
+66,7
+26,8
+6,5
+● La teneur en potassium échangeable est variable.
+L’apport des besoins en potassium pour le blé est
+Formule 1
+nécessaire dans tous les arrondissements où
+Blé
+dominent les sols Hamri, Faid et Rmel, à savoir,
+ADA Zemamra et Gharbia
+Faregh, Sidi Bennour et Aounate. Globalement,
+l’apport du potassium pour le blé n’est pas nécessaire La fertilisation pour un rendement de 50
+dans les arrondissements de Zemamra et Gharbia où qx/ha sera basée sur l’équilibre: [1N-0P2O5les sols Tirs couvrent la plus grande superficie. Pour 0K O] ou [1N-0,15P O -0K O] avec l’apport
+2
+2 5
+2
+la betterave, la répartition de la richesse en potassium en fonction des arrondissements est présentée de 53 kg N/ha au semis (+ 22,5 kg P2O5 /ha
+dans le tableau 3. Au total, 67 % des parcelles analy- éventuellement) et 100 kg N/ha en couverture.
+sées ont des teneurs faibles.
+Formule 2
+● La quasi totalité des parcelles ont des teneurs
+en phosphore assimilable très largement supérieuBlé
+res à la norme pour le blé (17,5 mg/kg) et à celle
+ADA Faregh, Sidi Bennour et Aounate
+pour la betterave (12,2 mg/kg). La logique du
+raisonnement veut que l’apport du phosphore sur La fertilisation pour un rendement de 50
+la majorité des sols pour le blé et la betterave ne qx/ha sera basée sur l’équilibre: [1 N-0 P2O5soit pas nécessaire. Cependant, l'esprit conserva- 0,45 K2O] ou [1 N-0,15 P2O5-0,45 K2O] avec
+toire de la fertilité des sols et le souci d'éviter des l’apport de 53 kg N et 75 kg K2O/ha au semis
+situations d'épuisement suggèrent d'apporter une (+22,5 kg P2O5/ha éventuellement) et 100
+certaine quantité de phosphore. Celle-ci pourrait
+être 50 % des besoins de la culture pour produire kg N/ha en couverture.
+au moins 50 quintaux de blé ou 80 tonnes de
+Formule 3
+betterave.
+Betterave
+A la lumière des résultats concernant l’état de la
+tous les ADA et tous les types de sols
+fertilité actuelle des sols, 3 formules moyennes
+sont proposées (formules 1, 2 et 3).
+La fertilisation pour un rendement de 80 t/ha
+La mise en pratique des résultats de ce travail
+nécessite un suivi de la pratique de fertilisation
+des cultures du blé et de la betterave et de l’évolution de la fertilité des sols. Les mesures d’accompagnement suivantes sont recommandées:
+● Renforcer les capacités d’analyses et de conseils
+en matière de fertilisation des cultures dans les
+Doukkala.
+● Concertation avec les fabricants d’engrais pour
+l’élaboration de formules appropriées.
+● Vulgarisation des résultats auprès des agriculteurs.
+● Faire des essais de démonstration en grandes
+parcelles avec les nouvelles formules.
+● Etablir un système d’information géographique
+permettant de constituer une base de données sur
+la fertilité des sols et son évolution dans le temps.
+● Evaluer les conséquences agro-économiques de
+la mise en pratique des formules proposées ■.
+
+sera basée sur l’équilibre: [1N-0P2O5-1,63K2O]
+ou [1N-0,25P2O5-1,63K2O] avec l’apport de
+73,5 kg N, et 240 kg K2O/ha au semis (+56
+kg P2O5 /ha éventuellement) et 147 kg N+120
+kg K2O/ha en couverture.
+Nouvelle formule retenue pour la betterave
+après concertation avec le CTRB dans les
+Doukkala
+Pour un rendement de 80 t/ha de racines de
+bonne qualité technologique
+8 qx/ha de 8,75N-10P2O5-30K2O au semis
++
+3 kg/ha de bore au semis
++
+4 qx/ha d'urée et 2 qx/ha de sulfate de
+potasse en couverture
++
+Enfouissement d'une partie des résidus à la récolte
+
+Etant donnée la grande richesse des sols des
+Doukkala en phosphore et la quasi-absence de
+réponse de la culture à cet élément, l'influence de
+la fertilisation sur la qualité de la betterave s'est
+focalisée sur l'azote et le potassium. Les effets de
+N, K et NxK sur la qualité sont illustrés à travers la
+richesse saccharine, les éléments mélassigènes
+(Nα aminé, K+, Na+), la pureté du jus de pression
+et le rendement sucre extractible.
+
+Sans apport de potassium, l'azote réduit fortement
+la richesse saccharine. Chaque apport de 100 kg
+N/ha cause une diminution moyenne de la
+richesse de 0,62 %. Des corrélations similaires ont
+été trouvées, même si le potassium est apporté.
+Cependant, pour la même dose d'azote, le potassium améliore la richesse saccharine. A titre
+d'exemple, la figure 1 illustre l'influence positive
+de K2O apporté sur la richesse saccharine à forte
+dose d'azote. Cette amélioration semble se stabiliser entre 300 et 450 kg de K2O/ha.
+Le rendement en sucre brut est le produit entre le
+rendement racines et la richesse saccharine. De ce
+fait, l'apport excessif d'azote aura tendance à réduire
+le rendement sucre brut. Par contre, avec son effet
+positif, le potassium anéanti l'effet négatif de l'azote
+en maintenant une richesse saccharine convenable.
+
+L'extraction du sucre brut est influencée par une
+combinaison linéaire des teneurs dans la râpure
+en Nα aminé, K+ et Na+ (en méq/100g). La
+quantité de sucre mélasse (non extractible) est
+reliée aux éléments mélassigènes par la formule
+empirique établie par Hachimi (1984):
+Sm = 5,67 + 0,091 Nα + 0,34 Na + 0,16 K
+Toute pratique faisant augmenter les teneurs de l'un
+ou de l'ensemble de ces 3 éléments agira négativement sur le rendement en sucre extractible.
+α
+Globalement, la fertilisation azotée fait augmenter
+la teneur de la râpure en Nα aminé (Figure 2). Il
+est observé que les teneurs les plus élevées sont
+obtenues avec les apports de potassium les plus
+faibles. La fertilisation potassique réduit significativement la teneur en N α aminé. Ce taux de
+réduction est en moyenne de 0,08 méq/100g pour
+chaque apport de 100 kg de K2O/ha.
+L'azote n'a pas eu d'effet significatif sur la teneur
+de la râpure en K. Par contre, l'apport de potassium fait augmenter cette teneur (Figure 3).
+Cependant, la teneur en K dans la râpure n'atteint
+que rarement 5 méq/100g. Chaque 100 kg de K2O
+apporté/ha augmenterait la teneur du K dans la
+râpure d'environ 0,13 méq/100g.
+
+Il se dégage de cette analyse que l'azote, à forte
+dose, fait augmenter les concentrations en Nα
+aminé et en Na+ dans la râpure et de ce fait
+augmente le sucre mélasse. Par contre, le potassium agit positivement sur la qualité en diminuant
+les concentrations en Nα aminé et en Na+ dans la
+râpure. L'augmentation de la concentration en K
+dans la râpure suite à l'apport de K2O est relativement moins importante que la diminution des
+deux autres éléments mélassigènes.
+
+La fertilisation potassique améliore la pureté du jus
+de pression pour chaque dose d'azote apporté
+tandis que l'azote réduit considérablement la
+pureté (Figure 5). Sans apport de potassium, l'azote
+réduit en moyenne la pureté du jus de 89 % pour
+N150 à 84 % pour N450. L'apport de 600 kg de K2O/ha
+fait gagner 3 % en pureté pour N150 et seulement 2
+% pour N450. Cette augmentation de la pureté suite
+à l'apport du potassium s'ajuste parfaitement à un
+modèle polynomial du 2ème degré.
+
+Le paramètre synthétique permettant de juger de
+la qualité technologique de la betterave est le
+rendement sucre extractible. Il est la résultante
+des effets positifs et négatifs sus-présentés. Il
+traduit la quantité de sucre produite par hectare.
+Sans apport de K2O, le rendement sucre extractible
+est relié à la dose d'azote apportée par une
+relation polynomiale. Le maximum moyen se situe
+entre 200 et 300 kg N/ha. Pour chaque dose
+d'azote apportée, le potassium améliore considérablement le rendement sucre extractible. Le
+maximum se situe entre 400 et 500 kg K2O/ha.
+L'effet dépressif de l'azote sur le rendement en
+sucre extractible, en interaction avec le potassium,
+se manifeste clairement dans la figure 6. Aux
+traitements K450 et K600, l'effet de l'azote est très
+limité. Par contre, aux apports faibles de potassium (K150 et K300), l'effet négatif de l'azote est plus
+apparent. Sans fertilisation potassique, l'azote
+réduit fortement le rendement sucre extractible.
+Les travaux sur la fertilité des sols et la fertilisation de betterave dans les Doukkala montrent de
+manière très claire l'effet négatif des fortes doses
+(> 260 kg/ha) de l'azote sur la qualité de la betterave produite. Le potassium améliore considérablement la qualité. Des doses de 400 à 500 kg de
+K2O/ha sont nécessaires pour produire de hauts
+rendements en sucre extractible.
+Il est recommandé de revoir le mode de paiement
+des producteurs de la betterave en se basant sur le
+rendement sucre extractible ou sur les teneurs en
+éléments mélassigènes et non pas seulement sur
+le rendement racines et la richesse saccharine. Les
+concentrations en Nα aminé, en Na+ et/ou en K+
+de la râpure seraient de bons indicateurs de la
+qualité ■.
+Travail réalisée dans le cadre de la composante Recherche
+
+Adaptative du projet PSDA (1995-99)
+Il y a une tendance globale à l'augmentation du
+Na+ suite à l'apport d'azote lorsque le potassium en collaboration entre IAV Hassan II-INRA-ORMVAD
+n'est pas apporté. La concentration en Na+ varie de
+M. BADRAOUI (Coordinateur)
+2 à 5,5 méq/100g. La fertilisation potassique
+B. SOUDI, M. AGBANI
++
+réduit considérablement la teneur du Na dans la
+Institut Agronomique et Vétérinaire Hassan II
+râpure (Figure 4). Le taux de réduction est en
+M. EL GHAROUS et M. KARROU
+moyenne de 0,27 méq/100g pour chaque 100 kg
+Institut National de la Recherche Agronomique
+de K2O apporté/ha.
+
+

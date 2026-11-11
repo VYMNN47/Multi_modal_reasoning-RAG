@@ -1,0 +1,237 @@
+{
+  "tiles": [
+    {
+      "name": "doukkala",
+      "region_description": "Doukkala / Sidi Bennour vicinity",
+      "country": "Morocco",
+      "acquired_utc": "2025-02-14T11:22:18.909000Z",
+      "accessed_date": "2026-11-10",
+      "platform": "sentinel-2b",
+      "processing_level": "L2A",
+      "source_scene_id": "S2B_29SNS_20250214_0_L2A",
+      "source_product_uri": "S2B_MSIL2A_20250214T111049_N0511_R137_T29SNS_20250214T132802.SAFE",
+      "source_catalog_item": "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2B_29SNS_20250214_0_L2A",
+      "source_rgb_cog": "https://sentinel-cogs.s3.us-west-2.amazonaws.com/sentinel-s2-l2a-cogs/29/S/NS/2025/2/S2B_29SNS_20250214_0_L2A/TCI.tif",
+      "source_scene_classification_cog": "https://sentinel-cogs.s3.us-west-2.amazonaws.com/sentinel-s2-l2a-cogs/29/S/NS/2025/2/S2B_29SNS_20250214_0_L2A/SCL.tif",
+      "source_stac_file": "doukkala_2025-02-14_rgb_10m_source.stac.json",
+      "png_file": "doukkala_2025-02-14_rgb_10m.png",
+      "geotiff_file": "doukkala_2025-02-14_rgb_10m.tif",
+      "width_px": 512,
+      "height_px": 512,
+      "ground_sampling_distance_m": 10,
+      "ground_extent_m": [
+        5120,
+        5120
+      ],
+      "crs": "EPSG:32629",
+      "transform_gdal": [
+        556270.0,
+        10.0,
+        0.0,
+        3617770.0,
+        0.0,
+        -10.0
+      ],
+      "bbox_wgs84_west_south_east_north": [
+        -8.400001724300235,
+        32.649763681787825,
+        -8.345074028307371,
+        32.696220697944554
+      ],
+      "center_wgs84_lon_lat": [
+        -8.37254489887286,
+        32.67299508225683
+      ],
+      "bands_in_display_order": [
+        "B04 red",
+        "B03 green",
+        "B02 blue"
+      ],
+      "orientation": "North-up in the stated UTM grid; grid north is not exactly true north.",
+      "pixel_values": "8-bit display RGB from the provider TCI product; not quantitative surface reflectance.",
+      "processing": "Pixel-aligned crop only. No resampling, upscaling, enhancement, annotation, or synthetic image content.",
+      "whole_source_scene_cloud_cover_percent": 0.006186,
+      "crop_scl_resolution_m": 20,
+      "crop_scl_class_counts": {
+        "4": 27635,
+        "5": 37900,
+        "6": 1
+      },
+      "crop_scl_class_labels": {
+        "4": "vegetation",
+        "5": "not vegetated",
+        "6": "water"
+      },
+      "crop_scl_cloud_cirrus_shadow_percent": 0.0,
+      "quality_note": "Visual review found agricultural field patterns. SCL is an automated classification, not a guarantee of cloud absence or a crop map.",
+      "ground_truth": {
+        "crop_species": "unknown",
+        "irrigation_status": "unverified",
+        "nutrient_status": "unknown",
+        "soil_tests": "not supplied",
+        "parcel_boundaries": "not delineated"
+      },
+      "attribution": "Contains modified Copernicus Sentinel data 2025",
+      "license_notice_url": "https://sentinels.copernicus.eu/documents/247904/690755/Sentinel_Data_Legal_Notice",
+      "sha256": {
+        "doukkala_2025-02-14_rgb_10m.png": "c0145173fe09ff77d35389afaf844ef62767298b30b2c2cee435f4779549d89a",
+        "doukkala_2025-02-14_rgb_10m.tif": "53e8cfb242c9d4d8b314f77706245468a531fe227457896cfb92311ea4e33754"
+      }
+    },
+    {
+      "name": "tadla",
+      "region_description": "Tadla plain / Fquih Ben Salah vicinity",
+      "country": "Morocco",
+      "acquired_utc": "2025-02-14T11:22:26.580000Z",
+      "accessed_date": "2026-11-10",
+      "platform": "sentinel-2b",
+      "processing_level": "L2A",
+      "source_scene_id": "S2B_29SQR_20250214_0_L2A",
+      "source_product_uri": "S2B_MSIL2A_20250214T111049_N0511_R137_T29SQR_20250214T132802.SAFE",
+      "source_catalog_item": "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2B_29SQR_20250214_0_L2A",
+      "source_rgb_cog": "https://sentinel-cogs.s3.us-west-2.amazonaws.com/sentinel-s2-l2a-cogs/29/S/QR/2025/2/S2B_29SQR_20250214_0_L2A/TCI.tif",
+      "source_scene_classification_cog": "https://sentinel-cogs.s3.us-west-2.amazonaws.com/sentinel-s2-l2a-cogs/29/S/QR/2025/2/S2B_29SQR_20250214_0_L2A/SCL.tif",
+      "source_stac_file": "tadla_2025-02-14_rgb_10m_source.stac.json",
+      "png_file": "tadla_2025-02-14_rgb_10m.png",
+      "geotiff_file": "tadla_2025-02-14_rgb_10m.tif",
+      "width_px": 512,
+      "height_px": 512,
+      "ground_sampling_distance_m": 10,
+      "ground_extent_m": [
+        5120,
+        5120
+      ],
+      "crs": "EPSG:32629",
+      "transform_gdal": [
+        720480.0,
+        10.0,
+        0.0,
+        3592860.0,
+        0.0,
+        -10.0
+      ],
+      "bbox_wgs84_west_south_east_north": [
+        -6.655692850796818,
+        32.40391838278728,
+        -6.600071262146664,
+        32.45109234758154
+      ],
+      "center_wgs84_lon_lat": [
+        -6.627888972079758,
+        32.427507893085334
+      ],
+      "bands_in_display_order": [
+        "B04 red",
+        "B03 green",
+        "B02 blue"
+      ],
+      "orientation": "North-up in the stated UTM grid; grid north is not exactly true north.",
+      "pixel_values": "8-bit display RGB from the provider TCI product; not quantitative surface reflectance.",
+      "processing": "Pixel-aligned crop only. No resampling, upscaling, enhancement, annotation, or synthetic image content.",
+      "whole_source_scene_cloud_cover_percent": 0.000432,
+      "crop_scl_resolution_m": 20,
+      "crop_scl_class_counts": {
+        "4": 16511,
+        "5": 49019,
+        "6": 6
+      },
+      "crop_scl_class_labels": {
+        "4": "vegetation",
+        "5": "not vegetated",
+        "6": "water"
+      },
+      "crop_scl_cloud_cirrus_shadow_percent": 0.0,
+      "quality_note": "Visual review found agricultural field patterns. SCL is an automated classification, not a guarantee of cloud absence or a crop map.",
+      "ground_truth": {
+        "crop_species": "unknown",
+        "irrigation_status": "unverified",
+        "nutrient_status": "unknown",
+        "soil_tests": "not supplied",
+        "parcel_boundaries": "not delineated"
+      },
+      "attribution": "Contains modified Copernicus Sentinel data 2025",
+      "license_notice_url": "https://sentinels.copernicus.eu/documents/247904/690755/Sentinel_Data_Legal_Notice",
+      "sha256": {
+        "tadla_2025-02-14_rgb_10m.png": "b626686c20bf7f8b6d2f0153069e152724462e2b56516bb9b0fe9d793da9e0f9",
+        "tadla_2025-02-14_rgb_10m.tif": "3383223e4a7fda09c18dac07f15c525a6340a4cc92b26a57cb57b38b49d88a7d"
+      }
+    },
+    {
+      "name": "gharb",
+      "region_description": "Gharb plain / Sidi Allal Tazi vicinity",
+      "country": "Morocco",
+      "acquired_utc": "2025-02-14T11:21:43.415000Z",
+      "accessed_date": "2026-11-10",
+      "platform": "sentinel-2b",
+      "processing_level": "L2A",
+      "source_scene_id": "S2B_29SQU_20250214_0_L2A",
+      "source_product_uri": "S2B_MSIL2A_20250214T111049_N0511_R137_T29SQU_20250214T132802.SAFE",
+      "source_catalog_item": "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2B_29SQU_20250214_0_L2A",
+      "source_rgb_cog": "https://sentinel-cogs.s3.us-west-2.amazonaws.com/sentinel-s2-l2a-cogs/29/S/QU/2025/2/S2B_29SQU_20250214_0_L2A/TCI.tif",
+      "source_scene_classification_cog": "https://sentinel-cogs.s3.us-west-2.amazonaws.com/sentinel-s2-l2a-cogs/29/S/QU/2025/2/S2B_29SQU_20250214_0_L2A/SCL.tif",
+      "source_stac_file": "gharb_2025-02-14_rgb_10m_source.stac.json",
+      "png_file": "gharb_2025-02-14_rgb_10m.png",
+      "geotiff_file": "gharb_2025-02-14_rgb_10m.tif",
+      "width_px": 512,
+      "height_px": 512,
+      "ground_sampling_distance_m": 10,
+      "ground_extent_m": [
+        5120,
+        5120
+      ],
+      "crs": "EPSG:32629",
+      "transform_gdal": [
+        752640.0,
+        10.0,
+        0.0,
+        3820610.0,
+        0.0,
+        -10.0
+      ],
+      "bbox_wgs84_west_south_east_north": [
+        -6.2500500154427305,
+        34.44878698618107,
+        -6.192832873073326,
+        34.49617273641005
+      ],
+      "center_wgs84_lon_lat": [
+        -6.221449084981145,
+        34.47248253550663
+      ],
+      "bands_in_display_order": [
+        "B04 red",
+        "B03 green",
+        "B02 blue"
+      ],
+      "orientation": "North-up in the stated UTM grid; grid north is not exactly true north.",
+      "pixel_values": "8-bit display RGB from the provider TCI product; not quantitative surface reflectance.",
+      "processing": "Pixel-aligned crop only. No resampling, upscaling, enhancement, annotation, or synthetic image content.",
+      "whole_source_scene_cloud_cover_percent": 0.006885,
+      "crop_scl_resolution_m": 20,
+      "crop_scl_class_counts": {
+        "4": 29100,
+        "5": 36436
+      },
+      "crop_scl_class_labels": {
+        "4": "vegetation",
+        "5": "not vegetated",
+        "6": "water"
+      },
+      "crop_scl_cloud_cirrus_shadow_percent": 0.0,
+      "quality_note": "Visual review found agricultural field patterns. SCL is an automated classification, not a guarantee of cloud absence or a crop map.",
+      "ground_truth": {
+        "crop_species": "unknown",
+        "irrigation_status": "unverified",
+        "nutrient_status": "unknown",
+        "soil_tests": "not supplied",
+        "parcel_boundaries": "not delineated"
+      },
+      "attribution": "Contains modified Copernicus Sentinel data 2025",
+      "license_notice_url": "https://sentinels.copernicus.eu/documents/247904/690755/Sentinel_Data_Legal_Notice",
+      "sha256": {
+        "gharb_2025-02-14_rgb_10m.png": "8db1589ecaadc2a41bc047a23642951bbff8b2796716ced803ac2c9efd5307df",
+        "gharb_2025-02-14_rgb_10m.tif": "f60dabeb46d390f507f51e731208c4386f31fdc8142883d3c09575cbb4c3a823"
+      }
+    }
+  ]
+}
