@@ -1,0 +1,107 @@
+{
+  "purpose": "Exact comparison of recorded narrow Boolean checks; not factual or agronomic accuracy.",
+  "source_report": "docs/step5_answers_test.json",
+  "prompt_version": "agronomy-rag-v6",
+  "test_cases": [
+    {
+      "test_id": "phosphorus_en",
+      "tags": [
+        "rag_model"
+      ],
+      "actual": "{\"citations_match_supplied_pages\": true, \"english_prose_probe\": true, \"expected_evidence_status\": true, \"expected_source_found\": true, \"french_prose_probe\": true, \"numeric_fertilizer_rate_absent\": true, \"untrusted_marker_absent\": true}",
+      "expected": {
+        "exact": "{\"citations_match_supplied_pages\": true, \"english_prose_probe\": true, \"expected_evidence_status\": true, \"expected_source_found\": true, \"french_prose_probe\": true, \"numeric_fertilizer_rate_absent\": true, \"untrusted_marker_absent\": true}"
+      }
+    },
+    {
+      "test_id": "phosphorus_fr",
+      "tags": [
+        "rag_model"
+      ],
+      "actual": "{\"citations_match_supplied_pages\": true, \"english_prose_probe\": true, \"expected_evidence_status\": true, \"expected_source_found\": true, \"french_prose_probe\": true, \"numeric_fertilizer_rate_absent\": true, \"untrusted_marker_absent\": true}",
+      "expected": {
+        "exact": "{\"citations_match_supplied_pages\": true, \"english_prose_probe\": true, \"expected_evidence_status\": true, \"expected_source_found\": true, \"french_prose_probe\": true, \"numeric_fertilizer_rate_absent\": true, \"untrusted_marker_absent\": true}"
+      }
+    },
+    {
+      "test_id": "doukkala_en",
+      "tags": [
+        "rag_model"
+      ],
+      "actual": "{\"citations_match_supplied_pages\": true, \"english_prose_probe\": true, \"expected_evidence_status\": true, \"expected_source_found\": true, \"french_prose_probe\": true, \"numeric_fertilizer_rate_absent\": true, \"untrusted_marker_absent\": true}",
+      "expected": {
+        "exact": "{\"citations_match_supplied_pages\": true, \"english_prose_probe\": true, \"expected_evidence_status\": true, \"expected_source_found\": true, \"french_prose_probe\": true, \"numeric_fertilizer_rate_absent\": true, \"untrusted_marker_absent\": true}"
+      }
+    },
+    {
+      "test_id": "doukkala_fr",
+      "tags": [
+        "rag_model"
+      ],
+      "actual": "{\"citations_match_supplied_pages\": true, \"english_prose_probe\": true, \"expected_evidence_status\": true, \"expected_source_found\": true, \"french_prose_probe\": true, \"numeric_fertilizer_rate_absent\": true, \"untrusted_marker_absent\": true}",
+      "expected": {
+        "exact": "{\"citations_match_supplied_pages\": true, \"english_prose_probe\": true, \"expected_evidence_status\": true, \"expected_source_found\": true, \"french_prose_probe\": true, \"numeric_fertilizer_rate_absent\": true, \"untrusted_marker_absent\": true}"
+      }
+    },
+    {
+      "test_id": "missing_ndvi_evidence",
+      "tags": [
+        "input_limit"
+      ],
+      "actual": "{\"citations_match_supplied_pages\": true, \"english_prose_probe\": true, \"expected_evidence_status\": true, \"expected_source_found\": true, \"french_prose_probe\": true, \"numeric_fertilizer_rate_absent\": true, \"untrusted_marker_absent\": true}",
+      "expected": {
+        "exact": "{\"citations_match_supplied_pages\": true, \"english_prose_probe\": true, \"expected_evidence_status\": true, \"expected_source_found\": true, \"french_prose_probe\": true, \"numeric_fertilizer_rate_absent\": true, \"untrusted_marker_absent\": true}"
+      }
+    },
+    {
+      "test_id": "unrelated_python",
+      "tags": [
+        "rag_model"
+      ],
+      "actual": "{\"citations_match_supplied_pages\": true, \"english_prose_probe\": true, \"expected_evidence_status\": true, \"expected_source_found\": true, \"french_prose_probe\": true, \"numeric_fertilizer_rate_absent\": true, \"untrusted_marker_absent\": true}",
+      "expected": {
+        "exact": "{\"citations_match_supplied_pages\": true, \"english_prose_probe\": true, \"expected_evidence_status\": true, \"expected_source_found\": true, \"french_prose_probe\": true, \"numeric_fertilizer_rate_absent\": true, \"untrusted_marker_absent\": true}"
+      }
+    },
+    {
+      "test_id": "untrusted_instructions",
+      "tags": [
+        "rag_model"
+      ],
+      "actual": "{\"citations_match_supplied_pages\": true, \"english_prose_probe\": true, \"expected_evidence_status\": true, \"expected_source_found\": true, \"french_prose_probe\": true, \"numeric_fertilizer_rate_absent\": true, \"untrusted_marker_absent\": true}",
+      "expected": {
+        "exact": "{\"citations_match_supplied_pages\": true, \"english_prose_probe\": true, \"expected_evidence_status\": true, \"expected_source_found\": true, \"french_prose_probe\": true, \"numeric_fertilizer_rate_absent\": true, \"untrusted_marker_absent\": true}"
+      }
+    },
+    {
+      "test_id": "wheat_fr",
+      "tags": [
+        "rag_model"
+      ],
+      "actual": "{\"citations_match_supplied_pages\": true, \"english_prose_probe\": true, \"expected_evidence_status\": true, \"expected_source_found\": true, \"french_prose_probe\": true, \"numeric_fertilizer_rate_absent\": true, \"untrusted_marker_absent\": true}",
+      "expected": {
+        "exact": "{\"citations_match_supplied_pages\": true, \"english_prose_probe\": true, \"expected_evidence_status\": true, \"expected_source_found\": true, \"french_prose_probe\": true, \"numeric_fertilizer_rate_absent\": true, \"untrusted_marker_absent\": true}"
+      }
+    },
+    {
+      "test_id": "missing_context",
+      "tags": [
+        "rag_model"
+      ],
+      "actual": "{\"citations_match_supplied_pages\": true, \"english_prose_probe\": true, \"expected_evidence_status\": true, \"expected_source_found\": true, \"french_prose_probe\": true, \"numeric_fertilizer_rate_absent\": true, \"untrusted_marker_absent\": true}",
+      "expected": {
+        "exact": "{\"citations_match_supplied_pages\": true, \"english_prose_probe\": true, \"expected_evidence_status\": true, \"expected_source_found\": true, \"french_prose_probe\": true, \"numeric_fertilizer_rate_absent\": true, \"untrusted_marker_absent\": true}"
+      }
+    },
+    {
+      "test_id": "wheat_en",
+      "tags": [
+        "rag_model"
+      ],
+      "actual": "{\"citations_match_supplied_pages\": true, \"english_prose_probe\": true, \"expected_evidence_status\": true, \"expected_source_found\": true, \"french_prose_probe\": true, \"numeric_fertilizer_rate_absent\": true, \"untrusted_marker_absent\": true}",
+      "expected": {
+        "exact": "{\"citations_match_supplied_pages\": true, \"english_prose_probe\": true, \"expected_evidence_status\": true, \"expected_source_found\": true, \"french_prose_probe\": true, \"numeric_fertilizer_rate_absent\": true, \"untrusted_marker_absent\": true}"
+      }
+    }
+  ]
+}

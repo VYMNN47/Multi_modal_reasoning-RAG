@@ -1,0 +1,891 @@
+{
+  "checked_at": "2026-11-12T18:48:31+00:00",
+  "settings": {
+    "model": "gemini-embedding-001",
+    "dimensions": 3072,
+    "document_task_type": "RETRIEVAL_DOCUMENT"
+  },
+  "query_task_type": "RETRIEVAL_QUERY",
+  "index_sha256": "602c9c84050c7bc99fb656f021b57165c4d067d79c8cd9470bfe6a3e106b8a25",
+  "passages_sha256": "d7fa21c199e9f3f642b5db3c377c5da8c69a580f12210ef115d1bed236d3a231",
+  "query_count": 10,
+  "query_embedding_calls": 10,
+  "query_token_count_calls": 10,
+  "aggregate": {
+    "relevant_query_count": 7,
+    "hit_at_3": 1.0,
+    "mean_passage_recall_at_3": 0.8095238095238095,
+    "mrr_at_3": 1.0
+  },
+  "limits": "Small fixed demo set, not a held-out agronomic benchmark. No model/chunker comparison, calibrated relevance cutoff, generated answer, or agronomic accuracy evaluation.",
+  "queries": [
+    {
+      "id": "wheat_nitrogen_en",
+      "question": "The user reports wheat and lighter patches. What field observations and nitrogen/soil evidence should be checked before attributing this to nitrogen deficiency?",
+      "context": "",
+      "required_passage_ids": [
+        "MA_PNTTA_NPK_155-p002-c334aee99756",
+        "MA_PNTTA_WHEAT_N_62-p001-7baa7ced5240"
+      ],
+      "required_source_pages": [
+        [
+          "MA_PNTTA_NPK_155",
+          2
+        ],
+        [
+          "MA_PNTTA_WHEAT_N_62",
+          1
+        ]
+      ],
+      "elapsed_seconds": 0.576,
+      "results": [
+        {
+          "passage_id": "MA_PNTTA_NPK_155-p002-c334aee99756",
+          "source_id": "MA_PNTTA_NPK_155",
+          "pdf_page": 2,
+          "citation": "[MA_PNTTA_NPK_155, PDF p. 2]",
+          "score": 0.7068185168431314,
+          "section": "Azote : symptômes de carence décrits au champ",
+          "text": "En situation de carence azotée, les plantes restent chétives, les feuilles se dressent, deviennent plus raides et tournent au vert-clair, le pétiole et les nervures sont plus prononcées à cause du retard de développement des parties succulentes. La déficience en azote chez les graminées se caractérise par un tallage défectueux et une extension anormale du système radiculaire par rapport au système aérien.",
+          "publication_year": 2007,
+          "geographic_scope": "Moroccan extension synthesis with some examples from other regions, including France.",
+          "source_url": "https://www.agrimaroc.net/bulletins/btta_155.pdf",
+          "use_note": "Historical synthesis, not a current prescription standard. Preserve the regional context and distinguish elemental P/K from P2O5/K2O and fertilizer product mass."
+        },
+        {
+          "passage_id": "MA_PNTTA_WHEAT_N_62-p001-7baa7ced5240",
+          "source_id": "MA_PNTTA_WHEAT_N_62",
+          "pdf_page": 1,
+          "citation": "[MA_PNTTA_WHEAT_N_62, PDF p. 1]",
+          "score": 0.6845893392636222,
+          "section": "Blé : analyses de sol, bilan azoté et références régionales",
+          "text": "L'élaboration de normes d'interprétation de la fertilité azotée des sols (N soil test Calibration) est basée sur les relations observées entre un indice de fertilité des sols (N Minéral, N-NO3-, N-NH4+, indice de disponibilité de l'azote) et la réponse de la plante. Une autre méthode est celle du bilan prévisionnel de l'azote qui tient compte des besoins de la plante et des fournitures en azote du sol.\n\nL'élaboration de références régionales constitue une étape nécessaire, quelle que soit la méthode adoptée. Dans ce qui suit, nous avons revu les travaux de recherche sur la fertilisation et nutrition azotées au Maroc afin de faire ressortir ces relations et références utiles en vue de l'élaboration de recommandations en matière de fertilisation azotée en Bour et en irrigué.",
+          "publication_year": 1999,
+          "geographic_scope": "Moroccan wheat, including bour favorable and irrigated systems; includes Gharb-related research.",
+          "source_url": "https://www.agrimaroc.net/bulletins/btta_62.pdf",
+          "use_note": "1999 research/extension reference. Historical trials and dose responses must not be treated as current universal fertilizer prescriptions."
+        },
+        {
+          "passage_id": "MA_PNTTA_NPK_155-p002-9960f036c24d",
+          "source_id": "MA_PNTTA_NPK_155",
+          "pdf_page": 2,
+          "citation": "[MA_PNTTA_NPK_155, PDF p. 2]",
+          "score": 0.656917862313777,
+          "section": "Azote : lessivage, eau et texture du sol",
+          "text": "L'azote est l'élément le plus exposé au lessivage en raison de sa grande mobilité dans le sol. Les pertes par lessivage sont d'autant plus importantes que : - Les quantités d'eau (pluie et irrigation) reçues par le sol sont importantes, - La texture du sol est grossière; l'azote est plus facilement lessivé dans les sols sableux, - L'engrais apporté est sous forme nitrique.",
+          "publication_year": 2007,
+          "geographic_scope": "Moroccan extension synthesis with some examples from other regions, including France.",
+          "source_url": "https://www.agrimaroc.net/bulletins/btta_155.pdf",
+          "use_note": "Historical synthesis, not a current prescription standard. Preserve the regional context and distinguish elemental P/K from P2O5/K2O and fertilizer product mass."
+        },
+        {
+          "passage_id": "MA_INRA_CEREALS-p014-4cb281206858",
+          "source_id": "MA_INRA_CEREALS",
+          "pdf_page": 14,
+          "citation": "[MA_INRA_CEREALS, PDF p. 14]",
+          "score": 0.6565181819533301,
+          "section": "Fertilisation des céréales : efficience d'utilisation",
+          "text": "L'efficience d'utilisation des engrais varie selon le type de sol, le précédent cultural et les conditions climatiques et le système de culture (bour/irrigué).",
+          "publication_year": 2014,
+          "geographic_scope": "Morocco; distinguish bour (rainfed) from irrigated systems.",
+          "source_url": "https://www.inra.org.ma/sites/default/files/publications/ouvrages/guideorgefr.pdf",
+          "use_note": "Historical crop guide. Rates depend on yield target, soil supply, water regime, and local conditions. Do not convert its nutrient/product units automatically."
+        },
+        {
+          "passage_id": "MA_PNTTA_DOUKKALA_70-p001-ec00adf00ace",
+          "source_id": "MA_PNTTA_DOUKKALA_70",
+          "pdf_page": 1,
+          "citation": "[MA_PNTTA_DOUKKALA_70, PDF p. 1]",
+          "score": 0.6506033180315787,
+          "section": "Doukkala : fertilisation et valorisation de l'eau d'irrigation",
+          "text": "Les diagnostics agronomiques réalisés dans le périmètre des Doukkala ont montré que l'efficience d'utilisation de l'eau d'irrigation, en terme de quantité de produits agricoles par m3 d'eau, mérite d'être améliorée. Si elle est bien raisonnée, la fertilisation minérale est une des techniques culturales permettant de mieux valoriser l'eau d'irrigation.\n\nL'utilisation rationnelle des engrais dépend de la richesse initiale du sol en éléments fertilisants, du type de sol, du stade d'apport et du niveau de rendement visé.",
+          "publication_year": 2000,
+          "geographic_scope": "Bas-Service irrigated perimeter of Doukkala; do not generalize to all Moroccan soils or to rainfed fields.",
+          "source_url": "https://www.agrimaroc.net/bulletins/btta_70.pdf",
+          "use_note": "Regional historical calibration reference, relevant background to the Doukkala imagery area. It is not evidence of the soil test results, crop identity, or nutrient status of the pictured parcels."
+        }
+      ],
+      "metrics": {
+        "hit_at_3": true,
+        "passage_recall_at_3": 1.0,
+        "reciprocal_rank_at_3": 1.0,
+        "all_expected_pages_in_top_3": true
+      }
+    },
+    {
+      "id": "wheat_nitrogen_fr",
+      "question": "Blé déclaré par l'utilisateur et zones plus claires : quelles observations au champ et analyses vérifier avant de conclure à une carence azotée ?",
+      "context": "",
+      "required_passage_ids": [
+        "MA_PNTTA_NPK_155-p002-c334aee99756",
+        "MA_PNTTA_WHEAT_N_62-p001-7baa7ced5240"
+      ],
+      "required_source_pages": [
+        [
+          "MA_PNTTA_NPK_155",
+          2
+        ],
+        [
+          "MA_PNTTA_WHEAT_N_62",
+          1
+        ]
+      ],
+      "elapsed_seconds": 0.753,
+      "results": [
+        {
+          "passage_id": "MA_PNTTA_NPK_155-p002-c334aee99756",
+          "source_id": "MA_PNTTA_NPK_155",
+          "pdf_page": 2,
+          "citation": "[MA_PNTTA_NPK_155, PDF p. 2]",
+          "score": 0.7582733566030095,
+          "section": "Azote : symptômes de carence décrits au champ",
+          "text": "En situation de carence azotée, les plantes restent chétives, les feuilles se dressent, deviennent plus raides et tournent au vert-clair, le pétiole et les nervures sont plus prononcées à cause du retard de développement des parties succulentes. La déficience en azote chez les graminées se caractérise par un tallage défectueux et une extension anormale du système radiculaire par rapport au système aérien.",
+          "publication_year": 2007,
+          "geographic_scope": "Moroccan extension synthesis with some examples from other regions, including France.",
+          "source_url": "https://www.agrimaroc.net/bulletins/btta_155.pdf",
+          "use_note": "Historical synthesis, not a current prescription standard. Preserve the regional context and distinguish elemental P/K from P2O5/K2O and fertilizer product mass."
+        },
+        {
+          "passage_id": "MA_PNTTA_WHEAT_N_62-p001-7baa7ced5240",
+          "source_id": "MA_PNTTA_WHEAT_N_62",
+          "pdf_page": 1,
+          "citation": "[MA_PNTTA_WHEAT_N_62, PDF p. 1]",
+          "score": 0.7109928923643791,
+          "section": "Blé : analyses de sol, bilan azoté et références régionales",
+          "text": "L'élaboration de normes d'interprétation de la fertilité azotée des sols (N soil test Calibration) est basée sur les relations observées entre un indice de fertilité des sols (N Minéral, N-NO3-, N-NH4+, indice de disponibilité de l'azote) et la réponse de la plante. Une autre méthode est celle du bilan prévisionnel de l'azote qui tient compte des besoins de la plante et des fournitures en azote du sol.\n\nL'élaboration de références régionales constitue une étape nécessaire, quelle que soit la méthode adoptée. Dans ce qui suit, nous avons revu les travaux de recherche sur la fertilisation et nutrition azotées au Maroc afin de faire ressortir ces relations et références utiles en vue de l'élaboration de recommandations en matière de fertilisation azotée en Bour et en irrigué.",
+          "publication_year": 1999,
+          "geographic_scope": "Moroccan wheat, including bour favorable and irrigated systems; includes Gharb-related research.",
+          "source_url": "https://www.agrimaroc.net/bulletins/btta_62.pdf",
+          "use_note": "1999 research/extension reference. Historical trials and dose responses must not be treated as current universal fertilizer prescriptions."
+        },
+        {
+          "passage_id": "MA_INRA_CEREALS-p014-6b01967b9f9e",
+          "source_id": "MA_INRA_CEREALS",
+          "pdf_page": 14,
+          "citation": "[MA_INRA_CEREALS, PDF p. 14]",
+          "score": 0.6885467198938564,
+          "section": "Fertilisation des céréales : unités fertilisantes et engrais",
+          "text": "Le coefficient d'efficience d'utilisation est utilisé seulement pour l'azote. Aussi il ne faut confondre unités fertilisantes et kg d'engrais.",
+          "publication_year": 2014,
+          "geographic_scope": "Morocco; distinguish bour (rainfed) from irrigated systems.",
+          "source_url": "https://www.inra.org.ma/sites/default/files/publications/ouvrages/guideorgefr.pdf",
+          "use_note": "Historical crop guide. Rates depend on yield target, soil supply, water regime, and local conditions. Do not convert its nutrient/product units automatically."
+        },
+        {
+          "passage_id": "MA_PNTTA_SOIL_ANALYSIS_93-p001-1745186b281a",
+          "source_id": "MA_PNTTA_SOIL_ANALYSIS_93",
+          "pdf_page": 1,
+          "citation": "[MA_PNTTA_SOIL_ANALYSIS_93, PDF p. 1]",
+          "score": 0.6869999044155224,
+          "section": "Analyse du sol : limites du constat visuel",
+          "text": "Le plus souvent, la constatation des symptômes de carence ou de toxicité est faite trop tard, autrement dit, lorsque la productivité de la plante est déjà en grande partie compromise.",
+          "publication_year": 2002,
+          "geographic_scope": "Morocco; soil-sampling and laboratory workflow guidance.",
+          "source_url": "https://www.agrimaroc.net/bulletins/btta_93.pdf",
+          "use_note": "Historical sampling guidance. Apply the current laboratory sampling protocol appropriate to the crop, depth, soil variation, and analyte."
+        },
+        {
+          "passage_id": "MA_INRA_CEREALS-p014-4cb281206858",
+          "source_id": "MA_INRA_CEREALS",
+          "pdf_page": 14,
+          "citation": "[MA_INRA_CEREALS, PDF p. 14]",
+          "score": 0.6823413418423793,
+          "section": "Fertilisation des céréales : efficience d'utilisation",
+          "text": "L'efficience d'utilisation des engrais varie selon le type de sol, le précédent cultural et les conditions climatiques et le système de culture (bour/irrigué).",
+          "publication_year": 2014,
+          "geographic_scope": "Morocco; distinguish bour (rainfed) from irrigated systems.",
+          "source_url": "https://www.inra.org.ma/sites/default/files/publications/ouvrages/guideorgefr.pdf",
+          "use_note": "Historical crop guide. Rates depend on yield target, soil supply, water regime, and local conditions. Do not convert its nutrient/product units automatically."
+        }
+      ],
+      "metrics": {
+        "hit_at_3": true,
+        "passage_recall_at_3": 1.0,
+        "reciprocal_rank_at_3": 1.0,
+        "all_expected_pages_in_top_3": true
+      }
+    },
+    {
+      "id": "calcareous_soil_phosphorus_en",
+      "question": "The user reports calcareous soil. What could affect phosphorus availability and what soil-test context is needed?",
+      "context": "",
+      "required_passage_ids": [
+        "MA_PNTTA_NPK_155-p004-ecaa66c426a6",
+        "MA_PNTTA_NPK_155-p004-a9ce1cdb125e"
+      ],
+      "required_source_pages": [
+        [
+          "MA_PNTTA_NPK_155",
+          4
+        ]
+      ],
+      "elapsed_seconds": 0.51,
+      "results": [
+        {
+          "passage_id": "MA_PNTTA_NPK_155-p004-ecaa66c426a6",
+          "source_id": "MA_PNTTA_NPK_155",
+          "pdf_page": 4,
+          "citation": "[MA_PNTTA_NPK_155, PDF p. 4]",
+          "score": 0.711693052850163,
+          "section": "Phosphore : insolubilisation en sols calcaires",
+          "text": "Dans les sols calcaires, les ions phosphore solubles s'insolubilisent très progressivement sous forme de phosphates tricalciques et pour une faible part sous forme d'apatite.",
+          "publication_year": 2007,
+          "geographic_scope": "Moroccan extension synthesis with some examples from other regions, including France.",
+          "source_url": "https://www.agrimaroc.net/bulletins/btta_155.pdf",
+          "use_note": "Historical synthesis, not a current prescription standard. Preserve the regional context and distinguish elemental P/K from P2O5/K2O and fertilizer product mass."
+        },
+        {
+          "passage_id": "MA_PNTTA_NPK_155-p004-a9ce1cdb125e",
+          "source_id": "MA_PNTTA_NPK_155",
+          "pdf_page": 4,
+          "citation": "[MA_PNTTA_NPK_155, PDF p. 4]",
+          "score": 0.7014492958467924,
+          "section": "Phosphore : analyse du sol et facteurs d'interprétation",
+          "text": "Quand on dispose des analyses de sol, le calcul de la dose de phosphore intègre la richesse du sol en P2O5, sa richesse en calcaire et en matière organique ainsi que la teneur en argile.\n\nLes modes d'apport et de fractionnement varient selon le type de sol, le niveau de richesse chimique et le pouvoir fixateur, et selon les stades de forts besoins de la culture.",
+          "publication_year": 2007,
+          "geographic_scope": "Moroccan extension synthesis with some examples from other regions, including France.",
+          "source_url": "https://www.agrimaroc.net/bulletins/btta_155.pdf",
+          "use_note": "Historical synthesis, not a current prescription standard. Preserve the regional context and distinguish elemental P/K from P2O5/K2O and fertilizer product mass."
+        },
+        {
+          "passage_id": "MA_INRA_LEGUMES-p012-d964031bf646",
+          "source_id": "MA_INRA_LEGUMES",
+          "pdf_page": 12,
+          "citation": "[MA_INRA_LEGUMES, PDF p. 12]",
+          "score": 0.6800127640953678,
+          "section": "Légumineuses : fertilisation phospho-potassique et analyse du sol",
+          "text": "Les apports phospho-potassiques sont faits au moment de la préparation du sol. Il est recommandé d'éviter leur contact avec les graines. En général, la réponse est plus significative pour le phosphore (P2O5) particulièrement dans les zones arides et semi-arides.\n\nLa quantité d'engrais phospho-potassique doit se voir en baisse si le gradient d'aridité du climat est croissant et/ou de richesse initiale du sol est croissante. Pour cela, nous recommandons vivement des analyses du sol, et dans le cas échéant, de consulter les services compétents de l'ONCA qui peuvent conseiller selon les formules régionales contenues dans le site fertimap.ma.",
+          "publication_year": null,
+          "geographic_scope": "Morocco, with distinctions between crop species and agroclimatic conditions.",
+          "source_url": "https://www.inra.org.ma/sites/default/files/publications/ouvrages/leguminkafacifr15.pdf",
+          "use_note": "Publication year unconfirmed. Distinguish legume nitrogen fixation from cereal nitrogen management; recommendations require soil tests and local context."
+        },
+        {
+          "passage_id": "MA_SOIL_MAPS_2025-p001-e7912dcf9fc3",
+          "source_id": "MA_SOIL_MAPS_2025",
+          "pdf_page": 1,
+          "citation": "[MA_SOIL_MAPS_2025, PDF p. 1]",
+          "score": 0.6757642812344952,
+          "section": "Morocco soil maps: national scope and soil-analysis context",
+          "text": "Phosphorus (P) and potassium (K) are essential fertilizer elements whose recommendations require soil analysis tailored to crop-specific needs. However, in developing countries like Morocco, access to open databases on nutrient bioavailability remains limited, hindering data-driven agricultural strategies.\n\nThis paper presents the first national reference maps of available P and exchangeable K at 250 m resolution over Morocco's croplands using digital soil mapping with machine learning algorithms and environmental covariates.",
+          "publication_year": 2025,
+          "geographic_scope": "National Moroccan cropland maps at 250 m resolution, based on samples collected in 2010-2022.",
+          "source_url": "https://www.nature.com/articles/s41597-025-05699-x.pdf",
+          "use_note": "National baseline predictions are not parcel-specific measurements. No geospatial map rasters or underlying private Fertimap samples were downloaded. Do not infer a pictured field value from a figure in the paper."
+        },
+        {
+          "passage_id": "MA_PNTTA_SOIL_ANALYSIS_93-p001-37af44dee9a8",
+          "source_id": "MA_PNTTA_SOIL_ANALYSIS_93",
+          "pdf_page": 1,
+          "citation": "[MA_PNTTA_SOIL_ANALYSIS_93, PDF p. 1]",
+          "score": 0.6503160816540805,
+          "section": "Analyse du sol : raisonner la fertilisation",
+          "text": "La fertilisation n'est pas en fait une recette comme certaines personnes en ont fait croire, mais une suite d'opération réfléchies tenant compte du sol, de la plante, de l'eau d'irrigation, de l'état financier du producteur, ainsi que de l'environnement. Pour l'optimiser, il devient nécessaire de suivre constamment l'état nutritionnel de la culture en vue de l'adapter aux besoins de la plante pour prévenir soit des risques de toxicité, soit les risques de carences.",
+          "publication_year": 2002,
+          "geographic_scope": "Morocco; soil-sampling and laboratory workflow guidance.",
+          "source_url": "https://www.agrimaroc.net/bulletins/btta_93.pdf",
+          "use_note": "Historical sampling guidance. Apply the current laboratory sampling protocol appropriate to the crop, depth, soil variation, and analyte."
+        }
+      ],
+      "metrics": {
+        "hit_at_3": true,
+        "passage_recall_at_3": 1.0,
+        "reciprocal_rank_at_3": 1.0,
+        "all_expected_pages_in_top_3": true
+      }
+    },
+    {
+      "id": "calcareous_soil_phosphorus_fr",
+      "question": "Le sol est déclaré calcaire : quels facteurs influencent la disponibilité du phosphore et quelles analyses faut-il consulter ?",
+      "context": "",
+      "required_passage_ids": [
+        "MA_PNTTA_NPK_155-p004-ecaa66c426a6",
+        "MA_PNTTA_NPK_155-p004-a9ce1cdb125e"
+      ],
+      "required_source_pages": [
+        [
+          "MA_PNTTA_NPK_155",
+          4
+        ]
+      ],
+      "elapsed_seconds": 0.683,
+      "results": [
+        {
+          "passage_id": "MA_PNTTA_NPK_155-p004-a9ce1cdb125e",
+          "source_id": "MA_PNTTA_NPK_155",
+          "pdf_page": 4,
+          "citation": "[MA_PNTTA_NPK_155, PDF p. 4]",
+          "score": 0.7673112547629808,
+          "section": "Phosphore : analyse du sol et facteurs d'interprétation",
+          "text": "Quand on dispose des analyses de sol, le calcul de la dose de phosphore intègre la richesse du sol en P2O5, sa richesse en calcaire et en matière organique ainsi que la teneur en argile.\n\nLes modes d'apport et de fractionnement varient selon le type de sol, le niveau de richesse chimique et le pouvoir fixateur, et selon les stades de forts besoins de la culture.",
+          "publication_year": 2007,
+          "geographic_scope": "Moroccan extension synthesis with some examples from other regions, including France.",
+          "source_url": "https://www.agrimaroc.net/bulletins/btta_155.pdf",
+          "use_note": "Historical synthesis, not a current prescription standard. Preserve the regional context and distinguish elemental P/K from P2O5/K2O and fertilizer product mass."
+        },
+        {
+          "passage_id": "MA_PNTTA_NPK_155-p004-ecaa66c426a6",
+          "source_id": "MA_PNTTA_NPK_155",
+          "pdf_page": 4,
+          "citation": "[MA_PNTTA_NPK_155, PDF p. 4]",
+          "score": 0.7476789696354879,
+          "section": "Phosphore : insolubilisation en sols calcaires",
+          "text": "Dans les sols calcaires, les ions phosphore solubles s'insolubilisent très progressivement sous forme de phosphates tricalciques et pour une faible part sous forme d'apatite.",
+          "publication_year": 2007,
+          "geographic_scope": "Moroccan extension synthesis with some examples from other regions, including France.",
+          "source_url": "https://www.agrimaroc.net/bulletins/btta_155.pdf",
+          "use_note": "Historical synthesis, not a current prescription standard. Preserve the regional context and distinguish elemental P/K from P2O5/K2O and fertilizer product mass."
+        },
+        {
+          "passage_id": "MA_INRA_LEGUMES-p012-d964031bf646",
+          "source_id": "MA_INRA_LEGUMES",
+          "pdf_page": 12,
+          "citation": "[MA_INRA_LEGUMES, PDF p. 12]",
+          "score": 0.7157464633845956,
+          "section": "Légumineuses : fertilisation phospho-potassique et analyse du sol",
+          "text": "Les apports phospho-potassiques sont faits au moment de la préparation du sol. Il est recommandé d'éviter leur contact avec les graines. En général, la réponse est plus significative pour le phosphore (P2O5) particulièrement dans les zones arides et semi-arides.\n\nLa quantité d'engrais phospho-potassique doit se voir en baisse si le gradient d'aridité du climat est croissant et/ou de richesse initiale du sol est croissante. Pour cela, nous recommandons vivement des analyses du sol, et dans le cas échéant, de consulter les services compétents de l'ONCA qui peuvent conseiller selon les formules régionales contenues dans le site fertimap.ma.",
+          "publication_year": null,
+          "geographic_scope": "Morocco, with distinctions between crop species and agroclimatic conditions.",
+          "source_url": "https://www.inra.org.ma/sites/default/files/publications/ouvrages/leguminkafacifr15.pdf",
+          "use_note": "Publication year unconfirmed. Distinguish legume nitrogen fixation from cereal nitrogen management; recommendations require soil tests and local context."
+        },
+        {
+          "passage_id": "MA_PNTTA_SOIL_ANALYSIS_93-p001-37af44dee9a8",
+          "source_id": "MA_PNTTA_SOIL_ANALYSIS_93",
+          "pdf_page": 1,
+          "citation": "[MA_PNTTA_SOIL_ANALYSIS_93, PDF p. 1]",
+          "score": 0.6986745153527989,
+          "section": "Analyse du sol : raisonner la fertilisation",
+          "text": "La fertilisation n'est pas en fait une recette comme certaines personnes en ont fait croire, mais une suite d'opération réfléchies tenant compte du sol, de la plante, de l'eau d'irrigation, de l'état financier du producteur, ainsi que de l'environnement. Pour l'optimiser, il devient nécessaire de suivre constamment l'état nutritionnel de la culture en vue de l'adapter aux besoins de la plante pour prévenir soit des risques de toxicité, soit les risques de carences.",
+          "publication_year": 2002,
+          "geographic_scope": "Morocco; soil-sampling and laboratory workflow guidance.",
+          "source_url": "https://www.agrimaroc.net/bulletins/btta_93.pdf",
+          "use_note": "Historical sampling guidance. Apply the current laboratory sampling protocol appropriate to the crop, depth, soil variation, and analyte."
+        },
+        {
+          "passage_id": "MA_SOIL_MAPS_2025-p001-e7912dcf9fc3",
+          "source_id": "MA_SOIL_MAPS_2025",
+          "pdf_page": 1,
+          "citation": "[MA_SOIL_MAPS_2025, PDF p. 1]",
+          "score": 0.6784561190297548,
+          "section": "Morocco soil maps: national scope and soil-analysis context",
+          "text": "Phosphorus (P) and potassium (K) are essential fertilizer elements whose recommendations require soil analysis tailored to crop-specific needs. However, in developing countries like Morocco, access to open databases on nutrient bioavailability remains limited, hindering data-driven agricultural strategies.\n\nThis paper presents the first national reference maps of available P and exchangeable K at 250 m resolution over Morocco's croplands using digital soil mapping with machine learning algorithms and environmental covariates.",
+          "publication_year": 2025,
+          "geographic_scope": "National Moroccan cropland maps at 250 m resolution, based on samples collected in 2010-2022.",
+          "source_url": "https://www.nature.com/articles/s41597-025-05699-x.pdf",
+          "use_note": "National baseline predictions are not parcel-specific measurements. No geospatial map rasters or underlying private Fertimap samples were downloaded. Do not infer a pictured field value from a figure in the paper."
+        }
+      ],
+      "metrics": {
+        "hit_at_3": true,
+        "passage_recall_at_3": 1.0,
+        "reciprocal_rank_at_3": 1.0,
+        "all_expected_pages_in_top_3": true
+      }
+    },
+    {
+      "id": "doukkala_irrigation_and_fertilization_en",
+      "question": "An irrigated field in Doukkala reportedly has uneven growth. What water, soil, and management evidence should be gathered before changing fertilizer?",
+      "context": "",
+      "required_passage_ids": [
+        "MA_PNTTA_DOUKKALA_70-p001-ec00adf00ace",
+        "MA_PNTTA_DOUKKALA_70-p001-aa2c7c77f280",
+        "MA_INRA_CEREALS-p020-e6dc84b4d291"
+      ],
+      "required_source_pages": [
+        [
+          "MA_PNTTA_DOUKKALA_70",
+          1
+        ],
+        [
+          "MA_INRA_CEREALS",
+          20
+        ]
+      ],
+      "elapsed_seconds": 0.684,
+      "results": [
+        {
+          "passage_id": "MA_PNTTA_DOUKKALA_70-p001-ec00adf00ace",
+          "source_id": "MA_PNTTA_DOUKKALA_70",
+          "pdf_page": 1,
+          "citation": "[MA_PNTTA_DOUKKALA_70, PDF p. 1]",
+          "score": 0.7526997268585711,
+          "section": "Doukkala : fertilisation et valorisation de l'eau d'irrigation",
+          "text": "Les diagnostics agronomiques réalisés dans le périmètre des Doukkala ont montré que l'efficience d'utilisation de l'eau d'irrigation, en terme de quantité de produits agricoles par m3 d'eau, mérite d'être améliorée. Si elle est bien raisonnée, la fertilisation minérale est une des techniques culturales permettant de mieux valoriser l'eau d'irrigation.\n\nL'utilisation rationnelle des engrais dépend de la richesse initiale du sol en éléments fertilisants, du type de sol, du stade d'apport et du niveau de rendement visé.",
+          "publication_year": 2000,
+          "geographic_scope": "Bas-Service irrigated perimeter of Doukkala; do not generalize to all Moroccan soils or to rainfed fields.",
+          "source_url": "https://www.agrimaroc.net/bulletins/btta_70.pdf",
+          "use_note": "Regional historical calibration reference, relevant background to the Doukkala imagery area. It is not evidence of the soil test results, crop identity, or nutrient status of the pictured parcels."
+        },
+        {
+          "passage_id": "MA_PNTTA_DOUKKALA_70-p001-aa2c7c77f280",
+          "source_id": "MA_PNTTA_DOUKKALA_70",
+          "pdf_page": 1,
+          "citation": "[MA_PNTTA_DOUKKALA_70, PDF p. 1]",
+          "score": 0.720335138848457,
+          "section": "Doukkala : portée géographique et cultures de l'étude",
+          "text": "Après une présentation succincte de la méthodologie, ce bulletin résume les principaux résultats obtenus, les normes établies et les nouvelles formules proposées pour la fertilisation du blé et de la betterave en irrigué dans le périmètre Bas-Service des Doukkala.",
+          "publication_year": 2000,
+          "geographic_scope": "Bas-Service irrigated perimeter of Doukkala; do not generalize to all Moroccan soils or to rainfed fields.",
+          "source_url": "https://www.agrimaroc.net/bulletins/btta_70.pdf",
+          "use_note": "Regional historical calibration reference, relevant background to the Doukkala imagery area. It is not evidence of the soil test results, crop identity, or nutrient status of the pictured parcels."
+        },
+        {
+          "passage_id": "MA_PNTTA_SOIL_ANALYSIS_93-p001-37af44dee9a8",
+          "source_id": "MA_PNTTA_SOIL_ANALYSIS_93",
+          "pdf_page": 1,
+          "citation": "[MA_PNTTA_SOIL_ANALYSIS_93, PDF p. 1]",
+          "score": 0.708345808785275,
+          "section": "Analyse du sol : raisonner la fertilisation",
+          "text": "La fertilisation n'est pas en fait une recette comme certaines personnes en ont fait croire, mais une suite d'opération réfléchies tenant compte du sol, de la plante, de l'eau d'irrigation, de l'état financier du producteur, ainsi que de l'environnement. Pour l'optimiser, il devient nécessaire de suivre constamment l'état nutritionnel de la culture en vue de l'adapter aux besoins de la plante pour prévenir soit des risques de toxicité, soit les risques de carences.",
+          "publication_year": 2002,
+          "geographic_scope": "Morocco; soil-sampling and laboratory workflow guidance.",
+          "source_url": "https://www.agrimaroc.net/bulletins/btta_93.pdf",
+          "use_note": "Historical sampling guidance. Apply the current laboratory sampling protocol appropriate to the crop, depth, soil variation, and analyte."
+        },
+        {
+          "passage_id": "MA_PNTTA_WHEAT_N_62-p001-7baa7ced5240",
+          "source_id": "MA_PNTTA_WHEAT_N_62",
+          "pdf_page": 1,
+          "citation": "[MA_PNTTA_WHEAT_N_62, PDF p. 1]",
+          "score": 0.6990721245953038,
+          "section": "Blé : analyses de sol, bilan azoté et références régionales",
+          "text": "L'élaboration de normes d'interprétation de la fertilité azotée des sols (N soil test Calibration) est basée sur les relations observées entre un indice de fertilité des sols (N Minéral, N-NO3-, N-NH4+, indice de disponibilité de l'azote) et la réponse de la plante. Une autre méthode est celle du bilan prévisionnel de l'azote qui tient compte des besoins de la plante et des fournitures en azote du sol.\n\nL'élaboration de références régionales constitue une étape nécessaire, quelle que soit la méthode adoptée. Dans ce qui suit, nous avons revu les travaux de recherche sur la fertilisation et nutrition azotées au Maroc afin de faire ressortir ces relations et références utiles en vue de l'élaboration de recommandations en matière de fertilisation azotée en Bour et en irrigué.",
+          "publication_year": 1999,
+          "geographic_scope": "Moroccan wheat, including bour favorable and irrigated systems; includes Gharb-related research.",
+          "source_url": "https://www.agrimaroc.net/bulletins/btta_62.pdf",
+          "use_note": "1999 research/extension reference. Historical trials and dose responses must not be treated as current universal fertilizer prescriptions."
+        },
+        {
+          "passage_id": "MA_SOIL_MAPS_2025-p001-e7912dcf9fc3",
+          "source_id": "MA_SOIL_MAPS_2025",
+          "pdf_page": 1,
+          "citation": "[MA_SOIL_MAPS_2025, PDF p. 1]",
+          "score": 0.6928921647832221,
+          "section": "Morocco soil maps: national scope and soil-analysis context",
+          "text": "Phosphorus (P) and potassium (K) are essential fertilizer elements whose recommendations require soil analysis tailored to crop-specific needs. However, in developing countries like Morocco, access to open databases on nutrient bioavailability remains limited, hindering data-driven agricultural strategies.\n\nThis paper presents the first national reference maps of available P and exchangeable K at 250 m resolution over Morocco's croplands using digital soil mapping with machine learning algorithms and environmental covariates.",
+          "publication_year": 2025,
+          "geographic_scope": "National Moroccan cropland maps at 250 m resolution, based on samples collected in 2010-2022.",
+          "source_url": "https://www.nature.com/articles/s41597-025-05699-x.pdf",
+          "use_note": "National baseline predictions are not parcel-specific measurements. No geospatial map rasters or underlying private Fertimap samples were downloaded. Do not infer a pictured field value from a figure in the paper."
+        }
+      ],
+      "metrics": {
+        "hit_at_3": true,
+        "passage_recall_at_3": 0.6666666666666666,
+        "reciprocal_rank_at_3": 1.0,
+        "all_expected_pages_in_top_3": false
+      }
+    },
+    {
+      "id": "doukkala_irrigation_and_fertilization_fr",
+      "question": "Une parcelle irriguée des Doukkala présente une croissance hétérogène : quelles données sur l'eau, le sol et la conduite faut-il réunir avant de modifier la fertilisation ?",
+      "context": "",
+      "required_passage_ids": [
+        "MA_PNTTA_DOUKKALA_70-p001-ec00adf00ace",
+        "MA_PNTTA_DOUKKALA_70-p001-aa2c7c77f280",
+        "MA_INRA_CEREALS-p020-e6dc84b4d291"
+      ],
+      "required_source_pages": [
+        [
+          "MA_PNTTA_DOUKKALA_70",
+          1
+        ],
+        [
+          "MA_INRA_CEREALS",
+          20
+        ]
+      ],
+      "elapsed_seconds": 0.632,
+      "results": [
+        {
+          "passage_id": "MA_PNTTA_DOUKKALA_70-p001-ec00adf00ace",
+          "source_id": "MA_PNTTA_DOUKKALA_70",
+          "pdf_page": 1,
+          "citation": "[MA_PNTTA_DOUKKALA_70, PDF p. 1]",
+          "score": 0.7569360314632118,
+          "section": "Doukkala : fertilisation et valorisation de l'eau d'irrigation",
+          "text": "Les diagnostics agronomiques réalisés dans le périmètre des Doukkala ont montré que l'efficience d'utilisation de l'eau d'irrigation, en terme de quantité de produits agricoles par m3 d'eau, mérite d'être améliorée. Si elle est bien raisonnée, la fertilisation minérale est une des techniques culturales permettant de mieux valoriser l'eau d'irrigation.\n\nL'utilisation rationnelle des engrais dépend de la richesse initiale du sol en éléments fertilisants, du type de sol, du stade d'apport et du niveau de rendement visé.",
+          "publication_year": 2000,
+          "geographic_scope": "Bas-Service irrigated perimeter of Doukkala; do not generalize to all Moroccan soils or to rainfed fields.",
+          "source_url": "https://www.agrimaroc.net/bulletins/btta_70.pdf",
+          "use_note": "Regional historical calibration reference, relevant background to the Doukkala imagery area. It is not evidence of the soil test results, crop identity, or nutrient status of the pictured parcels."
+        },
+        {
+          "passage_id": "MA_PNTTA_SOIL_ANALYSIS_93-p001-37af44dee9a8",
+          "source_id": "MA_PNTTA_SOIL_ANALYSIS_93",
+          "pdf_page": 1,
+          "citation": "[MA_PNTTA_SOIL_ANALYSIS_93, PDF p. 1]",
+          "score": 0.7297225954520932,
+          "section": "Analyse du sol : raisonner la fertilisation",
+          "text": "La fertilisation n'est pas en fait une recette comme certaines personnes en ont fait croire, mais une suite d'opération réfléchies tenant compte du sol, de la plante, de l'eau d'irrigation, de l'état financier du producteur, ainsi que de l'environnement. Pour l'optimiser, il devient nécessaire de suivre constamment l'état nutritionnel de la culture en vue de l'adapter aux besoins de la plante pour prévenir soit des risques de toxicité, soit les risques de carences.",
+          "publication_year": 2002,
+          "geographic_scope": "Morocco; soil-sampling and laboratory workflow guidance.",
+          "source_url": "https://www.agrimaroc.net/bulletins/btta_93.pdf",
+          "use_note": "Historical sampling guidance. Apply the current laboratory sampling protocol appropriate to the crop, depth, soil variation, and analyte."
+        },
+        {
+          "passage_id": "MA_PNTTA_DOUKKALA_70-p001-aa2c7c77f280",
+          "source_id": "MA_PNTTA_DOUKKALA_70",
+          "pdf_page": 1,
+          "citation": "[MA_PNTTA_DOUKKALA_70, PDF p. 1]",
+          "score": 0.7243397451891496,
+          "section": "Doukkala : portée géographique et cultures de l'étude",
+          "text": "Après une présentation succincte de la méthodologie, ce bulletin résume les principaux résultats obtenus, les normes établies et les nouvelles formules proposées pour la fertilisation du blé et de la betterave en irrigué dans le périmètre Bas-Service des Doukkala.",
+          "publication_year": 2000,
+          "geographic_scope": "Bas-Service irrigated perimeter of Doukkala; do not generalize to all Moroccan soils or to rainfed fields.",
+          "source_url": "https://www.agrimaroc.net/bulletins/btta_70.pdf",
+          "use_note": "Regional historical calibration reference, relevant background to the Doukkala imagery area. It is not evidence of the soil test results, crop identity, or nutrient status of the pictured parcels."
+        },
+        {
+          "passage_id": "MA_PNTTA_WHEAT_N_62-p001-7baa7ced5240",
+          "source_id": "MA_PNTTA_WHEAT_N_62",
+          "pdf_page": 1,
+          "citation": "[MA_PNTTA_WHEAT_N_62, PDF p. 1]",
+          "score": 0.710845214137092,
+          "section": "Blé : analyses de sol, bilan azoté et références régionales",
+          "text": "L'élaboration de normes d'interprétation de la fertilité azotée des sols (N soil test Calibration) est basée sur les relations observées entre un indice de fertilité des sols (N Minéral, N-NO3-, N-NH4+, indice de disponibilité de l'azote) et la réponse de la plante. Une autre méthode est celle du bilan prévisionnel de l'azote qui tient compte des besoins de la plante et des fournitures en azote du sol.\n\nL'élaboration de références régionales constitue une étape nécessaire, quelle que soit la méthode adoptée. Dans ce qui suit, nous avons revu les travaux de recherche sur la fertilisation et nutrition azotées au Maroc afin de faire ressortir ces relations et références utiles en vue de l'élaboration de recommandations en matière de fertilisation azotée en Bour et en irrigué.",
+          "publication_year": 1999,
+          "geographic_scope": "Moroccan wheat, including bour favorable and irrigated systems; includes Gharb-related research.",
+          "source_url": "https://www.agrimaroc.net/bulletins/btta_62.pdf",
+          "use_note": "1999 research/extension reference. Historical trials and dose responses must not be treated as current universal fertilizer prescriptions."
+        },
+        {
+          "passage_id": "MA_PNTTA_SOIL_ANALYSIS_93-p001-1745186b281a",
+          "source_id": "MA_PNTTA_SOIL_ANALYSIS_93",
+          "pdf_page": 1,
+          "citation": "[MA_PNTTA_SOIL_ANALYSIS_93, PDF p. 1]",
+          "score": 0.7078570273389426,
+          "section": "Analyse du sol : limites du constat visuel",
+          "text": "Le plus souvent, la constatation des symptômes de carence ou de toxicité est faite trop tard, autrement dit, lorsque la productivité de la plante est déjà en grande partie compromise.",
+          "publication_year": 2002,
+          "geographic_scope": "Morocco; soil-sampling and laboratory workflow guidance.",
+          "source_url": "https://www.agrimaroc.net/bulletins/btta_93.pdf",
+          "use_note": "Historical sampling guidance. Apply the current laboratory sampling protocol appropriate to the crop, depth, soil variation, and analyte."
+        }
+      ],
+      "metrics": {
+        "hit_at_3": true,
+        "passage_recall_at_3": 0.6666666666666666,
+        "reciprocal_rank_at_3": 1.0,
+        "all_expected_pages_in_top_3": false
+      }
+    },
+    {
+      "id": "doukkala_supplied_context",
+      "question": "What water, soil, and management evidence should be checked before changing fertilizer?",
+      "context": "Synthetic demo context: an irrigated field in Doukkala reportedly has uneven growth.",
+      "required_passage_ids": [
+        "MA_PNTTA_DOUKKALA_70-p001-ec00adf00ace",
+        "MA_PNTTA_DOUKKALA_70-p001-aa2c7c77f280",
+        "MA_INRA_CEREALS-p020-e6dc84b4d291"
+      ],
+      "required_source_pages": [
+        [
+          "MA_PNTTA_DOUKKALA_70",
+          1
+        ],
+        [
+          "MA_INRA_CEREALS",
+          20
+        ]
+      ],
+      "elapsed_seconds": 0.52,
+      "results": [
+        {
+          "passage_id": "MA_PNTTA_DOUKKALA_70-p001-ec00adf00ace",
+          "source_id": "MA_PNTTA_DOUKKALA_70",
+          "pdf_page": 1,
+          "citation": "[MA_PNTTA_DOUKKALA_70, PDF p. 1]",
+          "score": 0.7362733802891355,
+          "section": "Doukkala : fertilisation et valorisation de l'eau d'irrigation",
+          "text": "Les diagnostics agronomiques réalisés dans le périmètre des Doukkala ont montré que l'efficience d'utilisation de l'eau d'irrigation, en terme de quantité de produits agricoles par m3 d'eau, mérite d'être améliorée. Si elle est bien raisonnée, la fertilisation minérale est une des techniques culturales permettant de mieux valoriser l'eau d'irrigation.\n\nL'utilisation rationnelle des engrais dépend de la richesse initiale du sol en éléments fertilisants, du type de sol, du stade d'apport et du niveau de rendement visé.",
+          "publication_year": 2000,
+          "geographic_scope": "Bas-Service irrigated perimeter of Doukkala; do not generalize to all Moroccan soils or to rainfed fields.",
+          "source_url": "https://www.agrimaroc.net/bulletins/btta_70.pdf",
+          "use_note": "Regional historical calibration reference, relevant background to the Doukkala imagery area. It is not evidence of the soil test results, crop identity, or nutrient status of the pictured parcels."
+        },
+        {
+          "passage_id": "MA_PNTTA_SOIL_ANALYSIS_93-p001-37af44dee9a8",
+          "source_id": "MA_PNTTA_SOIL_ANALYSIS_93",
+          "pdf_page": 1,
+          "citation": "[MA_PNTTA_SOIL_ANALYSIS_93, PDF p. 1]",
+          "score": 0.7214919980762591,
+          "section": "Analyse du sol : raisonner la fertilisation",
+          "text": "La fertilisation n'est pas en fait une recette comme certaines personnes en ont fait croire, mais une suite d'opération réfléchies tenant compte du sol, de la plante, de l'eau d'irrigation, de l'état financier du producteur, ainsi que de l'environnement. Pour l'optimiser, il devient nécessaire de suivre constamment l'état nutritionnel de la culture en vue de l'adapter aux besoins de la plante pour prévenir soit des risques de toxicité, soit les risques de carences.",
+          "publication_year": 2002,
+          "geographic_scope": "Morocco; soil-sampling and laboratory workflow guidance.",
+          "source_url": "https://www.agrimaroc.net/bulletins/btta_93.pdf",
+          "use_note": "Historical sampling guidance. Apply the current laboratory sampling protocol appropriate to the crop, depth, soil variation, and analyte."
+        },
+        {
+          "passage_id": "MA_PNTTA_WHEAT_N_62-p001-7baa7ced5240",
+          "source_id": "MA_PNTTA_WHEAT_N_62",
+          "pdf_page": 1,
+          "citation": "[MA_PNTTA_WHEAT_N_62, PDF p. 1]",
+          "score": 0.7113993381336837,
+          "section": "Blé : analyses de sol, bilan azoté et références régionales",
+          "text": "L'élaboration de normes d'interprétation de la fertilité azotée des sols (N soil test Calibration) est basée sur les relations observées entre un indice de fertilité des sols (N Minéral, N-NO3-, N-NH4+, indice de disponibilité de l'azote) et la réponse de la plante. Une autre méthode est celle du bilan prévisionnel de l'azote qui tient compte des besoins de la plante et des fournitures en azote du sol.\n\nL'élaboration de références régionales constitue une étape nécessaire, quelle que soit la méthode adoptée. Dans ce qui suit, nous avons revu les travaux de recherche sur la fertilisation et nutrition azotées au Maroc afin de faire ressortir ces relations et références utiles en vue de l'élaboration de recommandations en matière de fertilisation azotée en Bour et en irrigué.",
+          "publication_year": 1999,
+          "geographic_scope": "Moroccan wheat, including bour favorable and irrigated systems; includes Gharb-related research.",
+          "source_url": "https://www.agrimaroc.net/bulletins/btta_62.pdf",
+          "use_note": "1999 research/extension reference. Historical trials and dose responses must not be treated as current universal fertilizer prescriptions."
+        },
+        {
+          "passage_id": "MA_PNTTA_DOUKKALA_70-p001-aa2c7c77f280",
+          "source_id": "MA_PNTTA_DOUKKALA_70",
+          "pdf_page": 1,
+          "citation": "[MA_PNTTA_DOUKKALA_70, PDF p. 1]",
+          "score": 0.7091976309797289,
+          "section": "Doukkala : portée géographique et cultures de l'étude",
+          "text": "Après une présentation succincte de la méthodologie, ce bulletin résume les principaux résultats obtenus, les normes établies et les nouvelles formules proposées pour la fertilisation du blé et de la betterave en irrigué dans le périmètre Bas-Service des Doukkala.",
+          "publication_year": 2000,
+          "geographic_scope": "Bas-Service irrigated perimeter of Doukkala; do not generalize to all Moroccan soils or to rainfed fields.",
+          "source_url": "https://www.agrimaroc.net/bulletins/btta_70.pdf",
+          "use_note": "Regional historical calibration reference, relevant background to the Doukkala imagery area. It is not evidence of the soil test results, crop identity, or nutrient status of the pictured parcels."
+        },
+        {
+          "passage_id": "MA_SOIL_MAPS_2025-p001-e7912dcf9fc3",
+          "source_id": "MA_SOIL_MAPS_2025",
+          "pdf_page": 1,
+          "citation": "[MA_SOIL_MAPS_2025, PDF p. 1]",
+          "score": 0.7077120836970472,
+          "section": "Morocco soil maps: national scope and soil-analysis context",
+          "text": "Phosphorus (P) and potassium (K) are essential fertilizer elements whose recommendations require soil analysis tailored to crop-specific needs. However, in developing countries like Morocco, access to open databases on nutrient bioavailability remains limited, hindering data-driven agricultural strategies.\n\nThis paper presents the first national reference maps of available P and exchangeable K at 250 m resolution over Morocco's croplands using digital soil mapping with machine learning algorithms and environmental covariates.",
+          "publication_year": 2025,
+          "geographic_scope": "National Moroccan cropland maps at 250 m resolution, based on samples collected in 2010-2022.",
+          "source_url": "https://www.nature.com/articles/s41597-025-05699-x.pdf",
+          "use_note": "National baseline predictions are not parcel-specific measurements. No geospatial map rasters or underlying private Fertimap samples were downloaded. Do not infer a pictured field value from a figure in the paper."
+        }
+      ],
+      "metrics": {
+        "hit_at_3": true,
+        "passage_recall_at_3": 0.3333333333333333,
+        "reciprocal_rank_at_3": 1.0,
+        "all_expected_pages_in_top_3": false
+      }
+    },
+    {
+      "id": "unrelated_football",
+      "question": "Who won the men's football World Cup in 2018?",
+      "context": "",
+      "elapsed_seconds": 0.499,
+      "results": [
+        {
+          "passage_id": "MA_SOIL_MAPS_2025-p001-e7912dcf9fc3",
+          "source_id": "MA_SOIL_MAPS_2025",
+          "pdf_page": 1,
+          "citation": "[MA_SOIL_MAPS_2025, PDF p. 1]",
+          "score": 0.5288624425059595,
+          "section": "Morocco soil maps: national scope and soil-analysis context",
+          "text": "Phosphorus (P) and potassium (K) are essential fertilizer elements whose recommendations require soil analysis tailored to crop-specific needs. However, in developing countries like Morocco, access to open databases on nutrient bioavailability remains limited, hindering data-driven agricultural strategies.\n\nThis paper presents the first national reference maps of available P and exchangeable K at 250 m resolution over Morocco's croplands using digital soil mapping with machine learning algorithms and environmental covariates.",
+          "publication_year": 2025,
+          "geographic_scope": "National Moroccan cropland maps at 250 m resolution, based on samples collected in 2010-2022.",
+          "source_url": "https://www.nature.com/articles/s41597-025-05699-x.pdf",
+          "use_note": "National baseline predictions are not parcel-specific measurements. No geospatial map rasters or underlying private Fertimap samples were downloaded. Do not infer a pictured field value from a figure in the paper."
+        },
+        {
+          "passage_id": "MA_PNTTA_DOUKKALA_70-p001-aa2c7c77f280",
+          "source_id": "MA_PNTTA_DOUKKALA_70",
+          "pdf_page": 1,
+          "citation": "[MA_PNTTA_DOUKKALA_70, PDF p. 1]",
+          "score": 0.5080623412809337,
+          "section": "Doukkala : portée géographique et cultures de l'étude",
+          "text": "Après une présentation succincte de la méthodologie, ce bulletin résume les principaux résultats obtenus, les normes établies et les nouvelles formules proposées pour la fertilisation du blé et de la betterave en irrigué dans le périmètre Bas-Service des Doukkala.",
+          "publication_year": 2000,
+          "geographic_scope": "Bas-Service irrigated perimeter of Doukkala; do not generalize to all Moroccan soils or to rainfed fields.",
+          "source_url": "https://www.agrimaroc.net/bulletins/btta_70.pdf",
+          "use_note": "Regional historical calibration reference, relevant background to the Doukkala imagery area. It is not evidence of the soil test results, crop identity, or nutrient status of the pictured parcels."
+        },
+        {
+          "passage_id": "MA_PNTTA_DOUKKALA_70-p001-ec00adf00ace",
+          "source_id": "MA_PNTTA_DOUKKALA_70",
+          "pdf_page": 1,
+          "citation": "[MA_PNTTA_DOUKKALA_70, PDF p. 1]",
+          "score": 0.49927587743466384,
+          "section": "Doukkala : fertilisation et valorisation de l'eau d'irrigation",
+          "text": "Les diagnostics agronomiques réalisés dans le périmètre des Doukkala ont montré que l'efficience d'utilisation de l'eau d'irrigation, en terme de quantité de produits agricoles par m3 d'eau, mérite d'être améliorée. Si elle est bien raisonnée, la fertilisation minérale est une des techniques culturales permettant de mieux valoriser l'eau d'irrigation.\n\nL'utilisation rationnelle des engrais dépend de la richesse initiale du sol en éléments fertilisants, du type de sol, du stade d'apport et du niveau de rendement visé.",
+          "publication_year": 2000,
+          "geographic_scope": "Bas-Service irrigated perimeter of Doukkala; do not generalize to all Moroccan soils or to rainfed fields.",
+          "source_url": "https://www.agrimaroc.net/bulletins/btta_70.pdf",
+          "use_note": "Regional historical calibration reference, relevant background to the Doukkala imagery area. It is not evidence of the soil test results, crop identity, or nutrient status of the pictured parcels."
+        },
+        {
+          "passage_id": "MA_PNTTA_SOIL_ANALYSIS_93-p001-37af44dee9a8",
+          "source_id": "MA_PNTTA_SOIL_ANALYSIS_93",
+          "pdf_page": 1,
+          "citation": "[MA_PNTTA_SOIL_ANALYSIS_93, PDF p. 1]",
+          "score": 0.4988147535632909,
+          "section": "Analyse du sol : raisonner la fertilisation",
+          "text": "La fertilisation n'est pas en fait une recette comme certaines personnes en ont fait croire, mais une suite d'opération réfléchies tenant compte du sol, de la plante, de l'eau d'irrigation, de l'état financier du producteur, ainsi que de l'environnement. Pour l'optimiser, il devient nécessaire de suivre constamment l'état nutritionnel de la culture en vue de l'adapter aux besoins de la plante pour prévenir soit des risques de toxicité, soit les risques de carences.",
+          "publication_year": 2002,
+          "geographic_scope": "Morocco; soil-sampling and laboratory workflow guidance.",
+          "source_url": "https://www.agrimaroc.net/bulletins/btta_93.pdf",
+          "use_note": "Historical sampling guidance. Apply the current laboratory sampling protocol appropriate to the crop, depth, soil variation, and analyte."
+        },
+        {
+          "passage_id": "MA_PNTTA_WHEAT_N_62-p001-7baa7ced5240",
+          "source_id": "MA_PNTTA_WHEAT_N_62",
+          "pdf_page": 1,
+          "citation": "[MA_PNTTA_WHEAT_N_62, PDF p. 1]",
+          "score": 0.48316691767092745,
+          "section": "Blé : analyses de sol, bilan azoté et références régionales",
+          "text": "L'élaboration de normes d'interprétation de la fertilité azotée des sols (N soil test Calibration) est basée sur les relations observées entre un indice de fertilité des sols (N Minéral, N-NO3-, N-NH4+, indice de disponibilité de l'azote) et la réponse de la plante. Une autre méthode est celle du bilan prévisionnel de l'azote qui tient compte des besoins de la plante et des fournitures en azote du sol.\n\nL'élaboration de références régionales constitue une étape nécessaire, quelle que soit la méthode adoptée. Dans ce qui suit, nous avons revu les travaux de recherche sur la fertilisation et nutrition azotées au Maroc afin de faire ressortir ces relations et références utiles en vue de l'élaboration de recommandations en matière de fertilisation azotée en Bour et en irrigué.",
+          "publication_year": 1999,
+          "geographic_scope": "Moroccan wheat, including bour favorable and irrigated systems; includes Gharb-related research.",
+          "source_url": "https://www.agrimaroc.net/bulletins/btta_62.pdf",
+          "use_note": "1999 research/extension reference. Historical trials and dose responses must not be treated as current universal fertilizer prescriptions."
+        }
+      ],
+      "observation": "No relevant passage exists for this question. The ranker still returns nearest neighbors; no abstention filter is implemented."
+    },
+    {
+      "id": "unrelated_python",
+      "question": "How do I reverse a Python list?",
+      "context": "",
+      "elapsed_seconds": 0.754,
+      "results": [
+        {
+          "passage_id": "MA_PNTTA_SOIL_ANALYSIS_93-p001-37af44dee9a8",
+          "source_id": "MA_PNTTA_SOIL_ANALYSIS_93",
+          "pdf_page": 1,
+          "citation": "[MA_PNTTA_SOIL_ANALYSIS_93, PDF p. 1]",
+          "score": 0.4813174901177959,
+          "section": "Analyse du sol : raisonner la fertilisation",
+          "text": "La fertilisation n'est pas en fait une recette comme certaines personnes en ont fait croire, mais une suite d'opération réfléchies tenant compte du sol, de la plante, de l'eau d'irrigation, de l'état financier du producteur, ainsi que de l'environnement. Pour l'optimiser, il devient nécessaire de suivre constamment l'état nutritionnel de la culture en vue de l'adapter aux besoins de la plante pour prévenir soit des risques de toxicité, soit les risques de carences.",
+          "publication_year": 2002,
+          "geographic_scope": "Morocco; soil-sampling and laboratory workflow guidance.",
+          "source_url": "https://www.agrimaroc.net/bulletins/btta_93.pdf",
+          "use_note": "Historical sampling guidance. Apply the current laboratory sampling protocol appropriate to the crop, depth, soil variation, and analyte."
+        },
+        {
+          "passage_id": "MA_INRA_OLIVE-p017-634417ba0cd2",
+          "source_id": "MA_INRA_OLIVE",
+          "pdf_page": 17,
+          "citation": "[MA_INRA_OLIVE, PDF p. 17]",
+          "score": 0.4742582566391333,
+          "section": "Olivier : les applications au sol",
+          "text": "C'est la manière la plus courante d'apport des fertilisants pour enrichir la solution du sol à proximité des racines pour que celles-ci absorbent les éléments nutritifs. Les applications peuvent être réalisées en surface ou en profondeur.",
+          "publication_year": 2016,
+          "geographic_scope": "Moroccan olive-growing conditions; distinguish rainfed, supplementary-irrigated, young, and bearing orchards.",
+          "source_url": "https://www.inra.org.ma/sites/default/files/publications/ouvrages/olivierkafacifr.pdf",
+          "use_note": "Historical guide. Orchard age, production, irrigation, soil tests, and foliar analysis matter. Do not transfer per-tree values into per-hectare doses without verified assumptions."
+        },
+        {
+          "passage_id": "MA_SOIL_MAPS_2025-p001-e7912dcf9fc3",
+          "source_id": "MA_SOIL_MAPS_2025",
+          "pdf_page": 1,
+          "citation": "[MA_SOIL_MAPS_2025, PDF p. 1]",
+          "score": 0.47419939652814114,
+          "section": "Morocco soil maps: national scope and soil-analysis context",
+          "text": "Phosphorus (P) and potassium (K) are essential fertilizer elements whose recommendations require soil analysis tailored to crop-specific needs. However, in developing countries like Morocco, access to open databases on nutrient bioavailability remains limited, hindering data-driven agricultural strategies.\n\nThis paper presents the first national reference maps of available P and exchangeable K at 250 m resolution over Morocco's croplands using digital soil mapping with machine learning algorithms and environmental covariates.",
+          "publication_year": 2025,
+          "geographic_scope": "National Moroccan cropland maps at 250 m resolution, based on samples collected in 2010-2022.",
+          "source_url": "https://www.nature.com/articles/s41597-025-05699-x.pdf",
+          "use_note": "National baseline predictions are not parcel-specific measurements. No geospatial map rasters or underlying private Fertimap samples were downloaded. Do not infer a pictured field value from a figure in the paper."
+        },
+        {
+          "passage_id": "MA_INRA_OLIVE-p017-91ff1033e48a",
+          "source_id": "MA_INRA_OLIVE",
+          "pdf_page": 17,
+          "citation": "[MA_INRA_OLIVE, PDF p. 17]",
+          "score": 0.4695763468341613,
+          "section": "Olivier : définition de la fertigation",
+          "text": "La fertigation consiste à appliquer l'engrais au sol par dissolution dans l'eau d'irrigation. Les avantages de cette technique sont le faible coût d'application des fertilisants et son efficacité, car les nutriments sont apportés à proximité des racines absorbantes et répartis dans le bulbe d'irrigation. Cette technique permet également de fractionner l'application des fertilisants, ce qui est très important, en particulier dans le cas de l'azote. En général, il est recommandé d'utiliser des produits destinés à la fertigation.",
+          "publication_year": 2016,
+          "geographic_scope": "Moroccan olive-growing conditions; distinguish rainfed, supplementary-irrigated, young, and bearing orchards.",
+          "source_url": "https://www.inra.org.ma/sites/default/files/publications/ouvrages/olivierkafacifr.pdf",
+          "use_note": "Historical guide. Orchard age, production, irrigation, soil tests, and foliar analysis matter. Do not transfer per-tree values into per-hectare doses without verified assumptions."
+        },
+        {
+          "passage_id": "MA_PNTTA_DOUKKALA_70-p001-aa2c7c77f280",
+          "source_id": "MA_PNTTA_DOUKKALA_70",
+          "pdf_page": 1,
+          "citation": "[MA_PNTTA_DOUKKALA_70, PDF p. 1]",
+          "score": 0.4673672108550636,
+          "section": "Doukkala : portée géographique et cultures de l'étude",
+          "text": "Après une présentation succincte de la méthodologie, ce bulletin résume les principaux résultats obtenus, les normes établies et les nouvelles formules proposées pour la fertilisation du blé et de la betterave en irrigué dans le périmètre Bas-Service des Doukkala.",
+          "publication_year": 2000,
+          "geographic_scope": "Bas-Service irrigated perimeter of Doukkala; do not generalize to all Moroccan soils or to rainfed fields.",
+          "source_url": "https://www.agrimaroc.net/bulletins/btta_70.pdf",
+          "use_note": "Regional historical calibration reference, relevant background to the Doukkala imagery area. It is not evidence of the soil test results, crop identity, or nutrient status of the pictured parcels."
+        }
+      ],
+      "observation": "No relevant passage exists for this question. The ranker still returns nearest neighbors; no abstention filter is implemented."
+    },
+    {
+      "id": "unrelated_french_travel",
+      "question": "Comment réserver un billet de train pour Paris ?",
+      "context": "",
+      "elapsed_seconds": 0.512,
+      "results": [
+        {
+          "passage_id": "MA_PNTTA_DOUKKALA_70-p001-aa2c7c77f280",
+          "source_id": "MA_PNTTA_DOUKKALA_70",
+          "pdf_page": 1,
+          "citation": "[MA_PNTTA_DOUKKALA_70, PDF p. 1]",
+          "score": 0.5081247124478886,
+          "section": "Doukkala : portée géographique et cultures de l'étude",
+          "text": "Après une présentation succincte de la méthodologie, ce bulletin résume les principaux résultats obtenus, les normes établies et les nouvelles formules proposées pour la fertilisation du blé et de la betterave en irrigué dans le périmètre Bas-Service des Doukkala.",
+          "publication_year": 2000,
+          "geographic_scope": "Bas-Service irrigated perimeter of Doukkala; do not generalize to all Moroccan soils or to rainfed fields.",
+          "source_url": "https://www.agrimaroc.net/bulletins/btta_70.pdf",
+          "use_note": "Regional historical calibration reference, relevant background to the Doukkala imagery area. It is not evidence of the soil test results, crop identity, or nutrient status of the pictured parcels."
+        },
+        {
+          "passage_id": "MA_INRA_CEREALS-p014-4cb281206858",
+          "source_id": "MA_INRA_CEREALS",
+          "pdf_page": 14,
+          "citation": "[MA_INRA_CEREALS, PDF p. 14]",
+          "score": 0.5002157531213492,
+          "section": "Fertilisation des céréales : efficience d'utilisation",
+          "text": "L'efficience d'utilisation des engrais varie selon le type de sol, le précédent cultural et les conditions climatiques et le système de culture (bour/irrigué).",
+          "publication_year": 2014,
+          "geographic_scope": "Morocco; distinguish bour (rainfed) from irrigated systems.",
+          "source_url": "https://www.inra.org.ma/sites/default/files/publications/ouvrages/guideorgefr.pdf",
+          "use_note": "Historical crop guide. Rates depend on yield target, soil supply, water regime, and local conditions. Do not convert its nutrient/product units automatically."
+        },
+        {
+          "passage_id": "MA_INRA_OLIVE-p017-634417ba0cd2",
+          "source_id": "MA_INRA_OLIVE",
+          "pdf_page": 17,
+          "citation": "[MA_INRA_OLIVE, PDF p. 17]",
+          "score": 0.4988424625481217,
+          "section": "Olivier : les applications au sol",
+          "text": "C'est la manière la plus courante d'apport des fertilisants pour enrichir la solution du sol à proximité des racines pour que celles-ci absorbent les éléments nutritifs. Les applications peuvent être réalisées en surface ou en profondeur.",
+          "publication_year": 2016,
+          "geographic_scope": "Moroccan olive-growing conditions; distinguish rainfed, supplementary-irrigated, young, and bearing orchards.",
+          "source_url": "https://www.inra.org.ma/sites/default/files/publications/ouvrages/olivierkafacifr.pdf",
+          "use_note": "Historical guide. Orchard age, production, irrigation, soil tests, and foliar analysis matter. Do not transfer per-tree values into per-hectare doses without verified assumptions."
+        },
+        {
+          "passage_id": "MA_PNTTA_WHEAT_N_62-p001-7baa7ced5240",
+          "source_id": "MA_PNTTA_WHEAT_N_62",
+          "pdf_page": 1,
+          "citation": "[MA_PNTTA_WHEAT_N_62, PDF p. 1]",
+          "score": 0.49599598705921844,
+          "section": "Blé : analyses de sol, bilan azoté et références régionales",
+          "text": "L'élaboration de normes d'interprétation de la fertilité azotée des sols (N soil test Calibration) est basée sur les relations observées entre un indice de fertilité des sols (N Minéral, N-NO3-, N-NH4+, indice de disponibilité de l'azote) et la réponse de la plante. Une autre méthode est celle du bilan prévisionnel de l'azote qui tient compte des besoins de la plante et des fournitures en azote du sol.\n\nL'élaboration de références régionales constitue une étape nécessaire, quelle que soit la méthode adoptée. Dans ce qui suit, nous avons revu les travaux de recherche sur la fertilisation et nutrition azotées au Maroc afin de faire ressortir ces relations et références utiles en vue de l'élaboration de recommandations en matière de fertilisation azotée en Bour et en irrigué.",
+          "publication_year": 1999,
+          "geographic_scope": "Moroccan wheat, including bour favorable and irrigated systems; includes Gharb-related research.",
+          "source_url": "https://www.agrimaroc.net/bulletins/btta_62.pdf",
+          "use_note": "1999 research/extension reference. Historical trials and dose responses must not be treated as current universal fertilizer prescriptions."
+        },
+        {
+          "passage_id": "MA_PNTTA_DOUKKALA_70-p001-ec00adf00ace",
+          "source_id": "MA_PNTTA_DOUKKALA_70",
+          "pdf_page": 1,
+          "citation": "[MA_PNTTA_DOUKKALA_70, PDF p. 1]",
+          "score": 0.4948675851726006,
+          "section": "Doukkala : fertilisation et valorisation de l'eau d'irrigation",
+          "text": "Les diagnostics agronomiques réalisés dans le périmètre des Doukkala ont montré que l'efficience d'utilisation de l'eau d'irrigation, en terme de quantité de produits agricoles par m3 d'eau, mérite d'être améliorée. Si elle est bien raisonnée, la fertilisation minérale est une des techniques culturales permettant de mieux valoriser l'eau d'irrigation.\n\nL'utilisation rationnelle des engrais dépend de la richesse initiale du sol en éléments fertilisants, du type de sol, du stade d'apport et du niveau de rendement visé.",
+          "publication_year": 2000,
+          "geographic_scope": "Bas-Service irrigated perimeter of Doukkala; do not generalize to all Moroccan soils or to rainfed fields.",
+          "source_url": "https://www.agrimaroc.net/bulletins/btta_70.pdf",
+          "use_note": "Regional historical calibration reference, relevant background to the Doukkala imagery area. It is not evidence of the soil test results, crop identity, or nutrient status of the pictured parcels."
+        }
+      ],
+      "observation": "No relevant passage exists for this question. The ranker still returns nearest neighbors; no abstention filter is implemented."
+    }
+  ]
+}

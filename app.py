@@ -6,6 +6,7 @@ from PIL import Image, ImageOps
 import streamlit as st
 
 import model
+import rag
 
 
 MAX_UPLOAD_MB = 10
@@ -44,7 +45,7 @@ def main():
     st.caption("MOROCCO · CROP IMAGERY DEMO")
     st.title("Field notes")
     st.write("Ask about the visible fields and what to check next.")
-    st.caption("Preview assessment from your image and context. Agricultural document search comes later.")
+    st.caption("Review visible patterns alongside selected Moroccan agricultural references. Sources appear with the answer.")
 
     # The uploader reruns immediately so the preview does not wait for form submission.
     uploaded = st.file_uploader(
@@ -68,6 +69,8 @@ def main():
     else:
         st.info("Choose an image to see its preview here.")
 
+    language = st.radio("Answer language", model.ANSWER_LANGUAGES, horizontal=True, key="language")
+
     with st.form("field_question", clear_on_submit=False):
         st.header("Ask about the field")
         question = st.text_area(
@@ -87,13 +90,15 @@ def main():
             help="Add what you know. Label invented demo details as synthetic.",
         )
         context_feedback = st.empty()
-        st.caption("Selecting Ask Gemini sends your image, question, and context to Google Gemini.")
+        st.caption("Image assessments send your image, question, context, and selected reference excerpts to Google Gemini.")
         submitted = st.form_submit_button("Ask Gemini", type="primary", width="stretch")
 
     request_signature = (
         hashlib.sha256(image_png).hexdigest() if image_png else None,
         question.strip(),
         context.strip(),
+        language,
+        model.PROMPT_VERSION,
     )
     if st.session_state.get("answer", {}).get("inputs") != request_signature:
         st.session_state.pop("answer", None)
@@ -110,17 +115,45 @@ def main():
             context_feedback.error("Shorten the field context to 4,000 characters or fewer.")
         if image_png is not None and question_valid and context_valid:
             try:
-                with st.spinner("Gemini is reviewing your image…", show_time=True):
-                    answer = model.answer_image(image_png, question.strip(), context.strip())
-                st.session_state["answer"] = {"inputs": request_signature, "text": answer}
-                st.success("Gemini response ready.")
+                answer = model.input_limit_notice(question, language)
+                if answer is None:
+                    with st.spinner("Finding agricultural references…", show_time=True):
+                        passages = rag.semantic_search(question.strip(), context.strip())
+                    with st.spinner("Gemini is reviewing your image…", show_time=True):
+                        answer = model.answer_image(image_png, question.strip(), context.strip(), passages, language=language)
+                st.session_state["answer"] = {"inputs": request_signature, "field_context": context.strip(), **answer}
+                if answer.get("kind") != "input_limit":
+                    st.success("Gemini response ready.")
             except model.GeminiError as exc:
                 st.error(str(exc))
 
     if "answer" in st.session_state:
-        st.header("Gemini response")
-        st.caption("Based on your submitted image and context. Agricultural references have not been searched.")
-        st.markdown(st.session_state["answer"]["text"])
+        answer = st.session_state["answer"]
+        st.header("Input limitation" if answer.get("kind") == "input_limit" else "Gemini response")
+        if answer["evidence_status"] == "insufficient":
+            st.info("No reference excerpt was cited. Review the assessment's stated evidence limits.")
+        elif answer["evidence_status"] == "out_of_scope":
+            st.info("This demo handles agricultural imagery, soils, crop nutrition, water, and field checks.")
+        else:
+            st.caption("Reported field context is unverified. References are background guidance; check their date, crops, and geographic scope.")
+        if answer.get("kind") != "input_limit":
+            reported_context = answer.get("field_context", context.strip())
+            st.caption("Context supplied by you (unverified)")
+            st.text(reported_context or "No field context supplied.", width="stretch")
+        st.markdown(answer["text"])
+        if answer["sources"]:
+            st.subheader("References cited")
+            for source in answer["sources"]:
+                with st.expander(f"{source['citation']} · {source['section']}"):
+                    st.write(source["title"])
+                    year = source["publication_year"] if source["publication_year"] is not None else "unverified"
+                    st.caption(f"Publication year: {year} · Physical PDF page: {source['pdf_page']}")
+                    st.caption("Crops covered: " + ", ".join(source["crops"]))
+                    st.write(source["geographic_scope"])
+                    st.write(source["use_note"])
+                    st.markdown(f"[Open original PDF]({source['url']})")
+                    st.caption("Excerpt supplied to Gemini")
+                    st.write(source["text"])
 
     st.caption("RGB imagery shows visible patterns. Soil and nutrient conditions need field evidence.")
 

@@ -12,8 +12,8 @@ Mark a task complete only when its completion criteria pass.
 - [x] Record source dates, geographic scope, image limitations, and file checksums.
 - [x] Prepare a Git-ignored local `.env` and a shareable `.env.example`;
   the application now loads the key on the server in step 2.
-- [x] Select `gemini-embedding-001` for embeddings; document vectors will be
-  saved locally. The corpus has not been embedded; one synthetic test sentence passed.
+- [x] Select `gemini-embedding-001` for embeddings; step 4 now saves vectors for
+  all 16 prepared passages locally and searches them using embedded queries.
 - [x] Check API access: embeddings and `gemini-3.5-flash-lite` image input passed;
   `gemini-3.8-flash` returned HTTP 503 twice. The user confirmed the project is on
   Free tier. Details: [access report](../docs/api_smoke_test.md).
@@ -74,7 +74,7 @@ and learning documentation. No retrieval or streaming yet.
 
 ## Step 3: Turn source pages into useful passages
 
-- [ ] Complete step 3.
+- [x] Complete step 3.
 
 **Build:** Load the recommended pages and split reviewed text into coherent
 paragraph passages with source IDs, physical PDF pages, dates, crop, and geography.
@@ -82,19 +82,23 @@ Keep original PDFs and extraction files unchanged.
 **Learn:** Data preparation, OCR limitations, chunking, token limits, source
 provenance, and why source metadata matters as much as the text.
 **Done when:**
-- [ ] Selected passages for the three demo scenarios match their source pages.
-- [ ] Every passage has a stable ID and source/page metadata, and fits the chosen
+- [x] Selected passages for the three demo scenarios match their source pages.
+- [x] Every passage has a stable ID and source/page metadata, and fits the chosen
   `gemini-embedding-001` model's 2,048-token input limit without silent truncation.
-- [ ] Unchecked numerical tables and low-quality OCR are flagged for review.
+- [x] Unchecked numerical tables and low-quality OCR are flagged for review.
 **Verify:** Focused preparation checks plus visual comparison with the source PDFs.
 **Explain:** What goes wrong if we embed a whole PDF or lose its page references?
 **Dependencies:** None; uses downloaded assets. **Likely files:** `rag.py`,
 `tests/test_rag.py`, a generated passage data file.
 **Scope:** Small/medium, 2 code files plus data.
+**Evidence:** 16 passages from selected prose on 10 PDF pages across eight sources;
+largest exact embedding input 218 tokens. All 35 tests pass. Unchanged data rebuilds
+offline; 40 recommended pages and unverified numerical tables remain pending.
+See [walkthrough](../docs/step3.md) and [verification](../docs/step3_verification.md).
 
 ## Step 4: Search the passages with Gemini embeddings
 
-- [ ] Complete step 4.
+- [x] Complete step 4.
 
 **Build:** Generate passage vectors with the `gemini-embedding-001` API using
 `RETRIEVAL_DOCUMENT`, and cache them locally with source metadata. Embed the
@@ -105,42 +109,58 @@ existing Gemini credentials and SDK; a local embedding model is not required.
 matching, cosine similarity, multilingual search, and why similarity is not
 factual confidence.
 **Done when:**
-- [ ] The three scenario queries retrieve relevant sources in the top results.
-- [ ] At least one French/English query pair retrieves the intended source.
-- [ ] The saved index reloads and unchanged passages/settings reuse cached
+- [x] The three scenario queries retrieve relevant sources in the top results.
+- [x] At least one French/English query pair retrieves the intended source.
+- [x] The saved index reloads and unchanged passages/settings reuse cached
   vectors; irrelevant-query behavior is checked with examples, and embedding
   quota/network failures produce a useful error.
 **Verify:** A small expected-source query set, index/cache checks, and an embedding
 failure case; inspect returned text and scores.
 **Explain:** Why are the embedding model and vision model doing different jobs?
-**Dependencies:** 2, 3. **Likely files:** `rag.py`, `model.py`,
-`tests/test_rag.py`, generated index files.
-**Scope:** Medium, 3 code/config files plus data.
+**Dependencies:** 2, 3. **Files:** `rag.py`, `tests/test_search.py`,
+`tests/evaluate_search.py`, the saved index, and learning/verification notes.
+The existing Gemini client/credentials are reused without changing `model.py`.
+**Scope:** Independent retrieval only; app/vision integration remains step 5.
+**Evidence:** 16 real 3,072-dimensional document vectors; unchanged rebuild made
+zero API calls. All seven fixed English/French/context queries hit an expected
+passage at rank 1. Mean expected-passage recall@3 was 0.810: supporting Doukkala
+evidence remains incomplete. Three unrelated probes still returned nearest
+neighbors, so there is no automatic relevance/abstention claim. See the
+[walkthrough](../docs/step4.md) and [verification](../docs/step4_verification.md).
 
 ### Checkpoint B: Evidence can be found
 
-- [ ] Relevant passages can be inspected without making a vision-model call.
+- [x] Relevant passages can be inspected without making a vision-model call.
 - [ ] You can explain why a result matched and when it should not be trusted.
 
 ## Step 5: Ground the image response in retrieved evidence
 
-- [ ] Complete step 5.
+- [x] Complete step 5.
 
 **Build:** Assemble the question, user context, image, and retrieved passages in
 one multimodal request. Render an answer with source/page citations and links.
 **Learn:** Retrieval-augmented generation, context assembly, prompt boundaries,
 grounding, citation validation, and observation versus causal inference.
 **Done when:**
-- [ ] The answer cites only source IDs and pages supplied in that request.
-- [ ] It distinguishes image observations, user reports, document guidance,
+- [x] The answer cites only source IDs and pages supplied in that request.
+- [x] It distinguishes image observations, user reports, document guidance,
   and hypotheses; synthetic demo context is labeled.
-- [ ] Missing or irrelevant evidence is disclosed, with no fabricated soil test,
+- [x] Missing or irrelevant evidence is disclosed, with no fabricated soil test,
   nutrient diagnosis, fertilizer dose, or claimed document-search action.
 **Verify:** Run all three scenarios and one unrelated query; inspect citations.
 **Explain:** What changed in the model's input when we added RAG?
-**Dependencies:** 2, 4. **Likely files:** `model.py`, `app.py`, `rag.py`,
-`tests/test_model.py`.
-**Scope:** Medium, up to 4 files.
+**Dependencies:** 2, 4. **Files:** `model.py`, `app.py`, versioned prompts,
+model/form/citation tests, the fixed live evaluator, and learning notes.
+`rag.py`, dimensions, source files, and the saved index are unchanged in this step.
+**Evidence:** All 73 automated tests pass. Ten fixed cases passed 70 narrow checks:
+nine actual vision responses plus one local NDVI input-limit notice. Three
+scenario pairs, missing context, an unrelated task, and untrusted instructions
+were checked. Four transient HTTP 503 attempts remain recorded. Desktop and
+320 px browser views show checked links and source excerpts. Original context
+is displayed verbatim as unverified. Citation membership is enforced; claim
+support and crop/region applicability still need review, so this is not an
+agronomic accuracy claim. See the [walkthrough](../docs/step5.md) and
+[verification](../docs/step5_verification.md).
 
 ## Step 6: Stream the evidence summary and final answer
 
@@ -261,6 +281,6 @@ responsible claims, and presenting engineering evidence in a portfolio.
 
 ## Next action
 
-Steps 1 and 2 are complete. Next is step 3: review agricultural source text and
-prepare coherent passages with source/page metadata. Embeddings, retrieval,
-citations, and streaming remain later steps.
+Steps 1–5 are complete. Next is step 6: stream a brief evidence summary and the
+cited answer, with an incremental XML parser and clear completion/error states.
+The summary describes evidence and application progress, not private reasoning.

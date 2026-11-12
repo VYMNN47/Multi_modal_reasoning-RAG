@@ -1,0 +1,36 @@
+{
+  "old_file": "prompts/agronomy_rag_v5.txt",
+  "new_file": "prompts/agronomy_rag_v6.txt",
+  "summary": {
+    "old_tokens": 1200,
+    "new_tokens": 1230,
+    "token_delta": 30,
+    "similarity": 0.988,
+    "lines_added": 2,
+    "lines_removed": 0
+  },
+  "sections": {
+    "added": [],
+    "removed": [],
+    "modified": [
+      {
+        "section": "__preamble__",
+        "similarity": 0.927
+      }
+    ],
+    "unchanged": [
+      "Evidence rules",
+      "Output contract"
+    ]
+  },
+  "instructions": {
+    "old_count": 28,
+    "new_count": 29,
+    "added_instructions": [
+      "input-limit notices before this model call. Do not claim to have computed an index."
+    ],
+    "removed_instructions": []
+  },
+  "risks": [],
+  "risk_count": 0
+}

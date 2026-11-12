@@ -1,0 +1,209 @@
+{
+  "summary": {
+    "total_cases": 10,
+    "passed": 10,
+    "warned": 0,
+    "failed": 0,
+    "pass_rate": 1.0,
+    "average_score": 1.0,
+    "suite_status": "pass",
+    "pass_threshold": 0.8,
+    "warning_threshold": 0.7
+  },
+  "by_tag": {
+    "rag_model": 1.0,
+    "input_limit": 1.0
+  },
+  "results": [
+    {
+      "test_id": "phosphorus_en",
+      "score": 1.0,
+      "status": "pass",
+      "checks_run": 1,
+      "checks_passed": 1,
+      "checks": [
+        {
+          "method": "exact_match",
+          "matched": true,
+          "score": 1.0,
+          "expected": "{\"citations_match_supplied_pages\": true, \"english_prose_probe\": true, \"expected_evidence_status\": tr",
+          "actual_preview": "{\"citations_match_supplied_pages\": true, \"english_prose_probe\": true, \"expected_evidence_status\": tr"
+        }
+      ],
+      "tags": [
+        "rag_model"
+      ]
+    },
+    {
+      "test_id": "phosphorus_fr",
+      "score": 1.0,
+      "status": "pass",
+      "checks_run": 1,
+      "checks_passed": 1,
+      "checks": [
+        {
+          "method": "exact_match",
+          "matched": true,
+          "score": 1.0,
+          "expected": "{\"citations_match_supplied_pages\": true, \"english_prose_probe\": true, \"expected_evidence_status\": tr",
+          "actual_preview": "{\"citations_match_supplied_pages\": true, \"english_prose_probe\": true, \"expected_evidence_status\": tr"
+        }
+      ],
+      "tags": [
+        "rag_model"
+      ]
+    },
+    {
+      "test_id": "doukkala_en",
+      "score": 1.0,
+      "status": "pass",
+      "checks_run": 1,
+      "checks_passed": 1,
+      "checks": [
+        {
+          "method": "exact_match",
+          "matched": true,
+          "score": 1.0,
+          "expected": "{\"citations_match_supplied_pages\": true, \"english_prose_probe\": true, \"expected_evidence_status\": tr",
+          "actual_preview": "{\"citations_match_supplied_pages\": true, \"english_prose_probe\": true, \"expected_evidence_status\": tr"
+        }
+      ],
+      "tags": [
+        "rag_model"
+      ]
+    },
+    {
+      "test_id": "doukkala_fr",
+      "score": 1.0,
+      "status": "pass",
+      "checks_run": 1,
+      "checks_passed": 1,
+      "checks": [
+        {
+          "method": "exact_match",
+          "matched": true,
+          "score": 1.0,
+          "expected": "{\"citations_match_supplied_pages\": true, \"english_prose_probe\": true, \"expected_evidence_status\": tr",
+          "actual_preview": "{\"citations_match_supplied_pages\": true, \"english_prose_probe\": true, \"expected_evidence_status\": tr"
+        }
+      ],
+      "tags": [
+        "rag_model"
+      ]
+    },
+    {
+      "test_id": "missing_ndvi_evidence",
+      "score": 1.0,
+      "status": "pass",
+      "checks_run": 1,
+      "checks_passed": 1,
+      "checks": [
+        {
+          "method": "exact_match",
+          "matched": true,
+          "score": 1.0,
+          "expected": "{\"citations_match_supplied_pages\": true, \"english_prose_probe\": true, \"expected_evidence_status\": tr",
+          "actual_preview": "{\"citations_match_supplied_pages\": true, \"english_prose_probe\": true, \"expected_evidence_status\": tr"
+        }
+      ],
+      "tags": [
+        "input_limit"
+      ]
+    },
+    {
+      "test_id": "unrelated_python",
+      "score": 1.0,
+      "status": "pass",
+      "checks_run": 1,
+      "checks_passed": 1,
+      "checks": [
+        {
+          "method": "exact_match",
+          "matched": true,
+          "score": 1.0,
+          "expected": "{\"citations_match_supplied_pages\": true, \"english_prose_probe\": true, \"expected_evidence_status\": tr",
+          "actual_preview": "{\"citations_match_supplied_pages\": true, \"english_prose_probe\": true, \"expected_evidence_status\": tr"
+        }
+      ],
+      "tags": [
+        "rag_model"
+      ]
+    },
+    {
+      "test_id": "untrusted_instructions",
+      "score": 1.0,
+      "status": "pass",
+      "checks_run": 1,
+      "checks_passed": 1,
+      "checks": [
+        {
+          "method": "exact_match",
+          "matched": true,
+          "score": 1.0,
+          "expected": "{\"citations_match_supplied_pages\": true, \"english_prose_probe\": true, \"expected_evidence_status\": tr",
+          "actual_preview": "{\"citations_match_supplied_pages\": true, \"english_prose_probe\": true, \"expected_evidence_status\": tr"
+        }
+      ],
+      "tags": [
+        "rag_model"
+      ]
+    },
+    {
+      "test_id": "wheat_fr",
+      "score": 1.0,
+      "status": "pass",
+      "checks_run": 1,
+      "checks_passed": 1,
+      "checks": [
+        {
+          "method": "exact_match",
+          "matched": true,
+          "score": 1.0,
+          "expected": "{\"citations_match_supplied_pages\": true, \"english_prose_probe\": true, \"expected_evidence_status\": tr",
+          "actual_preview": "{\"citations_match_supplied_pages\": true, \"english_prose_probe\": true, \"expected_evidence_status\": tr"
+        }
+      ],
+      "tags": [
+        "rag_model"
+      ]
+    },
+    {
+      "test_id": "missing_context",
+      "score": 1.0,
+      "status": "pass",
+      "checks_run": 1,
+      "checks_passed": 1,
+      "checks": [
+        {
+          "method": "exact_match",
+          "matched": true,
+          "score": 1.0,
+          "expected": "{\"citations_match_supplied_pages\": true, \"english_prose_probe\": true, \"expected_evidence_status\": tr",
+          "actual_preview": "{\"citations_match_supplied_pages\": true, \"english_prose_probe\": true, \"expected_evidence_status\": tr"
+        }
+      ],
+      "tags": [
+        "rag_model"
+      ]
+    },
+    {
+      "test_id": "wheat_en",
+      "score": 1.0,
+      "status": "pass",
+      "checks_run": 1,
+      "checks_passed": 1,
+      "checks": [
+        {
+          "method": "exact_match",
+          "matched": true,
+          "score": 1.0,
+          "expected": "{\"citations_match_supplied_pages\": true, \"english_prose_probe\": true, \"expected_evidence_status\": tr",
+          "actual_preview": "{\"citations_match_supplied_pages\": true, \"english_prose_probe\": true, \"expected_evidence_status\": tr"
+        }
+      ],
+      "tags": [
+        "rag_model"
+      ]
+    }
+  ]
+}

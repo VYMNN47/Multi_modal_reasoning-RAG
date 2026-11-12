@@ -1,0 +1,70 @@
+{
+  "old_file": "prompts/step2_image_only.txt",
+  "new_file": "prompts/agronomy_rag_v6.txt",
+  "summary": {
+    "old_tokens": 238,
+    "new_tokens": 1230,
+    "token_delta": 992,
+    "similarity": 0.051,
+    "lines_added": 87,
+    "lines_removed": 15
+  },
+  "sections": {
+    "added": [
+      "Evidence rules",
+      "Output contract"
+    ],
+    "removed": [],
+    "modified": [
+      {
+        "section": "__preamble__",
+        "similarity": 0.109
+      }
+    ],
+    "unchanged": []
+  },
+  "instructions": {
+    "old_count": 4,
+    "new_count": 29,
+    "added_instructions": [
+      "- Do not infer crop identity, acquisition date, location, soil pH, soil nutrients,",
+      "- Do not transfer crop-specific advice to an unknown or different crop. If you",
+      "- RGB cannot establish NDVI. Do not invent measurements or a quantitative yield.",
+      "Cite document-supported statements inline using only the supplied reference labels,",
+      "Describe the input as an RGB display. Do not invent a false-color composite,",
+      "Do not cite a source for a tissue-testing recommendation if it only discusses",
+      "Evidence and interpretations, and Next checks. Provide only the final assessment.",
+      "For a request for an exact NDVI or other unavailable parcel measurement, use",
+      "For agricultural questions use three short, localized sections: Observations,",
+      "For configured English use: Observations, Evidence and interpretations, Next checks.",
+      "For configured Fran\u00e7ais, use French prose and these headings: Observations,",
+      "Numerical tables have not been approved; do not invent missing table values.",
+      "Only cite an excerpt when it directly supports a statement in the answer.",
+      "Return a JSON object with exactly scope and answer, following the API schema.",
+      "The application determines evidence use from the validated citations. Do not"
+    ],
+    "removed_instructions": [
+      "Do not infer crop identity, acquisition date, location, soil pH, soil nutrients,",
+      "Do not prescribe fertilizer products or application rates. Suggest conditional next",
+      "For agronomic questions, use three short sections: Observations, Possible interpretations,",
+      "RGB cannot establish NDVI. Do not invent measurements, citations, or document searches."
+    ]
+  },
+  "risks": [
+    {
+      "check": "output_format_changed",
+      "label": "Output format changed",
+      "risk": "Downstream parser breakage",
+      "severity": "medium",
+      "detail": "Signal count changed from 0 to 3"
+    },
+    {
+      "check": "prompt_length_increase",
+      "label": "Prompt significantly longer",
+      "risk": "Context budget impact",
+      "severity": "low",
+      "detail": "Token estimate grew from 238 to 1230 (+992)"
+    }
+  ],
+  "risk_count": 2
+}

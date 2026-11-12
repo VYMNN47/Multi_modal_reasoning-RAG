@@ -1,6 +1,6 @@
 # Moroccan Multimodal RAG Portfolio: Project Plan
 
-Status: steps 1–2 implemented and verified; document retrieval and streaming remain planned.
+Status: steps 1–5 implemented and verified; streaming is the next step.
 Created: 2026-11-10. Task status is tracked in [todo.md](todo.md).
 
 ## Goal
@@ -18,19 +18,26 @@ followed by the final answer and source citations.
 - Eight original agricultural PDFs: seven French and one English, 125 pages.
 - Extracted/OCR text, source metadata, and 50 recommended starting pages:
   `demo_data/rag_documents/`.
-- A draft architecture in the project chat and a basic image-only system prompt
-  in `model.py` for the current step.
+- A versioned grounded system prompt in `prompts/`, loaded by `model.py`.
 - A working local upload form and Gemini image-to-answer path, with focused tests
   and step-by-step learning notes.
+- 16 reviewed passages from 10 physical PDF pages across eight sources, with
+  citations, source scope, stable IDs, and exact embedding-input token checks.
+- A saved `gemini-embedding-001` index of those 16 passages and a terminal
+  semantic-search command. Seven fixed English/French/context queries retrieved
+  an expected passage at rank 1; unrelated queries still return nearest neighbors.
 
 These assets are downloaded and a key is stored in the Git-ignored local `.env`.
 Live access checks passed for `gemini-embedding-001` and the vision alternative
 `gemini-3.5-flash-lite`. `gemini-3.8-flash` returned HTTP 503 on both attempts.
 The user confirmed the key project shows Free tier; independent billing-page
 verification was blocked by automatic approval review. See the
-[test report](../docs/api_smoke_test.md). Corpus embeddings, a retrieval index,
-and streaming have not been built. The application now runs the first direct
-image/question/context request to Gemini.
+[test report](../docs/api_smoke_test.md). Corpus embeddings, semantic search,
+and document-grounded image answers are now implemented. The app validates
+source/page citations and displays the exact cited excerpts, scope, and original
+unverified context. English and Français are explicit answer-language choices.
+Recognized unsupported NDVI calculations receive a local input-limit notice.
+See [step 5 verification](../docs/step5_verification.md). Streaming remains planned.
 
 ## Smallest complete architecture
 
@@ -40,12 +47,14 @@ Recommended source pages -> reviewed paragraphs -> gemini-embedding-001 API
                          -> vectors saved in a local index with source/page metadata
 
 Each request:
-Streamlit upload + question + user context
+Streamlit upload + question + user context + answer language
   -> validate image and text
+  -> handle recognized unsupported band calculations locally
   -> embed question + supplied context with gemini-embedding-001
   -> retrieve relevant passages from the saved local index
   -> send image, context, and passages to one multimodal API call
-  -> parse streamed evidence summary and answer
+  -> validate the completed JSON answer (step 5)
+     / parse streamed evidence summary and answer (planned step 6)
   -> render answer with validated source/page citations
 ```
 

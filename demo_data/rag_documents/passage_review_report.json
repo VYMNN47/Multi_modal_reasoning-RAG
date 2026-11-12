@@ -1,0 +1,362 @@
+{
+  "reviewed_on": "2026-11-12",
+  "passage_count": 16,
+  "reviewed_page_count": 10,
+  "source_count": 8,
+  "token_model": "gemini-embedding-001",
+  "max_input_tokens": 2048,
+  "largest_passage_tokens": 218,
+  "embedding_status": "Passage preparation only; see embedding_index.json for index state.",
+  "pages": [
+    {
+      "source_id": "MA_INRA_CEREALS",
+      "pdf_page": 5,
+      "status": "not_reviewed_for_passages",
+      "low_ocr_confidence": false,
+      "numerical_tables_require_review": true
+    },
+    {
+      "source_id": "MA_INRA_CEREALS",
+      "pdf_page": 7,
+      "status": "not_reviewed_for_passages",
+      "low_ocr_confidence": true,
+      "numerical_tables_require_review": true
+    },
+    {
+      "source_id": "MA_INRA_CEREALS",
+      "pdf_page": 8,
+      "status": "not_reviewed_for_passages",
+      "low_ocr_confidence": false,
+      "numerical_tables_require_review": true
+    },
+    {
+      "source_id": "MA_INRA_CEREALS",
+      "pdf_page": 9,
+      "status": "not_reviewed_for_passages",
+      "low_ocr_confidence": false,
+      "numerical_tables_require_review": true
+    },
+    {
+      "source_id": "MA_INRA_CEREALS",
+      "pdf_page": 10,
+      "status": "not_reviewed_for_passages",
+      "low_ocr_confidence": false,
+      "numerical_tables_require_review": true
+    },
+    {
+      "source_id": "MA_INRA_CEREALS",
+      "pdf_page": 11,
+      "status": "not_reviewed_for_passages",
+      "low_ocr_confidence": true,
+      "numerical_tables_require_review": true
+    },
+    {
+      "source_id": "MA_INRA_CEREALS",
+      "pdf_page": 12,
+      "status": "not_reviewed_for_passages",
+      "low_ocr_confidence": true,
+      "numerical_tables_require_review": true
+    },
+    {
+      "source_id": "MA_INRA_CEREALS",
+      "pdf_page": 13,
+      "status": "not_reviewed_for_passages",
+      "low_ocr_confidence": false,
+      "numerical_tables_require_review": true
+    },
+    {
+      "source_id": "MA_INRA_CEREALS",
+      "pdf_page": 14,
+      "status": "selected_prose_reviewed",
+      "low_ocr_confidence": false,
+      "numerical_tables_require_review": true
+    },
+    {
+      "source_id": "MA_INRA_CEREALS",
+      "pdf_page": 15,
+      "status": "not_reviewed_for_passages",
+      "low_ocr_confidence": false,
+      "numerical_tables_require_review": true
+    },
+    {
+      "source_id": "MA_INRA_CEREALS",
+      "pdf_page": 20,
+      "status": "selected_prose_reviewed",
+      "low_ocr_confidence": false,
+      "numerical_tables_require_review": true
+    },
+    {
+      "source_id": "MA_INRA_LEGUMES",
+      "pdf_page": 6,
+      "status": "not_reviewed_for_passages",
+      "low_ocr_confidence": false,
+      "numerical_tables_require_review": true
+    },
+    {
+      "source_id": "MA_INRA_LEGUMES",
+      "pdf_page": 8,
+      "status": "not_reviewed_for_passages",
+      "low_ocr_confidence": false,
+      "numerical_tables_require_review": true
+    },
+    {
+      "source_id": "MA_INRA_LEGUMES",
+      "pdf_page": 9,
+      "status": "not_reviewed_for_passages",
+      "low_ocr_confidence": false,
+      "numerical_tables_require_review": true
+    },
+    {
+      "source_id": "MA_INRA_LEGUMES",
+      "pdf_page": 10,
+      "status": "not_reviewed_for_passages",
+      "low_ocr_confidence": false,
+      "numerical_tables_require_review": true
+    },
+    {
+      "source_id": "MA_INRA_LEGUMES",
+      "pdf_page": 11,
+      "status": "not_reviewed_for_passages",
+      "low_ocr_confidence": false,
+      "numerical_tables_require_review": true
+    },
+    {
+      "source_id": "MA_INRA_LEGUMES",
+      "pdf_page": 12,
+      "status": "selected_prose_reviewed",
+      "low_ocr_confidence": false,
+      "numerical_tables_require_review": true
+    },
+    {
+      "source_id": "MA_INRA_LEGUMES",
+      "pdf_page": 19,
+      "status": "not_reviewed_for_passages",
+      "low_ocr_confidence": false,
+      "numerical_tables_require_review": true
+    },
+    {
+      "source_id": "MA_INRA_OLIVE",
+      "pdf_page": 6,
+      "status": "not_reviewed_for_passages",
+      "low_ocr_confidence": false,
+      "numerical_tables_require_review": true
+    },
+    {
+      "source_id": "MA_INRA_OLIVE",
+      "pdf_page": 7,
+      "status": "not_reviewed_for_passages",
+      "low_ocr_confidence": false,
+      "numerical_tables_require_review": true
+    },
+    {
+      "source_id": "MA_INRA_OLIVE",
+      "pdf_page": 12,
+      "status": "not_reviewed_for_passages",
+      "low_ocr_confidence": false,
+      "numerical_tables_require_review": true
+    },
+    {
+      "source_id": "MA_INRA_OLIVE",
+      "pdf_page": 13,
+      "status": "not_reviewed_for_passages",
+      "low_ocr_confidence": false,
+      "numerical_tables_require_review": true
+    },
+    {
+      "source_id": "MA_INRA_OLIVE",
+      "pdf_page": 14,
+      "status": "not_reviewed_for_passages",
+      "low_ocr_confidence": false,
+      "numerical_tables_require_review": true
+    },
+    {
+      "source_id": "MA_INRA_OLIVE",
+      "pdf_page": 15,
+      "status": "not_reviewed_for_passages",
+      "low_ocr_confidence": false,
+      "numerical_tables_require_review": true
+    },
+    {
+      "source_id": "MA_INRA_OLIVE",
+      "pdf_page": 16,
+      "status": "not_reviewed_for_passages",
+      "low_ocr_confidence": false,
+      "numerical_tables_require_review": true
+    },
+    {
+      "source_id": "MA_INRA_OLIVE",
+      "pdf_page": 17,
+      "status": "selected_prose_reviewed",
+      "low_ocr_confidence": false,
+      "numerical_tables_require_review": true
+    },
+    {
+      "source_id": "MA_INRA_OLIVE",
+      "pdf_page": 18,
+      "status": "not_reviewed_for_passages",
+      "low_ocr_confidence": false,
+      "numerical_tables_require_review": true
+    },
+    {
+      "source_id": "MA_PNTTA_SOIL_ANALYSIS_93",
+      "pdf_page": 1,
+      "status": "selected_prose_reviewed",
+      "low_ocr_confidence": false,
+      "numerical_tables_require_review": true
+    },
+    {
+      "source_id": "MA_PNTTA_SOIL_ANALYSIS_93",
+      "pdf_page": 2,
+      "status": "not_reviewed_for_passages",
+      "low_ocr_confidence": false,
+      "numerical_tables_require_review": true
+    },
+    {
+      "source_id": "MA_PNTTA_SOIL_ANALYSIS_93",
+      "pdf_page": 3,
+      "status": "not_reviewed_for_passages",
+      "low_ocr_confidence": false,
+      "numerical_tables_require_review": true
+    },
+    {
+      "source_id": "MA_PNTTA_SOIL_ANALYSIS_93",
+      "pdf_page": 4,
+      "status": "not_reviewed_for_passages",
+      "low_ocr_confidence": false,
+      "numerical_tables_require_review": true
+    },
+    {
+      "source_id": "MA_PNTTA_NPK_155",
+      "pdf_page": 1,
+      "status": "not_reviewed_for_passages",
+      "low_ocr_confidence": false,
+      "numerical_tables_require_review": true
+    },
+    {
+      "source_id": "MA_PNTTA_NPK_155",
+      "pdf_page": 2,
+      "status": "selected_prose_reviewed",
+      "low_ocr_confidence": false,
+      "numerical_tables_require_review": true
+    },
+    {
+      "source_id": "MA_PNTTA_NPK_155",
+      "pdf_page": 3,
+      "status": "not_reviewed_for_passages",
+      "low_ocr_confidence": false,
+      "numerical_tables_require_review": true
+    },
+    {
+      "source_id": "MA_PNTTA_NPK_155",
+      "pdf_page": 4,
+      "status": "selected_prose_reviewed",
+      "low_ocr_confidence": false,
+      "numerical_tables_require_review": true
+    },
+    {
+      "source_id": "MA_PNTTA_WHEAT_N_62",
+      "pdf_page": 1,
+      "status": "selected_prose_reviewed",
+      "low_ocr_confidence": false,
+      "numerical_tables_require_review": true
+    },
+    {
+      "source_id": "MA_PNTTA_WHEAT_N_62",
+      "pdf_page": 2,
+      "status": "not_reviewed_for_passages",
+      "low_ocr_confidence": false,
+      "numerical_tables_require_review": true
+    },
+    {
+      "source_id": "MA_PNTTA_WHEAT_N_62",
+      "pdf_page": 3,
+      "status": "not_reviewed_for_passages",
+      "low_ocr_confidence": false,
+      "numerical_tables_require_review": true
+    },
+    {
+      "source_id": "MA_PNTTA_WHEAT_N_62",
+      "pdf_page": 4,
+      "status": "not_reviewed_for_passages",
+      "low_ocr_confidence": false,
+      "numerical_tables_require_review": true
+    },
+    {
+      "source_id": "MA_PNTTA_DOUKKALA_70",
+      "pdf_page": 1,
+      "status": "selected_prose_reviewed",
+      "low_ocr_confidence": false,
+      "numerical_tables_require_review": true
+    },
+    {
+      "source_id": "MA_PNTTA_DOUKKALA_70",
+      "pdf_page": 2,
+      "status": "not_reviewed_for_passages",
+      "low_ocr_confidence": false,
+      "numerical_tables_require_review": true
+    },
+    {
+      "source_id": "MA_PNTTA_DOUKKALA_70",
+      "pdf_page": 3,
+      "status": "not_reviewed_for_passages",
+      "low_ocr_confidence": false,
+      "numerical_tables_require_review": true
+    },
+    {
+      "source_id": "MA_PNTTA_DOUKKALA_70",
+      "pdf_page": 4,
+      "status": "not_reviewed_for_passages",
+      "low_ocr_confidence": false,
+      "numerical_tables_require_review": true
+    },
+    {
+      "source_id": "MA_SOIL_MAPS_2025",
+      "pdf_page": 1,
+      "status": "selected_prose_reviewed",
+      "low_ocr_confidence": false,
+      "numerical_tables_require_review": true
+    },
+    {
+      "source_id": "MA_SOIL_MAPS_2025",
+      "pdf_page": 2,
+      "status": "not_reviewed_for_passages",
+      "low_ocr_confidence": false,
+      "numerical_tables_require_review": true
+    },
+    {
+      "source_id": "MA_SOIL_MAPS_2025",
+      "pdf_page": 3,
+      "status": "not_reviewed_for_passages",
+      "low_ocr_confidence": false,
+      "numerical_tables_require_review": true
+    },
+    {
+      "source_id": "MA_SOIL_MAPS_2025",
+      "pdf_page": 4,
+      "status": "not_reviewed_for_passages",
+      "low_ocr_confidence": false,
+      "numerical_tables_require_review": true
+    },
+    {
+      "source_id": "MA_SOIL_MAPS_2025",
+      "pdf_page": 5,
+      "status": "not_reviewed_for_passages",
+      "low_ocr_confidence": false,
+      "numerical_tables_require_review": true
+    },
+    {
+      "source_id": "MA_SOIL_MAPS_2025",
+      "pdf_page": 6,
+      "status": "not_reviewed_for_passages",
+      "low_ocr_confidence": false,
+      "numerical_tables_require_review": true
+    },
+    {
+      "source_id": "MA_SOIL_MAPS_2025",
+      "pdf_page": 7,
+      "status": "not_reviewed_for_passages",
+      "low_ocr_confidence": false,
+      "numerical_tables_require_review": true
+    }
+  ]
+}

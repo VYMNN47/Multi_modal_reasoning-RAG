@@ -1,0 +1,26 @@
+[
+  {
+    "id": "wheat_nitrogen",
+    "question_en": "The user reports wheat and lighter patches. What field observations and nitrogen/soil evidence should be checked before attributing this to nitrogen deficiency?",
+    "question_fr": "Blé déclaré par l'utilisateur et zones plus claires : quelles observations au champ et analyses vérifier avant de conclure à une carence azotée ?",
+    "required_passage_ids": ["MA_PNTTA_NPK_155-p002-c334aee99756", "MA_PNTTA_WHEAT_N_62-p001-7baa7ced5240"],
+    "required_source_pages": [["MA_PNTTA_NPK_155", 2], ["MA_PNTTA_WHEAT_N_62", 1]],
+    "scope_check": "Historical field-symptom and soil/nitrogen guidance is not a diagnosis from RGB."
+  },
+  {
+    "id": "calcareous_soil_phosphorus",
+    "question_en": "The user reports calcareous soil. What could affect phosphorus availability and what soil-test context is needed?",
+    "question_fr": "Le sol est déclaré calcaire : quels facteurs influencent la disponibilité du phosphore et quelles analyses faut-il consulter ?",
+    "required_passage_ids": ["MA_PNTTA_NPK_155-p004-ecaa66c426a6", "MA_PNTTA_NPK_155-p004-a9ce1cdb125e"],
+    "required_source_pages": [["MA_PNTTA_NPK_155", 4]],
+    "scope_check": "Calcareous soil is user-provided context; no Safi-specific soil measurement is available."
+  },
+  {
+    "id": "doukkala_irrigation_and_fertilization",
+    "question_en": "An irrigated field in Doukkala reportedly has uneven growth. What water, soil, and management evidence should be gathered before changing fertilizer?",
+    "question_fr": "Une parcelle irriguée des Doukkala présente une croissance hétérogène : quelles données sur l'eau, le sol et la conduite faut-il réunir avant de modifier la fertilisation ?",
+    "required_passage_ids": ["MA_PNTTA_DOUKKALA_70-p001-ec00adf00ace", "MA_PNTTA_DOUKKALA_70-p001-aa2c7c77f280", "MA_INRA_CEREALS-p020-e6dc84b4d291"],
+    "required_source_pages": [["MA_PNTTA_DOUKKALA_70", 1], ["MA_INRA_CEREALS", 20]],
+    "scope_check": "The 2000 Doukkala study concerns Bas-Service irrigated wheat/sugar beet, not every Moroccan parcel."
+  }
+]

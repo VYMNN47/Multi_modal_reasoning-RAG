@@ -1,0 +1,150 @@
+{
+  "reviewed_on": "2026-11-12",
+  "method": "Selected complete prose sentences checked against rendered physical PDF pages. Wrapped words and OCR spacing corrected; headings are editorial labels. Original PDFs and extraction files are unchanged. Numerical fertilizer tables, rate examples, and calculation formulas are excluded.",
+  "pages": [
+    {
+      "source_id": "MA_INRA_CEREALS",
+      "pdf_page": 14,
+      "page_text_sha256": "ae44dff58deed9f93c489539809470377072c9a801f7ab440f501eb58f854e2e",
+      "review_note": "PDF page 14 is printed page 11. Selected qualitative prose and the units warning only; the calculation formula, nutrient quantities, and product-composition examples are not approved for use.",
+      "sections": [
+        {
+          "heading": "Fertilisation des céréales : efficience d'utilisation",
+          "text": "L'efficience d'utilisation des engrais varie selon le type de sol, le précédent cultural et les conditions climatiques et le système de culture (bour/irrigué)."
+        },
+        {
+          "heading": "Fertilisation des céréales : unités fertilisantes et engrais",
+          "text": "Le coefficient d'efficience d'utilisation est utilisé seulement pour l'azote. Aussi il ne faut confondre unités fertilisantes et kg d'engrais."
+        }
+      ]
+    },
+    {
+      "source_id": "MA_INRA_CEREALS",
+      "pdf_page": 20,
+      "page_text_sha256": "984eac0ddc352c481043dbc1464bcb382634043c20c68258318533e1fdb8ba4b",
+      "review_note": "PDF page 20 is printed page 17. Irrigation-context prose checked visually. Irrigation volumes, yield claims, and historical subsidy boxes excluded.",
+      "sections": [
+        {
+          "heading": "Gestion de l'irrigation des céréales",
+          "text": "L'adaptation de la stratégie d'irrigation à la quantité d'eau disponible sur l'exploitation est également primordiale. Nous savons que la période de plus forte sensibilité au stress hydrique s'étend du stade début montaison au début maturation (grain laiteux) avec une forte incidence sur le rendement à l'approche de la fin de cette période.\n\nL'irrigation d'appoint consiste à apporter une quantité d'eau dans un moment critique pour pallier au déficit engendré par un manque de précipitation."
+        }
+      ]
+    },
+    {
+      "source_id": "MA_INRA_LEGUMES",
+      "pdf_page": 12,
+      "page_text_sha256": "ed4c1687f11254c0d0cf7e33d4685136bbd8ff2eaf44597c4b90bd2e04d091c9",
+      "review_note": "PDF page 12 is printed page 10. Selected phosphorus/potassium and soil-analysis prose checked visually. Publication year remains unknown. Dose tables and starter-nitrogen quantities excluded.",
+      "sections": [
+        {
+          "heading": "Légumineuses : fertilisation phospho-potassique et analyse du sol",
+          "text": "Les apports phospho-potassiques sont faits au moment de la préparation du sol. Il est recommandé d'éviter leur contact avec les graines. En général, la réponse est plus significative pour le phosphore (P2O5) particulièrement dans les zones arides et semi-arides.\n\nLa quantité d'engrais phospho-potassique doit se voir en baisse si le gradient d'aridité du climat est croissant et/ou de richesse initiale du sol est croissante. Pour cela, nous recommandons vivement des analyses du sol, et dans le cas échéant, de consulter les services compétents de l'ONCA qui peuvent conseiller selon les formules régionales contenues dans le site fertimap.ma."
+        }
+      ]
+    },
+    {
+      "source_id": "MA_INRA_OLIVE",
+      "pdf_page": 17,
+      "page_text_sha256": "dd8d41ca66c0b649ac0e9dc92f8194c9148ebc9854774538b02e4df5b17d3aa1",
+      "review_note": "PDF page 17 is printed page 18. Soil-application and fertigation definitions checked visually. Product concentrations, application calendars, and foliar rates excluded.",
+      "sections": [
+        {
+          "heading": "Olivier : les applications au sol",
+          "text": "C'est la manière la plus courante d'apport des fertilisants pour enrichir la solution du sol à proximité des racines pour que celles-ci absorbent les éléments nutritifs. Les applications peuvent être réalisées en surface ou en profondeur."
+        },
+        {
+          "heading": "Olivier : définition de la fertigation",
+          "text": "La fertigation consiste à appliquer l'engrais au sol par dissolution dans l'eau d'irrigation. Les avantages de cette technique sont le faible coût d'application des fertilisants et son efficacité, car les nutriments sont apportés à proximité des racines absorbantes et répartis dans le bulbe d'irrigation. Cette technique permet également de fractionner l'application des fertilisants, ce qui est très important, en particulier dans le cas de l'azote. En général, il est recommandé d'utiliser des produits destinés à la fertigation."
+        }
+      ]
+    },
+    {
+      "source_id": "MA_PNTTA_SOIL_ANALYSIS_93",
+      "pdf_page": 1,
+      "page_text_sha256": "bf8a1ae737d71729be21ac1465df6bbcfdbfc24fdcc2f9a926eefff7c42910f2",
+      "review_note": "Selected introductory paragraphs checked against the three-column page. The historical source's prose is preserved; it is not proof of a nutrient diagnosis from an image.",
+      "sections": [
+        {
+          "heading": "Analyse du sol : raisonner la fertilisation",
+          "text": "La fertilisation n'est pas en fait une recette comme certaines personnes en ont fait croire, mais une suite d'opération réfléchies tenant compte du sol, de la plante, de l'eau d'irrigation, de l'état financier du producteur, ainsi que de l'environnement. Pour l'optimiser, il devient nécessaire de suivre constamment l'état nutritionnel de la culture en vue de l'adapter aux besoins de la plante pour prévenir soit des risques de toxicité, soit les risques de carences."
+        },
+        {
+          "heading": "Analyse du sol : limites du constat visuel",
+          "text": "Le plus souvent, la constatation des symptômes de carence ou de toxicité est faite trop tard, autrement dit, lorsque la productivité de la plante est déjà en grande partie compromise."
+        }
+      ]
+    },
+    {
+      "source_id": "MA_PNTTA_NPK_155",
+      "pdf_page": 2,
+      "page_text_sha256": "722fd3c77f9d5c3361a4fc4975230173335d25ebcb85037105dd029ddf8ed289",
+      "review_note": "Selected nitrogen symptom sentences and leaching conditions checked visually. The adjacent protein-content claim, numerical correction factors, and nutrient-removal tables are excluded. Field symptoms must not be treated as an RGB diagnosis.",
+      "sections": [
+        {
+          "heading": "Azote : symptômes de carence décrits au champ",
+          "text": "En situation de carence azotée, les plantes restent chétives, les feuilles se dressent, deviennent plus raides et tournent au vert-clair, le pétiole et les nervures sont plus prononcées à cause du retard de développement des parties succulentes. La déficience en azote chez les graminées se caractérise par un tallage défectueux et une extension anormale du système radiculaire par rapport au système aérien."
+        },
+        {
+          "heading": "Azote : lessivage, eau et texture du sol",
+          "text": "L'azote est l'élément le plus exposé au lessivage en raison de sa grande mobilité dans le sol. Les pertes par lessivage sont d'autant plus importantes que :\n- Les quantités d'eau (pluie et irrigation) reçues par le sol sont importantes,\n- La texture du sol est grossière; l'azote est plus facilement lessivé dans les sols sableux,\n- L'engrais apporté est sous forme nitrique."
+        }
+      ]
+    },
+    {
+      "source_id": "MA_PNTTA_NPK_155",
+      "pdf_page": 4,
+      "page_text_sha256": "d5fde8ec91c76790433e6c20b3a0450ab71dc72289cc6aca7c869fd6d441ad70",
+      "review_note": "Selected calcareous-soil and soil-test paragraphs checked visually. P2O5 notation retained. Fertilizer-rate increases, calibration numbers, crop-demand tables, and symptom photographs are not included.",
+      "sections": [
+        {
+          "heading": "Phosphore : insolubilisation en sols calcaires",
+          "text": "Dans les sols calcaires, les ions phosphore solubles s'insolubilisent très progressivement sous forme de phosphates tricalciques et pour une faible part sous forme d'apatite."
+        },
+        {
+          "heading": "Phosphore : analyse du sol et facteurs d'interprétation",
+          "text": "Quand on dispose des analyses de sol, le calcul de la dose de phosphore intègre la richesse du sol en P2O5, sa richesse en calcaire et en matière organique ainsi que la teneur en argile.\n\nLes modes d'apport et de fractionnement varient selon le type de sol, le niveau de richesse chimique et le pouvoir fixateur, et selon les stades de forts besoins de la culture."
+        }
+      ]
+    },
+    {
+      "source_id": "MA_PNTTA_WHEAT_N_62",
+      "pdf_page": 1,
+      "page_text_sha256": "a2e1887144a4201007a14e9f059fa7075aac93447cbec547d3ab72686c50805d",
+      "review_note": "Selected soil-test, nitrogen-budget, and regional-reference sentences from the introduction checked visually. Historical trial doses, graphs, and numerical uptake data excluded.",
+      "sections": [
+        {
+          "heading": "Blé : analyses de sol, bilan azoté et références régionales",
+          "text": "L'élaboration de normes d'interprétation de la fertilité azotée des sols (N soil test Calibration) est basée sur les relations observées entre un indice de fertilité des sols (N Minéral, N-NO3-, N-NH4+, indice de disponibilité de l'azote) et la réponse de la plante. Une autre méthode est celle du bilan prévisionnel de l'azote qui tient compte des besoins de la plante et des fournitures en azote du sol.\n\nL'élaboration de références régionales constitue une étape nécessaire, quelle que soit la méthode adoptée. Dans ce qui suit, nous avons revu les travaux de recherche sur la fertilisation et nutrition azotées au Maroc afin de faire ressortir ces relations et références utiles en vue de l'élaboration de recommandations en matière de fertilisation azotée en Bour et en irrigué."
+        }
+      ]
+    },
+    {
+      "source_id": "MA_PNTTA_DOUKKALA_70",
+      "pdf_page": 1,
+      "page_text_sha256": "25c5fadaf456637fa662b5bbb1e373070c8a677f37d6836b128fa3fcf4ef4084",
+      "review_note": "Column reading order reconstructed against the rendered PDF. Selected management and Bas-Service scope paragraphs only. Historical trial doses, thresholds, and formulas excluded; this is not a field soil test.",
+      "sections": [
+        {
+          "heading": "Doukkala : fertilisation et valorisation de l'eau d'irrigation",
+          "text": "Les diagnostics agronomiques réalisés dans le périmètre des Doukkala ont montré que l'efficience d'utilisation de l'eau d'irrigation, en terme de quantité de produits agricoles par m3 d'eau, mérite d'être améliorée. Si elle est bien raisonnée, la fertilisation minérale est une des techniques culturales permettant de mieux valoriser l'eau d'irrigation.\n\nL'utilisation rationnelle des engrais dépend de la richesse initiale du sol en éléments fertilisants, du type de sol, du stade d'apport et du niveau de rendement visé."
+        },
+        {
+          "heading": "Doukkala : portée géographique et cultures de l'étude",
+          "text": "Après une présentation succincte de la méthodologie, ce bulletin résume les principaux résultats obtenus, les normes établies et les nouvelles formules proposées pour la fertilisation du blé et de la betterave en irrigué dans le périmètre Bas-Service des Doukkala."
+        }
+      ]
+    },
+    {
+      "source_id": "MA_SOIL_MAPS_2025",
+      "pdf_page": 1,
+      "page_text_sha256": "a249fbdacbca016595a758e422971c7365e5b4b2bf83d92ab3bca22537bae2af",
+      "review_note": "First three abstract sentences checked against the PDF. National 250 m predictions are contextual evidence, not parcel measurements. Model-performance numbers and figures were not transcribed. Original CC BY-NC-ND license metadata retained.",
+      "sections": [
+        {
+          "heading": "Morocco soil maps: national scope and soil-analysis context",
+          "text": "Phosphorus (P) and potassium (K) are essential fertilizer elements whose recommendations require soil analysis tailored to crop-specific needs. However, in developing countries like Morocco, access to open databases on nutrient bioavailability remains limited, hindering data-driven agricultural strategies.\n\nThis paper presents the first national reference maps of available P and exchangeable K at 250 m resolution over Morocco's croplands using digital soil mapping with machine learning algorithms and environmental covariates."
+        }
+      ]
+    }
+  ]
+}

@@ -1,12 +1,53 @@
 # Moroccan agriculture RAG demo
 
 A learning project that will combine Moroccan crop imagery, agricultural
-documents, and Gemini. **Current stage: step 2**, a local upload form that sends
-an image, question, and optional field context to `gemini-3.5-flash-lite` and
-displays its answer.
+documents, and Gemini. **Current stage: step 5, document-grounded image answers.**
+The Streamlit form retrieves from 16 reviewed passages, then sends the image,
+question, field context, and selected excerpts to `gemini-3.5-flash-lite`.
 
-The app loads the existing server-side API key. Document retrieval, embeddings,
-citations, and streaming are not connected yet.
+The app validates citation labels, builds source/page links from saved metadata,
+and displays the cited excerpts with their dates and scope. The same server-side
+key is used for embeddings and generation. Streaming remains step 6.
+
+## Prepare the document passages
+
+```bash
+source .venv/bin/activate
+python rag.py
+```
+
+This rebuilds `demo_data/rag_documents/passages.jsonl` from reviewed source
+excerpts and checks source integrity. Unchanged data reuses its token counts
+offline. New/changed embedding text is checked with the `gemini-embedding-001`
+tokenizer using the existing key; it does not generate embeddings. See the
+[step 3 walkthrough](docs/step3.md).
+
+## Embed and search the passages
+
+```bash
+source .venv/bin/activate
+python rag.py embed
+python rag.py search "What affects phosphorus availability in calcareous soils?"
+python rag.py search "What should I check before changing fertilizer?" --context "Synthetic demo context: an irrigated field in Doukkala has uneven growth."
+```
+
+`embed` sends new/changed `embedding_text` inputs to `gemini-embedding-001` using
+`RETRIEVAL_DOCUMENT`, saving 3,072-dimensional vectors and source metadata in
+`demo_data/rag_documents/embedding_index.json`. Unchanged inputs/settings reuse
+their saved vectors without an API call. No extra database or dependency is needed.
+
+`search` counts the exact question/context tokens, embeds them with
+`RETRIEVAL_QUERY`, and ranks the saved document vectors by cosine similarity.
+It returns three passages by default (`--top-k 5` requests five), including their
+text, scores, source/page citations, dates, and geographic scope. Search needs
+the key and network access: one token-count request and one embedding request
+per search. It does not send an image or call the vision model.
+
+Scores are similarity, not diagnostic confidence. There is no calibrated
+relevance filter yet; unrelated questions also return nearest passages. Our
+seven fixed agronomic queries each retrieved an expected passage at rank 1;
+some supporting Doukkala passages missed the top three. See the
+[step 4 walkthrough](docs/step4.md) and [verification](docs/step4_verification.md).
 
 ## Run the existing environment
 
@@ -49,7 +90,7 @@ The existing `.env` already contains the project's key. For a fresh checkout,
 copy `.env.example` to `.env` and fill in `GEMINI_API_KEY` locally. The app reads
 this exact project file with python-dotenv. Existing server environment values
 take precedence; restart the app after changing a loaded key. The same key can
-be used for the selected vision model and future embedding calls.
+be used for the selected vision model and embedding calls.
 
 The key is passed explicitly to the Gemini Developer API client and is never
 included in the prompt or session state. No Google Cloud/enterprise project or
@@ -61,12 +102,20 @@ extra key is required. `.env` remains Git-ignored.
    - `doukkala_2025-02-14_rgb_10m.png`
    - `tadla_2025-02-14_rgb_10m.png`
    - `gharb_2025-02-14_rgb_10m.png`
-2. Enter a question such as “Why are some field patches lighter?”
+2. Choose English or Français for the answer, then enter a question such as
+   “Why are some field patches lighter?”
 3. Optionally add the crop, region, acquisition date, growth stage, and target
    field. Mark invented context as synthetic.
 4. Click **Ask Gemini**. The form validates the inputs, sends them to Google,
-   shows a loading indicator, then renders the complete response or an actionable
-   error. Each deliberate valid submit makes a new request.
+   retrieves relevant text, then generates and checks a complete answer. Expand
+   **References cited** to inspect the exact excerpts, dates, crops, scope, and
+   original-PDF links. Each deliberate valid submit makes a new request.
+
+Search uses the question/context; the image goes to the vision model. Only cited
+excerpts appear under the answer. Missing evidence is disclosed, and unrelated
+questions receive a brief scope refusal. A valid source/page link does not prove
+that every claim is supported: inspect the cited text. Historical guidance and
+national soil maps do not establish a diagnosis for the uploaded parcel.
 
 PNG/JPEG files must be no larger than 10 MiB (shown as 10 MB in the UI), contain
 at most 16 million pixels, and have one frame. Questions allow 2,000 characters;
@@ -78,8 +127,12 @@ Uploads remain in the running Streamlit session; the application writes no
 uploaded files to disk. Browser refreshes/new sessions are not durable storage.
 The current answer is stored only in that session and ordinary reruns do not
 repeat the API call. Changed inputs or a failed new submit clear the previous
-answer so it is not presented under the wrong image/question.
+answer and sources so they are not presented under the wrong image/question.
+Changing the prompt version also clears the cached response.
 RGB images do not supply NDVI or establish soil chemistry or nutrient deficiency.
+Explicit English/French NDVI-calculation requests receive a local **Input
+limitation** notice without API calls. Original field context remains visible
+as unverified plain text alongside generated assessments.
 
 ## Learn and verify
 
@@ -89,6 +142,13 @@ RGB images do not supply NDVI or establish soil chemistry or nutrient deficiency
   prompts, response handling, and session state.
 - [Step 2 verification](docs/step2_verification.md): automated checks and the
   real image-to-answer result.
+- [Step 3 walkthrough](docs/step3.md): source review, paragraph passages,
+  provenance, stable IDs, and exact embedding-input token checks.
+- [Step 4 walkthrough](docs/step4.md): document/query embeddings, cached vectors,
+  local cosine search, and multilingual retrieval results.
+- [Step 5 walkthrough](docs/step5.md): reference context, grounded generation,
+  citation validation, evidence gaps, source inspection, and session behavior.
+- [Prompt history](prompts/README.md): preserved candidates and the current instruction.
 - [Project checklist](tasks/todo.md): ordered tasks and learning goals.
 - [Architecture plan](tasks/plan.md).
 
@@ -106,17 +166,48 @@ no external service or real credentials. Streamlit may emit
 its “missing ScriptRunContext” notice when initializing AppTest outside a server;
 test results still determine pass/fail.
 
+To deliberately repeat the **live** retrieval check (uses API quota):
+
+```bash
+python -m tests.evaluate_search
+```
+
+This checks six scenario questions, one separate-context query, and three
+unrelated probes, then records results in `docs/step4_retrieval_test.json`.
+The regular unit-test command stays offline.
+
+For the explicit live image + retrieval + answer checks:
+
+```bash
+python -m tests.evaluate_answers
+```
+
+This uses the ten fixed cases in `tests/answer_cases.json` and saves
+`docs/step5_answers_test.json`. Unchanged successful cases resume from the report;
+new API calls are needed for pending cases or changed prompts/inputs. A partial
+run has `complete: false`. The checks are narrow behavioral probes, not an
+agronomic accuracy score. The completed step 5 run passed 70 checks across nine
+actual vision responses and one local input-limit notice. See
+[verification](docs/step5_verification.md).
+
 ## Files
 
 | File | Purpose |
 | --- | --- |
 | `app.py` | Image validation, the form, and session-scoped answer display |
-| `model.py` | Credential loading, Gemini request, prompt, and response/error checks |
+| `model.py` | Gemini client, reference context, response checks, and citation rendering |
+| `prompts/` | Current grounded instruction and previous prompt candidates |
+| `rag.py` | Passage preparation, token checks, embedding cache, and semantic search |
 | `requirements.txt` | Direct Python dependency versions |
 | `.python-version` | Python version requested by uv |
 | `.streamlit/config.toml` | Local server, telemetry, and theme settings |
 | `tests/test_app.py` | Image and form behavior checks |
 | `tests/test_model.py` | Credentials, SDK payloads, and simulated API failures |
+| `tests/test_rag.py` | Passage integrity, cached counts, and scenario coverage |
+| `tests/test_search.py` | Embedding requests, vector validation, caching, and ranking |
+| `tests/evaluate_search.py` | Explicit live retrieval checks with the fixed demo queries |
+| `tests/test_grounding.py` | Citation integrity, output contracts, and evaluation recovery |
+| `tests/evaluate_answers.py` | Explicit live image/retrieval/answer checks |
 | `.env` | Private server credentials; never commit |
 | `demo_data/` | Downloaded images, source documents, and provenance |
 

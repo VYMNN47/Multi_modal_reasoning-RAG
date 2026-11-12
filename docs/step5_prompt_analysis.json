@@ -1,0 +1,71 @@
+{
+  "file": "prompts/agronomy_rag_v6.txt",
+  "metrics": {
+    "token_estimate": 1230,
+    "line_count": 89,
+    "char_count": 6643,
+    "word_count": 946
+  },
+  "clarity": {
+    "score": 81.5,
+    "grade": "good",
+    "deductions": [
+      {
+        "pattern": "filler_just",
+        "count": 1,
+        "penalty": 1.0
+      }
+    ]
+  },
+  "instruction_density": {
+    "density": 0.214,
+    "instruction_count": 25,
+    "sentence_count": 117,
+    "signals": [
+      "require",
+      "only",
+      "do not"
+    ]
+  },
+  "few_shot": {
+    "estimated_shots": 0,
+    "coverage": "none",
+    "pattern_hits": 0
+  },
+  "layer_coverage": {
+    "layers": {
+      "identity_role": {
+        "detected": true,
+        "signal_strength": 1,
+        "max_signals": 5
+      },
+      "capabilities_constraints": {
+        "detected": false,
+        "signal_strength": 0,
+        "max_signals": 6
+      },
+      "output_format": {
+        "detected": true,
+        "signal_strength": 2,
+        "max_signals": 6
+      },
+      "quality_standards": {
+        "detected": true,
+        "signal_strength": 1,
+        "max_signals": 5
+      },
+      "anti_patterns": {
+        "detected": true,
+        "signal_strength": 1,
+        "max_signals": 6
+      },
+      "examples": {
+        "detected": true,
+        "signal_strength": 1,
+        "max_signals": 5
+      }
+    },
+    "detected_count": 5,
+    "total_layers": 6
+  }
+}

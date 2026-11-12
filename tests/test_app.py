@@ -8,6 +8,7 @@ from streamlit.testing.v1 import AppTest
 
 from app import MAX_UPLOAD_BYTES, load_image
 import model
+import rag
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -69,7 +70,12 @@ class ImageValidationTests(unittest.TestCase):
 
 class UploadFormTests(unittest.TestCase):
     def setUp(self):
-        answer_patch = patch("model.answer_image", return_value="Visible rectangular fields in the center.")
+        self.passages = rag.read_jsonl(rag.DATA_DIR / "passages.jsonl")[:3]
+        retrieval_patch = patch("rag.semantic_search", return_value=self.passages)
+        self.retrieval_mock = retrieval_patch.start()
+        self.addCleanup(retrieval_patch.stop)
+        answer = model.parse_grounded_answer('{"scope":"agricultural","answer":"Visible rectangular fields in the center. Conditional document guidance. [S1]"}', self.passages)
+        answer_patch = patch("model.answer_image", return_value=answer)
         self.answer_mock = answer_patch.start()
         self.addCleanup(answer_patch.stop)
 
@@ -80,6 +86,7 @@ class UploadFormTests(unittest.TestCase):
         self.assertEqual(len(app.error), 2)
         self.assertFalse(app.success)
         self.answer_mock.assert_not_called()
+        self.retrieval_mock.assert_not_called()
 
     def test_whitespace_question_is_rejected_and_context_retained(self):
         app = AppTest.from_file(str(ROOT / "app.py")).run()
@@ -107,12 +114,19 @@ class UploadFormTests(unittest.TestCase):
         app.run()
         self.assertFalse(app.success)
         self.assertEqual(self.answer_mock.call_count, 1)
+        self.retrieval_mock.assert_called_once_with("Why are some field patches lighter?", "Crop reported by user: wheat")
         self.assertIn("Visible rectangular fields", " ".join(item.value for item in app.markdown))
-        image_data, question, context = self.answer_mock.call_args.args
+        image_data, question, context, passages = self.answer_mock.call_args.args
         with Image.open(BytesIO(image_data)) as image:
             self.assertEqual(image.format, "PNG")
         self.assertEqual(question, "Why are some field patches lighter?")
         self.assertEqual(context, "Crop reported by user: wheat")
+        self.assertIn("Crop reported by user: wheat", [item.value for item in app.text])
+        self.assertEqual(passages, self.passages)
+        self.assertEqual(self.answer_mock.call_args.kwargs, {"language": "English"})
+        self.assertEqual(len(app.expander), 1)
+        self.assertIn("PDF p. 14", app.expander[0].label)
+        self.assertIn(self.passages[0]["source_url"] + "#page=14", " ".join(item.value for item in app.markdown))
 
     def test_three_demo_images_preview_in_the_form(self):
         app = AppTest.from_file(str(ROOT / "app.py")).run()
@@ -148,6 +162,7 @@ class UploadFormTests(unittest.TestCase):
         self.assertEqual(self.answer_mock.call_args.args[1:], (
             "What should I check in the lighter patches?",
             "Synthetic context: wheat, early growth stage",
+            self.passages,
         ))
 
     def test_new_upload_clears_the_old_answer_without_calling_gemini(self):
@@ -159,6 +174,7 @@ class UploadFormTests(unittest.TestCase):
         self.assertFalse(app.exception)
         self.assertEqual(self.answer_mock.call_count, 1)
         self.assertNotIn("Visible rectangular fields", " ".join(item.value for item in app.markdown))
+        self.assertFalse(app.expander)
 
     def test_api_failure_preserves_inputs_and_clears_the_old_answer(self):
         app = AppTest.from_file(str(ROOT / "app.py")).run()
@@ -174,6 +190,71 @@ class UploadFormTests(unittest.TestCase):
         self.assertEqual(app.text_area(key="question").value, "What is visible?")
         self.assertEqual(app.text_area(key="context").value, "Synthetic context: wheat")
         self.assertNotIn("Visible rectangular fields", " ".join(item.value for item in app.markdown))
+        self.assertFalse(app.expander)
+
+    def test_retrieval_failure_preserves_inputs_without_another_vision_call(self):
+        app = AppTest.from_file(str(ROOT / "app.py")).run()
+        app.file_uploader[0].set_value(("field.png", image_bytes(), "image/png")).run()
+        app.text_area(key="question").input("What should I check?")
+        app.button[0].click().run()
+        self.retrieval_mock.side_effect = model.GeminiError("Embedding quota reached. Try again later.")
+        app.button[0].click().run()
+        self.assertFalse(app.exception)
+        self.assertIn("quota", app.error[0].value)
+        self.assertFalse(app.success)
+        self.assertFalse(app.expander)
+        self.assertEqual(self.answer_mock.call_count, 1)
+        self.assertEqual(app.text_area(key="question").value, "What should I check?")
+
+    def test_missing_or_unrelated_evidence_has_a_notice_and_no_source_panel(self):
+        for status in ("insufficient", "out_of_scope"):
+            with self.subTest(status=status):
+                self.answer_mock.return_value = {"text": "No relevant reference evidence for this question.", "evidence_status": status, "sources": []}
+                app = AppTest.from_file(str(ROOT / "app.py")).run()
+                app.file_uploader[0].set_value(("field.png", image_bytes(), "image/png")).run()
+                app.text_area(key="question").input("What does the evidence support?")
+                app.button[0].click().run()
+                self.assertFalse(app.exception)
+                self.assertFalse(app.expander)
+                self.assertTrue(app.info)
+                self.assertIn("No relevant reference", " ".join(item.value for item in app.markdown))
+
+    def test_prompt_version_change_clears_the_cached_answer_and_sources(self):
+        app = AppTest.from_file(str(ROOT / "app.py")).run()
+        app.file_uploader[0].set_value(("field.png", image_bytes(), "image/png")).run()
+        app.text_area(key="question").input("What is visible?")
+        app.button[0].click().run()
+        with patch("model.PROMPT_VERSION", "changed-prompt-version"):
+            app.run()
+        self.assertFalse(app.exception)
+        self.assertFalse(app.expander)
+        self.assertNotIn("Visible rectangular fields", " ".join(item.value for item in app.markdown))
+        self.assertEqual(self.answer_mock.call_count, 1)
+
+    def test_language_choice_clears_old_sources_and_reaches_the_next_request(self):
+        app = AppTest.from_file(str(ROOT / "app.py")).run()
+        app.file_uploader[0].set_value(("field.png", image_bytes(), "image/png")).run()
+        app.text_area(key="question").input("Quelle analyse vérifier ?")
+        app.button[0].click().run()
+        app.radio(key="language").set_value("Français").run()
+        self.assertFalse(app.expander)
+        self.assertEqual(self.answer_mock.call_count, 1)
+        app.button[0].click().run()
+        self.assertFalse(app.exception)
+        self.assertEqual(self.answer_mock.call_args.kwargs, {"language": "Français"})
+
+    def test_unsupported_calculation_is_a_notice_without_search_or_vision(self):
+        app = AppTest.from_file(str(ROOT / "app.py")).run()
+        app.file_uploader[0].set_value(("field.png", image_bytes(), "image/png")).run()
+        app.text_area(key="question").input("Calculate the exact NDVI from this RGB image.")
+        app.button[0].click().run()
+        self.assertFalse(app.exception)
+        self.assertFalse(app.success)
+        self.assertFalse(app.expander)
+        self.assertIn("Input limitation", [header.value for header in app.header])
+        self.assertIn("No index was computed", " ".join(item.value for item in app.markdown))
+        self.retrieval_mock.assert_not_called()
+        self.answer_mock.assert_not_called()
 
 
 if __name__ == "__main__":

@@ -58,7 +58,9 @@ font downloads. Keep one h1, then a section heading for the question.
 ## Layout
 
 One centered, naturally scrolling column. Upload, immediate preview, then the
-question and optional context form. The image fits the available width and keeps
+answer-language radio, then the question and optional context form. The language
+control sits outside the form so changing it immediately clears a stale answer.
+The image fits the available width and keeps
 its aspect ratio. Controls remain reachable on narrow screens. Streamlit owns
 responsive widths, document scrollbars, label spacing, and textarea resizing.
 
@@ -78,12 +80,24 @@ feedback is `st.error` in reserved placeholders; confirmation is `st.success`.
 No separate UX contract is needed for this single screen.
 
 States: empty invites upload; valid upload previews immediately; invalid content
-shows a correction hint; submit validates required inputs and starts one Gemini
-request. `st.spinner` shows pending work; `st.error` shows safe API failures;
-success means a complete answer was received. The answer remains in session state
-for the same submitted inputs, and is cleared when those inputs change or a new
-submission fails. Values survive submission and validation errors. No persistent
-uploads, navigation, select/date controls, or streamed results exist in step 2.
+shows a correction hint; submit validates inputs, retrieves reference excerpts,
+then requests one multimodal assessment. Two native `st.spinner` messages describe
+those real phases. `st.error` shows safe retrieval, API, or citation failures;
+success means a complete response passed the output checks, not that an agronomic
+diagnosis was verified. Missing reference evidence and unrelated questions use
+native `st.info` notices. Only cited excerpts appear in `st.expander` panels, with
+source title, year, crop coverage, physical PDF page, geographic scope, use notes,
+and an original-PDF link. The application builds citation links from source
+metadata; the model cannot supply arbitrary links.
+Show the submitted context verbatim with wrapping `st.text`, labeled unverified,
+before the assessment. Do not render instructions in that context as Markdown.
+An explicit unsupported NDVI calculation shows an **Input limitation** notice
+without a model-success alert or an API call. English and Français are the two
+explicit answer-language choices in the native `st.radio` control.
+The answer and its sources remain together in session state for the same inputs
+and prompt version, and clear when those change or a new submission fails.
+Values survive submission and validation errors. No persistent uploads,
+navigation, select/date controls, or streamed results exist in step 5.
 No custom motion or icon-only product actions are added.
 
 Native Streamlit widgets own keyboard semantics and live alerts. Inspect actual
