@@ -32,12 +32,21 @@ class CredentialTests(unittest.TestCase):
                     model.answer_image(b"validated-image", "What is visible?")
                 client.assert_not_called()
 
+    def test_missing_hosted_key_has_a_visitor_facing_message_and_makes_no_request(self):
+        with patch("model.load_dotenv"), patch.dict(os.environ, {"VERCEL": "1", "GEMINI_API_KEY": ""}):
+            with patch("model.genai.Client") as client:
+                with self.assertRaisesRegex(model.GeminiError, "Contact the project author"):
+                    model.get_api_key()
+                client.assert_not_called()
+
 
 class GeminiRequestTests(unittest.TestCase):
     def setUp(self):
         self.requests = []
         self.status = 200
         self.failure = None
+        self.outcomes = []
+        self.retry_delays = []
         self.passages = [json.loads(line) for line in (Path(__file__).resolve().parents[1] / "demo_data/rag_documents/passages.jsonl").read_text().splitlines()[:3]]
         self.payload = {
             "candidates": [{
@@ -56,13 +65,19 @@ class GeminiRequestTests(unittest.TestCase):
         options["http_options"] = options["http_options"].model_copy(update={
             "client_args": {"transport": httpx2.MockTransport(self.handle_request), "trust_env": False},
         })
-        return REAL_CLIENT(**options)
+        client = REAL_CLIENT(**options)
+        # Exercise the real SDK retry policy without sleeping in tests.
+        client._api_client._retry.sleep = self.retry_delays.append
+        return client
 
     def handle_request(self, request):
         self.requests.append(request)
-        if self.failure:
-            raise self.failure("sensitive-provider-detail", request=request)
-        return httpx2.Response(self.status, json=self.payload)
+        outcome = self.outcomes.pop(0) if self.outcomes else (self.failure or self.status)
+        if isinstance(outcome, type):
+            raise outcome("sensitive-provider-detail", request=request)
+        if outcome != 200:
+            return httpx2.Response(outcome, json={"error": {"code": outcome, "message": "sensitive-provider-detail"}})
+        return httpx2.Response(200, json=self.payload)
 
     def test_image_question_context_and_system_instructions_reach_the_api(self):
         answer = model.answer_image(b"validated-png", " Pourquoi ces zones ? ", " Blé déclaré par l'utilisateur ")
@@ -72,6 +87,8 @@ class GeminiRequestTests(unittest.TestCase):
         self.assertEqual(request.url.host, "generativelanguage.googleapis.com")
         self.assertTrue(request.url.path.endswith(f"/{model.MODEL_NAME}:generateContent"))
         self.assertEqual(request.headers["x-goog-api-key"], "test-key")
+        self.assertEqual(request.extensions["timeout"], dict.fromkeys(("connect", "read", "write", "pool"), 120.0))
+        self.assertEqual(request.headers["X-Server-Timeout"], "120")
         self.assertNotIn("test-key", str(request.url))
         body = json.loads(request.content)
         image_part, text_part = body["contents"][0]["parts"]
@@ -81,6 +98,7 @@ class GeminiRequestTests(unittest.TestCase):
         self.assertEqual(user_text["question"], "Pourquoi ces zones ?")
         self.assertEqual(user_text["field_context"], "Blé déclaré par l'utilisateur")
         self.assertEqual(user_text["references"], [])
+        self.assertNotIn("image_dates", user_text)
         self.assertTrue(body["systemInstruction"]["parts"][0]["text"].startswith(model.SYSTEM_PROMPT))
         self.assertTrue(body["systemInstruction"]["parts"][0]["text"].endswith("Write every sentence and heading in English."))
         self.assertEqual(body["generationConfig"]["responseMimeType"], "application/json")
@@ -98,8 +116,47 @@ class GeminiRequestTests(unittest.TestCase):
         self.assertEqual(answer["sources"][0]["passage_id"], self.passages[0]["passage_id"])
         self.assertIn(self.passages[0]["citation"], answer["text"])
 
-    def test_provider_errors_are_actionable_and_do_not_leak_details_or_retry(self):
-        for code, hint in ((400, "rejected"), (401, "key"), (403, "key"), (404, "model"), (429, "quota"), (503, "unavailable")):
+    def test_two_images_reach_the_api_in_chronological_order_with_trusted_dates(self):
+        model.answer_image(
+            b"before-png", "What changed?", "Regional case", self.passages,
+            comparison_image_png=b"after-png", image_dates=("2023-02-12", "2024-02-19"),
+        )
+        body = json.loads(self.requests[0].content)
+        before, after, text = body["contents"][0]["parts"]
+        self.assertEqual(base64.b64decode(before["inlineData"]["data"]), b"before-png")
+        self.assertEqual(base64.b64decode(after["inlineData"]["data"]), b"after-png")
+        self.assertEqual(before["inlineData"]["mime_type"], "image/png")
+        self.assertEqual(after["inlineData"]["mime_type"], "image/png")
+        context = json.loads(text["text"])
+        self.assertEqual(context["image_dates"], ["2023-02-12", "2024-02-19"])
+        self.assertEqual(context["question"], "What changed?")
+        self.assertEqual(list(context)[-1], "question")
+
+    def test_invalid_comparison_inputs_fail_before_constructing_a_client(self):
+        cases = [
+            {"comparison_image_png": b"after-png"},
+            {"image_dates": ("2023-02-12", "2024-02-19")},
+            {"comparison_image_png": b"", "image_dates": ("2023-02-12", "2024-02-19")},
+            {"comparison_image_png": b"after-png", "image_dates": ("2024-02-19", "2023-02-12")},
+            {"comparison_image_png": b"after-png", "image_dates": ("2023-02-12", "2023-02-12")},
+            {"comparison_image_png": b"after-png", "image_dates": ("2023-02-30", "2024-02-19")},
+            {"comparison_image_png": b"after-png", "image_dates": ("20230212", "2024-02-19")},
+            {"comparison_image_png": b"after-png", "image_dates": ("2023-02-12",)},
+            {"comparison_image_png": b"x" * (10 * 1024 * 1024), "image_dates": ("2023-02-12", "2024-02-19")},
+        ]
+        with patch("model.create_client") as client:
+            for parameters in cases:
+                with self.subTest(parameters=list(parameters)), self.assertRaises(model.GeminiError):
+                    model.answer_image(b"before-png", "What changed?", **parameters)
+            client.assert_not_called()
+
+    def test_permanent_errors_stop_once_and_temporary_errors_stop_after_one_retry(self):
+        for code, hint, attempts in (
+            (400, "rejected", 1), (401, "key", 1), (403, "key", 1),
+            (404, "model", 1), (429, "quota", 1), (501, "unavailable", 1),
+            (408, "unavailable", 2), (500, "unavailable", 2), (502, "unavailable", 2),
+            (503, "unavailable", 2), (504, "unavailable", 2),
+        ):
             with self.subTest(code=code):
                 self.status = code
                 self.payload = {"error": {"code": code, "message": "sensitive-provider-detail"}}
@@ -108,16 +165,39 @@ class GeminiRequestTests(unittest.TestCase):
                     model.answer_image(b"validated-png", "What is visible?")
                 self.assertIn(hint, str(caught.exception).lower())
                 self.assertNotIn("sensitive-provider-detail", str(caught.exception))
-                self.assertEqual(len(self.requests) - before, 1)
+                self.assertEqual(len(self.requests) - before, attempts)
+
+    def test_a_temporary_failure_then_success_retries_only_once_with_the_same_payload(self):
+        for outcome in (503, httpx2.ReadTimeout, httpx2.ConnectError):
+            with self.subTest(outcome=outcome):
+                self.outcomes = [outcome, 200]
+                before, waits = len(self.requests), len(self.retry_delays)
+                result = model.answer_image(b"validated-png", "What is visible?")
+                self.assertEqual(result["text"], "Visible rectangular fields.")
+                self.assertEqual(len(self.requests) - before, 2)
+                self.assertEqual(self.requests[-1].content, self.requests[-2].content)
+                self.assertEqual(len(self.retry_delays) - waits, 1)
+                self.assertGreaterEqual(self.retry_delays[-1], 1)
+                self.assertLessEqual(self.retry_delays[-1], 2)
 
     def test_timeout_and_connection_errors_are_safe(self):
-        for failure, hint in ((httpx2.ReadTimeout, "timed out"), (httpx2.ConnectError, "connect")):
+        for failure, hint, attempts in (
+            (httpx2.ReadTimeout, "timed out", 2),
+            (httpx2.ConnectTimeout, "timed out", 2),
+            (httpx2.WriteTimeout, "timed out", 2),
+            (httpx2.PoolTimeout, "timed out", 2),
+            (httpx2.ConnectError, "connect", 2),
+            (httpx2.ReadError, "connect", 1),
+        ):
             with self.subTest(failure=failure):
                 self.failure = failure
+                before = len(self.requests)
                 with self.assertRaises(model.GeminiError) as caught:
                     model.answer_image(b"validated-png", "What is visible?")
                 self.assertIn(hint, str(caught.exception))
                 self.assertNotIn("sensitive-provider-detail", str(caught.exception))
+                self.assertNotIn("smaller image", str(caught.exception))
+                self.assertEqual(len(self.requests) - before, attempts)
 
     def test_blocked_empty_and_truncated_responses_are_not_success(self):
         responses = [

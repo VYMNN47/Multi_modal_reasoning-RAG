@@ -19,6 +19,18 @@ def response(answer, status="used"):
 class GroundedAnswerTests(unittest.TestCase):
     def setUp(self):
         self.passages = rag.read_jsonl(rag.DATA_DIR / "passages.jsonl")[:3]
+        self.web = {
+            "passage_id": "MA_NASA_MOROCCO_DROUGHT_2024-overview",
+            "source_id": "MA_NASA_MOROCCO_DROUGHT_2024",
+            "source_format": "web", "pdf_page": None,
+            "title": "Drought Parches Morocco", "section": "Regional context",
+            "text": "Test evidence about reported regional conditions, not a field measurement.",
+            "publication_year": 2024, "publication_date": None,
+            "crops": ["general"], "geographic_scope": "Regional Morocco",
+            "use_note": "Two dated snapshots are not a continuous record.",
+            "numerical_tables_approved": False,
+            "source_url": "https://science.nasa.gov/earth/earth-observatory/drought-parches-morocco-152467/",
+        }
 
     def test_explicit_ndvi_calculations_get_a_labeled_input_notice(self):
         for question, language in (("Calculate the exact NDVI from this RGB image.", "English"), ("Peux-tu calculer le NDVI ?", "Français")):
@@ -39,6 +51,32 @@ class GroundedAnswerTests(unittest.TestCase):
             self.assertIn(source["source_url"] + f"#page={source['pdf_page']}", result["text"])
             self.assertEqual(source["text"], next(p["text"] for p in self.passages if p["passage_id"] == source["passage_id"]))
         self.assertNotIn("[S1]", result["text"])
+
+    def test_web_source_links_to_the_article_without_a_fake_pdf_page(self):
+        result = model.parse_grounded_answer(response("Source-reported regional context. [S1]"), [self.web])
+        self.assertIn(f"[{self.web['source_id']}]({self.web['source_url']})", result["text"])
+        self.assertNotIn("PDF p.", result["text"])
+        self.assertNotIn("#page=", result["text"])
+        self.assertEqual(result["sources"][0]["url"], self.web["source_url"])
+        self.assertEqual(result["sources"][0]["pdf_page"], None)
+        reference = model.reference_context([self.web])[0]
+        self.assertEqual(reference["source_format"], "web")
+        self.assertIsNone(reference["pdf_page"])
+        self.assertEqual(reference["text"], self.web["text"])
+
+    def test_mixed_web_and_pdf_references_keep_their_real_locator_types(self):
+        result = model.parse_grounded_answer(response("Article context. [S1] PDF background. [S2]"), [self.web, self.passages[0]])
+        self.assertEqual(result["sources"][0]["citation"], f"[{self.web['source_id']}]")
+        self.assertIn("PDF p.", result["sources"][1]["citation"])
+        self.assertEqual(result["sources"][1]["url"], self.passages[0]["source_url"] + f"#page={self.passages[0]['pdf_page']}")
+
+    def test_invalid_web_citation_metadata_is_rejected(self):
+        for update in ({"source_format": "unknown"}, {"pdf_page": 7}, {"source_url": "javascript:alert(1)"}):
+            with self.subTest(update=update), self.assertRaises(model.GeminiError):
+                model.parse_grounded_answer(response("Context. [S1]"), [{**self.web, **update}])
+        for update in ({"source_format": "unknown"}, {"pdf_page": 7}):
+            with self.subTest(update=update), self.assertRaises(model.GeminiError):
+                model.reference_context([{**self.web, **update}])
 
     def test_unknown_and_malformed_citations_are_rejected(self):
         for text in ("Evidence. [S99]", "Evidence. [S0]", "Evidence. [S1, S2]", "Evidence. [s1]", "Evidence. [MA_INVENTED, PDF p. 999]", "Evidence. [S1", "Evidence. MA_INVENTED PDF p. 999"):

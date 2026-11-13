@@ -1,5 +1,6 @@
 import json
 import os
+from datetime import date
 from pathlib import Path
 import re
 from urllib.parse import quote, urlsplit, urlunsplit
@@ -12,8 +13,8 @@ import httpx2
 
 ENV_FILE = Path(__file__).with_name(".env")
 MODEL_NAME = "gemini-3.5-flash-lite"
-PROMPT_VERSION = "agronomy-rag-v6"
-SYSTEM_PROMPT = (Path(__file__).parent / "prompts/agronomy_rag_v6.txt").read_text(encoding="utf-8")
+PROMPT_VERSION = "agronomy-rag-v7"
+SYSTEM_PROMPT = (Path(__file__).parent / "prompts/agronomy_rag_v7.txt").read_text(encoding="utf-8")
 ANSWER_LANGUAGES = ("English", "Français")
 ANSWER_SCHEMA = {
     "type": "object",
@@ -55,10 +56,18 @@ def reference_context(passages: list[dict]) -> list[dict]:
     fields = ("source_id", "pdf_page", "title", "section", "text", "publication_year",
               "publication_date", "crops", "geographic_scope", "use_note", "numerical_tables_approved")
     try:
-        return [{"reference": f"S{index}", **{field: passage[field] for field in fields}}
-                for index, passage in enumerate(passages, 1)]
-    except (KeyError, TypeError):
-        raise GeminiError("Retrieved source metadata is incomplete. Rebuild the passages and index.") from None
+        references = []
+        for index, passage in enumerate(passages, 1):
+            source_format = passage.get("source_format", "pdf")
+            if source_format not in ("pdf", "web") or (source_format == "web" and passage["pdf_page"] is not None):
+                raise ValueError("Invalid source format")
+            reference = {"reference": f"S{index}", **{field: passage[field] for field in fields}}
+            if source_format == "web":
+                reference["source_format"] = "web"
+            references.append(reference)
+        return references
+    except (KeyError, TypeError, ValueError):
+        raise GeminiError("Retrieved source metadata is incomplete or invalid. Check the selected references.") from None
 
 
 def parse_grounded_answer(raw: str, passages: list[dict]) -> dict:
@@ -86,14 +95,21 @@ def parse_grounded_answer(raw: str, passages: list[dict]) -> dict:
         passage = allowed[label]
         try:
             source_id, page = passage["source_id"], passage["pdf_page"]
+            source_format = passage.get("source_format", "pdf")
             url = urlsplit(passage["source_url"])
             if (not re.fullmatch(r"MA_[A-Z0-9_]+", source_id)
-                    or type(page) is not int or page <= 0 or url.scheme != "https" or not url.hostname):
+                    or url.scheme != "https" or not url.hostname):
                 raise ValueError("Invalid citation metadata")
-            citation = f"[{source_id}, PDF p. {page}]"
-            target = quote(urlunsplit(url._replace(fragment=f"page={page}")), safe=":/?&=%#@+-._~")
+            if source_format == "pdf" and type(page) is int and page > 0:
+                citation = f"[{source_id}, PDF p. {page}]"
+                url = url._replace(fragment=f"page={page}")
+            elif source_format == "web" and page is None:
+                citation = f"[{source_id}]"
+            else:
+                raise ValueError("Invalid source locator")
+            target = quote(urlunsplit(url), safe=":/?&=%#@+-._~")
         except (KeyError, TypeError, ValueError):
-            raise GeminiError("Retrieved citation metadata is invalid. Rebuild the passages and index.") from None
+            raise GeminiError("Retrieved citation metadata is invalid. Check the selected references.") from None
         sources.append({**passage, "citation": citation, "url": target})
         links[label] = f"{citation}({target})"
     for label, link in links.items():
@@ -107,6 +123,8 @@ def get_api_key() -> str:
     load_dotenv(ENV_FILE, override=False)
     key = os.environ.get("GEMINI_API_KEY", "").strip()
     if not key:
+        if os.environ.get("VERCEL") == "1":
+            raise GeminiError("Live assessments are not configured yet. Contact the project author.")
         raise GeminiError("Set GEMINI_API_KEY in the project's .env file, then restart the app.")
     return key
 
@@ -118,16 +136,33 @@ def create_client() -> genai.Client:
         http_options=types.HttpOptions(
             base_url="https://generativelanguage.googleapis.com",
             api_version="v1beta",
-            timeout=60_000,
-            retry_options=types.HttpRetryOptions(attempts=1),
+            timeout=120_000,
+            retry_options=types.HttpRetryOptions(
+                attempts=2,  # Includes the initial request: one automatic retry.
+                initial_delay=1,
+                max_delay=2,
+                jitter=1,
+                http_status_codes=[408, 500, 502, 503, 504],
+            ),
         ),
     )
 
 
-def answer_image(image_png: bytes, question: str, context: str = "", passages: list[dict] | None = None, language: str = "English") -> dict:
-    """Send an RGB PNG and selected excerpts; return a citation-checked assessment."""
-    if not image_png or len(image_png) > 10 * 1024 * 1024:
+def answer_image(image_png: bytes, question: str, context: str = "", passages: list[dict] | None = None, language: str = "English", *, comparison_image_png: bytes | None = None, image_dates: tuple[str, str] | None = None) -> dict:
+    """Send one PNG or a dated pair with selected excerpts; check the citations."""
+    images = [image_png] + ([comparison_image_png] if comparison_image_png is not None else [])
+    if any(not isinstance(data, bytes) or not data for data in images) or sum(len(data) for data in images) > 10 * 1024 * 1024:
         raise GeminiError("Image is too large after preparation. Export a smaller crop and try again.")
+    if comparison_image_png is not None or image_dates is not None:
+        try:
+            if (comparison_image_png is None or not isinstance(image_dates, tuple) or len(image_dates) != 2
+                    or any(not isinstance(value, str) or not re.fullmatch(r"\d{4}-\d{2}-\d{2}", value) for value in image_dates)):
+                raise ValueError("Missing or malformed dates")
+            before, after = map(date.fromisoformat, image_dates)
+            if before >= after:
+                raise ValueError("Dates are not chronological")
+        except (ValueError, TypeError):
+            raise GeminiError("Provide before and after images with two chronological YYYY-MM-DD acquisition dates.") from None
     question, context = question.strip(), context.strip()
     if not question or len(question) > 2000 or len(context) > 4000:
         raise GeminiError("Provide a question of 1–2,000 characters and field context of at most 4,000 characters.")
@@ -136,21 +171,23 @@ def answer_image(image_png: bytes, question: str, context: str = "", passages: l
         return notice
     passages = passages or []
     references = reference_context(passages)
+    request_data = {
+        "references": references,
+        "field_context": context,
+        "answer_language": language,
+    }
+    if image_dates is not None:
+        request_data["image_dates"] = image_dates
+    request_data["question"] = question
+    parts = [types.Part.from_bytes(data=data, mime_type="image/png") for data in images]
+    parts.append(types.Part.from_text(text=json.dumps(request_data, ensure_ascii=False)))
 
     # SDK image parts and client lifetime: https://googleapis.github.io/python-genai/
     try:
         with create_client() as client:
             response = client.models.generate_content(
                 model=MODEL_NAME,
-                contents=types.Content(role="user", parts=[
-                    types.Part.from_bytes(data=image_png, mime_type="image/png"),
-                    types.Part.from_text(text=json.dumps({
-                        "references": references,
-                        "field_context": context,
-                        "answer_language": language,
-                        "question": question,
-                    }, ensure_ascii=False)),
-                ]),
+                contents=types.Content(role="user", parts=parts),
                 config=types.GenerateContentConfig(
                     system_instruction=f"{SYSTEM_PROMPT}\nConfigured answer language: {language}. Write every sentence and heading in {language}.",
                     max_output_tokens=2048,
@@ -165,13 +202,13 @@ def answer_image(image_png: bytes, question: str, context: str = "", passages: l
             message = f"The model {MODEL_NAME} is unavailable for this project. Check model access."
         elif exc.code == 429:
             message = "Gemini's quota or rate limit was reached. Wait before trying again."
-        elif exc.code and exc.code >= 500:
+        elif exc.code and (exc.code == 408 or exc.code >= 500):
             message = f"Gemini is temporarily unavailable (HTTP {exc.code}). Try again later."
         else:
             message = "Gemini rejected the request. Check the API key and try a smaller image or shorter question."
         raise GeminiError(message) from None
     except httpx2.TimeoutException:
-        raise GeminiError("The Gemini request timed out. Try again or use a smaller image.") from None
+        raise GeminiError("The Gemini request timed out after one automatic retry. This can be temporary service or connection slowness. Wait briefly, then try again.") from None
     except httpx2.TransportError:
         raise GeminiError("Could not connect to Gemini. Check your connection and try again.") from None
 

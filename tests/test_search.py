@@ -23,6 +23,8 @@ def vector(first=1.0, second=0.0):
 class EmbeddingRequestTests(unittest.TestCase):
     def setUp(self):
         self.requests = []
+        self.retry_delays = []
+        self.outcomes = []
         self.status = 200
         self.failure = None
         self.token_count = 10
@@ -38,14 +40,17 @@ class EmbeddingRequestTests(unittest.TestCase):
         options["http_options"] = options["http_options"].model_copy(update={
             "client_args": {"transport": httpx2.MockTransport(self.handle_request), "trust_env": False},
         })
-        return REAL_CLIENT(**options)
+        client = REAL_CLIENT(**options)
+        client._api_client._retry.sleep = self.retry_delays.append
+        return client
 
     def handle_request(self, request):
         self.requests.append(request)
-        if self.failure:
-            raise self.failure("sensitive-provider-detail", request=request)
-        if self.status != 200:
-            return httpx2.Response(self.status, json={"error": {"code": self.status, "message": "sensitive-provider-detail"}})
+        outcome = self.outcomes.pop(0) if self.outcomes else self.failure or self.status
+        if isinstance(outcome, type):
+            raise outcome("sensitive-provider-detail", request=request)
+        if outcome != 200:
+            return httpx2.Response(outcome, json={"error": {"code": outcome, "message": "sensitive-provider-detail"}})
         if request.url.path.endswith(":countTokens"):
             return httpx2.Response(200, json={"totalTokens": self.token_count})
         return httpx2.Response(200, json=self.payload)
@@ -65,6 +70,8 @@ class EmbeddingRequestTests(unittest.TestCase):
         self.assertEqual([item["content"]["parts"][0]["text"] for item in body["requests"]], texts)
         self.assertTrue(all(item["taskType"] == "RETRIEVAL_DOCUMENT" and item["outputDimensionality"] == 3072 for item in body["requests"]))
         self.assertNotIn("test-key", request.content.decode())
+        self.assertEqual(request.extensions["timeout"], {"connect": 120.0, "read": 120.0, "write": 120.0, "pool": 120.0})
+        self.assertEqual(request.headers["x-server-timeout"], "120")
 
     def test_query_is_counted_without_truncation_and_uses_the_query_task(self):
         text = "What evidence is needed?\n\nField context (user-reported):\nBlé en Doukkala."
@@ -100,25 +107,74 @@ class EmbeddingRequestTests(unittest.TestCase):
                 with self.assertRaises(rag.GeminiError):
                     rag.embed_texts(["Prepared passage"], "RETRIEVAL_DOCUMENT")
 
-    def test_provider_errors_are_safe_and_not_retried(self):
-        for code, hint in ((400, "rejected"), (401, "key"), (403, "key"), (404, "model"), (429, "quota"), (503, "unavailable")):
+    def test_provider_errors_are_safe_and_only_temporary_errors_are_retried_once(self):
+        for code, hint, attempts in (
+            (400, "rejected", 1), (401, "key", 1), (403, "key", 1),
+            (404, "model", 1), (429, "quota", 1), (501, "unavailable", 1),
+            (408, "unavailable", 2), (500, "unavailable", 2),
+            (502, "unavailable", 2), (503, "unavailable", 2), (504, "unavailable", 2),
+        ):
             with self.subTest(code=code):
                 self.status = code
                 before = len(self.requests)
+                delays_before = len(self.retry_delays)
                 with self.assertRaises(rag.GeminiError) as caught:
                     rag.embed_texts(["Prepared passage"], "RETRIEVAL_DOCUMENT")
                 self.assertIn(hint, str(caught.exception).lower())
                 self.assertNotIn("sensitive-provider-detail", str(caught.exception))
-                self.assertEqual(len(self.requests) - before, 1)
+                self.assertEqual(len(self.requests) - before, attempts)
+                self.assertEqual(len(self.retry_delays) - delays_before, attempts - 1)
 
     def test_timeout_and_connection_errors_are_safe(self):
-        for failure, hint in ((httpx2.ReadTimeout, "timed out"), (httpx2.ConnectError, "connect")):
+        for failure, hint, attempts in (
+            (httpx2.ConnectTimeout, "timed out", 2), (httpx2.ReadTimeout, "timed out", 2),
+            (httpx2.WriteTimeout, "timed out", 2), (httpx2.PoolTimeout, "timed out", 2),
+            (httpx2.ConnectError, "connect", 2), (httpx2.ReadError, "connect", 1),
+        ):
             with self.subTest(failure=failure):
                 self.failure = failure
+                before = len(self.requests)
+                delays_before = len(self.retry_delays)
                 with self.assertRaises(rag.GeminiError) as caught:
                     rag.embed_texts(["Prepared passage"], "RETRIEVAL_DOCUMENT")
                 self.assertIn(hint, str(caught.exception))
                 self.assertNotIn("sensitive-provider-detail", str(caught.exception))
+                self.assertEqual(len(self.requests) - before, attempts)
+                self.assertEqual(len(self.retry_delays) - delays_before, attempts - 1)
+
+    def test_document_batch_recovers_after_one_temporary_failure_with_the_same_payload(self):
+        self.payload["embeddings"].append({"values": vector(0, 2)})
+        for outcome in (503, httpx2.ReadTimeout, httpx2.ConnectError):
+            with self.subTest(outcome=outcome):
+                self.outcomes = [outcome, 200]
+                before = len(self.requests)
+                delays_before = len(self.retry_delays)
+                self.assertEqual(rag.embed_texts(["First passage", "Second passage"], "RETRIEVAL_DOCUMENT"), [vector(), vector(0, 2)])
+                requests = self.requests[before:]
+                self.assertEqual(len(requests), 2)
+                self.assertEqual(requests[0].url, requests[1].url)
+                self.assertEqual(requests[0].content, requests[1].content)
+                self.assertEqual(len(self.retry_delays) - delays_before, 1)
+                self.assertGreaterEqual(self.retry_delays[-1], 1)
+                self.assertLessEqual(self.retry_delays[-1], 2)
+
+    def test_query_recovery_repeats_only_the_failed_token_count_or_embedding_request(self):
+        for failed_request, outcomes, endpoints in (
+            (0, [503, 200, 200], [":countTokens", ":countTokens", ":batchEmbedContents"]),
+            (1, [200, httpx2.ReadTimeout, 200], [":countTokens", ":batchEmbedContents", ":batchEmbedContents"]),
+        ):
+            with self.subTest(failed_request=failed_request):
+                self.outcomes = outcomes
+                before = len(self.requests)
+                delays_before = len(self.retry_delays)
+                self.assertEqual(rag.embed_texts(["Question"], "RETRIEVAL_QUERY"), [vector()])
+                requests = self.requests[before:]
+                self.assertEqual(len(requests), 3)
+                for request, endpoint in zip(requests, endpoints):
+                    self.assertTrue(request.url.path.endswith(endpoint))
+                    self.assertEqual(request.extensions["timeout"]["read"], 120.0)
+                self.assertEqual(requests[failed_request].content, requests[failed_request + 1].content)
+                self.assertEqual(len(self.retry_delays) - delays_before, 1)
 
     def test_empty_inputs_and_unsupported_tasks_make_no_request(self):
         for texts, task in (([], "RETRIEVAL_DOCUMENT"), ([" "], "RETRIEVAL_QUERY"), (["Text"], "UNKNOWN")):

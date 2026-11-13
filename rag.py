@@ -156,13 +156,13 @@ def embed_texts(texts: list[str], task_type: str) -> list[list[float]]:
             message = f"The embedding model {EMBEDDING_MODEL} is unavailable for this project."
         elif exc.code == 429:
             message = "Gemini embedding quota or rate limit reached. Wait before trying again."
-        elif exc.code and exc.code >= 500:
+        elif exc.code and (exc.code == 408 or exc.code >= 500):
             message = "Gemini embeddings are temporarily unavailable. Try again later."
         else:
             message = "Gemini rejected the embedding request. Check model access and input length."
         raise GeminiError(message) from None
     except httpx2.TimeoutException:
-        raise GeminiError("The Gemini embedding request timed out. Try again later.") from None
+        raise GeminiError("The Gemini embedding request timed out after one automatic retry. Try again later.") from None
     except httpx2.TransportError:
         raise GeminiError("Could not connect to Gemini embeddings. Check your connection and try again.") from None
 
