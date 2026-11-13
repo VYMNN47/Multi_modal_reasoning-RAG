@@ -1,0 +1,47 @@
+{
+  "title": "Morocco drought: February 2023 to February 2024",
+  "question": "What changed between these two satellite images of Morocco, and what agricultural explanations are supported by the images and supplied references?",
+  "context": "The images show the same area around Casablanca, Morocco, acquired on 12 February 2023 and 19 February 2024, 372 days apart in the winter rainy season. The earlier image is Aqua MODIS and the later image is Terra MODIS. These original NASA regional JPEG visualizations are not parcel measurements, calibrated reflectance, or soil tests. Compare visible landscape changes and distinguish observations from explanations supported by references.",
+  "images": [
+    {
+      "file": "moroccodrought_amo_20230212_lrg.jpg",
+      "date": "2023-02-12",
+      "platform": "Aqua",
+      "instrument": "MODIS",
+      "source_url": "https://assets.science.nasa.gov/content/dam/science/esd/eo/images/imagerecords/152000/152467/moroccodrought_amo_20230212_lrg.jpg",
+      "sha256": "14fa09162185245e804e2d87cb4954f3dd12ced9b9c436bc9cf88b4c9ac5bf20",
+      "width": 2045,
+      "height": 1363
+    },
+    {
+      "file": "moroccodrought_tmo_20240219_lrg.jpg",
+      "date": "2024-02-19",
+      "platform": "Terra",
+      "instrument": "MODIS",
+      "source_url": "https://assets.science.nasa.gov/content/dam/science/esd/eo/images/imagerecords/152000/152467/moroccodrought_tmo_20240219_lrg.jpg",
+      "sha256": "523b1c511939147b14065b81be835c8cd97d5e1a789c6c6d2ee820d22560060a",
+      "width": 2045,
+      "height": 1363
+    }
+  ],
+  "attribution": "NASA Earth Observatory images by Wanmei Liang, using MODIS data from NASA EOSDIS LANCE and GIBS/Worldview. Article by Adam Voiland.",
+  "source_url": "https://science.nasa.gov/earth/earth-observatory/drought-parches-morocco-152467/",
+  "reference": {
+    "source_id": "MA_NASA_DROUGHT_2024",
+    "source_format": "web",
+    "pdf_page": null,
+    "title": "Drought Parches Morocco",
+    "section": "Worsening winter drought around Casablanca",
+    "text": "NASA compares MODIS images of the same Casablanca-region landscape on 12 February 2023 and 19 February 2024. Drought was already present in 2023 and intensified in 2024. Croplands and wildlands that commonly appear green during the winter rainy season became brown, while reservoirs declined. NASA describes a prolonged rainfall deficit accompanied by unusual warmth. Al Massira, an important reservoir supplying farmers near Casablanca, fell to about 1 to 2 percent of capacity in February 2024. Farmers reduced plantings and irrigation as water supplies contracted. Separate vegetation-index observations indicated unusually weak greenness in northern Moroccan winter wheat. These regional observations provide drought context; they do not identify the cause of discoloration in an individual field or establish fertilizer needs.",
+    "publication_year": 2024,
+    "publication_date": "2024-02-22",
+    "crops": [
+      "winter wheat",
+      "croplands"
+    ],
+    "geographic_scope": "Casablanca region and Al Massira reservoir, Morocco; winter wheat context refers to northern Morocco.",
+    "use_note": "Paraphrase of the dated NASA article, not a direct quotation or a PDF excerpt. Regional drought context for a qualitative image comparison; do not infer parcel crop identity, soil nutrients, crop-loss percentages, irrigation volumes, or fertilizer rates. The 2023 image is already drought-affected. Different satellites and overpass conditions can affect appearance.",
+    "numerical_tables_approved": false,
+    "source_url": "https://science.nasa.gov/earth/earth-observatory/drought-parches-morocco-152467/"
+  }
+}
