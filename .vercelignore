@@ -1,0 +1,33 @@
+# Credentials and local tooling never enter a deployment upload.
+.env
+.env.*
+.streamlit/secrets.toml
+.venv/
+.vercel/
+.git/
+__pycache__/
+**/__pycache__/
+*.pyc
+.agents/
+.codex/
+.aws
+docs/
+tasks/
+tests/
+
+# Explicit exclusions avoid the native CLI pruning an ignored parent directory.
+demo_data/*.zip
+demo_data/sentinel2/*.tif
+demo_data/sentinel2/*.jpg
+demo_data/sentinel2/*.json
+demo_data/sentinel2/*.md
+demo_data/rag_documents/sources
+demo_data/rag_documents/text
+demo_data/rag_documents/*.md
+demo_data/rag_documents/*.sha256
+demo_data/rag_documents/pages.jsonl
+demo_data/rag_documents/recommended_pages.jsonl
+demo_data/rag_documents/passage_review_report.json
+demo_data/rag_documents/reviewed_sections.json
+demo_data/rag_documents/manifest.json
+demo_data/comparison/*.md
