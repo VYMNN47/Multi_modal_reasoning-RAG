@@ -1,7 +1,7 @@
 ---
 version: alpha
-name: Field notes
-description: A field notebook for preparing questions about Moroccan satellite crop imagery.
+name: GeoScan
+description: A field notebook with editable Moroccan satellite-image examples and cited assessments.
 colors:
   primary: "#236440"
   background: "#FFFFFF"
@@ -34,13 +34,18 @@ components:
 The reference is an agronomist's field notebook: the real crop image is the
 main visual, with a compact question beneath it. Audience: the portfolio author
 and demo reviewers exploring Moroccan agriculture. English controls accept
-Unicode text, including French. This is a product form for a local desktop demo.
-Avoid marketing heroes, decorative maps, invented crop labels, and card grids.
+Unicode text, including French. This is a product form for a shared portfolio demo.
+Avoid marketing heroes, invented crop labels, and card grids. The user's Furrow
+reference applies only to the decorative topographic contour pattern, not its
+branding, marketing content, or color palette.
 
 Runtime ownership: `.streamlit/config.toml` is the canonical theme; the exact
 values above mirror it. Streamlit adapts these settings into its native widgets.
-There are no custom CSS tokens or copied component implementations. Check theme
-drift by comparing the four colors and two font roles with that file.
+`assets/app.css` owns the capped page width and the contour-background adapter.
+`assets/topography.svg` is original decorative artwork, embedded as a data URI
+by `app.py`; it is not a map or measurement of the displayed field. Native
+controls retain Streamlit's theme and behavior. Check theme drift by comparing
+the four colors and two font roles with the configuration file.
 
 ## Colors
 
@@ -57,12 +62,18 @@ font downloads. Keep one h1, then a section heading for the question.
 
 ## Layout
 
-One centered, naturally scrolling column. Upload, immediate preview, then the
-answer-language radio, then the question and optional context form. The language
-control sits outside the form so changing it immediately clears a stale answer.
-The image fits the available width and keeps
-its aspect ratio. Controls remain reachable on narrow screens. Streamlit owns
-responsive widths, document scrollbars, label spacing, and textarea resizing.
+A centered page capped at 72 rem. A labeled example picker leads to two native
+columns: image/attribution and question/context. Streamlit stacks the columns on
+narrow screens. The first example is ready to use without an upload; changing
+the example replaces the question/context, and choosing upload clears them.
+The answer-language radio remains outside the form and clears stale results.
+Previews keep their aspect ratio and use an inline JPEG thumbnail of at most
+1024 px per side. The model still receives the sanitized full RGB PNG. Streamlit
+owns responsive column widths, native scrollbars, labels, focus, and resizing.
+The dated Casablanca comparison uses two full-width native image columns above
+the form, stacking on narrow screens. Each image has its acquisition date and
+satellite/instrument caption; NASA attribution and a source/limitations expander
+sit directly underneath. Its regional MODIS imagery is never labeled Sentinel-2.
 
 ## Elevation & Depth
 
@@ -89,6 +100,7 @@ native `st.info` notices. Only cited excerpts appear in `st.expander` panels, wi
 source title, year, crop coverage, physical PDF page, geographic scope, use notes,
 and an original-PDF link. The application builds citation links from source
 metadata; the model cannot supply arbitrary links.
+Web reports instead show a publication date and article link, without a PDF page.
 Show the submitted context verbatim with wrapping `st.text`, labeled unverified,
 before the assessment. Do not render instructions in that context as Markdown.
 An explicit unsupported NDVI calculation shows an **Input limitation** notice
@@ -97,7 +109,11 @@ explicit answer-language choices in the native `st.radio` control.
 The answer and its sources remain together in session state for the same inputs
 and prompt version, and clear when those change or a new submission fails.
 Values survive submission and validation errors. No persistent uploads,
-navigation, select/date controls, or streamed results exist in step 5.
+date controls or streamed results exist. The example picker uses Streamlit's
+maintained `st.selectbox` with its native accessible popup; no custom select or
+navigation shell is introduced. The author chose a public demo without an
+access-code field or visitor authentication. Assessments use the server-side
+Gemini key; the key never appears in the browser's input controls.
 No custom motion or icon-only product actions are added.
 
 Native Streamlit widgets own keyboard semantics and live alerts. Inspect actual

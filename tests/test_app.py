@@ -79,8 +79,13 @@ class UploadFormTests(unittest.TestCase):
         self.answer_mock = answer_patch.start()
         self.addCleanup(answer_patch.stop)
 
-    def test_empty_submit_shows_image_and_question_errors(self):
+    def upload_app(self):
         app = AppTest.from_file(str(ROOT / "app.py")).run()
+        app.selectbox(key="image_source").select("Upload my own image").run()
+        return app
+
+    def test_empty_submit_shows_image_and_question_errors(self):
+        app = self.upload_app()
         app.button[0].click().run()
         self.assertFalse(app.exception)
         self.assertEqual(len(app.error), 2)
@@ -89,7 +94,7 @@ class UploadFormTests(unittest.TestCase):
         self.retrieval_mock.assert_not_called()
 
     def test_whitespace_question_is_rejected_and_context_retained(self):
-        app = AppTest.from_file(str(ROOT / "app.py")).run()
+        app = self.upload_app()
         app.file_uploader[0].set_value(("field.png", image_bytes(), "image/png")).run()
         app.text_area(key="question").input("   ")
         app.text_area(key="context").input("Reported wheat in Doukkala")
@@ -101,7 +106,7 @@ class UploadFormTests(unittest.TestCase):
         self.answer_mock.assert_not_called()
 
     def test_valid_submit_preserves_inputs_and_does_not_repeat_success_on_rerun(self):
-        app = AppTest.from_file(str(ROOT / "app.py")).run()
+        app = self.upload_app()
         app.file_uploader[0].set_value(("field.png", image_bytes(), "image/png")).run()
         app.text_area(key="question").input("Why are some field patches lighter?")
         app.text_area(key="context").input("Crop reported by user: wheat")
@@ -129,7 +134,7 @@ class UploadFormTests(unittest.TestCase):
         self.assertIn(self.passages[0]["source_url"] + "#page=14", " ".join(item.value for item in app.markdown))
 
     def test_three_demo_images_preview_in_the_form(self):
-        app = AppTest.from_file(str(ROOT / "app.py")).run()
+        app = self.upload_app()
         for region in ("doukkala", "tadla", "gharb"):
             with self.subTest(region=region):
                 path = ROOT / "demo_data" / "sentinel2" / f"{region}_2025-02-14_rgb_10m.png"
@@ -139,7 +144,7 @@ class UploadFormTests(unittest.TestCase):
                 self.assertEqual(app.image[0].captions, ["512 × 512 pixels · RGB preview"])
 
     def test_misleading_png_filename_cannot_bypass_content_validation(self):
-        app = AppTest.from_file(str(ROOT / "app.py")).run()
+        app = self.upload_app()
         app.file_uploader[0].set_value(("field.png", b"Not an image", "image/png")).run()
         app.text_area(key="question").input("What is visible?")
         app.button[0].click().run()
@@ -150,7 +155,7 @@ class UploadFormTests(unittest.TestCase):
         self.answer_mock.assert_not_called()
 
     def test_changed_question_and_context_reach_the_next_request(self):
-        app = AppTest.from_file(str(ROOT / "app.py")).run()
+        app = self.upload_app()
         app.file_uploader[0].set_value(("field.png", image_bytes(), "image/png")).run()
         app.text_area(key="question").input("Describe the visible fields.")
         app.button[0].click().run()
@@ -166,7 +171,7 @@ class UploadFormTests(unittest.TestCase):
         ))
 
     def test_new_upload_clears_the_old_answer_without_calling_gemini(self):
-        app = AppTest.from_file(str(ROOT / "app.py")).run()
+        app = self.upload_app()
         app.file_uploader[0].set_value(("field.png", image_bytes(), "image/png")).run()
         app.text_area(key="question").input("What is visible?")
         app.button[0].click().run()
@@ -177,7 +182,7 @@ class UploadFormTests(unittest.TestCase):
         self.assertFalse(app.expander)
 
     def test_api_failure_preserves_inputs_and_clears_the_old_answer(self):
-        app = AppTest.from_file(str(ROOT / "app.py")).run()
+        app = self.upload_app()
         app.file_uploader[0].set_value(("field.png", image_bytes(), "image/png")).run()
         app.text_area(key="question").input("What is visible?")
         app.text_area(key="context").input("Synthetic context: wheat")
@@ -193,7 +198,7 @@ class UploadFormTests(unittest.TestCase):
         self.assertFalse(app.expander)
 
     def test_retrieval_failure_preserves_inputs_without_another_vision_call(self):
-        app = AppTest.from_file(str(ROOT / "app.py")).run()
+        app = self.upload_app()
         app.file_uploader[0].set_value(("field.png", image_bytes(), "image/png")).run()
         app.text_area(key="question").input("What should I check?")
         app.button[0].click().run()
@@ -210,7 +215,7 @@ class UploadFormTests(unittest.TestCase):
         for status in ("insufficient", "out_of_scope"):
             with self.subTest(status=status):
                 self.answer_mock.return_value = {"text": "No relevant reference evidence for this question.", "evidence_status": status, "sources": []}
-                app = AppTest.from_file(str(ROOT / "app.py")).run()
+                app = self.upload_app()
                 app.file_uploader[0].set_value(("field.png", image_bytes(), "image/png")).run()
                 app.text_area(key="question").input("What does the evidence support?")
                 app.button[0].click().run()
@@ -220,7 +225,7 @@ class UploadFormTests(unittest.TestCase):
                 self.assertIn("No relevant reference", " ".join(item.value for item in app.markdown))
 
     def test_prompt_version_change_clears_the_cached_answer_and_sources(self):
-        app = AppTest.from_file(str(ROOT / "app.py")).run()
+        app = self.upload_app()
         app.file_uploader[0].set_value(("field.png", image_bytes(), "image/png")).run()
         app.text_area(key="question").input("What is visible?")
         app.button[0].click().run()
@@ -232,7 +237,7 @@ class UploadFormTests(unittest.TestCase):
         self.assertEqual(self.answer_mock.call_count, 1)
 
     def test_language_choice_clears_old_sources_and_reaches_the_next_request(self):
-        app = AppTest.from_file(str(ROOT / "app.py")).run()
+        app = self.upload_app()
         app.file_uploader[0].set_value(("field.png", image_bytes(), "image/png")).run()
         app.text_area(key="question").input("Quelle analyse vérifier ?")
         app.button[0].click().run()
@@ -244,7 +249,7 @@ class UploadFormTests(unittest.TestCase):
         self.assertEqual(self.answer_mock.call_args.kwargs, {"language": "Français"})
 
     def test_unsupported_calculation_is_a_notice_without_search_or_vision(self):
-        app = AppTest.from_file(str(ROOT / "app.py")).run()
+        app = self.upload_app()
         app.file_uploader[0].set_value(("field.png", image_bytes(), "image/png")).run()
         app.text_area(key="question").input("Calculate the exact NDVI from this RGB image.")
         app.button[0].click().run()
