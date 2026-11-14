@@ -1,11 +1,13 @@
 # GeoScan deployment verification
 
+> Historical Streamlit record. The interface was replaced by the stateless web/API version on 14 November 2026. See [the current deployment guide](vercel.md).
+
 Checked on 13 November 2026.
 
 Public URL: **https://geoscan-morocco.vercel.app**
 
 Vercel project: `geoscan-morocco`, scope `aymnns-projects`, Hobby plan.
-Current production deployment: `dpl_BRHsiPfqUEpxGmMGM1Y9W423fe1V`.
+Streamlit deployment recorded here: `dpl_BRHsiPfqUEpxGmMGM1Y9W423fe1V`.
 
 ## What was deployed
 

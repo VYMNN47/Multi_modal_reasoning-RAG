@@ -1,5 +1,7 @@
 # Project Checklist and Learning Guide
 
+**Interface update, 14 November 2026:** GeoScan now uses an HTML/CSS/JavaScript page and a stateless Python ASGI API on Vercel. Both custom images travel in one assessment request. The Gemini models, reviewed passages, and 3,072-dimensional embedding index are reused. Streamlit-specific checkpoints below describe earlier learning stages; current run/deploy instructions are in [README](../README.md).
+
 Work through one step per focused session. For each step: understand the concept,
 implement a small change, verify it, and explain what happened in your own words.
 Mark a task complete only when its completion criteria pass.

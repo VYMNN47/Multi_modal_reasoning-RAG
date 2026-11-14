@@ -14,9 +14,9 @@ typography:
     fontFamily: "serif"
 omitted:
   - section: rounded
-    reason: Streamlit owns native control radii.
+    reason: CSS control geometry is owned by assets/site.css.
   - section: spacing
-    reason: Streamlit owns the centered layout and widget spacing.
+    reason: Responsive layout and spacing are owned by assets/site.css.
 components:
   upload:
     backgroundColor: "{colors.surface}"
@@ -31,99 +31,113 @@ components:
 
 ## Overview
 
-The reference is an agronomist's field notebook: the real crop image is the
-main visual, with a compact question beneath it. Audience: the portfolio author
-and demo reviewers exploring Moroccan agriculture. English controls accept
-Unicode text, including French. This is a product form for a shared portfolio demo.
-Avoid marketing heroes, invented crop labels, and card grids. The user's Furrow
-reference applies only to the decorative topographic contour pattern, not its
-branding, marketing content, or color palette.
+GeoScan is an agronomist's field notebook for the portfolio author and reviewers
+exploring Moroccan agriculture. The real crop images are the main visual; the
+question, field context, and cited assessment follow them. English controls accept
+Unicode text, with English or French model answers. Keep the original decorative
+topographic contour pattern, white background, soil green actions, and restrained
+serif headings. Avoid marketing heroes, invented crop labels, and ornamental grids.
 
-Runtime ownership: `.streamlit/config.toml` is the canonical theme; the exact
-values above mirror it. Streamlit adapts these settings into its native widgets.
-`assets/app.css` owns the capped page width and the contour-background adapter.
-`assets/topography.svg` is original decorative artwork, embedded as a data URI
-by `app.py`; it is not a map or measurement of the displayed field. Native
-controls retain Streamlit's theme and behavior. Check theme drift by comparing
-the four colors and two font roles with the configuration file.
+Runtime ownership: `assets/site.css` supplies the CSS variables matching the
+frontmatter colors and the system/Georgia font stacks. `assets/topography.svg`
+is original decorative artwork, not a map or measurement of the displayed field.
+`assets/index.html` and `assets/site.js` own the single-screen workflow; `app.py`
+and `asgi.py` own server validation and assessment requests. No Streamlit controls,
+styles, sessions, or configuration are used.
 
 ## Colors
 
-Soil green marks the main action; dark slate text sits on white. Pale green-gray
-separates controls from the image. Streamlit owns semantic alert colors and
-focus/hover/disabled states. The default is light; user theme overrides remain
-platform behavior. Status text always accompanies color.
+Soil green marks the main action and links; dark slate text sits on white. Pale
+green-gray separates controls, help, and loading status from images. Border,
+muted-text, and error colors are CSS variables. Error text always accompanies its
+color. The fixed light theme honors forced colors and native focus behavior.
 
 ## Typography
 
-Serif headings give the notebook its character; native sans-serif controls keep
-input readable. Browser fallbacks supply accented characters without external
-font downloads. Keep one h1, then a section heading for the question.
+Georgia/Times serif headings give the notebook its character. A system sans-serif
+stack keeps labels and text readable, including French accents. No external font
+requests are needed. Use one h1, h2 for the form and response, and h3 for answer
+sections. Long filenames and paragraphs wrap rather than overflowing.
 
 ## Layout
 
-A centered page capped at 72 rem. A labeled example picker leads to two native
-columns: image/attribution and question/context. Streamlit stacks the columns on
-narrow screens. The first example is ready to use without an upload; changing
-the example replaces the question/context, and choosing upload clears them.
-The answer-language radio remains outside the form and clears stale results.
-Previews keep their aspect ratio and use an inline JPEG thumbnail of at most
-1024 px per side. The model still receives the sanitized full RGB PNG. Streamlit
-owns responsive column widths, native scrollbars, labels, focus, and resizing.
-The dated Casablanca comparison uses two full-width native image columns above
-the form, stacking on narrow screens. Each image has its acquisition date and
-satellite/instrument caption; NASA attribution and a source/limitations expander
-sit directly underneath. Its regional MODIS imagery is never labeled Sentinel-2.
+The page is centered and capped at 72rem. The example selector and answer language
+sit above the workspace. One image uses an image/form column pair. Two images use
+two equal preview columns above the form, sharing the same layout for custom
+uploads and the dated NASA example. Below 640px, settings, previews, and the form
+stack in reading order. Photos preserve aspect ratio and are never stretched into
+a false spatial comparison. Each preview identifies its image/order or its known
+acquisition date and satellite. NASA and Copernicus attribution are attached only
+to the appropriate curated examples.
+
+The document owns vertical scrolling. Scrollbars stay visible and operable. Form
+buttons stay full width while busy; image removal restores the one-image layout.
+Reduced-motion settings disable smooth response scrolling and button translation.
 
 ## Elevation & Depth
 
-Use the native form border and control surfaces; add no shadows or overlays.
+Use flat control surfaces and the form border. Add no shadows or overlays.
 
 ## Shapes
 
-Keep Streamlit's native controls and image rectangle. No ornamental shapes.
+Use rectangular images, modest rounded native controls, and the original contour
+sheet. No extra ornamental shapes or custom icon-only actions.
 
 ## Components
 
-Canonical owners: upload and its picker/progress/removal are `st.file_uploader`;
-text entry and batching are `st.text_area` inside `st.form`; field-adjacent
-feedback is `st.error` in reserved placeholders; confirmation is `st.success`.
-No separate UX contract is needed for this single screen.
+Canonical owners: native HTML select and radios for source/language; a labeled
+file input and visible button for selection; a file list with named Remove
+buttons; native textareas and a form for text/submission; inline alerts and a
+live status region for feedback; native details/summary for provenance. Browser
+select popup geometry is accepted. `assets/site.css` owns global focus, pointer,
+scrollbar, disabled, and reduced-motion styling. No separate UX contract is needed
+for this single screen.
 
-States: empty invites upload; valid upload previews immediately; invalid content
-shows a correction hint; submit validates inputs, retrieves reference excerpts,
-then requests one multimodal assessment. Two native `st.spinner` messages describe
-those real phases. `st.error` shows safe retrieval, API, or citation failures;
-success means a complete response passed the output checks, not that an agronomic
-diagnosis was verified. Missing reference evidence and unrelated questions use
-native `st.info` notices. Only cited excerpts appear in `st.expander` panels, with
-source title, year, crop coverage, physical PDF page, geographic scope, use notes,
-and an original-PDF link. The application builds citation links from source
-metadata; the model cannot supply arbitrary links.
-Web reports instead show a publication date and article link, without a PDF page.
-Show the submitted context verbatim with wrapping `st.text`, labeled unverified,
-before the assessment. Do not render instructions in that context as Markdown.
-An explicit unsupported NDVI calculation shows an **Input limitation** notice
-without a model-success alert or an API call. English and Français are the two
-explicit answer-language choices in the native `st.radio` control.
-The answer and its sources remain together in session state for the same inputs
-and prompt version, and clear when those change or a new submission fails.
-Values survive submission and validation errors. No persistent uploads,
-date controls or streamed results exist. The example picker uses Streamlit's
-maintained `st.selectbox` with its native accessible popup; no custom select or
-navigation shell is introduced. The author chose a public demo without an
-access-code field or visitor authentication. Assessments use the server-side
-Gemini key; the key never appears in the browser's input controls.
-No custom motion or icon-only product actions are added.
+| Capability | Canonical owner | Source of truth | Allowed variants | Verification |
+| --- | --- | --- | --- | --- |
+| Select/Listbox | Native HTML select | assets/index.html and assets/site.css | native | Browser selection and open popup |
+| Form | Native form and JavaScript submission handler | assets/site.js and asgi.py | example, single image, image pair | tests/test_app.py and real browser |
+| Upload | Native file input and browser File list | assets/site.js and app.py | one or two files | Repeated requests, removal, image validation |
+| Scrollbar | Global CSS rules | assets/site.css | document | Desktop and narrow-screen checks |
+| Toast | Inline alert/status regions | assets/index.html and assets/site.js | loading, error, ready | Browser feedback and API failure tests |
 
-Native Streamlit widgets own keyboard semantics and live alerts. Inspect actual
-keyboard access and narrow rendering. Full screen-reader certification and custom
-first-invalid-field focus are outside this first local slice; do not claim WCAG
-certification from native widgets alone.
+The image-choice button starts disabled until its JavaScript event handler and
+initial state are ready. No inline event handler is used; the content security
+policy permits only the application script.
+
+Selecting an example fills editable question/context and shows its images without
+calling Gemini. Choosing custom upload clears those example inputs. One or two
+files may be selected together or added sequentially; a second preserves the
+first. Remove affects only its named image. More than two files, invalid formats,
+empty files, or more than 4 MiB combined produce correction text without changing
+a valid selection. The server additionally verifies signatures, dimensions,
+single-frame content, orientation, and the prepared image-size limit.
+
+Image selection and previews stay in the browser. Ask Gemini sends one complete
+multipart assessment request. During that request, input controls are disabled,
+the form exposes aria-busy, and the live status describes the actual assessment.
+A response is final text, not a private reasoning transcript. Failure preserves
+files and text for retry. Editing any input clears stale answers. Refresh discards
+browser state; there is no persistent image store or visitor authentication.
+
+The Python API validates each request independently, performs semantic retrieval,
+and calls Gemini with the ordered images. Undated pairs do not establish a shared
+place or chronology; dates/locations entered in context remain unverified reports.
+The original NASA case keeps its verified acquisition-date metadata and pinned
+case report. Explicit unsupported NDVI requests return an input limitation without
+retrieval or Gemini generation.
+
+The response shows user context verbatim as text, followed by the final assessment
+and only the cited source panels. Model output and provenance never enter raw
+innerHTML. The limited Markdown renderer creates headings, paragraphs, lists, and
+bold text through DOM nodes; only canonical citations matching the returned source
+metadata become HTTPS links. The server checks citation membership, not entailment.
+No confidence badge or agronomic accuracy certification is implied.
 
 ## Do's and Don'ts
 
-- Do put the actual image before the question.
-- Do name the current action “Ask Gemini” and disclose that submitted inputs go to Google.
-- Do distinguish a model assessment from a document-supported recommendation.
-- Don't infer crop identity or soil chemistry from an RGB preview.
+- Do put real images before the question and disclose that submissions go to Google.
+- Do preserve inputs on failure and make one intentional action produce one request.
+- Do keep the Gemini key on the server and raw documents/index files off public routes.
+- Don't infer crop identity, soil chemistry, or a cause from an RGB preview alone.
+- Don't claim full accessibility certification from native controls or static audits.

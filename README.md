@@ -1,248 +1,161 @@
 # GeoScan — Moroccan agriculture RAG demo
 
-A learning project that will combine Moroccan crop imagery, agricultural
-documents, and Gemini. **Current stage: step 5, document-grounded image answers.**
-The Streamlit form retrieves from 16 reviewed passages, then sends the image,
-question, field context, and selected excerpts to `gemini-3.5-flash-lite`.
+[Open GeoScan](https://geoscan-morocco.vercel.app/).
 
-The app validates citation labels, builds source/page links from saved metadata,
-and displays the cited excerpts with their dates and scope. The same server-side
-key is used for embeddings and generation. Streaming remains step 6.
+Upload one or two satellite images, add field context and a question, and receive
+an assessment grounded in Moroccan agricultural references. The interface uses
+HTML, CSS, and JavaScript; a Python ASGI API runs on Vercel. There is no Streamlit
+runtime or upload session. The original topographic contour pattern is preserved.
 
-Three editable field examples and one dated before/after comparison load directly in the app, alongside an
-original topographic contour background. The project has a Vercel ASGI entry
-point and deployment configuration. **The interface is live at
-[GeoScan](https://geoscan-morocco.vercel.app), with the Gemini key configured on the server.**
-Public health, controls, image previews, a sample upload, and a real hosted
-comparison assessment have been checked. See the [deployment walkthrough](docs/vercel.md) and
-[deployment verification](docs/vercel_deployment.md).
+The app includes Gharb, Tadla, and Doukkala Sentinel-2 examples plus a dated
+Casablanca NASA MODIS comparison. Crop and soil details in the three editable
+field scenarios are synthetic. The NASA case includes its report and acquisition
+dates; regional imagery is not a parcel measurement.
 
-## Prepare the document passages
+## Run locally
 
 ```bash
 source .venv/bin/activate
-python rag.py
+uv pip install -r requirements.txt
+python -m uvicorn asgi:app --reload --host 127.0.0.1 --port 8501
 ```
 
-This rebuilds `demo_data/rag_documents/passages.jsonl` from reviewed source
-excerpts and checks source integrity. Unchanged data reuses its token counts
-offline. New/changed embedding text is checked with the `gemini-embedding-001`
-tokenizer using the existing key; it does not generate embeddings. See the
-[step 3 walkthrough](docs/step3.md).
+For a new environment, run `uv venv --python 3.14 .venv` first. No frontend build
+or npm dependency installation is required.
 
-## Embed and search the passages
+Put the existing Google key in the private project `.env`:
 
-```bash
-source .venv/bin/activate
-python rag.py embed
-python rag.py search "What affects phosphorus availability in calcareous soils?"
-python rag.py search "What should I check before changing fertilizer?" --context "Synthetic demo context: an irrigated field in Doukkala has uneven growth."
+```dotenv
+GEMINI_API_KEY=your-key-here
 ```
 
-`embed` sends new/changed `embedding_text` inputs to `gemini-embedding-001` using
-`RETRIEVAL_DOCUMENT`, saving 3,072-dimensional vectors and source metadata in
-`demo_data/rag_documents/embedding_index.json`. Unchanged inputs/settings reuse
-their saved vectors without an API call. No extra database or dependency is needed.
-
-`search` counts the exact question/context tokens, embeds them with
-`RETRIEVAL_QUERY`, and ranks the saved document vectors by cosine similarity.
-It returns three passages by default (`--top-k 5` requests five), including their
-text, scores, source/page citations, dates, and geographic scope. Search needs
-the key and network access: one token-count request and one embedding request
-per search. It does not send an image or call the vision model.
-
-Scores are similarity, not diagnostic confidence. There is no calibrated
-relevance filter yet; unrelated questions also return nearest passages. Our
-seven fixed agronomic queries each retrieved an expected passage at rank 1;
-some supporting Doukkala passages missed the top three. See the
-[step 4 walkthrough](docs/step4.md) and [verification](docs/step4_verification.md).
-
-## Run the existing environment
-
-From the project directory, on Linux/macOS:
-
-```bash
-source .venv/bin/activate
-python -m streamlit run app.py
-```
-
-Open <http://127.0.0.1:8501>. The app listens on this computer's loopback address.
-Stop it with **Ctrl+C** in the terminal. Previewing/validating inputs needs no
-key; document-backed assessments need the key and network access.
-
-## Create a new environment
-
-Use Python 3.14 and [uv](https://docs.astral.sh/uv/getting-started/installation/).
-This project was checked with Python 3.14.4 and uv 0.13.1.
-
-```bash
-uv venv --python 3.14 .venv
-uv pip install --python .venv/bin/python -r requirements.txt
-source .venv/bin/activate
-python -m streamlit run app.py
-```
-
-`requirements.txt` pins Streamlit, Pillow, Google's Gen AI SDK, python-dotenv,
-and the SDK's HTTP transport used for network-error handling.
-Their transitive dependencies are resolved during installation; this is not a
-complete dependency lockfile. The local environment and bytecode are Git-ignored.
-
-If updating the existing environment, stop the running server, run
-`uv pip install --python .venv/bin/python -r requirements.txt`, then restart it.
-The watcher excludes `.venv/` and `.git/` to avoid treating package/Git changes as
-application changes.
-
-## Configure Gemini
-
-The existing `.env` already contains the project's key. For a fresh checkout,
-copy `.env.example` to `.env` and fill in `GEMINI_API_KEY` locally. The app reads
-this exact project file with python-dotenv. Existing server environment values
-take precedence; restart the app after changing a loaded key. The same key can
-be used for the selected vision model and embedding calls.
-
-The key is passed explicitly to the Gemini Developer API client and is never
-included in the prompt or session state. No Google Cloud/enterprise project or
-extra key is required. `.env` remains Git-ignored.
+The same server-side key authorizes `gemini-embedding-001` query embeddings and
+`gemini-3.5-flash-lite` image answers. On Vercel the existing server Secret supplies
+this value. The browser never receives it. Hosting does not increase Gemini's
+quota or guarantee provider availability.
 
 ## Try it
 
-1. Choose a ready-made Gharb, Tadla, or Doukkala example. Its real image and
-   synthetic question/context load automatically. Alternatively choose
-   **Upload my own image** and upload one of these PNGs from `demo_data/sentinel2/`:
-   - `doukkala_2025-02-14_rgb_10m.png`
-   - `tadla_2025-02-14_rgb_10m.png`
-   - `gharb_2025-02-14_rgb_10m.png`
-   Choose **Casablanca: Drought, 2023–2024** for two regional NASA MODIS views
-   from 12 February 2023 and 19 February 2024, shown side by side. The dates,
-   satellites, and report are preserved in [comparison provenance](demo_data/comparison/README.md).
-2. Choose English or Français for the answer, then enter a question such as
-   “Why are some field patches lighter?”
-3. Optionally add the crop, region, acquisition date, growth stage, and target
-   field. Mark invented context as synthetic.
-4. Click **Ask Gemini**. The form validates the inputs, sends them to Google,
-   retrieves relevant text, then generates and checks a complete answer. Expand
-   **References cited** to inspect the exact excerpts, dates, crops, scope, and
-   original-PDF links. Each deliberate valid submit makes a new request.
+1. Select a ready-made field example, or choose **Upload my own images**.
+2. Choose one or two PNG/JPEG files together. **Add an image** retains the first;
+   each file has its own **Remove** control. Both previews appear side by side
+   on desktop and stack on narrow screens.
+3. Choose English or Français. Enter a question and optional crop, location,
+   acquisition dates, growth stage, or target-parcel context. Label invented
+   context as synthetic. Undated pairs are not automatically treated as before
+   and after views of the same place.
+4. Click **Ask Gemini**. Only this action sends the images and text to the API.
+   Invalid inputs show a correction message; failed requests keep the form and
+   images available for another attempt. Changing inputs clears an old answer.
+5. Expand **References cited** to inspect the actual excerpts and source links.
 
-Search uses the question/context; the image goes to the vision model. Only cited
-excerpts appear under the answer. Missing evidence is disclosed, and unrelated
-questions receive a brief scope refusal. A valid source/page link does not prove
-that every claim is supported: inspect the cited text. Historical guidance and
-national soil maps do not establish a diagnosis for the uploaded parcel.
+Images must total at most **4 MiB**, shown as 4 MB, per assessment. Each image must
+be a complete, single-frame PNG/JPEG with at most 16 million pixels. Orientation
+is applied and metadata removed before Gemini receives RGB PNGs; their combined
+prepared size must fit within 10 MiB. Questions allow 2,000 characters; optional
+context allows 4,000. Selecting or previewing images never calls Gemini.
 
-PNG/JPEG files must be no larger than 10 MiB (shown as 10 MB in the UI), contain
-at most 16 million pixels, and have one frame. Questions allow 2,000 characters;
-optional context allows 4,000. Invalid inputs keep the form editable.
-On Vercel, uploads are capped at 4 MiB. The author chose a public demo with no
-access code: visitors can submit assessments using the server's Gemini quota.
-Example selection itself never calls Gemini.
-The prepared RGB PNGs must fit within 10 MiB combined. JPEGs are oriented for display;
-embedded image metadata is removed before sending.
+The browser holds the selected files until refresh or closing the page. Each
+assessment is an independent request containing all of its inputs. There is no
+upload database or persistent image store. The multipart parser may use temporary
+files while handling a request; its resources are closed afterward.
 
-Uploads remain in the running Streamlit session; the application writes no
-uploaded files to disk. Browser refreshes/new sessions are not durable storage.
-The current answer is stored only in that session and ordinary reruns do not
-repeat the API call. Changed inputs or a failed new submit clear the previous
-answer and sources so they are not presented under the wrong image/question.
-Changing the prompt version also clears the cached response.
-For the comparison, changes to either image, date, or report metadata also clear
-the answer. Both dated images go to Gemini as separate image parts. The selected
-NASA report is explicitly included with up to two semantic-search results; it
-has not been added to or embedded in the existing 16-passage index. Its citations
-link to the article without inventing a PDF page. See [how the comparison works](docs/comparison.md).
-RGB images do not supply NDVI or establish soil chemistry or nutrient deficiency.
-The Gemini client uses a 120-second network timeout and at most two attempts per
-API call: the initial attempt and one automatic retry for a timeout, connection
-failure, or selected temporary server error. The retry waits 1–2 seconds.
-A timeout does not establish that an image is oversized; service latency or the
-connection can vary, so an identical request may succeed later. This is a network
-operation timeout, not a strict deadline for the entire RAG workflow. Wait briefly
-before submitting again after both attempts fail. Quota/rate-limit failures stop
-without an automatic retry. See [the retry walkthrough](docs/gemini_reliability.md)
-for eligible errors, quota implications, verification, and Vercel's separate limit.
-Explicit English/French NDVI-calculation requests receive a local **Input
-limitation** notice without API calls. Original field context remains visible
-as unverified plain text alongside generated assessments.
+## How it works
 
-## Learn and verify
+```text
+Browser: examples or 1–2 files + question + context + language
+  → one multipart POST /api/analyze
+  → validate inputs and prepare both RGB images
+  → embed the question/context with gemini-embedding-001 (3,072 dimensions)
+  → exact cosine search over 16 saved document vectors
+  → send images and up to 3 excerpts to Gemini
+  → validate the final JSON and reference labels
+  → return the assessment and public source metadata
+  → render text and canonical citation links in the browser
+```
 
-- [Step 1 walkthrough](docs/step1.md): environment, Python modules, image bytes,
-  validation, and Streamlit forms/reruns.
-- [Step 2 walkthrough](docs/step2.md): API keys, the SDK, multimodal requests,
-  prompts, response handling, and session state.
-- [Step 2 verification](docs/step2_verification.md): automated checks and the
-  real image-to-answer result.
-- [Step 3 walkthrough](docs/step3.md): source review, paragraph passages,
-  provenance, stable IDs, and exact embedding-input token checks.
-- [Step 4 walkthrough](docs/step4.md): document/query embeddings, cached vectors,
-  local cosine search, and multilingual retrieval results.
-- [Step 5 walkthrough](docs/step5.md): reference context, grounded generation,
-  citation validation, evidence gaps, source inspection, and session behavior.
-- [Prompt history](prompts/README.md): preserved candidates and the current instruction.
-- [Project checklist](tasks/todo.md): ordered tasks and learning goals.
-- [Vercel preparation](docs/vercel.md): examples, contour assets, the ASGI entry
-  point, secrets, deployment limits, and hosted acceptance checks.
-- [Architecture plan](tasks/plan.md).
+The existing reviewed passages and vectors are reused. No vector database,
+autonomous browsing, private reasoning transcript, or document re-embedding is
+introduced. The NASA example pins its case report and retrieves up to two other
+excerpts. Other inputs retrieve up to three excerpts.
 
-Run the automated checks from the project root:
+| Endpoint | Purpose |
+| --- | --- |
+| `GET /` | HTML interface |
+| `GET /assets/*` | Styles, JavaScript, and original contour artwork |
+| `GET /api/health` | Process health |
+| `GET /api/examples` | Public examples and the upload limit |
+| `GET /api/example-images/{filename}` | Allowlisted example image files |
+| `POST /api/analyze` | One independent assessment |
+
+The POST accepts `question`, `context`, `language`, `case`, and up to two `images`
+file parts. `case=upload` uses supplied files; a catalog case uses its saved
+images and must not be mixed with uploads. Unknown, duplicate, or incorrectly
+typed fields are rejected. Application errors return `{"error": "correction message"}`; request-size and hosting errors can return an HTTP error without that JSON envelope.
+
+The API caps request bytes, validates real image contents, rejects cross-origin
+browser submissions, and sends a restrictive content security policy. The
+frontend renders user context and source excerpts as text; only validated source
+citations become links. This is a public demo without visitor authentication,
+so anyone with the URL can consume the server's Gemini quota.
+
+## Prepare and search the documents
+
+Document preparation is a separate author workflow, not part of app startup:
 
 ```bash
-source .venv/bin/activate
+python rag.py
+python rag.py embed
+python rag.py search "What affects phosphorus availability in calcareous soil?"
+```
+
+Review the source transcriptions before rebuilding. The repository already
+contains the 16 prepared passages and their embedding index. The source manifest,
+review notes, and provenance are in `demo_data/rag_documents/`; the original
+imagery metadata is in `demo_data/sentinel2/` and `demo_data/comparison/`.
+
+## Verify and deploy
+
+```bash
 python -m unittest discover -s tests -v
+node --check assets/site.js
 uv pip check --python .venv/bin/python
 ```
 
-The tests check real image decoding, the Streamlit form through `AppTest`, and
-actual SDK request serialization through a simulated HTTP transport. They need
-no external service or real credentials. Streamlit may emit
-its “missing ScriptRunContext” notice when initializing AppTest outside a server;
-test results still determine pass/fail.
+Tests run offline, including the actual Google SDK against a simulated HTTP
+transport, citation checks, image validation, request limits, examples, and
+consecutive one/two-image requests. Browser checks cover selection, removal,
+repeat submission, stale results, language, and narrow layouts.
 
-To deliberately repeat the **live** retrieval check (uses API quota):
+The Vercel function entry point remains `api/index.py`, exporting `asgi.app`.
+`vercel.json` routes requests to that app and includes the runtime assets and
+prepared index. The existing project is `geoscan-morocco` in `aymnns-projects`.
+See [the deployment guide](docs/vercel.md) for the CLI command and acceptance
+checks. Local edits require a new deployment; CLI deployment does not commit or
+push Git changes.
 
-```bash
-python -m tests.evaluate_search
-```
+## What to learn from this version
 
-This checks six scenario questions, one separate-context query, and three
-unrelated probes, then records results in `docs/step4_retrieval_test.json`.
-The regular unit-test command stays offline.
+- Browser state manages selected files and previews; Python validates each request.
+- Multipart form data carries both image binaries and text together.
+- Stateless endpoints let separate server instances handle consecutive requests.
+- The API key and Gemini SDK belong on the server; the browser receives results.
+- Retrieval finds candidate evidence; citation validation checks labels, not truth.
 
-For the explicit live image + retrieval + answer checks:
+Historical learning checkpoints remain in [step 1](docs/step1.md),
+[step 2](docs/step2.md), [step 3](docs/step3.md), [step 4](docs/step4.md), and
+[step 5](docs/step5.md). Their Streamlit UI instructions describe earlier versions.
+See [prompt history](prompts/README.md) for the current v8 instruction and limits.
 
-```bash
-python -m tests.evaluate_answers
-```
+## Evidence limits
 
-This uses the ten fixed cases in `tests/answer_cases.json` and saves
-`docs/step5_answers_test.json`. Unchanged successful cases resume from the report;
-new API calls are needed for pending cases or changed prompts/inputs. A partial
-run has `complete: false`. The checks are narrow behavioral probes, not an
-agronomic accuracy score. The completed step 5 run passed 70 checks across nine
-actual vision responses and one local input-limit notice. See
-[verification](docs/step5_verification.md).
+RGB patterns do not establish crop identity, soil chemistry, deficiencies, NDVI,
+yield, or the cause of a change. Dates and locations in user context are reports,
+not verified observations. The model suggests conditional checks and does not
+prescribe fertilizer products or rates. Reference dates, crops, and geography
+constrain applicability. A valid citation label is not proof of claim support.
 
-## Files
-
-| File | Purpose |
-| --- | --- |
-| `app.py` | Image validation, the form, and session-scoped answer display |
-| `model.py` | Gemini client, reference context, response checks, and citation rendering |
-| `prompts/` | Current grounded instruction and previous prompt candidates |
-| `rag.py` | Passage preparation, token checks, embedding cache, and semantic search |
-| `requirements.txt` | Direct Python dependency versions |
-| `.python-version` | Python version requested by uv |
-| `.streamlit/config.toml` | Local server, telemetry, and theme settings |
-| `tests/test_app.py` | Image and form behavior checks |
-| `tests/test_model.py` | Credentials, SDK payloads, and simulated API failures |
-| `tests/test_rag.py` | Passage integrity, cached counts, and scenario coverage |
-| `tests/test_search.py` | Embedding requests, vector validation, caching, and ranking |
-| `tests/evaluate_search.py` | Explicit live retrieval checks with the fixed demo queries |
-| `tests/test_grounding.py` | Citation integrity, output contracts, and evaluation recovery |
-| `tests/evaluate_answers.py` | Explicit live image/retrieval/answer checks |
-| `.env` | Private server credentials; never commit |
-| `demo_data/` | Downloaded images, source documents, and provenance |
-
-Satellite imagery: **Contains modified Copernicus Sentinel data 2025**.
-See [image provenance](demo_data/sentinel2/README.md) and
-[document provenance/reuse notes](demo_data/rag_documents/README.md).
+SDK calls keep a 120-second timeout and one automatic retry for selected temporary
+failures. Vercel's function limit remains 300 seconds; slow provider retries can
+still exceed it. The full ten-case live prompt baseline has not been rerun for
+v8. Streaming/evidence summaries remain future work.

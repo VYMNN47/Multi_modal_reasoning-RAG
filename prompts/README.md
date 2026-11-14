@@ -1,6 +1,6 @@
 # Agronomic prompt history
 
-Runtime prompt: **`agronomy_rag_v7.txt`**, version `agronomy-rag-v7` in `model.py`.
+Runtime prompt: **`agronomy_rag_v8.txt`**, version `agronomy-rag-v8` in `model.py`.
 Restart/rerun after editing the loaded prompt and update its version when
 promoting a behavioral change so session answers are invalidated.
 
@@ -19,6 +19,7 @@ drop-in replacement for the current model, app, and tests.
 | [v5](agronomy_rag_v5.txt) | Added an explicit validated language choice and a trusted system suffix. Language probes passed; exact-NDVI requests still attracted irrelevant nutrition citations. [Report](../docs/step5_answers_v5.json). |
 | [v6](agronomy_rag_v6.txt) | The app handles recognized unsupported NDVI calculations before retrieval/model calls, labeled as local input limitations. Nine real vision answers plus one local notice passed the ten-case check set. [Current report](../docs/step5_answers_test.json). |
 | [v7](agronomy_rag_v7.txt) | Adds conditional dated-pair instructions and real web article citations. Both lint scores are 81.5; diff reports no heuristic risks. Two focused live generation checks and one real browser comparison completed. Manual review found unnecessary fertilizer background in comparison answers and an incorrectly cited visual observation in the single-image probe. The full v6 live suite has not been repeated; no equal-or-better quality score is claimed. [Focused report](../docs/comparison_live_check.json). |
+| [v8](agronomy_rag_v8.txt) | Allows two custom uploads without inventing acquisition dates, a shared footprint, or before/after order. Existing dated-comparison, evidence, citation, and output rules are preserved. Lint remains 81.5; the v7→v8 diff reports no heuristic risks. SDK tests verify ordered image bytes and absent dates for an undated pair. A real browser assessment of two custom uploads preserved the image labels and unknown-date/footprint limits; some generic claims still attracted weakly placed citations. [Focused pair check](../docs/two_image_live_check.json). The full ten-case live suite has not been repeated; no equal-or-better quality score is claimed. |
 
 The fixed questions, source expectations, and user-facing review goals were
 written before live generation. Explicit answer-language settings were added
@@ -41,7 +42,7 @@ See [verification and remaining limits](../docs/step5_verification.md).
 The old image-only prompt has no comparable RAG score, so no percentage
 improvement over it is claimed.
 The v6 report remains the completed single-image baseline; it does not validate
-v7. The comparison walkthrough records v7's focused checks and remaining
+v7 or v8. The comparison walkthrough records v7's focused checks and remaining
 grounding limits. A valid source label still cannot establish claim support.
 
 Rollback point: the step 4 application with image-only answers and independent

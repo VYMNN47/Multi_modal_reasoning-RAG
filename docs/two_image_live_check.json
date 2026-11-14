@@ -1,0 +1,21 @@
+{
+  "checked_at": "2026-11-14T16:53:54.685Z",
+  "environment": "Vercel production; stateless HTML/JavaScript and Python API",
+  "url": "https://geoscan-morocco.vercel.app",
+  "deployment_id": "dpl_C2PWmtf6eRNqg5X7TYC3XZGM5TiL",
+  "model": "gemini-3.5-flash-lite",
+  "prompt_version": "agronomy-rag-v8",
+  "images": [
+    "gharb_2025-02-14_rgb_10m.png",
+    "tadla_2025-02-14_rgb_10m.png"
+  ],
+  "checks": {
+    "both_uploads_retained": true,
+    "both_images_named_in_answer": true,
+    "unknown_dates_and_footprint_disclosed": true,
+    "citation_membership_validated_by_app": true,
+    "source_excerpt_expanded": true
+  },
+  "limitation": "Focused integration check, not agronomic validation. Citation membership does not establish entailment. The full ten-case live prompt suite was not rerun.",
+  "visible_app_text": "Skip to main content\n\nMoroccan agriculture demo\n\nGeoScan\n\nMoroccan crop and land analysis\n\nField assessment inputs\nStart with a field example, or upload your own\nUpload my own images\nGharb: Wheat and nitrogen\nTadla: Soil and phosphorus\nDoukkala: Water and uneven growth\nCasablanca: Drought, 2023–2024\nAnswer language\nEnglish \nFrançais\nSatellite images (up to 2)\nAdd an image\n\nPNG or JPEG · 4 MB combined · 16 million pixels per image\n\ngharb_2025-02-14_rgb_10m.png · 415.1 KB\nRemove\ntadla_2025-02-14_rgb_10m.png · 493.6 KB\nRemove\nImage 1 · gharb_2025-02-14_rgb_10m.png\nImage 2 · tadla_2025-02-14_rgb_10m.png\nAsk about the field\nYour question\nField context (optional)\n\nAdd what you know. Label invented demo details as synthetic.\n\nAssessments send your images, question, context, and selected reference excerpts to Google Gemini.\n\nAsk Gemini\n\nAssessment ready.\n\nGemini response\n\nReported field context is unverified. References are background guidance; check their date, crops, and geographic scope.\n\nContext supplied by you (unverified)\n\nTwo uploaded RGB field views. Dates, locations, crop identities, and whether they show the same parcel are not supplied.\n\nObservations\n\nImage 1 shows an RGB display featuring multiple agricultural fields, linear boundary features, and varying green canopy cover across structured parcels, with brighter green areas concentrated in certain fields. Image 2 shows a different RGB display layout with distinct parcel boundaries, varying soil background colors, and differing patchiness across the visible fields.\n\nEvidence and interpretations\n\nWithout reported acquisition dates, locations, or confirmation that the two snapshots cover the same geographic footprint, it is not possible to establish whether Image 1 and Image 2 show the same field, footprint, scale, season, or chronological order. Consequently, these two snapshots cannot establish a continuous trend, a before-and-after change over time, or any yield, rainfall, or area changes. Visual symptom observation alone is insufficient because deficiency symptoms often appear too late after crop productivity is already compromised MA_PNTTA_SOIL_ANALYSIS_93, PDF p. 1, and regional spatial predictions cannot replace parcel-level soil tests MA_SOIL_MAPS_2025, PDF p. 1.\n\nNext checks\n\nPerform a targeted on-site parcel inspection and verify field management records, acquisition dates, and spatial coordinates. Conduct laboratory soil and tissue analyses to assess nutrient status and moisture levels.\n\nReferences cited\n[MA_PNTTA_SOIL_ANALYSIS_93, PDF p. 1] · Analyse du sol : limites du constat visuel\n\nL'analyse du sol : un outil incontournable de gestion de la fertilité des sols\n\nPublication year: 2002 · Physical PDF page: 1\n\nCrops covered: general\n\nMorocco; soil-sampling and laboratory workflow guidance.\n\nHistorical sampling guidance. Apply the current laboratory sampling protocol appropriate to the crop, depth, soil variation, and analyte.\n\nOpen original PDF\nLe plus souvent, la constatation des symptômes de carence ou de toxicité est faite trop tard, autrement dit, lorsque la productivité de la plante est déjà en grande partie compromise.\n[MA_SOIL_MAPS_2025, PDF p. 1] · Morocco soil maps: national scope and soil-analysis context\nRGB imagery shows visible patterns. Soil and nutrient conditions need field evidence."
+}

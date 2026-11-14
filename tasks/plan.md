@@ -1,5 +1,7 @@
 # GeoScan — Moroccan Multimodal RAG Portfolio: Project Plan
 
+**Interface update, 14 November 2026:** GeoScan now uses an HTML/CSS/JavaScript page and a stateless Python ASGI API on Vercel. Both custom images travel in one assessment request. The Gemini models, reviewed passages, and 3,072-dimensional embedding index are reused. Streamlit-specific checkpoints below describe earlier learning stages; current run/deploy instructions are in [README](../README.md).
+
 Status: steps 1–5 implemented and verified; streaming is the next step.
 The shared demo adds editable examples, decorative contours, and a dated
 comparison. [GeoScan is live on Vercel](https://geoscan-morocco.vercel.app), with
