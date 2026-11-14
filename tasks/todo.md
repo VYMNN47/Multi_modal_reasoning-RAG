@@ -281,6 +281,37 @@ responsible claims, and presenting engineering evidence in a portfolio.
 
 ## Next action
 
-Steps 1–5 are complete. Next is step 6: stream a brief evidence summary and the
-cited answer, with an incremental XML parser and clear completion/error states.
-The summary describes evidence and application progress, not private reasoning.
+Steps 1–5 are complete. GeoScan is publicly deployed at
+[geoscan-morocco.vercel.app](https://geoscan-morocco.vercel.app), with approved
+server-side Gemini credentials configured. A hosted assessment without an
+access code completed; deployment details are in the [walkthrough](../docs/vercel.md).
+Step 6 remains the next core feature: a streamed evidence summary and cited answer.
+
+## First shared demo deployment
+
+- [x] Load three real image examples with editable questions and synthetic context.
+- [x] Add the requested subtle topographic pattern while preserving native controls.
+- [x] Add an ASGI entry point, runtime asset configuration, and secret exclusions.
+- [x] Bound hosted uploads; remove the initial shared-code gate at the author's request.
+- [x] Publish the GeoScan production deployment at https://geoscan-morocco.vercel.app.
+- [x] Publish the GeoScan interface and verify public health, controls, previews, sample upload, and comparison assets.
+- [x] Configure Vercel secrets for Preview and Production with explicit permission; verify names/scopes without exposing values.
+- [x] Verify GeoScan branding, removal of the access-code field, and a real hosted assessment without a code.
+- [x] Complete hosted live RAG checks for a single image and the dated comparison.
+- [ ] Complete longer-running reconnect, multi-instance upload, and load checks before wider sharing.
+- [ ] Share the verified URL with reviewers when the author is ready.
+
+**Learn:** UI callbacks and useful defaults, local decorative assets, ASGI versus
+a UI script, server-side secrets, platform limits, and local versus hosted proof.
+See the [walkthrough](../docs/vercel.md). Deployment does not mark the remaining
+learning steps or all hosted reliability checks complete.
+
+### Before deployment: one historical comparison
+
+- [x] Add a same-area NASA MODIS image pair, dated 12 February 2023 and 19 February 2024.
+- [x] Preserve originals, dates, checksums, attribution, and a dated NASA evidence excerpt.
+- [x] Display both images and pass both with ordered dates to Gemini.
+- [x] Include the case report explicitly with up to two semantic results; distinguish web and PDF citations.
+- [x] Complete integration verification recorded in [comparison walkthrough](../docs/comparison.md): 96 offline tests and a live browser assessment. Model grounding limitations remain documented.
+
+**Learn:** Multi-image requests, temporal metadata, evidence selection versus semantic retrieval, and why two RGB snapshots do not establish causality.

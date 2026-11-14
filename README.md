@@ -1,4 +1,4 @@
-# Moroccan agriculture RAG demo
+# GeoScan — Moroccan agriculture RAG demo
 
 A learning project that will combine Moroccan crop imagery, agricultural
 documents, and Gemini. **Current stage: step 5, document-grounded image answers.**
@@ -8,6 +8,14 @@ question, field context, and selected excerpts to `gemini-3.5-flash-lite`.
 The app validates citation labels, builds source/page links from saved metadata,
 and displays the cited excerpts with their dates and scope. The same server-side
 key is used for embeddings and generation. Streaming remains step 6.
+
+Three editable field examples and one dated before/after comparison load directly in the app, alongside an
+original topographic contour background. The project has a Vercel ASGI entry
+point and deployment configuration. **The interface is live at
+[GeoScan](https://geoscan-morocco.vercel.app), with the Gemini key configured on the server.**
+Public health, controls, image previews, a sample upload, and a real hosted
+comparison assessment have been checked. See the [deployment walkthrough](docs/vercel.md) and
+[deployment verification](docs/vercel_deployment.md).
 
 ## Prepare the document passages
 
@@ -60,7 +68,7 @@ python -m streamlit run app.py
 
 Open <http://127.0.0.1:8501>. The app listens on this computer's loopback address.
 Stop it with **Ctrl+C** in the terminal. Previewing/validating inputs needs no
-key; selecting **Ask Gemini** needs the key and network access.
+key; document-backed assessments need the key and network access.
 
 ## Create a new environment
 
@@ -98,10 +106,15 @@ extra key is required. `.env` remains Git-ignored.
 
 ## Try it
 
-1. Upload one of these PNGs from `demo_data/sentinel2/`:
+1. Choose a ready-made Gharb, Tadla, or Doukkala example. Its real image and
+   synthetic question/context load automatically. Alternatively choose
+   **Upload my own image** and upload one of these PNGs from `demo_data/sentinel2/`:
    - `doukkala_2025-02-14_rgb_10m.png`
    - `tadla_2025-02-14_rgb_10m.png`
    - `gharb_2025-02-14_rgb_10m.png`
+   Choose **Casablanca: Drought, 2023–2024** for two regional NASA MODIS views
+   from 12 February 2023 and 19 February 2024, shown side by side. The dates,
+   satellites, and report are preserved in [comparison provenance](demo_data/comparison/README.md).
 2. Choose English or Français for the answer, then enter a question such as
    “Why are some field patches lighter?”
 3. Optionally add the crop, region, acquisition date, growth stage, and target
@@ -120,7 +133,10 @@ national soil maps do not establish a diagnosis for the uploaded parcel.
 PNG/JPEG files must be no larger than 10 MiB (shown as 10 MB in the UI), contain
 at most 16 million pixels, and have one frame. Questions allow 2,000 characters;
 optional context allows 4,000. Invalid inputs keep the form editable.
-The prepared RGB PNG must also fit within 10 MiB. JPEGs are oriented for display;
+On Vercel, uploads are capped at 4 MiB. The author chose a public demo with no
+access code: visitors can submit assessments using the server's Gemini quota.
+Example selection itself never calls Gemini.
+The prepared RGB PNGs must fit within 10 MiB combined. JPEGs are oriented for display;
 embedded image metadata is removed before sending.
 
 Uploads remain in the running Streamlit session; the application writes no
@@ -129,7 +145,21 @@ The current answer is stored only in that session and ordinary reruns do not
 repeat the API call. Changed inputs or a failed new submit clear the previous
 answer and sources so they are not presented under the wrong image/question.
 Changing the prompt version also clears the cached response.
+For the comparison, changes to either image, date, or report metadata also clear
+the answer. Both dated images go to Gemini as separate image parts. The selected
+NASA report is explicitly included with up to two semantic-search results; it
+has not been added to or embedded in the existing 16-passage index. Its citations
+link to the article without inventing a PDF page. See [how the comparison works](docs/comparison.md).
 RGB images do not supply NDVI or establish soil chemistry or nutrient deficiency.
+The Gemini client uses a 120-second network timeout and at most two attempts per
+API call: the initial attempt and one automatic retry for a timeout, connection
+failure, or selected temporary server error. The retry waits 1–2 seconds.
+A timeout does not establish that an image is oversized; service latency or the
+connection can vary, so an identical request may succeed later. This is a network
+operation timeout, not a strict deadline for the entire RAG workflow. Wait briefly
+before submitting again after both attempts fail. Quota/rate-limit failures stop
+without an automatic retry. See [the retry walkthrough](docs/gemini_reliability.md)
+for eligible errors, quota implications, verification, and Vercel's separate limit.
 Explicit English/French NDVI-calculation requests receive a local **Input
 limitation** notice without API calls. Original field context remains visible
 as unverified plain text alongside generated assessments.
@@ -150,6 +180,8 @@ as unverified plain text alongside generated assessments.
   citation validation, evidence gaps, source inspection, and session behavior.
 - [Prompt history](prompts/README.md): preserved candidates and the current instruction.
 - [Project checklist](tasks/todo.md): ordered tasks and learning goals.
+- [Vercel preparation](docs/vercel.md): examples, contour assets, the ASGI entry
+  point, secrets, deployment limits, and hosted acceptance checks.
 - [Architecture plan](tasks/plan.md).
 
 Run the automated checks from the project root:

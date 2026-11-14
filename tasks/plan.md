@@ -1,6 +1,11 @@
-# Moroccan Multimodal RAG Portfolio: Project Plan
+# GeoScan — Moroccan Multimodal RAG Portfolio: Project Plan
 
 Status: steps 1–5 implemented and verified; streaming is the next step.
+The shared demo adds editable examples, decorative contours, and a dated
+comparison. [GeoScan is live on Vercel](https://geoscan-morocco.vercel.app), with
+server-side secrets configured after explicit approval. Public health, controls,
+previews, upload, comparison assets, branding, and a real hosted comparison
+assessment are verified. The author requested a public demo without an access code.
 Created: 2026-11-10. Task status is tracked in [todo.md](todo.md).
 
 ## Goal
@@ -142,6 +147,8 @@ These are scenarios for testing, not verified labels for the downloaded land.
 
 No model training, separate API server, paid vector database, agent framework,
 live satellite download pipeline, NDVI computation, automated prescriptions,
-authentication system, or automatic web research in version 1. Public hosting
-and publication of the corpus are separate decisions; reuse metadata is already
-recorded with the downloaded documents.
+authentication system, or automatic web research in version 1. Public Vercel
+hosting has been approved and deployed; a live hosted assessment completed.
+Publication of the full raw corpus remains separate; reuse metadata
+is recorded with the downloaded documents, and raw files are excluded from the
+deployment upload.

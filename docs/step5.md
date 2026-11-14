@@ -188,8 +188,12 @@ are not written to disk. The evaluation report persists only our fixed public
 images' identifiers and synthetic test inputs/outputs.
 
 A valid submit normally makes one query token-count call, one query-embedding
-call, and one vision-generation call. There are no hidden automatic retries.
-Cached document vectors do not remove these per-question API calls.
+call, and one vision-generation call. The current client can automatically retry
+each failed API call once for selected temporary failures, so retries may add
+up to three further HTTP attempts. Successful earlier calls are not repeated.
+Cached document vectors do not remove these per-question API calls. See the
+[current timeout/retry policy](gemini_reliability.md); the original step-5 live
+reports were recorded before this policy was added.
 
 **Learn:** Persisting a completed response in session state is different from
 caching document embeddings. They save different work and have different lifetimes.

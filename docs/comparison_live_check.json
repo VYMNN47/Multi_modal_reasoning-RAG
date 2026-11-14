@@ -1,0 +1,34 @@
+{
+  "checked_at": "2026-11-13T16:17:04+00:00",
+  "model": "gemini-3.5-flash-lite",
+  "prompt_version": "agronomy-rag-v7",
+  "retrieval": "Fixed saved excerpts for generation checks; no live embedding call",
+  "cases": [
+    {
+      "id": "comparison",
+      "completed": true,
+      "answer": "### Observations\nThe regional RGB images show the Casablanca region of Morocco on 12 February 2023 and 19 February 2024. In the center, left, and right areas, large expanses of land that appeared predominantly green in the 2023 snapshot appear considerably browner and drier in the 2024 snapshot.\n\n### Evidence and interpretations\nNASA compares MODIS images of this landscape and notes that drought was already present in 2023 and intensified in 2024 [MA_NASA_DROUGHT_2024](https://science.nasa.gov/earth/earth-observatory/drought-parches-morocco-152467/). Croplands and wildlands that commonly appear green during the winter rainy season turned brown due to a prolonged rainfall deficit accompanied by unusual warmth [MA_NASA_DROUGHT_2024](https://science.nasa.gov/earth/earth-observatory/drought-parches-morocco-152467/). Reservoir levels declined significantly, such as the Al Massira reservoir, leading farmers to reduce plantings and irrigation [MA_NASA_DROUGHT_2024](https://science.nasa.gov/earth/earth-observatory/drought-parches-morocco-152467/). Vegetation-index observations also indicated unusually weak greenness in northern Moroccan winter wheat [MA_NASA_DROUGHT_2024](https://science.nasa.gov/earth/earth-observatory/drought-parches-morocco-152467/). Fertilizer efficiency and application rates vary according to soil type, preceding crop, climate conditions, and whether the system is rainfed or irrigated [MA_INRA_CEREALS, PDF p. 14](https://www.inra.org.ma/sites/default/files/publications/ouvrages/guideorgefr.pdf#page=14) [MA_INRA_CEREALS, PDF p. 14](https://www.inra.org.ma/sites/default/files/publications/ouvrages/guideorgefr.pdf#page=14). However, these regional observations and historical cereal guidelines do not identify the exact cause of discoloration in an individual field, prove specific crop losses, or establish parcel-level fertilizer needs [MA_NASA_DROUGHT_2024](https://science.nasa.gov/earth/earth-observatory/drought-parches-morocco-152467/) [MA_INRA_CEREALS, PDF p. 14](https://www.inra.org.ma/sites/default/files/publications/ouvrages/guideorgefr.pdf#page=14) [MA_INRA_CEREALS, PDF p. 14](https://www.inra.org.ma/sites/default/files/publications/ouvrages/guideorgefr.pdf#page=14).\n\n### Next checks\nInspect local parcels to verify current crop health and soil moisture conditions. Review regional meteorological and reservoir monitoring records. Consult local agricultural extension services for management guidance tailored to rainfed or irrigated production systems.",
+      "evidence_status": "used",
+      "cited_sources": [
+        "MA_NASA_DROUGHT_2024",
+        "MA_INRA_CEREALS",
+        "MA_INRA_CEREALS"
+      ]
+    },
+    {
+      "id": "single_image_regression",
+      "completed": true,
+      "answer": "### Observations\nThe provided regional RGB display shows multiple agricultural fields with varying greenness and soil visibility, featuring lighter and darker patches across the area [MA_INRA_CEREALS, PDF p. 14](https://www.inra.org.ma/sites/default/files/publications/ouvrages/guideorgefr.pdf#page=14) [MA_INRA_CEREALS, PDF p. 14](https://www.inra.org.ma/sites/default/files/publications/ouvrages/guideorgefr.pdf#page=14). The target parcel in the center cannot be definitively isolated or diagnosed from the RGB appearance alone.\n\n### Evidence and interpretations\nFertilizer efficiency varies depending on soil type, previous crops, climatic conditions, and whether the system is rainfed (bour) or irrigated [MA_INRA_CEREALS, PDF p. 14](https://www.inra.org.ma/sites/default/files/publications/ouvrages/guideorgefr.pdf#page=14). Nitrogen use efficiency coefficients apply strictly to nitrogen, and fertilizer units must not be confused with total fertilizer product weight [MA_INRA_CEREALS, PDF p. 14](https://www.inra.org.ma/sites/default/files/publications/ouvrages/guideorgefr.pdf#page=14). However, historical field symptoms and RGB imagery cannot prove a nutrient deficiency without verification.\n\n### Next checks\n- Conduct parcel inspections to examine crop vigor and uniform coverage.\n- Perform soil and plant tissue testing to assess nutrient availability.\n- Review irrigation records and management history to rule out water stress or other limiting factors.",
+      "evidence_status": "used",
+      "cited_sources": [
+        "MA_INRA_CEREALS",
+        "MA_INRA_CEREALS"
+      ]
+    }
+  ],
+  "manual_review": {
+    "comparison": "Dated scene comparison and NASA attribution worked; extra general fertilizer material was unnecessary.",
+    "single_image_regression": "Attached document citations to an image observation and omitted synthetic context wording in model prose; original context remains visible separately in the app. These are instruction failures, not proven regressions versus v6.",
+    "quality_gate": "Full v6 live suite not repeated; no equal-or-better prompt quality score claimed."
+  }
+}
