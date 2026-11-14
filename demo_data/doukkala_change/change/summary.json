@@ -1,0 +1,80 @@
+{
+  "before_date": "2024-02-20",
+  "after_date": "2025-02-14",
+  "formula": "NDVI change = after NDVI - before NDVI",
+  "threshold": 0.05,
+  "comparison_dtype": "float32",
+  "classification_rule": "Decreased < -threshold; stable includes both boundaries; increased > threshold. Comparisons use the saved float32 differences and a float32 threshold.",
+  "scope_note": "Demonstration tolerance, not a validated crop-change threshold. Shared valid land includes nonvegetated surfaces. Stable means within the tolerance, not proof of unchanged land or crops. SCL is automated at native 20 m resolution; two dates do not identify crop types or causes.",
+  "input_manifest_sha256": "2743d508d24f2db57c279ea3a84cf86df62c99070638f4b013674d70518b1b33",
+  "input_ndvi_summary_sha256": "70dfb9253929fafd93c9936a4db13c5a3ae397ce4f500d8e93a2c4f19dd39b33",
+  "grid": {
+    "crs": "EPSG:32629",
+    "transform_gdal": [
+      556270.0,
+      10.0,
+      0.0,
+      3617770.0,
+      0.0,
+      -10.0
+    ],
+    "width_px": 512,
+    "height_px": 512,
+    "bounds_utm_west_south_east_north": [
+      556270.0,
+      3612650.0,
+      561390.0,
+      3617770.0
+    ],
+    "bbox_wgs84_west_south_east_north": [
+      -8.400001724300235,
+      32.649763681787825,
+      -8.345074028307371,
+      32.696220697944554
+    ]
+  },
+  "pixel_area_m2": 100.0,
+  "common_valid_pixels": 262140,
+  "excluded_pixels": 4,
+  "valid_area_ha": 2621.4,
+  "excluded_area_ha": 0.04,
+  "difference": {
+    "file": "ndvi_change_10m.tif",
+    "nodata": -9999.0,
+    "mean": -0.045840544610398416,
+    "median": -0.013385597616434097,
+    "min": -0.8760408759117126,
+    "max": 0.7761567831039429
+  },
+  "classification": {
+    "file": "ndvi_change_classes_10m.tif",
+    "nodata": 0
+  },
+  "classes": [
+    {
+      "code": 1,
+      "label": "decreased",
+      "pixel_count": 89525,
+      "percentage_of_valid": 34.15159838254368,
+      "area_ha": 895.25
+    },
+    {
+      "code": 2,
+      "label": "stable",
+      "pixel_count": 127486,
+      "percentage_of_valid": 48.632791638056,
+      "area_ha": 1274.86
+    },
+    {
+      "code": 3,
+      "label": "increased",
+      "pixel_count": 45129,
+      "percentage_of_valid": 17.21560997940032,
+      "area_ha": 451.29
+    }
+  ],
+  "sha256": {
+    "ndvi_change_10m.tif": "6392c679f09830379be736b43f942e87e34a4cdab5ce0850ce77a51108fae910",
+    "ndvi_change_classes_10m.tif": "980343b20e5200e924d306d7b34bc7eaaa114de03b1e553cc3f0950e2b845111"
+  }
+}
