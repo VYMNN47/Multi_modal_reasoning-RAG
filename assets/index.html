@@ -49,8 +49,19 @@
           <details id="example-note" hidden>
             <summary>About these images</summary>
             <p id="example-description"></p>
-            <a id="example-source" target="_blank" rel="noopener noreferrer" hidden>Read the source report</a>
+            <a id="example-source" target="_blank" rel="noopener noreferrer" hidden>View source</a>
           </details>
+          <section id="ndvi-results" class="ndvi-results" aria-labelledby="ndvi-title" hidden>
+            <h2 id="ndvi-title">Measured NDVI</h2>
+            <p class="caption">Calculated beforehand from Sentinel-2 red and near-infrared bands. Ask Gemini to explain these saved measurements.</p>
+            <table>
+              <caption class="visually-hidden">NDVI over the same valid land pixels on both dates</caption>
+              <thead><tr><th scope="col">Date</th><th scope="col">Mean NDVI</th><th scope="col">Median NDVI</th></tr></thead>
+              <tbody id="ndvi-rows"></tbody>
+            </table>
+            <p id="ndvi-coverage" class="caption"></p>
+            <p class="caption">NDVI ranges from −1 to 1. The view includes vegetated and nonvegetated surfaces; crop identity and causes of change are unverified.</p>
+          </section>
         </section>
 
         <form id="assessment-form" class="question-form" novalidate>
@@ -66,7 +77,7 @@
             <p id="context-help" class="caption">Add what you know. Label invented demo details as synthetic.</p>
             <p id="context-error" class="error" role="alert" hidden></p>
           </div>
-          <p class="caption">Assessments send your images, question, context, and selected reference excerpts to Google Gemini.</p>
+          <p class="caption">Assessments send your images, question, context, any supplied measurements, and selected reference excerpts to Google Gemini.</p>
           <button id="ask" class="primary" type="submit">Ask Gemini</button>
         </form>
       </div>

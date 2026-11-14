@@ -1,0 +1,40 @@
+{
+  "title": "Doukkala NDVI: February 2024 to February 2025",
+  "question": "Explain the saved NDVI results for these two Doukkala dates. What changed in average greenness, and what can we conclude about crops or the cause of the change?",
+  "context": "The two RGB views cover the same 5.12 by 5.12 km landscape near Sidi Bennour, Doukkala. Parcel boundaries and crop types have not been verified. The application supplies precomputed NDVI measurements separately from this editable context.",
+  "images": [
+    {
+      "file": "doukkala_ndvi_2024-02-20_rgb_10m.png",
+      "path": "demo_data/doukkala_change/2024-02-20/rgb.png",
+      "date": "2024-02-20",
+      "platform": "Sentinel-2B",
+      "instrument": "MSI"
+    },
+    {
+      "file": "doukkala_ndvi_2025-02-14_rgb_10m.png",
+      "path": "demo_data/doukkala_change/2025-02-14/rgb.png",
+      "date": "2025-02-14",
+      "platform": "Sentinel-2B",
+      "instrument": "MSI"
+    }
+  ],
+  "ndvi_summary_file": "demo_data/doukkala_change/ndvi/summary.json",
+  "ndvi_summary_sha256": "70dfb9253929fafd93c9936a4db13c5a3ae397ce4f500d8e93a2c4f19dd39b33",
+  "attribution": "Contains modified Copernicus Sentinel data 2024 and 2025. NDVI calculated by GeoScan from calibrated red and near-infrared bands.",
+  "source_url": "https://custom-scripts.sentinel-hub.com/custom-scripts/sentinel-2/ndvi/",
+  "reference": {
+    "source_id": "MA_SENTINEL_NDVI_METHOD",
+    "source_format": "web",
+    "pdf_page": null,
+    "title": "Normalized difference vegetation index — Sentinel-2",
+    "section": "NDVI formula and interpretation",
+    "text": "Sentinel-2 NDVI uses the near-infrared B08 and red B04 reflectance bands: NDVI = (B08 - B04) / (B08 + B04). The index ranges from -1 to 1 and is a proxy for live green vegetation. Negative values are commonly associated with water, values close to zero with barren surfaces, and positive values with vegetation; these are general interpretations rather than field-specific diagnoses.",
+    "publication_year": null,
+    "publication_date": null,
+    "crops": [],
+    "geographic_scope": "General Sentinel-2 NDVI method; not a measurement or study of the Doukkala fields.",
+    "use_note": "Real paired Sentinel-2 imagery with precomputed NDVI over the same land pixels. The cited source describes the method; the displayed measurements were calculated by GeoScan. SCL screening is automated at 20 m native resolution. The view includes nonvegetated surfaces and does not identify crops, parcel conditions, or causes of change.",
+    "numerical_tables_approved": false,
+    "source_url": "https://custom-scripts.sentinel-hub.com/custom-scripts/sentinel-2/ndvi/"
+  }
+}

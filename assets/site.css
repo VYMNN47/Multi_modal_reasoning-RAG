@@ -59,6 +59,13 @@ button:disabled, :disabled button { cursor: not-allowed; opacity: .65; }
 figure { margin: 0; min-width: 0; }
 figure img { display: block; width: 100%; height: auto; max-height: 34rem; object-fit: contain; border-radius: .35rem; background: var(--surface); }
 figcaption { color: var(--muted); font-size: .85rem; margin: .55rem 0; overflow-wrap: anywhere; }
+.ndvi-results { margin-top: 1.5rem; }
+.ndvi-results h2 { margin-bottom: .6rem; }
+.ndvi-results table { width: 100%; border-collapse: collapse; margin: .8rem 0; background: var(--background); }
+.ndvi-results th, .ndvi-results td { text-align: left; padding: .65rem .5rem; border-bottom: 1px solid var(--border); }
+.ndvi-results thead th { background: var(--surface); font-weight: 600; }
+.ndvi-results tbody th { font-weight: 500; }
+.ndvi-results th:not(:first-child), .ndvi-results td:not(:first-child) { text-align: right; font-variant-numeric: tabular-nums; }
 .empty { padding: 2rem 1rem; text-align: center; color: var(--muted); background: var(--surface); border-radius: .4rem; }
 .question-form { padding: 1.25rem; border: 1px solid var(--border); border-radius: .5rem; min-width: 0; background: #ffffffb8; }
 .question-form .field { margin-bottom: 1.1rem; }

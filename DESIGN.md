@@ -56,7 +56,7 @@ color. The fixed light theme honors forced colors and native focus behavior.
 
 Georgia/Times serif headings give the notebook its character. A system sans-serif
 stack keeps labels and text readable, including French accents. No external font
-requests are needed. Use one h1, h2 for the form and response, and h3 for answer
+requests are needed. Use one h1, h2 for measurements, the form and response, and h3 for answer
 sections. Long filenames and paragraphs wrap rather than overflowing.
 
 ## Layout
@@ -64,7 +64,7 @@ sections. Long filenames and paragraphs wrap rather than overflowing.
 The page is centered and capped at 72rem. The example selector and answer language
 sit above the workspace. One image uses an image/form column pair. Two images use
 two equal preview columns above the form, sharing the same layout for custom
-uploads and the dated NASA example. Below 640px, settings, previews, and the form
+uploads and the dated NASA and Doukkala NDVI examples. Below 640px, settings, previews, and the form
 stack in reading order. Photos preserve aspect ratio and are never stretched into
 a false spatial comparison. Each preview identifies its image/order or its known
 acquisition date and satellite. NASA and Copernicus attribution are attached only
@@ -100,6 +100,7 @@ for this single screen.
 | Upload | Native file input and browser File list | assets/site.js and app.py | one or two files | Repeated requests, removal, image validation |
 | Scrollbar | Global CSS rules | assets/site.css | document | Desktop and narrow-screen checks |
 | Toast | Inline alert/status regions | assets/index.html and assets/site.js | loading, error, ready | Browser feedback and API failure tests |
+| Measurements | Native semantic table | app.py load_ndvi_results and assets/site.js renderNdviResults | fixed two-date NDVI summary | tests/test_demo.py, SDK checks and browser |
 
 The image-choice button starts disabled until its JavaScript event handler and
 initial state are ready. No inline event handler is used; the content security
@@ -124,8 +125,22 @@ The Python API validates each request independently, performs semantic retrieval
 and calls Gemini with the ordered images. Undated pairs do not establish a shared
 place or chronology; dates/locations entered in context remain unverified reports.
 The original NASA case keeps its verified acquisition-date metadata and pinned
-case report. Explicit unsupported NDVI requests return an input limitation without
-retrieval or Gemini generation.
+case report. The Doukkala NDVI case shows a fixed two-row table of saved means
+and medians with date row headers, column headers, tabular numerals, and a shared
+valid-pixel count. It uses existing color tokens and document scrolling; it has
+no sorting, paging, or new controls. Switching to another example or upload hides
+the measurements. Dates use English labels and UTC date-only formatting,
+independent of the model's answer language.
+
+Selecting the NDVI example reads its saved summary for display and makes no
+Gemini call. Ask Gemini reads it again, verifies its pinned checksum and dates,
+and sends bounded measurements with the two RGB previews and the NDVI method
+reference. No band download or NDVI recalculation occurs in the web request.
+This measured case has a dedicated prompt and does not retrieve unrelated soil
+or fertilizer passages. Other examples retain their original retrieval and
+agronomy prompt. Explicit NDVI calculation requests for RGB-only inputs still
+return an input limitation without retrieval or Gemini generation. The browser
+cannot submit its own measurement packet.
 
 The response shows user context verbatim as text, followed by the final assessment
 and only the cited source panels. Model output and provenance never enter raw
@@ -133,6 +148,12 @@ innerHTML. The limited Markdown renderer creates headings, paragraphs, lists, an
 bold text through DOM nodes; only canonical citations matching the returned source
 metadata become HTTPS links. The server checks citation membership, not entailment.
 No confidence badge or agronomic accuracy certification is implied.
+
+For the measured case, the evidence notice distinguishes saved application
+numbers from document citations. The table remains factual application output;
+the model explains it and states the limits. Web method references without a
+publication date display "not stated" and crop-general methods display
+"not crop-specific".
 
 ## Do's and Don'ts
 

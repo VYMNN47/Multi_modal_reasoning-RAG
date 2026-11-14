@@ -38,6 +38,24 @@ function safeLink(label, url) {
   return link;
 }
 
+function renderNdviResults(results) {
+  byId("ndvi-results").hidden = !results;
+  const rows = byId("ndvi-rows");
+  rows.replaceChildren();
+  if (!results) return;
+  for (const scene of results.scenes) {
+    const row = element("tr");
+    const date = new Date(scene.date + "T00:00:00Z").toLocaleDateString("en-GB", {
+      day: "numeric", month: "long", year: "numeric", timeZone: "UTC",
+    });
+    const dateCell = element("th", date);
+    dateCell.scope = "row";
+    row.append(dateCell, element("td", scene.mean.toFixed(4)), element("td", scene.median.toFixed(4)));
+    rows.append(row);
+  }
+  byId("ndvi-coverage").textContent = `Same ${results.common_valid_pixels.toLocaleString("en-US")} valid land pixels on both dates; ${results.excluded_pixels.toLocaleString("en-US")} pixels excluded by the shared quality mask.`;
+}
+
 function renderPreviews() {
   for (const url of state.urls) URL.revokeObjectURL(url);
   state.urls = [];
@@ -70,6 +88,7 @@ function renderPreviews() {
   byId("example-description").textContent = example?.description || "";
   byId("example-source").hidden = !example?.source_url;
   if (example?.source_url?.startsWith("https://")) byId("example-source").href = example.source_url;
+  renderNdviResults(example?.ndvi_results);
 }
 
 function renderFiles() {
@@ -149,6 +168,10 @@ function renderAnswer(data) {
     : data.evidence_status === "out_of_scope"
       ? "This demo handles agricultural imagery, soils, crop nutrition, water, and field checks."
       : "No reference excerpt was cited. Review the assessment’s stated evidence limits.";
+  if (data.ndvi_results && data.evidence_status !== "out_of_scope") {
+    renderNdviResults(data.ndvi_results);
+    byId("evidence-notice").textContent = "The saved NDVI measurements are shown above. Cited references support background or method claims; your editable field context remains unverified.";
+  }
   byId("reported-context").textContent = data.field_context || "No field context supplied.";
   const content = byId("answer-text");
   let list;
@@ -171,10 +194,10 @@ function renderAnswer(data) {
   const references = byId("references");
   for (const source of data.sources) {
     const detail = element("details");
-    const published = source.source_format === "web" ? `Published: ${source.publication_date}` : `Publication year: ${source.publication_year ?? "unverified"} · Physical PDF page: ${source.pdf_page}`;
+    const published = source.source_format === "web" ? `Published: ${source.publication_date || source.publication_year || "not stated"}` : `Publication year: ${source.publication_year ?? "unverified"} · Physical PDF page: ${source.pdf_page}`;
     detail.append(element("summary", `${source.citation} · ${source.section}`), element("p", source.title), element("p", published, "caption"),
-      element("p", `Crops covered: ${(source.crops || []).join(", ")}`, "caption"), element("p", source.geographic_scope), element("p", source.use_note),
-      safeLink(source.source_format === "web" ? "Open original report" : "Open original PDF", source.url), element("blockquote", source.text));
+      element("p", `Crops covered: ${(source.crops || []).join(", ") || "not crop-specific"}`, "caption"), element("p", source.geographic_scope), element("p", source.use_note),
+      safeLink(source.source_format === "web" ? "Open source" : "Open original PDF", source.url), element("blockquote", source.text));
     references.append(detail);
   }
   byId("references-section").hidden = data.sources.length === 0;
@@ -215,7 +238,8 @@ byId("assessment-form").addEventListener("submit", async event => {
   controls.disabled = true;
   byId("assessment-form").setAttribute("aria-busy", "true");
   byId("ask").textContent = "Reviewing…";
-  message("request-status", "Reviewing your images and agricultural references…");
+  const measured = state.examples.find(example => example.id === source.value)?.ndvi_results;
+  message("request-status", measured ? "Explaining saved NDVI measurements and reviewing your images…" : "Reviewing your images and agricultural references…");
   try {
     const response = await fetch("/api/analyze", { method: "POST", body: payload, cache: "no-store" });
     const data = await response.json().catch(() => ({}));

@@ -1,4 +1,5 @@
 from io import BytesIO
+from hashlib import sha256
 import json
 from pathlib import Path
 import warnings
@@ -32,6 +33,19 @@ EXAMPLES = {
 }
 COMPARISON = json.loads((ROOT / "demo_data/comparison/case.json").read_text(encoding="utf-8"))
 EXAMPLES["Casablanca: Drought, 2023–2024"] = COMPARISON
+NDVI_EXAMPLE = json.loads((ROOT / "demo_data/doukkala_change/case.json").read_text(encoding="utf-8"))
+EXAMPLES["Doukkala: NDVI, 2024–2025"] = NDVI_EXAMPLE
+
+
+def load_ndvi_results(example: dict) -> dict:
+    try:
+        contents = (ROOT / example["ndvi_summary_file"]).read_bytes()
+        if sha256(contents).hexdigest() != example["ndvi_summary_sha256"]:
+            raise ValueError("NDVI summary checksum mismatch")
+        dates = tuple(item["date"] for item in example["images"])
+        return model.ndvi_context(json.loads(contents), dates)
+    except (OSError, KeyError, TypeError, ValueError):
+        raise model.GeminiError("The saved NDVI results could not be verified. Contact the project author.") from None
 
 
 def load_image(data: bytes) -> Image.Image:
@@ -64,7 +78,7 @@ EXAMPLE_FILES = {}
 for example in EXAMPLES.values():
     if "images" in example:
         for item in example["images"]:
-            EXAMPLE_FILES[item["file"]] = ROOT / "demo_data/comparison" / item["file"]
+            EXAMPLE_FILES[item["file"]] = ROOT / item["path"] if "path" in item else ROOT / "demo_data/comparison" / item["file"]
     else:
         EXAMPLE_FILES[example["image"]] = ROOT / "demo_data/sentinel2" / example["image"]
 
@@ -83,6 +97,8 @@ def example_catalog() -> list[dict]:
             "description": example["reference"]["use_note"] if paired else "Real satellite imagery with editable, synthetic demo context.",
             "source_url": example.get("source_url"),
         })
+        if "ndvi_summary_file" in example:
+            result[-1]["ndvi_results"] = load_ndvi_results(example)
     return result
 
 
@@ -119,18 +135,28 @@ def assess(question: str, context: str, language: str, case: str, uploads: list[
         images = uploads
     prepared = prepare_images(images)
     question, context = question.strip(), context.strip()
-    answer = model.input_limit_notice(question, language)
+    ndvi_results = load_ndvi_results(example) if example and "ndvi_summary_file" in example else None
+    answer = model.input_limit_notice(question, language) if ndvi_results is None else None
     if answer is None:
         dated = example is not None and "images" in example
-        passages = ([example["reference"], *rag.semantic_search(question, context, top_k=2)[:2]]
-                    if dated else rag.semantic_search(question, context))
+        if ndvi_results is not None:
+            passages = [example["reference"]]
+        elif dated:
+            passages = [example["reference"], *rag.semantic_search(question, context, top_k=2)[:2]]
+        else:
+            passages = rag.semantic_search(question, context)
         options = {"language": language}
         if len(prepared) == 2:
             options["comparison_image_png"] = prepared[1]
         if dated:
             options["image_dates"] = tuple(item["date"] for item in example["images"])
+        if ndvi_results is not None:
+            options["ndvi_results"] = ndvi_results
         answer = model.answer_image(prepared[0], question, context, passages, **options)
     fields = ("citation", "title", "section", "url", "text", "publication_year", "publication_date",
               "source_format", "pdf_page", "crops", "geographic_scope", "use_note")
-    return {**answer, "field_context": context,
-            "sources": [{key: source.get(key) for key in fields} for source in answer["sources"]]}
+    result = {**answer, "field_context": context,
+              "sources": [{key: source.get(key) for key in fields} for source in answer["sources"]]}
+    if ndvi_results is not None:
+        result["ndvi_results"] = ndvi_results
+    return result

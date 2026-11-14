@@ -1,4 +1,5 @@
 import json
+import math
 import os
 from datetime import date
 from pathlib import Path
@@ -16,6 +17,8 @@ MODEL_NAME = "gemini-3.5-flash-lite"
 MAX_IMAGE_BYTES = 10 * 1024 * 1024
 PROMPT_VERSION = "agronomy-rag-v8"
 SYSTEM_PROMPT = (Path(__file__).parent / "prompts/agronomy_rag_v8.txt").read_text(encoding="utf-8")
+NDVI_PROMPT_VERSION = "doukkala-ndvi-v3"
+NDVI_SYSTEM_PROMPT = (Path(__file__).parent / "prompts/doukkala_ndvi_v3.txt").read_text(encoding="utf-8")
 ANSWER_LANGUAGES = ("English", "Français")
 ANSWER_SCHEMA = {
     "type": "object",
@@ -69,6 +72,29 @@ def reference_context(passages: list[dict]) -> list[dict]:
         return references
     except (KeyError, TypeError, ValueError):
         raise GeminiError("Retrieved source metadata is incomplete or invalid. Check the selected references.") from None
+
+
+def ndvi_context(data: dict, image_dates: tuple[str, str] | None) -> dict:
+    """Validate and bound saved measurements without exposing file paths or hashes."""
+    try:
+        fields = ("formula", "mask_policy", "scope_note", "common_valid_pixels", "excluded_pixels")
+        if (image_dates is None or len(image_dates) != 2 or len(data["scenes"]) != 2
+                or tuple(row["date"] for row in data["scenes"]) != image_dates
+                or type(data["common_valid_pixels"]) is not int or data["common_valid_pixels"] <= 0
+                or type(data["excluded_pixels"]) is not int or data["excluded_pixels"] < 0
+                or any(not isinstance(data[key], str) or not 0 < len(data[key]) <= 2000 for key in fields[:3])):
+            raise ValueError("Invalid measurement metadata")
+        scenes = []
+        for row in data["scenes"]:
+            values = [row[key] for key in ("mean", "median", "min", "max")]
+            if (any(type(value) not in (int, float) or not math.isfinite(value) or not -1 <= value <= 1 for value in values)
+                    or not row["min"] <= row["mean"] <= row["max"]
+                    or not row["min"] <= row["median"] <= row["max"]):
+                raise ValueError("Invalid NDVI statistics")
+            scenes.append({key: row[key] for key in ("date", "mean", "median", "min", "max")})
+        return {**{key: data[key] for key in fields}, "scenes": scenes}
+    except (KeyError, TypeError, ValueError):
+        raise GeminiError("The saved NDVI measurements are invalid or do not match the image dates. Contact the project author.") from None
 
 
 def parse_grounded_answer(raw: str, passages: list[dict]) -> dict:
@@ -149,7 +175,7 @@ def create_client() -> genai.Client:
     )
 
 
-def answer_image(image_png: bytes, question: str, context: str = "", passages: list[dict] | None = None, language: str = "English", *, comparison_image_png: bytes | None = None, image_dates: tuple[str, str] | None = None) -> dict:
+def answer_image(image_png: bytes, question: str, context: str = "", passages: list[dict] | None = None, language: str = "English", *, comparison_image_png: bytes | None = None, image_dates: tuple[str, str] | None = None, ndvi_results: dict | None = None) -> dict:
     """Send one PNG or a pair with selected excerpts; validate dates when supplied."""
     images = [image_png] + ([comparison_image_png] if comparison_image_png is not None else [])
     if any(not isinstance(data, bytes) or not data for data in images) or sum(len(data) for data in images) > MAX_IMAGE_BYTES:
@@ -167,8 +193,10 @@ def answer_image(image_png: bytes, question: str, context: str = "", passages: l
     question, context = question.strip(), context.strip()
     if not question or len(question) > 2000 or len(context) > 4000:
         raise GeminiError("Provide a question of 1–2,000 characters and field context of at most 4,000 characters.")
+    if ndvi_results is not None:
+        ndvi_results = ndvi_context(ndvi_results, image_dates)
     notice = input_limit_notice(question, language)
-    if notice is not None:
+    if notice is not None and ndvi_results is None:
         return notice
     passages = passages or []
     references = reference_context(passages)
@@ -179,9 +207,16 @@ def answer_image(image_png: bytes, question: str, context: str = "", passages: l
     }
     if image_dates is not None:
         request_data["image_dates"] = image_dates
+    if ndvi_results is not None:
+        request_data["ndvi_results"] = ndvi_results
     request_data["question"] = question
     parts = [types.Part.from_bytes(data=data, mime_type="image/png") for data in images]
     parts.append(types.Part.from_text(text=json.dumps(request_data, ensure_ascii=False)))
+    prompt = NDVI_SYSTEM_PROMPT if ndvi_results is not None else SYSTEM_PROMPT
+    instruction = f"{prompt}\nConfigured answer language: {language}. Write every sentence and heading in {language}."
+    if ndvi_results is not None:
+        headings = ("Observations", "Evidence and interpretations", "Next checks") if language == "English" else ("Observations", "Références et interprétations", "Vérifications à réaliser")
+        instruction += "\nFor agricultural answers use exactly these Markdown headings:\n" + "\n".join(f"### {heading}" for heading in headings)
 
     # SDK image parts and client lifetime: https://googleapis.github.io/python-genai/
     try:
@@ -190,7 +225,7 @@ def answer_image(image_png: bytes, question: str, context: str = "", passages: l
                 model=MODEL_NAME,
                 contents=types.Content(role="user", parts=parts),
                 config=types.GenerateContentConfig(
-                    system_instruction=f"{SYSTEM_PROMPT}\nConfigured answer language: {language}. Write every sentence and heading in {language}.",
+                    system_instruction=instruction,
                     max_output_tokens=2048,
                     response_mime_type="application/json",
                     response_json_schema=ANSWER_SCHEMA,

@@ -141,6 +141,45 @@ class GeminiRequestTests(unittest.TestCase):
         self.assertNotIn("image_dates", json.loads(text["text"]))
         self.assertEqual(json.loads(text["text"])["question"], "Compare the fields.")
 
+    def test_saved_ndvi_results_and_their_specific_prompt_reach_the_sdk(self):
+        summary = json.loads((Path(__file__).resolve().parents[1] / "demo_data/doukkala_change/ndvi/summary.json").read_text())
+        dates = ("2024-02-20", "2025-02-14")
+        results = model.ndvi_context(summary, dates)
+        model.answer_image(b"before-png", "Calculate NDVI.", "User-reported mean: 0.99", self.passages,
+            comparison_image_png=b"after-png", image_dates=dates, ndvi_results=results)
+        body = json.loads(self.requests[0].content)
+        payload = json.loads(body["contents"][0]["parts"][-1]["text"])
+        self.assertEqual(payload["ndvi_results"], results)
+        self.assertEqual(payload["field_context"], "User-reported mean: 0.99")
+        self.assertEqual(list(payload)[-1], "question")
+        self.assertTrue(body["systemInstruction"]["parts"][0]["text"].startswith(model.NDVI_SYSTEM_PROMPT))
+        self.assertNotIn("sha256", payload["ndvi_results"])
+
+    def test_invalid_or_undated_ndvi_results_never_reach_gemini(self):
+        dates = ("2024-02-20", "2025-02-14")
+        summary = json.loads((Path(__file__).resolve().parents[1] / "demo_data/doukkala_change/ndvi/summary.json").read_text())
+        with patch("model.create_client") as client:
+            for data in ({}, {**summary, "common_valid_pixels": 0},
+                         {**summary, "scenes": [{**summary["scenes"][0], "mean": float("nan")}, summary["scenes"][1]]}):
+                with self.subTest(data=list(data)), self.assertRaises(model.GeminiError):
+                    model.answer_image(b"before-png", "Calculate NDVI.", comparison_image_png=b"after-png", image_dates=dates, ndvi_results=data)
+            with self.assertRaises(model.GeminiError):
+                model.answer_image(b"before-png", "Explain NDVI.", comparison_image_png=b"after-png", ndvi_results=summary)
+            client.assert_not_called()
+
+    def test_ndvi_instructions_end_with_the_selected_language_headings(self):
+        summary = json.loads((Path(__file__).resolve().parents[1] / "demo_data/doukkala_change/ndvi/summary.json").read_text())
+        headings = {
+            "English": "### Observations\n### Evidence and interpretations\n### Next checks",
+            "Français": "### Observations\n### Références et interprétations\n### Vérifications à réaliser",
+        }
+        for language, expected in headings.items():
+            with self.subTest(language=language):
+                model.answer_image(b"before-png", "Explain NDVI.", language=language,
+                    comparison_image_png=b"after-png", image_dates=("2024-02-20", "2025-02-14"), ndvi_results=summary)
+                body = json.loads(self.requests[-1].content)
+                self.assertTrue(body["systemInstruction"]["parts"][0]["text"].endswith(expected))
+
     def test_invalid_comparison_inputs_fail_before_constructing_a_client(self):
         cases = [
             {"comparison_image_png": b""},
