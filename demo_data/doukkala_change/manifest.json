@@ -1,0 +1,146 @@
+{
+  "region": "Doukkala / Sidi Bennour vicinity, Morocco",
+  "collection": "sentinel-2-c1-l2a",
+  "downloaded_at_utc": "2026-11-14T18:59:57.072411+00:00",
+  "grid": {
+    "crs": "EPSG:32629",
+    "transform_gdal": [
+      556270.0,
+      10.0,
+      0.0,
+      3617770.0,
+      0.0,
+      -10.0
+    ],
+    "width_px": 512,
+    "height_px": 512,
+    "bounds_utm_west_south_east_north": [
+      556270.0,
+      3612650.0,
+      561390.0,
+      3617770.0
+    ],
+    "bbox_wgs84_west_south_east_north": [
+      -8.400001724300235,
+      32.649763681787825,
+      -8.345074028307371,
+      32.696220697944554
+    ]
+  },
+  "selection_reason": "Same Sentinel-2B satellite, tile 29SNS and relative orbit R137; comparable February dates. The 2024-02-20 scene has low scene cloud cover and no crop SCL cloud/shadow/cirrus flags.",
+  "storage_note": "B04 and B08 retain uint16 source digital numbers. Apply each stored scale and offset once to valid pixels before NDVI; zero is nodata. RGB is for display only.",
+  "scl_note": "Native 20 m SCL aligned to the reference 10 m grid with nearest-neighbour sampling; this does not add spatial detail. No class masking has been applied to the spectral bands.",
+  "attribution": "Contains modified Copernicus Sentinel data 2024 and 2025",
+  "scenes": [
+    {
+      "date": "2024-02-20",
+      "acquired_utc": "2024-02-20T11:22:15.404000Z",
+      "source_scene_id": "S2B_T29SNS_20240220T111943_L2A",
+      "source_catalog_item": "https://earth-search.aws.element84.com/v1/collections/sentinel-2-c1-l2a/items/S2B_T29SNS_20240220T111943_L2A",
+      "platform": "sentinel-2b",
+      "source_product_uri": "S2B_MSIL2A_20240220T111009_N0510_R137_T29SNS_20240220T135023.SAFE",
+      "processing_baseline": "05.10",
+      "source_stac_file": "2024-02-20/source.stac.json",
+      "product_metadata_file": "2024-02-20/product_metadata.xml",
+      "whole_source_scene_cloud_cover_percent": 0.381887,
+      "assets": {
+        "red": {
+          "file": "2024-02-20/B04_10m.tif",
+          "source_url": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/29/S/NS/2024/2/S2B_T29SNS_20240220T111943_L2A/B04.tif",
+          "source_resolution_m": 10,
+          "scale": 0.0001,
+          "offset": -0.1,
+          "nodata": 0,
+          "data_type": "uint16"
+        },
+        "nir": {
+          "file": "2024-02-20/B08_10m.tif",
+          "source_url": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/29/S/NS/2024/2/S2B_T29SNS_20240220T111943_L2A/B08.tif",
+          "source_resolution_m": 10,
+          "scale": 0.0001,
+          "offset": -0.1,
+          "nodata": 0,
+          "data_type": "uint16"
+        },
+        "scl": {
+          "file": "2024-02-20/SCL_10m.tif",
+          "source_url": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/29/S/NS/2024/2/S2B_T29SNS_20240220T111943_L2A/SCL.tif",
+          "source_resolution_m": 20
+        },
+        "rgb": {
+          "file": "2024-02-20/rgb.png",
+          "source_url": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/29/S/NS/2024/2/S2B_T29SNS_20240220T111943_L2A/TCI.tif",
+          "source_resolution_m": 10
+        }
+      },
+      "scl_class_counts_10m": {
+        "4": 130059,
+        "5": 132085
+      },
+      "crop_cloud_shadow_cirrus_percent": 0.0
+    },
+    {
+      "date": "2025-02-14",
+      "acquired_utc": "2025-02-14T11:22:18.909000Z",
+      "source_scene_id": "S2B_T29SNS_20250214T111323_L2A",
+      "source_catalog_item": "https://earth-search.aws.element84.com/v1/collections/sentinel-2-c1-l2a/items/S2B_T29SNS_20250214T111323_L2A",
+      "platform": "sentinel-2b",
+      "source_product_uri": "S2B_MSIL2A_20250214T111049_N0511_R137_T29SNS_20250214T132802.SAFE",
+      "processing_baseline": "05.11",
+      "source_stac_file": "2025-02-14/source.stac.json",
+      "product_metadata_file": "2025-02-14/product_metadata.xml",
+      "whole_source_scene_cloud_cover_percent": 0.006186,
+      "assets": {
+        "red": {
+          "file": "2025-02-14/B04_10m.tif",
+          "source_url": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/29/S/NS/2025/2/S2B_T29SNS_20250214T111323_L2A/B04.tif",
+          "source_resolution_m": 10,
+          "scale": 0.0001,
+          "offset": -0.1,
+          "nodata": 0,
+          "data_type": "uint16"
+        },
+        "nir": {
+          "file": "2025-02-14/B08_10m.tif",
+          "source_url": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/29/S/NS/2025/2/S2B_T29SNS_20250214T111323_L2A/B08.tif",
+          "source_resolution_m": 10,
+          "scale": 0.0001,
+          "offset": -0.1,
+          "nodata": 0,
+          "data_type": "uint16"
+        },
+        "scl": {
+          "file": "2025-02-14/SCL_10m.tif",
+          "source_url": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/29/S/NS/2025/2/S2B_T29SNS_20250214T111323_L2A/SCL.tif",
+          "source_resolution_m": 20
+        },
+        "rgb": {
+          "file": "2025-02-14/rgb.png",
+          "source_url": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/29/S/NS/2025/2/S2B_T29SNS_20250214T111323_L2A/TCI.tif",
+          "source_resolution_m": 10
+        }
+      },
+      "scl_class_counts_10m": {
+        "4": 110195,
+        "5": 151945,
+        "6": 4
+      },
+      "crop_cloud_shadow_cirrus_percent": 0.0
+    }
+  ],
+  "interval_days": 360,
+  "sha256": {
+    "2024-02-20/B04_10m.tif": "7ea111156efc200ab40aa01ad2dea88812328983f785fac1e2469b004428e7da",
+    "2024-02-20/B08_10m.tif": "bec8dcddf31e7259464aff247778871ae5902aab2487c9a223d1fde98121f401",
+    "2024-02-20/SCL_10m.tif": "20b914e2561ce23d36930544c90884c292afe1e319d9ffca36e0c8b6695b4a2a",
+    "2024-02-20/product_metadata.xml": "89cad62fc1c589014187730f3b88294af07c11488b571baf9a243af39d367803",
+    "2024-02-20/rgb.png": "a3751b5ad2ba35957e12735350f8d6f96a004a1679d7fe8b4dd90985425332c3",
+    "2024-02-20/source.stac.json": "839904c077fc4de1b8644903daa97839a53e405d878b6a5ab6e92b6dc9139349",
+    "2025-02-14/B04_10m.tif": "69f22f2c5aaa0531a0e4cf53ab05113320c03cf312dd09f1c8912629adcf0cb6",
+    "2025-02-14/B08_10m.tif": "1bb5c3d1a76fea7fa07b198ab5a05652ab9748a9dd4ee293fe68325f3051e62e",
+    "2025-02-14/SCL_10m.tif": "19076adaad7a25bc0cc4e1c38516d8343e5a35313ec9f0fe4b914d91bb267100",
+    "2025-02-14/product_metadata.xml": "cad78dcdf9a36d7e06ea312279a7eff219e090ed66368f1b529555d71196465f",
+    "2025-02-14/rgb.png": "c0145173fe09ff77d35389afaf844ef62767298b30b2c2cee435f4779549d89a",
+    "2025-02-14/source.stac.json": "ab93ee32d4653a810ff4d391cc25d7232c1932cbd05553a52f2e2e499cc14bd5"
+  }
+}
