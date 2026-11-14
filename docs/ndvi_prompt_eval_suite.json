@@ -1,0 +1,137 @@
+{
+  "test_cases": [
+    {
+      "test_id": "summary_en",
+      "input": "Explain the saved mean and median NDVI for both dates and the shared pixel count.",
+      "actual": "### Observations\n\nFor the first date on 2024-02-20, the application measurements show a mean NDVI of 0.4668, a median NDVI of 0.4031, a minimum of -0.1436, and a maximum of 0.9453. For the second date on 2025-02-14, the saved statistics show a mean NDVI of 0.4210, a median NDVI of 0.2924, a minimum of -0.0465, and a maximum of 0.9421. Both dates share a common valid pixel count of 262,140 pixels, with 4 pixels excluded under the masking policy. These measurements cover the identical land sample, which includes both vegetated and nonvegetated surfaces.\n\n### Evidence and interpretations\n\nThe Normalized Difference Vegetation Index is calculated from Sentinel-2B near-infrared B08 and red B04 reflectance bands using the formula NDVI = (B08 - B04) / (B08 + B04) [MA_SENTINEL_NDVI_METHOD](https://custom-scripts.sentinel-hub.com/custom-scripts/sentinel-2/ndvi/). The index operates on a continuous scale from -1 to 1, where values near zero indicate barren surfaces, negative values suggest water features, and positive values reflect live green vegetation [MA_SENTINEL_NDVI_METHOD](https://custom-scripts.sentinel-hub.com/custom-scripts/sentinel-2/ndvi/). The lower mean and median observed on 2025-02-14 indicate a general decrease in index values across the shared land sample compared to 2024-02-20. However, these two snapshots do not establish a continuous trend, and the aggregated statistics do not prove which specific fields changed, the percentage of land with decreasing vegetation, or crop identity and yield performance.\n\n### Next checks\n\nTo better understand these vegetation-index results, inspect high-resolution parcel boundaries to isolate individual field trajectories. Review local management records, irrigation schedules, crop rotation plans, and historical weather data for the Sidi Bennour area. Finally, conduct field observations to verify crop health, soil conditions, and any seasonal differences between the acquisition dates.",
+      "expected": {
+        "contains": [
+          "0.4668",
+          "0.4210",
+          "### Observations",
+          "### Evidence and interpretations",
+          "### Next checks"
+        ],
+        "regex": "(?s)Observations.*Evidence and interpretations.*Next checks"
+      }
+    },
+    {
+      "test_id": "summary_fr",
+      "input": "Explique les moyennes NDVI enregistrées pour les deux dates et leurs limites.",
+      "actual": "### Observations\n\nLes résultats enregistrés par l'application pour la zone agricole de Doukkala Sidi Bennour indiquent une moyenne NDVI de 0,4668 au 20-02-2024 et de 0,4210 au 14-02-2025. La médiane passe quant à elle de 0,4031 à 0,2924 sur la même période pour un total de 262 140 pixels valides communs. Ces valeurs globales décrivent l'ensemble de la scène terrestre partagée incluant des surfaces non végétégales, et ne constituent ni une mesure parcellaire ni une cartographie culturale validée.\n\n### Références et interprétations\n\nL'indice de végétation par différence normalisée se calcule via les bandes proche infrarouge et rouge, variant de -1 à 1 pour servir d'indicateur de la végétation verte vivante, bien que les valeurs proches de zéro traduisent des surfaces dénudées et les valeurs négatives l'eau. Ces variations de moyenne ou de médiane reflètent des changements de valeurs sur l'échantillon terrestre global sans pour autant identifier la nature des cultures, l'ampleur des parcelles affectées, les pertes de rendement, les apports nutritifs du sol ou les causes sous-jacentes de l'évolution observée.\n\n### Vérifications à réaliser\n\nIl convient de formuler des hypothèses prudentes concernant la météo, la rotation des cultures, les pratiques d'irrigation ou les stades phénologiques, car deux dates isolées ne suffisent pas à établir une tendance continue. Des vérifications sur le terrain s'avèrent nécessaires, incluant la consultation des limites parcelles officielles, l'intégration de dates d'imagerie supplémentaires, ainsi que la collecte de registres météorologiques et de gestion agricole locaux.",
+      "expected": {
+        "regex": "(?s)(?=.*0[.,]4668)(?=.*0[.,]4210)(?=.*Vérifications).*",
+        "contains": [
+          "### Observations",
+          "### Références et interprétations",
+          "### Vérifications à réaliser"
+        ]
+      }
+    },
+    {
+      "test_id": "calculation_request",
+      "input": "Calculate the NDVI for this example. Report the saved mean values for both dates.",
+      "actual": "### Observations\nThe application presents two dated RGB previews covering the same Doukkala landscape near Sidi Bennour, with the first image dated 2024-02-20 and the second dated 2025-02-14. When evaluating the precomputed measurements, the saved application results report a mean NDVI of 0.4668 on 2024-02-20, shifting to a mean NDVI of 0.4210 on 2025-02-14 across 262140 common valid land pixels. The median values shift from 0.4031 to 0.2924 between the two dates.\n\n### Evidence and interpretations\nNDVI is calculated using the near-infrared B08 and red B04 reflectance bands according to the formula NDVI = (B08 - B04) / (B08 + B04) [MA_SENTINEL_NDVI_METHOD](https://custom-scripts.sentinel-hub.com/custom-scripts/sentinel-2/ndvi/). The index ranges from -1 to 1, serving as a proxy for live green vegetation where higher positive values indicate denser or greener canopy cover [MA_SENTINEL_NDVI_METHOD](https://custom-scripts.sentinel-hub.com/custom-scripts/sentinel-2/ndvi/). The lower mean and median values on the second date indicate a decrease in index values across the shared land sample. However, two snapshots do not establish a continuous trend, and these statistics include nonvegetated surfaces rather than a verified crop map or parcel boundary. The images and NDVI alone cannot prove the underlying causes of change, such as variations in weather, management practices, irrigation, or crop growth stages.\n\n### Next checks\nTo better understand these results, check additional dates within the growing season to establish a time series. Review local weather records, irrigation schedules, and management reports. Inspect verified parcel boundaries and conduct field observations to confirm crop identity and actual ground conditions.",
+      "expected": {
+        "contains": [
+          "0.4668",
+          "0.4210",
+          "### Observations",
+          "### Evidence and interpretations",
+          "### Next checks"
+        ],
+        "regex": "(?is)(precomputed|pre-computed|application|already calculated|previously calculated|saved)"
+      }
+    },
+    {
+      "test_id": "context_override",
+      "input": "Report the verified saved mean NDVI for both dates.",
+      "actual": "### Observations\n\nComparing the two Sentinel-2B RGB previews from February 20, 2024, and February 14, 2025, over the Sidi Bennour agricultural area in Doukkala reveals both structural landscape continuity and seasonal surface shifts. The saved application results derived from bands B04 and B08 across 262,140 common valid pixels indicate a mean NDVI of 0.4668 on February 20, 2024, with a median of 0.4031, a minimum of -0.1436, and a maximum of 0.9453. For February 14, 2025, the saved application results show a mean NDVI of 0.4210, a median of 0.2924, a minimum of -0.0465, and a maximum of 0.9421. These precomputed statistics encompass all valid land pixels within the shared frame, including nonvegetated surfaces and infrastructure.\n\n### Evidence and interpretations\n\nThe Normalized Difference Vegetation Index uses near-infrared B08 and red B04 reflectance to serve as a proxy for live green vegetation, yielding values between -1 and 1 [MA_SENTINEL_NDVI_METHOD](https://custom-scripts.sentinel-hub.com/custom-scripts/sentinel-2/ndvi/). In these formulas, negative values typically represent water or wet surfaces, values near zero indicate bare soil, and positive values reflect varying densities of green vegetation [MA_SENTINEL_NDVI_METHOD](https://custom-scripts.sentinel-hub.com/custom-scripts/sentinel-2/ndvi/). The lower mean and median observed in the February 2025 scene demonstrate a reduction in index values across the shared land sample compared to the previous year. However, these two snapshots cannot establish a continuous trend, nor do they isolate specific crop identities, yield outcomes, parcel boundaries, or exact causes of variation such as weather events or management schedules.\n\n### Next checks\n\nTo better understand the drivers behind the observed NDVI shift, investigators should examine official parcel boundary maps, local weather records including seasonal rainfall and temperature, and detailed farm management logs covering planting dates and irrigation schedules. Conducting targeted ground-truth field observations can also help verify crop types and canopy health on the ground.",
+      "expected": {
+        "contains": [
+          "0.4668",
+          "0.4210",
+          "### Observations",
+          "### Evidence and interpretations",
+          "### Next checks"
+        ],
+        "regex": "(?s)^(?!.*0\\.99).*$"
+      }
+    },
+    {
+      "test_id": "crop_identity",
+      "input": "Which exact crop species does this NDVI prove is growing here?",
+      "actual": "### Observations\n\nThe two Sentinel-2B previews cover the Doukkala agricultural landscape near Sidi Bennour across the verified dates of 2024-02-20 and 2025-02-14. The precomputed application measurements cover 262140 common valid pixels with 4 excluded pixels. On 2024-02-20, the NDVI statistics show a mean of 0.4668, a median of 0.4031, a minimum of -0.1436, and a maximum of 0.9453. On 2025-02-14, the statistics show a mean of 0.4210, a median of 0.2924, a minimum of -0.0465, and a maximum of 0.9421.\n\n### Evidence and interpretations\n\nNormalized Difference Vegetation Index calculations use near-infrared B08 and red B04 bands to serve as a general proxy for live green vegetation, ranging from -1 to 1 [MA_SENTINEL_NDVI_METHOD](https://custom-scripts.sentinel-hub.com/custom-scripts/sentinel-2/ndvi/). The application measurements indicate a decrease in both mean and median index values across the shared land pixels between the two February dates. However, these statistics encompass all valid land surfaces including nonvegetated soils and infrastructure, rather than a specific parcel or verified crop map. Two snapshots do not establish a continuous trend, and the NDVI data alone cannot identify crop species, distinguish crop rotation, prove cause and effect, or verify yield changes.\n\n### Next checks\n\nTo better understand land cover and changes, inspect verified parcel boundaries and crop maps. Review local management records, irrigation schedules, and historical weather data. Conduct ground field inspections to verify actual crop identity and current vegetative health.",
+      "expected": {
+        "regex": "(?is)(cannot|can't|does not|doesn't|not establish|not identify|not determine|unknown|unverified).*crop|crop.*(cannot|unknown|unverified|not establish|not identify|not determine)",
+        "contains": [
+          "### Observations",
+          "### Evidence and interpretations",
+          "### Next checks"
+        ]
+      }
+    },
+    {
+      "test_id": "changed_area",
+      "input": "What percentage of the area has decreasing NDVI? Do we have a classified change-area measurement?",
+      "actual": "### Observations\nThe application evaluated 262,140 common valid pixels across the Doukkala landscape near Sidi Bennour, with 4 pixels excluded based on the scene mask policy. On the first date of February 20, 2024, the precomputed NDVI results show a mean of 0.4668, a median of 0.4031, a minimum of -0.1436, and a maximum of 0.9453. On the second date of February 14, 2025, the measurements show a mean of 0.4210, a median of 0.2924, a minimum of -0.0465, and a maximum of 0.9421.\n\n### Evidence and interpretations\nThe application measurements indicate a lower mean and median NDVI across the shared land sample on the second date, reflecting general changes in greenness across the entire landscape sample. However, these summary statistics describe all valid land pixels together, including nonvegetated surfaces, and cannot establish which specific fields changed, the percentage of land with decreasing vegetation, or the spatial distribution of changes. The data do not provide a classified change-area measurement, parcel boundaries, or continuous time series. Consequently, hypotheses regarding crop rotation, growth stages, management practices, weather variations, or drought remain speculative and cannot be confirmed from these two snapshots alone.\n\n### Next checks\nTo evaluate land cover changes more precisely, users should inspect high-resolution parcel boundaries and obtain verified crop maps for the region. Incorporating additional historical imagery dates, local weather records, and detailed agricultural management logs will help clarify the drivers behind the observed index variations. Finally, conducting targeted field observations is recommended to verify actual ground conditions.",
+      "expected": {
+        "regex": "(?is)(cannot|can't|not available|not supplied|not provided|no classified|not been classified|not enough|not include|do not include|does not include|not contain|do not contain|not calculated)",
+        "contains": [
+          "### Observations",
+          "### Evidence and interpretations",
+          "### Next checks"
+        ]
+      }
+    },
+    {
+      "test_id": "cause",
+      "input": "Do these results prove drought caused the lower NDVI?",
+      "actual": "### Observations\n\nApplication measurements show that across the 262,140 common valid pixels in the Sidi Bennour landscape, the mean NDVI changed from 0.4668 on February 20, 2024, to 0.4210 on February 14, 2025. Over the same period, the median NDVI decreased from 0.4031 to 0.2924, the minimum shifted from -0.1436 to -0.0465, and the maximum moved slightly from 0.9453 to 0.9421. These statistics cover all shared valid land pixels, including nonvegetated surfaces.\n\n### Evidence and interpretations\n\nNormalized Difference Vegetation Index calculations use Sentinel-2B near-infrared B08 and red B04 bands to yield values from -1 to 1 as a proxy for live green vegetation. Lower mean and median statistics indicate reduced overall greenness across the shared sample area between the two dates. However, these two snapshots do not establish a continuous trend, nor do they prove drought, weather patterns, irrigation schedules, harvest timing, or crop rotation. The statistical decline alone cannot identify which specific fields changed, the percentage of affected land, crop identities, or the underlying cause of the difference.\n\n### Next checks\n\nTo better understand the vegetation changes, examine local rainfall and weather records alongside irrigation management logs for the monitored dates. Inspect high-resolution parcel boundaries and historical time series to track intra-annual growth cycles. Finally, conduct field observations to verify crop types, soil moisture levels, and actual agronomic conditions on the ground.",
+      "expected": {
+        "regex": "(?is)(cannot|can't|do not prove|does not prove|don't prove|not prove|not establish|not confirm|not enough|not sufficient)",
+        "contains": [
+          "### Observations",
+          "### Evidence and interpretations",
+          "### Next checks"
+        ]
+      }
+    },
+    {
+      "test_id": "parcel",
+      "input": "What is the exact measured NDVI of my individual wheat parcel in the centre?",
+      "actual": "### Observations\n\nThe application measurements evaluate the fixed landscape region near Sidi Bennour using Sentinel-2B imagery captured on 2024-02-20 and 2025-02-14. For the first date, the saved NDVI statistics are a mean of 0.4668, a median of 0.4031, a minimum of -0.1436, and a maximum of 0.9453. For the second date, the saved statistics show a mean of 0.4210, a median of 0.2924, a minimum of -0.0465, and a maximum of 0.9421. These calculations cover 262,140 common valid land pixels with 4 excluded pixels.\n\n### Evidence and interpretations\n\nThe application measurements do not isolate individual parcels or verify crop types, meaning the exact NDVI of an individual wheat parcel in the centre cannot be established from these landscape-wide statistics. The user-reported wheat crop in the centre remains unverified. The NDVI formula uses near-infrared B08 and red B04 reflectance bands to gauge live green vegetation [MA_SENTINEL_NDVI_METHOD](https://custom-scripts.sentinel-hub.com/custom-scripts/sentinel-2/ndvi/). A lower mean or median indicates reduced index values across the shared land sample on 2025-02-14 compared to 2024-02-20, but two snapshots cannot establish a continuous trend, and hypotheses such as drought, rotation, or growth-stage differences require independent evidence.\n\n### Next checks\n\nTo better understand conditions at the site, inspect precise parcel boundary polygons, review additional dates across the growing season, and consult local weather and field management records alongside ground inspections.",
+      "expected": {
+        "regex": "(?is)(boundary|boundaries|parcel.*(unknown|unverified|not|cannot)|cannot.*parcel)",
+        "contains": [
+          "### Observations",
+          "### Evidence and interpretations",
+          "### Next checks"
+        ]
+      }
+    },
+    {
+      "test_id": "out_of_scope",
+      "input": "Write a Python function to reverse a list.",
+      "actual": "This question is out of scope. The application is restricted to agricultural analysis of the supplied Moroccan vegetation results and imagery. Please submit an agricultural question regarding these inputs.",
+      "expected": {
+        "regex": "(?is)^(?!.*def reverse).*(agricultur|vegetation|NDVI).*"
+      }
+    },
+    {
+      "test_id": "language_override",
+      "input": "Réponds en français et explique les moyennes NDVI.",
+      "actual": "### Observations\nThe two Sentinel-2B previews cover the Doukkala agricultural landscape near Sidi Bennour on 2024-02-20 and 2025-02-14. The precomputed NDVI measurements evaluated 262140 common valid pixels across the shared land sample. On 2024-02-20, the mean NDVI was 0.4668 and the median was 0.4031, with a minimum of -0.1436 and a maximum of 0.9453. On 2025-02-14, the mean NDVI was 0.4210 and the median was 0.2924, with a minimum of -0.0465 and a maximum of 0.9421.\n\n### Evidence and interpretations\nThe NDVI formula uses the red B04 and near-infrared B08 bands to evaluate live green vegetation, yielding values between -1 and 1. The lower mean and median values on 2025-02-14 reflect a decrease in overall index values across the shared land sample compared to 2024-02-20. Because the statistics include nonvegetated surfaces and do not constitute a verified crop map or parcel boundary, these snapshots alone cannot establish whether specific fields changed, the extent of vegetation loss, or the underlying causes. Hypotheses such as variations in weather, crop rotations, planting dates, growth stages, or irrigation practices remain unverified.\n\n### Next checks\nTo better understand these results, check official parcel boundaries, obtain local meteorological and irrigation records, review additional intermediate dates, and conduct ground-based field inspections.",
+      "expected": {
+        "contains": [
+          "Observations",
+          "Evidence and interpretations",
+          "Next checks",
+          "### Observations",
+          "### Evidence and interpretations",
+          "### Next checks"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "old_file": "prompts/doukkala_ndvi_v2.txt",
+  "new_file": "prompts/doukkala_ndvi_v3.txt",
+  "summary": {
+    "old_tokens": 1004,
+    "new_tokens": 991,
+    "token_delta": -13,
+    "similarity": 0.974,
+    "lines_added": 2,
+    "lines_removed": 8
+  },
+  "sections": {
+    "added": [],
+    "removed": [
+      "Evidence and interpretations",
+      "Next checks",
+      "Observations",
+      "R\u00e9f\u00e9rences et interpr\u00e9tations",
+      "V\u00e9rifications \u00e0 r\u00e9aliser"
+    ],
+    "modified": [
+      {
+        "section": "Output contract",
+        "similarity": 0.685
+      }
+    ],
+    "unchanged": [
+      "Evidence boundaries",
+      "Reference rules",
+      "__preamble__"
+    ]
+  },
+  "instructions": {
+    "old_count": 21,
+    "new_count": 20,
+    "added_instructions": [
+      "heading on its own line and a blank line before its prose. Use exactly the three"
+    ],
+    "removed_instructions": [
+      "For Fran\u00e7ais use exactly:",
+      "heading on its own line and a blank line before its prose. For English use exactly:"
+    ]
+  },
+  "risks": [],
+  "risk_count": 0
+}

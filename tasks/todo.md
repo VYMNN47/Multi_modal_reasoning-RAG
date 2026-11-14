@@ -6,6 +6,28 @@ Work through one step per focused session. For each step: understand the concept
 implement a small change, verify it, and explain what happened in your own words.
 Mark a task complete only when its completion criteria pass.
 
+## Internship exercise: Doukkala vegetation change
+
+- [x] Prepare real B04/B08 bands and SCL quality layers for 20 February 2024 and
+  14 February 2025 on the existing Doukkala footprint; verify alignment,
+  calibration, source metadata, and checksums. See the
+  [data walkthrough](../demo_data/doukkala_change/README.md).
+- [x] Apply a common valid-pixel mask and calculate calibrated NDVI for both dates.
+  Float32 rasters and a summary are saved under `demo_data/doukkala_change/ndvi/`.
+  Both dates use the same 262,140 land pixels; mean NDVI is 0.466847 in 2024
+  and 0.421007 in 2025. Formula, calibration, masking, and saved outputs are tested.
+- [x] Add the Doukkala NDVI example and connect Ask Gemini to its verified saved
+  measurements. Display the two RGB dates and measured means/medians, retain the
+  RGB-only NDVI limitation, and keep other examples on their existing prompt.
+- [x] Calculate and save pixelwise NDVI differences and increased/decreased/stable
+  NDVI classes. With a documented ±0.05 demo tolerance, 34.15% of valid pixels
+  decreased, 48.63% are stable, and 17.22% increased. Counts, projected-grid areas,
+  input provenance, and output hashes are saved under `demo_data/doukkala_change/change/`.
+  Verification: 106 main tests and 18 author calculation/writer checks pass;
+  the original source inputs and per-date NDVI files are unchanged.
+- [ ] Add a change map, legend, imagery/change switch, and area summary figures.
+- [ ] Prepare the ten-minute interview presentation and demonstration.
+
 ## Already completed
 
 - [x] Download three real Moroccan Sentinel-2 image crops and source metadata.

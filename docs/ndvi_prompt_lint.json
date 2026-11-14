@@ -1,0 +1,65 @@
+{
+  "file": "prompts/doukkala_ndvi_v3.txt",
+  "metrics": {
+    "token_estimate": 991,
+    "line_count": 75,
+    "char_count": 5331,
+    "word_count": 762
+  },
+  "clarity": {
+    "score": 80.0,
+    "grade": "good",
+    "deductions": []
+  },
+  "instruction_density": {
+    "density": 0.17,
+    "instruction_count": 16,
+    "sentence_count": 94,
+    "signals": [
+      "do not",
+      "only",
+      "require"
+    ]
+  },
+  "few_shot": {
+    "estimated_shots": 0,
+    "coverage": "none",
+    "pattern_hits": 1
+  },
+  "layer_coverage": {
+    "layers": {
+      "identity_role": {
+        "detected": true,
+        "signal_strength": 1,
+        "max_signals": 5
+      },
+      "capabilities_constraints": {
+        "detected": false,
+        "signal_strength": 0,
+        "max_signals": 6
+      },
+      "output_format": {
+        "detected": true,
+        "signal_strength": 1,
+        "max_signals": 6
+      },
+      "quality_standards": {
+        "detected": false,
+        "signal_strength": 0,
+        "max_signals": 5
+      },
+      "anti_patterns": {
+        "detected": true,
+        "signal_strength": 1,
+        "max_signals": 6
+      },
+      "examples": {
+        "detected": true,
+        "signal_strength": 1,
+        "max_signals": 5
+      }
+    },
+    "detected_count": 4,
+    "total_layers": 6
+  }
+}

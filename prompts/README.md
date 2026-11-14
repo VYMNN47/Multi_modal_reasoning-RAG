@@ -1,6 +1,8 @@
 # Agronomic prompt history
 
-Runtime prompt: **`agronomy_rag_v8.txt`**, version `agronomy-rag-v8` in `model.py`.
+Default runtime prompt: **`agronomy_rag_v8.txt`**, version `agronomy-rag-v8` in `model.py`.
+The measured Doukkala example uses **`doukkala_ndvi_v3.txt`**, version
+`doukkala-ndvi-v3`; other examples keep the default prompt.
 Restart/rerun after editing the loaded prompt and update its version when
 promoting a behavioral change so session answers are invalidated.
 
@@ -49,3 +51,26 @@ Rollback point: the step 4 application with image-only answers and independent
 retrieval. Reverting requires the matching model, app, and test changes along
 with the prompt snapshot, while preserving the shared client used by retrieval.
 Swapping only the prompt breaks the response contract.
+
+## Saved Doukkala NDVI results
+
+The NDVI prompt interprets a checksum-verified application summary alongside two
+dated RGB previews. It does not calculate NDVI or accept measurements from editable
+context. This case supplies only its NDVI method excerpt; it does not embed a
+query or retrieve unrelated fertilizer passages.
+
+| Candidate | Result |
+| --- | --- |
+| [NDVI v1](doukkala_ndvi_v1.txt) | The first browser probe preserved the numbers, but ran section labels together and cited unrelated retrieved fertilizer passages. The case was restricted to its method reference. |
+| [NDVI v2](doukkala_ndvi_v2.txt) | The initial numeric/scope probes passed. Manual review found a French heading in an English answer; adding that contract check gives 9/10. [Recorded answers](../docs/ndvi_answers_v2.json). |
+| [NDVI v3](doukkala_ndvi_v3.txt) | The trusted system suffix now supplies only the selected language's headings. All ten live numeric, scope, heading, and citation-placement probes pass. Lint remains 80/100; the v2→v3 text diff reports no heuristic risks. [Recorded answers](../docs/ndvi_answers_v3.json), [verification](../docs/ndvi_example.md). |
+
+The questions were fixed before generation. The heading check was strengthened
+after the v2 manual failure and applied to both versions. The scorer checks text
+contracts, not agronomic accuracy. Manual review still found some uncited method
+definitions in v3; source-label validation cannot guarantee citation completeness
+or entailment. The unchanged v8 live suite was not repeated.
+
+The NDVI prompt rollback checkpoint is v2 with its corresponding suffix-free
+instruction assembly in `model.py`; it has the recorded language limitation.
+Keep the saved data and the measured-result validation when changing prompts.

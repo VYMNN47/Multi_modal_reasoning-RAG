@@ -2,7 +2,20 @@
 
 **Interface update, 14 November 2026:** GeoScan now uses an HTML/CSS/JavaScript page and a stateless Python ASGI API on Vercel. Both custom images travel in one assessment request. The Gemini models, reviewed passages, and 3,072-dimensional embedding index are reused. Streamlit-specific checkpoints below describe earlier learning stages; current run/deploy instructions are in [README](../README.md).
 
-Status: steps 1–5 implemented and verified; streaming is the next step.
+Current internship work: the two-date Doukkala data package and calibrated NDVI
+for 20 February 2024 and 14 February 2025 are prepared and verified, using a
+common valid-land mask. Pixelwise NDVI differences and increased/decreased/stable
+classes are now calculated offline with a documented ±0.05 demo tolerance;
+counts, percentages, and projected-grid areas are saved under `change/`.
+The next increment displays the change map, legend, imagery/change switch, and
+area figures, then supplies the new measurements to Gemini. The per-date NDVI
+measurements are also connected to the new Doukkala NDVI web example and Ask Gemini, using a separate
+case prompt and the NDVI method reference. See the
+[data walkthrough](../demo_data/doukkala_change/README.md) and
+[exercise checklist](todo.md#internship-exercise-doukkala-vegetation-change).
+
+Original RAG roadmap status: steps 1–5 implemented and verified; streaming is
+deferred while completing the internship's vegetation-change features.
 The shared demo adds editable examples, decorative contours, and a dated
 comparison. [GeoScan is live on Vercel](https://geoscan-morocco.vercel.app), with
 server-side secrets configured after explicit approval. Public health, controls,

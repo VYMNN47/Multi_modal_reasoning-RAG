@@ -31,6 +31,10 @@ These are **8-bit true-color display products**, not numerical reflectance
 bands. They cannot be used to compute NDVI. Obtain the original red and NIR
 bands, with their scale/offset metadata, for quantitative vegetation indices.
 
+The separate [Doukkala change dataset](../doukkala_change/README.md) now supplies
+analytical B04/B08 bands for 20 February 2024 and 14 February 2025 on this exact
+Doukkala footprint. Its 2025 RGB preview is identical to the existing demo PNG.
+
 The images show real land. Crop identity, irrigation, soil chemistry, nutrient
 deficiencies, and treatment needs are **not verified**. Any invented scenario
 context added to the demo must be explicitly labeled synthetic. Differences
