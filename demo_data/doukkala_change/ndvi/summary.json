@@ -1,0 +1,59 @@
+{
+  "formula": "NDVI = (NIR reflectance - red reflectance) / (NIR reflectance + red reflectance)",
+  "mask_policy": "Keep SCL 4 (vegetation) and 5 (not vegetated) on both dates; require valid red/NIR/SCL masks, nonzero raw DNs, nonnegative calibrated reflectance, and a finite positive denominator.",
+  "scope_note": "Common valid land in the fixed landscape crop, including nonvegetated surfaces; this is not a parcel or crop-type mask.",
+  "input_manifest_sha256": "2743d508d24f2db57c279ea3a84cf86df62c99070638f4b013674d70518b1b33",
+  "grid": {
+    "crs": "EPSG:32629",
+    "transform_gdal": [
+      556270.0,
+      10.0,
+      0.0,
+      3617770.0,
+      0.0,
+      -10.0
+    ],
+    "width_px": 512,
+    "height_px": 512,
+    "bounds_utm_west_south_east_north": [
+      556270.0,
+      3612650.0,
+      561390.0,
+      3617770.0
+    ],
+    "bbox_wgs84_west_south_east_north": [
+      -8.400001724300235,
+      32.649763681787825,
+      -8.345074028307371,
+      32.696220697944554
+    ]
+  },
+  "nodata": -9999.0,
+  "common_valid_pixels": 262140,
+  "excluded_pixels": 4,
+  "scenes": [
+    {
+      "date": "2024-02-20",
+      "file": "2024-02-20_ndvi_10m.tif",
+      "valid_pixels_before_common_mask": 262144,
+      "mean": 0.466847137517314,
+      "median": 0.4031362980604172,
+      "min": -0.14364640414714813,
+      "max": 0.9453458786010742
+    },
+    {
+      "date": "2025-02-14",
+      "file": "2025-02-14_ndvi_10m.tif",
+      "valid_pixels_before_common_mask": 262140,
+      "mean": 0.421006592909319,
+      "median": 0.2924245297908783,
+      "min": -0.04654731601476669,
+      "max": 0.9421470165252686
+    }
+  ],
+  "sha256": {
+    "2024-02-20_ndvi_10m.tif": "e18e4b6d394cfe7f12643aabd0275e2c33245146655408e835d1a985b89bf430",
+    "2025-02-14_ndvi_10m.tif": "dabdc4e53e821c6e793bdf8b2d7644564d233eefa91f6174dbe32b1720a314b4",
+    "common_valid_mask.tif": "9082ab888b8bf4d02ed8e97c26b8c21b19f695444ca0f20a522e5c2bd83630f9"
+  }
+}
