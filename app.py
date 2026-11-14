@@ -1,23 +1,18 @@
 from io import BytesIO
-import base64
-import hashlib
 import json
-import os
 from pathlib import Path
 import warnings
 
 from PIL import Image, ImageOps
-import streamlit as st
 
 import model
 import rag
 
-
 ROOT = Path(__file__).resolve().parent
-ON_VERCEL = os.environ.get("VERCEL") == "1"
-MAX_UPLOAD_MB = 4 if ON_VERCEL else 10
+MAX_UPLOAD_MB = 4
 MAX_UPLOAD_BYTES = MAX_UPLOAD_MB * 1024 * 1024
 MAX_IMAGE_PIXELS = 16_000_000
+
 EXAMPLES = {
     "Gharb: Wheat and nitrogen": {
         "image": "gharb_2025-02-14_rgb_10m.png",
@@ -37,13 +32,6 @@ EXAMPLES = {
 }
 COMPARISON = json.loads((ROOT / "demo_data/comparison/case.json").read_text(encoding="utf-8"))
 EXAMPLES["Casablanca: Drought, 2023–2024"] = COMPARISON
-
-
-def select_example():
-    example = EXAMPLES.get(st.session_state["image_source"], {})
-    st.session_state["question"] = example.get("question", "")
-    st.session_state["context"] = example.get("context", "")
-    st.session_state.pop("answer", None)
 
 
 def load_image(data: bytes) -> Image.Image:
@@ -72,180 +60,77 @@ def load_image(data: bytes) -> Image.Image:
         raise ValueError("This file could not be read. Export a complete PNG or JPEG image and try again.") from exc
 
 
-def preview_image(data: bytes, caption: str = "") -> bytes:
-    with load_image(data) as image:
-        buffer = BytesIO()
-        image.save(buffer, format="PNG")
-        # Inline media avoids a later image GET reaching a different Vercel instance.
-        with image.copy() as thumbnail:
-            thumbnail.thumbnail((1024, 1024))
-            preview_buffer = BytesIO()
-            thumbnail.save(preview_buffer, format="JPEG", quality=90)
-        preview = "data:image/jpeg;base64," + base64.b64encode(preview_buffer.getvalue()).decode("ascii")
-        st.image(preview, caption=caption or f"{image.width} × {image.height} pixels · RGB preview", width="stretch")
-        return buffer.getvalue()
+EXAMPLE_FILES = {}
+for example in EXAMPLES.values():
+    if "images" in example:
+        for item in example["images"]:
+            EXAMPLE_FILES[item["file"]] = ROOT / "demo_data/comparison" / item["file"]
+    else:
+        EXAMPLE_FILES[example["image"]] = ROOT / "demo_data/sentinel2" / example["image"]
 
 
-def main():
-    st.set_page_config(page_title="GeoScan | Morocco", page_icon="🌾", layout="wide")
-    pattern = base64.b64encode((ROOT / "assets/topography.svg").read_bytes()).decode("ascii")
-    css = (ROOT / "assets/app.css").read_text().replace("TOPOGRAPHY_BASE64", pattern)
-    st.html(f"<style>{css}</style>")
-    st.caption("Moroccan agriculture demo")
-    st.title("GeoScan")
-    st.write("Moroccan crop and land analysis")
-    if "image_source" not in st.session_state:
-        st.session_state["image_source"] = next(iter(EXAMPLES))
-        select_example()
-    picker, locale = st.columns([2, 1], gap="large")
-    with picker:
-        source = st.selectbox(
-            "Start with a field example, or upload your own",
-            [*EXAMPLES, "Upload my own image"],
-            key="image_source", on_change=select_example,
-        )
-    with locale:
-        language = st.radio("Answer language", model.ANSWER_LANGUAGES, horizontal=True, key="language")
-    comparison = EXAMPLES.get(source) if source == "Casablanca: Drought, 2023–2024" else None
-    media, editor = (st.container(), st.container()) if comparison else st.columns([1, 1.1], gap="large")
-    image_pngs, data = [], None
-    with media:
-        image_feedback = st.empty()
-        if comparison:
-            st.subheader(comparison["title"])
-            try:
-                for column, item in zip(st.columns(2, gap="medium"), comparison["images"]):
-                    with column:
-                        data = (ROOT / "demo_data/comparison" / item["file"]).read_bytes()
-                        image_pngs.append(preview_image(data, f"{item['date']} · {item['platform']} / {item['instrument']}"))
-            except (OSError, ValueError):
-                image_pngs.clear()
-                image_feedback.error("The comparison could not be loaded. Choose another example or try again later.")
-            st.caption("372 days apart · Same Casablanca-region area · Regional RGB views, not individual parcel measurements.")
-            st.caption(comparison["attribution"])
-            with st.expander("About this comparison and its source"):
-                st.write(comparison["reference"]["text"])
-                st.write(comparison["reference"]["use_note"])
-                st.markdown(f"[Read the NASA report]({comparison['source_url']})")
-                st.caption("This report is included for this selected example, alongside up to two semantically retrieved agricultural excerpts.")
-        elif source in EXAMPLES:
-            st.subheader("The field")
-            try:
-                data = (ROOT / "demo_data/sentinel2" / EXAMPLES[source]["image"]).read_bytes()
-            except OSError:
-                image_feedback.error("This example image could not be loaded. Choose another example or upload an image.")
-        else:
-            uploaded = st.file_uploader(
-                "Satellite image", type=["png", "jpg", "jpeg"],
-                max_upload_size=MAX_UPLOAD_MB, key="image",
-                help=f"PNG or JPEG. Up to {MAX_UPLOAD_MB} MB and 16 million pixels.",
-            )
-            data = uploaded.getvalue() if uploaded is not None else None
-        if data is not None and not comparison:
-            try:
-                image_pngs.append(preview_image(data))
-            except ValueError as exc:
-                image_feedback.error(str(exc))
-        elif data is None and not comparison:
-            st.info("Choose a PNG or JPEG to preview the field.")
-        if source in EXAMPLES and not comparison:
-            st.caption("Real Sentinel-2 imagery, acquired 14 February 2025. Crop and soil details in the editable scenario are synthetic.")
-        if not comparison:
-            st.caption("Contains modified Copernicus Sentinel data 2025.")
-
-    with editor:
-        with st.form("field_question", clear_on_submit=False):
-            st.header("Ask about the field")
-            question = st.text_area(
-                "Your question", key="question", height=100, max_chars=2000,
-                placeholder="Why are some patches lighter than the surrounding fields?",
-            )
-            question_feedback = st.empty()
-            context = st.text_area(
-                "Field context (optional)", key="context", height=100, max_chars=4000,
-                placeholder="Crop, region, image date, growth stage, and which field to look at.",
-                help="Add what you know. Label invented demo details as synthetic.",
-            )
-            context_feedback = st.empty()
-            st.caption("Image assessments send your image, question, context, and selected reference excerpts to Google Gemini.")
-            submitted = st.form_submit_button("Ask Gemini", type="primary", width="stretch")
-
-    request_signature = (
-        tuple(hashlib.sha256(image).hexdigest() for image in image_pngs),
-        hashlib.sha256(json.dumps(comparison, sort_keys=True).encode()).hexdigest() if comparison else None,
-        question.strip(),
-        context.strip(),
-        language,
-        model.PROMPT_VERSION,
-    )
-    if st.session_state.get("answer", {}).get("inputs") != request_signature:
-        st.session_state.pop("answer", None)
-
-    if submitted:
-        st.session_state.pop("answer", None)
-        if data is None and not comparison:
-            image_feedback.error("Choose a field example or upload a PNG or JPEG satellite image.")
-        question_valid = bool(question.strip()) and len(question) <= 2000
-        if not question_valid:
-            question_feedback.error("Enter a question using 1–2,000 characters, not just spaces.")
-        context_valid = len(context) <= 4000
-        if not context_valid:
-            context_feedback.error("Shorten the field context to 4,000 characters or fewer.")
-        if len(image_pngs) == (2 if comparison else 1) and question_valid and context_valid:
-            try:
-                answer = model.input_limit_notice(question, language)
-                if answer is None:
-                    with st.spinner("Finding agricultural references…", show_time=True):
-                        if comparison:
-                            passages = [comparison["reference"], *rag.semantic_search(question.strip(), context.strip(), top_k=2)[:2]]
-                        else:
-                            passages = rag.semantic_search(question.strip(), context.strip())
-                    with st.spinner("Gemini is reviewing your images…" if comparison else "Gemini is reviewing your image…", show_time=True):
-                        if comparison:
-                            answer = model.answer_image(
-                                image_pngs[0], question.strip(), context.strip(), passages, language=language,
-                                comparison_image_png=image_pngs[1],
-                                image_dates=tuple(item["date"] for item in comparison["images"]),
-                            )
-                        else:
-                            answer = model.answer_image(image_pngs[0], question.strip(), context.strip(), passages, language=language)
-                st.session_state["answer"] = {"inputs": request_signature, "field_context": context.strip(), **answer}
-                if answer.get("kind") != "input_limit":
-                    st.success("Gemini response ready.")
-            except model.GeminiError as exc:
-                st.error(str(exc))
-
-    if "answer" in st.session_state:
-        answer = st.session_state["answer"]
-        st.header("Input limitation" if answer.get("kind") == "input_limit" else "Gemini response")
-        if answer["evidence_status"] == "insufficient":
-            st.info("No reference excerpt was cited. Review the assessment's stated evidence limits.")
-        elif answer["evidence_status"] == "out_of_scope":
-            st.info("This demo handles agricultural imagery, soils, crop nutrition, water, and field checks.")
-        else:
-            st.caption("Reported field context is unverified. References are background guidance; check their date, crops, and geographic scope.")
-        if answer.get("kind") != "input_limit":
-            reported_context = answer.get("field_context", context.strip())
-            st.caption("Context supplied by you (unverified)")
-            st.text(reported_context or "No field context supplied.", width="stretch")
-        st.markdown(answer["text"])
-        if answer["sources"]:
-            st.subheader("References cited")
-            for source in answer["sources"]:
-                with st.expander(f"{source['citation']} · {source['section']}"):
-                    st.write(source["title"])
-                    year = source["publication_year"] if source["publication_year"] is not None else "unverified"
-                    is_web = source.get("source_format") == "web"
-                    st.caption(f"Published: {source['publication_date']}" if is_web else f"Publication year: {year} · Physical PDF page: {source['pdf_page']}")
-                    st.caption("Crops covered: " + ", ".join(source["crops"]))
-                    st.write(source["geographic_scope"])
-                    st.write(source["use_note"])
-                    st.markdown(f"[{'Open original report' if is_web else 'Open original PDF'}]({source['url']})")
-                    st.caption("Excerpt supplied to Gemini")
-                    st.write(source["text"])
-
-    st.caption("RGB imagery shows visible patterns. Soil and nutrient conditions need field evidence.")
+def example_catalog() -> list[dict]:
+    result = []
+    for label, example in EXAMPLES.items():
+        paired = "images" in example
+        images = example["images"] if paired else [{"file": example["image"]}]
+        result.append({
+            "id": label, "label": label, "question": example["question"], "context": example["context"],
+            "images": [{"url": "/api/example-images/" + item["file"],
+                        "caption": f"{item['date']} · {item['platform']} / {item['instrument']}" if paired else "Sentinel-2 · 14 February 2025"}
+                       for item in images],
+            "attribution": example["attribution"] if paired else "Contains modified Copernicus Sentinel data 2025. Crop and soil scenario details are synthetic.",
+            "description": example["reference"]["use_note"] if paired else "Real satellite imagery with editable, synthetic demo context.",
+            "source_url": example.get("source_url"),
+        })
+    return result
 
 
-if __name__ == "__main__":
-    main()
+def prepare_images(images: list[bytes]) -> list[bytes]:
+    if not 1 <= len(images) <= 2:
+        raise ValueError("Choose one or two PNG/JPEG images.")
+    if sum(len(data) for data in images) > MAX_UPLOAD_BYTES:
+        raise ValueError("Choose images totaling 4 MB or less.")
+    prepared = []
+    for data in images:
+        with load_image(data) as image:
+            buffer = BytesIO()
+            image.save(buffer, format="PNG")
+            prepared.append(buffer.getvalue())
+    if sum(map(len, prepared)) > model.MAX_IMAGE_BYTES:
+        raise ValueError("The images are too large after preparation. Export smaller crops and try again.")
+    return prepared
+
+
+def assess(question: str, context: str, language: str, case: str, uploads: list[bytes]) -> dict:
+    if not question.strip() or len(question) > 2000 or len(context) > 4000:
+        raise ValueError("Enter a question of 1–2,000 characters and context of at most 4,000 characters.")
+    if language not in model.ANSWER_LANGUAGES:
+        raise ValueError("Choose English or Français as the answer language.")
+    if case != "upload" and case not in EXAMPLES:
+        raise ValueError("Choose an available example or upload your own images.")
+    example = EXAMPLES.get(case)
+    if example and uploads:
+        raise ValueError("Choose an example or your own uploads for this assessment.")
+    if example:
+        items = example["images"] if "images" in example else [{"file": example["image"]}]
+        images = [EXAMPLE_FILES[item["file"]].read_bytes() for item in items]
+    else:
+        images = uploads
+    prepared = prepare_images(images)
+    question, context = question.strip(), context.strip()
+    answer = model.input_limit_notice(question, language)
+    if answer is None:
+        dated = example is not None and "images" in example
+        passages = ([example["reference"], *rag.semantic_search(question, context, top_k=2)[:2]]
+                    if dated else rag.semantic_search(question, context))
+        options = {"language": language}
+        if len(prepared) == 2:
+            options["comparison_image_png"] = prepared[1]
+        if dated:
+            options["image_dates"] = tuple(item["date"] for item in example["images"])
+        answer = model.answer_image(prepared[0], question, context, passages, **options)
+    fields = ("citation", "title", "section", "url", "text", "publication_year", "publication_date",
+              "source_format", "pdf_page", "crops", "geographic_scope", "use_note")
+    return {**answer, "field_context": context,
+            "sources": [{key: source.get(key) for key in fields} for source in answer["sources"]]}

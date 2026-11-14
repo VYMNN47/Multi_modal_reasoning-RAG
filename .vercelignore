@@ -14,6 +14,7 @@ __pycache__/
 docs/
 tasks/
 tests/
+premium-ui.json
 
 # Explicit exclusions avoid the native CLI pruning an ignored parent directory.
 demo_data/*.zip

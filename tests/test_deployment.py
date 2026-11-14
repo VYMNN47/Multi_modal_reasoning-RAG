@@ -1,9 +1,9 @@
 from pathlib import Path
 import json
 import subprocess
-import sys
 import unittest
 from unittest.mock import patch
+from starlette.testclient import TestClient
 
 from app import load_image
 
@@ -12,31 +12,34 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class DeploymentTests(unittest.TestCase):
-    def test_asgi_entrypoint_starts_and_serves_http_and_websocket(self):
-        # A child process keeps Streamlit's singleton runtime separate from AppTest.
-        script = """
-from starlette.testclient import TestClient
-from api.index import app
-import rag
-with TestClient(app) as client:
-    assert client.get('/_stcore/health').status_code == 200
-    response = client.get('/')
-    assert response.status_code == 200 and 'Streamlit' in response.text
-    assert 'GEMINI_API_KEY=' not in client.get('/.env').text
-    with client.websocket_connect('/_stcore/stream', headers={'Origin': 'http://testserver'}):
-        pass
-assert len(rag.load_index()) == 16
-"""
-        result = subprocess.run([sys.executable, "-c", script], cwd=ROOT, capture_output=True, text=True, timeout=25)
-        self.assertEqual(result.returncode, 0, result.stderr[-2500:])
+    def test_asgi_entrypoint_serves_the_web_app_without_streamlit_sessions(self):
+        from api.index import app
+        import rag
+        with TestClient(app) as client:
+            self.assertEqual(client.get('/api/health').json(), {"status": "ok"})
+            response = client.get('/')
+            self.assertEqual(response.status_code, 200)
+            self.assertIn('GeoScan', response.text)
+            self.assertNotIn('Streamlit', response.text)
+            for asset in ('site.js', 'site.css', 'topography.svg'):
+                self.assertEqual(client.get('/assets/' + asset).status_code, 200)
+            self.assertEqual(client.get('/.env').status_code, 404)
+            self.assertEqual(client.get('/_stcore/health').status_code, 404)
+            self.assertIn("script-src 'self'", response.headers['content-security-policy'])
+            self.assertEqual(response.headers['x-content-type-options'], 'nosniff')
+        self.assertNotIn('streamlit', (ROOT / 'requirements.txt').read_text())
+        self.assertEqual(len(rag.load_index()), 16)
 
     def test_deployment_ignores_secrets_and_raw_data_but_keeps_runtime_assets(self):
         config = json.loads((ROOT / "vercel.json").read_text())
+        self.assertEqual(config["outputDirectory"], "public")
+        self.assertTrue((ROOT / "public").is_dir())
+        self.assertFalse((ROOT / "public/demo_data").exists())
         function = config["functions"]["api/index.py"]
         self.assertLessEqual(len(function["includeFiles"]), 256)
         self.assertEqual(config["rewrites"], [{"source": "/(.*)", "destination": "/api/index"}])
-        allowed = ["api/index.py", "asgi.py", "app.py", "assets/app.css", "assets/topography.svg",
-                   "prompts/agronomy_rag_v7.txt", "demo_data/rag_documents/passages.jsonl",
+        allowed = ["api/index.py", "asgi.py", "app.py", "assets/site.css", "assets/site.js", "assets/index.html", "assets/topography.svg",
+                   "prompts/agronomy_rag_v8.txt", "demo_data/rag_documents/passages.jsonl",
                    "demo_data/rag_documents/embedding_index.json",
                    "demo_data/comparison/case.json",
                    "demo_data/comparison/moroccodrought_amo_20230212_lrg.jpg",

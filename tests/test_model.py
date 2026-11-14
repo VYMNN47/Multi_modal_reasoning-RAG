@@ -132,9 +132,18 @@ class GeminiRequestTests(unittest.TestCase):
         self.assertEqual(context["question"], "What changed?")
         self.assertEqual(list(context)[-1], "question")
 
+    def test_undated_pair_sends_both_images_without_inventing_dates(self):
+        model.answer_image(b"first-png", "Compare the fields.", comparison_image_png=b"second-png")
+        body = json.loads(self.requests[0].content)
+        first, second, text = body["contents"][0]["parts"]
+        self.assertEqual(base64.b64decode(first["inlineData"]["data"]), b"first-png")
+        self.assertEqual(base64.b64decode(second["inlineData"]["data"]), b"second-png")
+        self.assertNotIn("image_dates", json.loads(text["text"]))
+        self.assertEqual(json.loads(text["text"])["question"], "Compare the fields.")
+
     def test_invalid_comparison_inputs_fail_before_constructing_a_client(self):
         cases = [
-            {"comparison_image_png": b"after-png"},
+            {"comparison_image_png": b""},
             {"image_dates": ("2023-02-12", "2024-02-19")},
             {"comparison_image_png": b"", "image_dates": ("2023-02-12", "2024-02-19")},
             {"comparison_image_png": b"after-png", "image_dates": ("2024-02-19", "2023-02-12")},

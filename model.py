@@ -13,8 +13,9 @@ import httpx2
 
 ENV_FILE = Path(__file__).with_name(".env")
 MODEL_NAME = "gemini-3.5-flash-lite"
-PROMPT_VERSION = "agronomy-rag-v7"
-SYSTEM_PROMPT = (Path(__file__).parent / "prompts/agronomy_rag_v7.txt").read_text(encoding="utf-8")
+MAX_IMAGE_BYTES = 10 * 1024 * 1024
+PROMPT_VERSION = "agronomy-rag-v8"
+SYSTEM_PROMPT = (Path(__file__).parent / "prompts/agronomy_rag_v8.txt").read_text(encoding="utf-8")
 ANSWER_LANGUAGES = ("English", "Français")
 ANSWER_SCHEMA = {
     "type": "object",
@@ -149,11 +150,11 @@ def create_client() -> genai.Client:
 
 
 def answer_image(image_png: bytes, question: str, context: str = "", passages: list[dict] | None = None, language: str = "English", *, comparison_image_png: bytes | None = None, image_dates: tuple[str, str] | None = None) -> dict:
-    """Send one PNG or a dated pair with selected excerpts; check the citations."""
+    """Send one PNG or a pair with selected excerpts; validate dates when supplied."""
     images = [image_png] + ([comparison_image_png] if comparison_image_png is not None else [])
-    if any(not isinstance(data, bytes) or not data for data in images) or sum(len(data) for data in images) > 10 * 1024 * 1024:
+    if any(not isinstance(data, bytes) or not data for data in images) or sum(len(data) for data in images) > MAX_IMAGE_BYTES:
         raise GeminiError("Image is too large after preparation. Export a smaller crop and try again.")
-    if comparison_image_png is not None or image_dates is not None:
+    if image_dates is not None:
         try:
             if (comparison_image_png is None or not isinstance(image_dates, tuple) or len(image_dates) != 2
                     or any(not isinstance(value, str) or not re.fullmatch(r"\d{4}-\d{2}-\d{2}", value) for value in image_dates)):

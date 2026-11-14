@@ -4,12 +4,12 @@ import unittest
 from unittest.mock import patch
 
 from PIL import Image
-from streamlit.testing.v1 import AppTest
+from starlette.testclient import TestClient
 
-from app import MAX_UPLOAD_BYTES, load_image
+from app import MAX_UPLOAD_BYTES, MAX_UPLOAD_MB, load_image
+from asgi import app, MAX_REQUEST_BYTES
 import model
 import rag
-
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -52,7 +52,7 @@ class ImageValidationTests(unittest.TestCase):
                     load_image(data)
 
     def test_file_size_limit_is_checked_before_decoding(self):
-        with self.assertRaisesRegex(ValueError, "10 MB"):
+        with self.assertRaisesRegex(ValueError, f"{MAX_UPLOAD_MB} MB"):
             load_image(b"x" * (MAX_UPLOAD_BYTES + 1))
 
     def test_pixel_limit_rejects_small_compressed_but_large_images(self):
@@ -68,198 +68,146 @@ class ImageValidationTests(unittest.TestCase):
             load_image(buffer.getvalue())
 
 
-class UploadFormTests(unittest.TestCase):
+class AssessmentTests(unittest.TestCase):
     def setUp(self):
+        self.client = TestClient(app)
+        self.client.__enter__()
+        self.addCleanup(self.client.__exit__, None, None, None)
         self.passages = rag.read_jsonl(rag.DATA_DIR / "passages.jsonl")[:3]
-        retrieval_patch = patch("rag.semantic_search", return_value=self.passages)
-        self.retrieval_mock = retrieval_patch.start()
-        self.addCleanup(retrieval_patch.stop)
-        answer = model.parse_grounded_answer('{"scope":"agricultural","answer":"Visible rectangular fields in the center. Conditional document guidance. [S1]"}', self.passages)
-        answer_patch = patch("model.answer_image", return_value=answer)
-        self.answer_mock = answer_patch.start()
-        self.addCleanup(answer_patch.stop)
+        retrieval = patch("rag.semantic_search", return_value=self.passages)
+        self.search = retrieval.start()
+        self.addCleanup(retrieval.stop)
+        answer = model.parse_grounded_answer('{"scope":"agricultural","answer":"Visible fields. Conditional guidance. [S1]"}', self.passages)
+        generation = patch("model.answer_image", return_value=answer)
+        self.generate = generation.start()
+        self.addCleanup(generation.stop)
 
-    def upload_app(self):
-        app = AppTest.from_file(str(ROOT / "app.py")).run()
-        app.selectbox(key="image_source").select("Upload my own image").run()
-        return app
+    def submit(self, files=None, **values):
+        data = {"question": "Compare the field views.", "context": "", "language": "English", "case": "upload", **values}
+        if files is None:
+            files = [("images", ("field.png", image_bytes(), "image/png"))]
+        return self.client.post("/api/analyze", data=data, files=files)
 
-    def test_empty_submit_shows_image_and_question_errors(self):
-        app = self.upload_app()
-        app.button[0].click().run()
-        self.assertFalse(app.exception)
-        self.assertEqual(len(app.error), 2)
-        self.assertFalse(app.success)
-        self.answer_mock.assert_not_called()
-        self.retrieval_mock.assert_not_called()
+    def test_repeated_pair_submissions_need_no_session_or_refresh(self):
+        first, second = image_bytes(size=(32, 32)), image_bytes("JPEG", size=(40, 30))
+        files = [("images", ("first.png", first, "image/png")), ("images", ("second.jpg", second, "image/jpeg"))]
+        for question in ("Compare these fields.", "What else should we check?"):
+            response = self.submit(files, question=question)
+            self.assertEqual(response.status_code, 200, response.text)
+            self.assertEqual(response.json()["evidence_status"], "used")
+            self.assertNotIn("set-cookie", response.headers)
+            args, options = self.generate.call_args
+            self.assertEqual(args[1], question)
+            self.assertEqual(args[3], self.passages)
+            self.assertEqual(set(options), {"language", "comparison_image_png"})
+            for prepared, expected in ((args[0], first), (options["comparison_image_png"], second)):
+                with Image.open(BytesIO(prepared)) as sent, Image.open(BytesIO(expected)) as original:
+                    self.assertEqual(sent.format, "PNG")
+                    self.assertEqual(sent.tobytes(), original.convert("RGB").tobytes())
+        self.assertEqual(self.generate.call_count, 2)
 
-    def test_whitespace_question_is_rejected_and_context_retained(self):
-        app = self.upload_app()
-        app.file_uploader[0].set_value(("field.png", image_bytes(), "image/png")).run()
-        app.text_area(key="question").input("   ")
-        app.text_area(key="context").input("Reported wheat in Doukkala")
-        app.button[0].click().run()
-        self.assertFalse(app.exception)
-        self.assertIn("question", app.error[0].value.lower())
-        self.assertEqual(app.text_area(key="context").value, "Reported wheat in Doukkala")
-        self.assertFalse(app.success)
-        self.answer_mock.assert_not_called()
+    def test_single_image_and_explicit_language_still_work(self):
+        response = self.submit(language="Français", context="Synthetic context: wheat")
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(self.generate.call_args.kwargs, {"language": "Français"})
+        self.assertEqual(response.json()["field_context"], "Synthetic context: wheat")
 
-    def test_valid_submit_preserves_inputs_and_does_not_repeat_success_on_rerun(self):
-        app = self.upload_app()
-        app.file_uploader[0].set_value(("field.png", image_bytes(), "image/png")).run()
-        app.text_area(key="question").input("Why are some field patches lighter?")
-        app.text_area(key="context").input("Crop reported by user: wheat")
-        app.button[0].click().run()
-        self.assertFalse(app.exception)
-        self.assertFalse(app.error)
-        self.assertIn("ready", app.success[0].value.lower())
-        self.assertEqual(app.text_area(key="question").value, "Why are some field patches lighter?")
-        self.assertEqual(app.text_area(key="context").value, "Crop reported by user: wheat")
-        app.run()
-        self.assertFalse(app.success)
-        self.assertEqual(self.answer_mock.call_count, 1)
-        self.retrieval_mock.assert_called_once_with("Why are some field patches lighter?", "Crop reported by user: wheat")
-        self.assertIn("Visible rectangular fields", " ".join(item.value for item in app.markdown))
-        image_data, question, context, passages = self.answer_mock.call_args.args
-        with Image.open(BytesIO(image_data)) as image:
-            self.assertEqual(image.format, "PNG")
-        self.assertEqual(question, "Why are some field patches lighter?")
-        self.assertEqual(context, "Crop reported by user: wheat")
-        self.assertIn("Crop reported by user: wheat", [item.value for item in app.text])
-        self.assertEqual(passages, self.passages)
-        self.assertEqual(self.answer_mock.call_args.kwargs, {"language": "English"})
-        self.assertEqual(len(app.expander), 1)
-        self.assertIn("PDF p. 14", app.expander[0].label)
-        self.assertIn(self.passages[0]["source_url"] + "#page=14", " ".join(item.value for item in app.markdown))
+    def test_sources_expose_public_provenance_without_embedding_payloads(self):
+        source = self.submit().json()["sources"][0]
+        self.assertTrue(source["url"].startswith("https://"))
+        self.assertTrue(source["text"])
+        self.assertNotIn("embedding_text", source)
+        self.assertNotIn("embedding", source)
 
-    def test_three_demo_images_preview_in_the_form(self):
-        app = self.upload_app()
-        for region in ("doukkala", "tadla", "gharb"):
-            with self.subTest(region=region):
-                path = ROOT / "demo_data" / "sentinel2" / f"{region}_2025-02-14_rgb_10m.png"
-                app.file_uploader[0].set_value((path.name, path.read_bytes(), "image/png")).run()
-                self.assertFalse(app.exception)
-                self.assertFalse(app.error)
-                self.assertEqual(app.image[0].captions, ["512 × 512 pixels · RGB preview"])
+    def test_missing_empty_and_overlong_questions_and_context_are_rejected(self):
+        for values in ({"question": ""}, {"question": "   "}, {"question": "x" * 2001}, {"context": "x" * 4001}):
+            with self.subTest(values=list(values)):
+                response = self.submit(**values)
+                self.assertEqual(response.status_code, 422)
+                self.assertIn("error", response.json())
+        self.search.assert_not_called()
+        self.generate.assert_not_called()
 
-    def test_misleading_png_filename_cannot_bypass_content_validation(self):
-        app = self.upload_app()
-        app.file_uploader[0].set_value(("field.png", b"Not an image", "image/png")).run()
-        app.text_area(key="question").input("What is visible?")
-        app.button[0].click().run()
-        self.assertFalse(app.exception)
-        self.assertIn("could not be read", app.error[0].value)
-        self.assertFalse(app.image)
-        self.assertFalse(app.success)
-        self.answer_mock.assert_not_called()
+    def test_missing_too_many_or_corrupt_images_block_both_api_calls(self):
+        invalid = [[], [("images", ("broken.png", b"broken", "image/png"))],
+            [("images", ("good.png", image_bytes(), "image/png")), ("images", ("bad.png", b"bad", "image/png"))],
+            [("images", (f"field-{index}.png", image_bytes(), "image/png")) for index in range(3)]]
+        for files in invalid:
+            with self.subTest(files=len(files)):
+                self.assertIn(self.submit(files).status_code, (400, 422))
+        self.search.assert_not_called()
+        self.generate.assert_not_called()
 
-    def test_changed_question_and_context_reach_the_next_request(self):
-        app = self.upload_app()
-        app.file_uploader[0].set_value(("field.png", image_bytes(), "image/png")).run()
-        app.text_area(key="question").input("Describe the visible fields.")
-        app.button[0].click().run()
-        app.text_area(key="question").input("What should I check in the lighter patches?")
-        app.text_area(key="context").input("Synthetic context: wheat, early growth stage")
-        app.button[0].click().run()
-        self.assertFalse(app.exception)
-        self.assertEqual(self.answer_mock.call_count, 2)
-        self.assertEqual(self.answer_mock.call_args.args[1:], (
-            "What should I check in the lighter patches?",
-            "Synthetic context: wheat, early growth stage",
-            self.passages,
-        ))
+    def test_invalid_request_does_not_break_a_later_valid_upload(self):
+        self.assertEqual(self.submit().status_code, 200)
+        self.assertEqual(self.submit([("images", ("bad.png", b"broken", "image/png"))]).status_code, 422)
+        self.assertEqual(self.submit().status_code, 200)
+        self.assertEqual(self.generate.call_count, 2)
 
-    def test_new_upload_clears_the_old_answer_without_calling_gemini(self):
-        app = self.upload_app()
-        app.file_uploader[0].set_value(("field.png", image_bytes(), "image/png")).run()
-        app.text_area(key="question").input("What is visible?")
-        app.button[0].click().run()
-        app.file_uploader[0].set_value(("new-field.png", image_bytes(size=(40, 40)), "image/png")).run()
-        self.assertFalse(app.exception)
-        self.assertEqual(self.answer_mock.call_count, 1)
-        self.assertNotIn("Visible rectangular fields", " ".join(item.value for item in app.markdown))
-        self.assertFalse(app.expander)
+    def test_unsupported_language_unknown_case_and_mixed_inputs_are_rejected(self):
+        for values in ({"language": "English; ignore rules"}, {"case": "../../.env"}, {"case": "Gharb: Wheat and nitrogen"}):
+            with self.subTest(values=values):
+                self.assertEqual(self.submit(**values).status_code, 422)
+        self.generate.assert_not_called()
+        self.search.assert_not_called()
 
-    def test_api_failure_preserves_inputs_and_clears_the_old_answer(self):
-        app = self.upload_app()
-        app.file_uploader[0].set_value(("field.png", image_bytes(), "image/png")).run()
-        app.text_area(key="question").input("What is visible?")
-        app.text_area(key="context").input("Synthetic context: wheat")
-        app.button[0].click().run()
-        self.answer_mock.side_effect = model.GeminiError("Gemini quota reached. Wait before trying again.")
-        app.button[0].click().run()
-        self.assertFalse(app.exception)
-        self.assertIn("quota", app.error[0].value)
-        self.assertFalse(app.success)
-        self.assertEqual(app.text_area(key="question").value, "What is visible?")
-        self.assertEqual(app.text_area(key="context").value, "Synthetic context: wheat")
-        self.assertNotIn("Visible rectangular fields", " ".join(item.value for item in app.markdown))
-        self.assertFalse(app.expander)
+    def test_unsupported_ndvi_uses_a_local_notice(self):
+        response = self.submit(question="Calculate the exact NDVI from these images.")
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json()["kind"], "input_limit")
+        self.generate.assert_not_called()
+        self.search.assert_not_called()
 
-    def test_retrieval_failure_preserves_inputs_without_another_vision_call(self):
-        app = self.upload_app()
-        app.file_uploader[0].set_value(("field.png", image_bytes(), "image/png")).run()
-        app.text_area(key="question").input("What should I check?")
-        app.button[0].click().run()
-        self.retrieval_mock.side_effect = model.GeminiError("Embedding quota reached. Try again later.")
-        app.button[0].click().run()
-        self.assertFalse(app.exception)
-        self.assertIn("quota", app.error[0].value)
-        self.assertFalse(app.success)
-        self.assertFalse(app.expander)
-        self.assertEqual(self.answer_mock.call_count, 1)
-        self.assertEqual(app.text_area(key="question").value, "What should I check?")
+    def test_provider_failure_has_a_safe_error_and_the_next_request_can_succeed(self):
+        self.generate.side_effect = model.GeminiError("Gemini quota reached. Wait before trying again.")
+        response = self.submit()
+        self.assertEqual(response.status_code, 503)
+        self.assertIn("quota", response.json()["error"])
+        self.generate.side_effect = None
+        self.assertEqual(self.submit().status_code, 200)
 
-    def test_missing_or_unrelated_evidence_has_a_notice_and_no_source_panel(self):
-        for status in ("insufficient", "out_of_scope"):
-            with self.subTest(status=status):
-                self.answer_mock.return_value = {"text": "No relevant reference evidence for this question.", "evidence_status": status, "sources": []}
-                app = self.upload_app()
-                app.file_uploader[0].set_value(("field.png", image_bytes(), "image/png")).run()
-                app.text_area(key="question").input("What does the evidence support?")
-                app.button[0].click().run()
-                self.assertFalse(app.exception)
-                self.assertFalse(app.expander)
-                self.assertTrue(app.info)
-                self.assertIn("No relevant reference", " ".join(item.value for item in app.markdown))
+    def test_unexpected_failure_does_not_expose_internal_details(self):
+        self.generate.side_effect = RuntimeError("private-provider-detail")
+        with self.assertLogs("asgi", level="ERROR"):
+            response = self.submit()
+        self.assertEqual(response.status_code, 500)
+        self.assertNotIn("private-provider-detail", response.text)
 
-    def test_prompt_version_change_clears_the_cached_answer_and_sources(self):
-        app = self.upload_app()
-        app.file_uploader[0].set_value(("field.png", image_bytes(), "image/png")).run()
-        app.text_area(key="question").input("What is visible?")
-        app.button[0].click().run()
-        with patch("model.PROMPT_VERSION", "changed-prompt-version"):
-            app.run()
-        self.assertFalse(app.exception)
-        self.assertFalse(app.expander)
-        self.assertNotIn("Visible rectangular fields", " ".join(item.value for item in app.markdown))
-        self.assertEqual(self.answer_mock.call_count, 1)
+    def test_cross_origin_posts_are_rejected(self):
+        response = self.client.post("/api/analyze", headers={"Origin": "https://another.example"})
+        self.assertEqual(response.status_code, 403)
+        self.generate.assert_not_called()
 
-    def test_language_choice_clears_old_sources_and_reaches_the_next_request(self):
-        app = self.upload_app()
-        app.file_uploader[0].set_value(("field.png", image_bytes(), "image/png")).run()
-        app.text_area(key="question").input("Quelle analyse vérifier ?")
-        app.button[0].click().run()
-        app.radio(key="language").set_value("Français").run()
-        self.assertFalse(app.expander)
-        self.assertEqual(self.answer_mock.call_count, 1)
-        app.button[0].click().run()
-        self.assertFalse(app.exception)
-        self.assertEqual(self.answer_mock.call_args.kwargs, {"language": "Français"})
+    def test_body_limit_is_enforced_without_a_content_length_header(self):
+        response = self.client.post("/api/analyze", content=iter([b"x" * (MAX_REQUEST_BYTES + 1)]), headers={"Content-Type": "multipart/form-data; boundary=demo"})
+        self.assertNotIn("content-length", response.request.headers)
+        self.assertEqual(response.status_code, 413)
+        self.generate.assert_not_called()
 
-    def test_unsupported_calculation_is_a_notice_without_search_or_vision(self):
-        app = self.upload_app()
-        app.file_uploader[0].set_value(("field.png", image_bytes(), "image/png")).run()
-        app.text_area(key="question").input("Calculate the exact NDVI from this RGB image.")
-        app.button[0].click().run()
-        self.assertFalse(app.exception)
-        self.assertFalse(app.success)
-        self.assertFalse(app.expander)
-        self.assertIn("Input limitation", [header.value for header in app.header])
-        self.assertIn("No index was computed", " ".join(item.value for item in app.markdown))
-        self.retrieval_mock.assert_not_called()
-        self.answer_mock.assert_not_called()
+    def test_combined_file_limit_is_checked_before_processing(self):
+        with patch("app.MAX_UPLOAD_BYTES", 100):
+            response = self.submit([("images", ("one.png", b"x" * 60, "image/png")), ("images", ("two.png", b"x" * 60, "image/png"))])
+        self.assertEqual(response.status_code, 422)
+        self.search.assert_not_called()
+
+    def test_prepared_image_limit_is_checked_before_retrieval(self):
+        with patch("model.MAX_IMAGE_BYTES", 10):
+            self.assertEqual(self.submit().status_code, 422)
+        self.search.assert_not_called()
+        self.generate.assert_not_called()
+
+    def test_duplicate_unknown_and_file_valued_text_fields_are_rejected(self):
+        cases = [
+            [("question", (None, "First question")), ("question", (None, "Second question"))],
+            [("question", ("question.txt", b"What is visible?", "text/plain"))],
+            [("unexpected", (None, "value"))],
+        ]
+        for fields in cases:
+            with self.subTest(fields=[item[0] for item in fields]):
+                response = self.client.post("/api/analyze", files=[*fields, ("images", ("field.png", image_bytes(), "image/png"))])
+                self.assertEqual(response.status_code, 422)
+        self.search.assert_not_called()
+        self.generate.assert_not_called()
 
 
 if __name__ == "__main__":

@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="GeoScan: a Moroccan agriculture demo combining satellite images and cited agricultural guidance.">
+  <title>GeoScan | Morocco</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/assets/site.css">
+  <script src="/assets/site.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <main id="main" class="page">
+    <header class="page-header">
+      <p class="eyebrow">Moroccan agriculture demo</p>
+      <h1>GeoScan</h1>
+      <p>Moroccan crop and land analysis</p>
+    </header>
+
+    <fieldset id="controls" class="controls" disabled>
+      <legend class="visually-hidden">Field assessment inputs</legend>
+      <div class="settings">
+        <div class="field">
+          <label for="image-source">Start with a field example, or upload your own</label>
+          <select id="image-source"><option value="upload">Upload my own images</option></select>
+        </div>
+        <fieldset class="language">
+          <legend>Answer language</legend>
+          <label><input type="radio" name="language" value="English" checked> English</label>
+          <label><input type="radio" name="language" value="Français"> Français</label>
+        </fieldset>
+      </div>
+
+      <div id="workspace" class="workspace">
+        <section class="image-area" aria-label="Field images">
+          <div id="upload-area" class="upload-area">
+            <label for="image-files">Satellite images (up to 2)</label>
+            <input id="image-files" class="visually-hidden" tabindex="-1" type="file" multiple accept=".png,.jpg,.jpeg,image/png,image/jpeg" aria-describedby="upload-help upload-error">
+            <div class="upload-box">
+              <button id="choose-files" type="button" data-action="choose-files" class="secondary" disabled>Choose images</button>
+              <p id="upload-help" class="caption">PNG or JPEG · 4 MB combined · 16 million pixels per image</p>
+              <ul id="file-list" class="file-list" aria-live="polite"></ul>
+            </div>
+            <p id="upload-error" class="error" role="alert" hidden></p>
+          </div>
+          <div id="previews" class="previews" aria-live="polite"></div>
+          <p id="attribution" class="caption" hidden></p>
+          <details id="example-note" hidden>
+            <summary>About these images</summary>
+            <p id="example-description"></p>
+            <a id="example-source" target="_blank" rel="noopener noreferrer" hidden>Read the source report</a>
+          </details>
+        </section>
+
+        <form id="assessment-form" class="question-form" novalidate>
+          <h2>Ask about the field</h2>
+          <div class="field">
+            <label for="question">Your question</label>
+            <textarea id="question" class="resize-none" rows="4" maxlength="2000" aria-describedby="question-error" placeholder="Why are some patches lighter than the surrounding fields?"></textarea>
+            <p id="question-error" class="error" role="alert" hidden></p>
+          </div>
+          <div class="field">
+            <label for="context">Field context <span class="muted">(optional)</span></label>
+            <textarea id="context" class="resize-none" rows="4" maxlength="4000" aria-describedby="context-help context-error" placeholder="Crop, region, image dates, growth stage, and which field to look at."></textarea>
+            <p id="context-help" class="caption">Add what you know. Label invented demo details as synthetic.</p>
+            <p id="context-error" class="error" role="alert" hidden></p>
+          </div>
+          <p class="caption">Assessments send your images, question, context, and selected reference excerpts to Google Gemini.</p>
+          <button id="ask" class="primary" type="submit">Ask Gemini</button>
+        </form>
+      </div>
+    </fieldset>
+
+    <p id="request-status" class="notice" role="status" aria-live="polite">Loading field examples…</p>
+    <p id="request-error" class="error notice" role="alert" tabindex="-1" hidden></p>
+    <section id="answer" class="answer" aria-labelledby="answer-title" tabindex="-1" hidden>
+      <h2 id="answer-title">Gemini response</h2>
+      <p id="evidence-notice" class="notice"></p>
+      <p class="caption">Context supplied by you (unverified)</p>
+      <p id="reported-context" class="reported-context"></p>
+      <div id="answer-text"></div>
+      <section id="references-section" aria-labelledby="references-title" hidden>
+        <h3 id="references-title">References cited</h3>
+        <div id="references"></div>
+      </section>
+    </section>
+    <footer class="caption">RGB imagery shows visible patterns. Soil and nutrient conditions need field evidence.</footer>
+  </main>
+</body>
+</html>
