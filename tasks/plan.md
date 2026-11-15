@@ -7,12 +7,17 @@ for 20 February 2024 and 14 February 2025 are prepared and verified, using a
 common valid-land mask. Pixelwise NDVI differences and increased/decreased/stable
 classes are now calculated offline with a documented ±0.05 demo tolerance;
 counts, percentages, and projected-grid areas are saved under `change/`.
-The next increment displays the change map, legend, imagery/change switch, and
-area figures, then supplies the new measurements to Gemini. The per-date NDVI
+The coloured change view, legend, and imagery/change switch are now implemented
+using lossless precomputed assets. The legend now displays saved class counts,
+percentages, and hectares with the valid-pixel denominator. Those measurements
+are now supplied to Gemini in the verified NDVI packet. The per-date NDVI
 measurements are also connected to the new Doukkala NDVI web example and Ask Gemini, using a separate
 case prompt and the NDVI method reference. See the
 [data walkthrough](../demo_data/doukkala_change/README.md) and
 [exercise checklist](todo.md#internship-exercise-doukkala-vegetation-change).
+The full NDVI workflow was deployed on 15 November 2026; its public imagery,
+change map, statistics and real English/French assessments passed the
+[production checks](../docs/ndvi_vercel_verification.md).
 
 Original RAG roadmap status: steps 1–5 implemented and verified; streaming is
 deferred while completing the internship's vegetation-change features.

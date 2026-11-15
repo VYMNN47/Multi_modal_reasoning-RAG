@@ -1,0 +1,148 @@
+{
+  "checked_at": "2026-11-15T13:12:59.460541+00:00",
+  "url": "https://geoscan-morocco.vercel.app",
+  "deployment_id": "dpl_12zk4DbtvgPoPdcdh5FiBByknDwY",
+  "previous_deployment_id": "dpl_C2PWmtf6eRNqg5X7TYC3XZGM5TiL",
+  "http": [
+    {
+      "path": "/api/health",
+      "status": 200,
+      "sha256": "a29ee2b15c494311c52521766e44af56a3ad2248e7a8ab465e5206463c13d288"
+    },
+    {
+      "path": "/",
+      "status": 200,
+      "sha256": "1010b09eff24f0c8a6fe4d4a07dd2e97c80b38c307a7221e01901a98ecdfaf74"
+    },
+    {
+      "path": "/assets/site.js",
+      "status": 200,
+      "sha256": "e07f9c0376d6f4d987843aac2dfbc8e75191dff6359916bab1a92725b817d11d"
+    },
+    {
+      "path": "/assets/site.css",
+      "status": 200,
+      "sha256": "1c4acd64ae1a7babdf9cef166fda90552be38ad4651443c813f82640c09faa21"
+    },
+    {
+      "path": "/assets/doukkala-change/change.png",
+      "status": 200,
+      "sha256": "bd96a4fabc137a98cc086d16193c75e4866d76b897722e6c6c2bae559365c7a9"
+    },
+    {
+      "path": "/assets/doukkala-change/view.json",
+      "status": 200,
+      "sha256": "561a9410825a9374126e37e0e310d8a184340756cc59a91c2ea14da69ec1f250"
+    },
+    {
+      "path": "/api/examples",
+      "status": 200,
+      "sha256": "f10dcc4263483f585919fcddd8622325c9c27057e44af6f8bd27233e926db085"
+    },
+    {
+      "path": "/api/example-images/doukkala_ndvi_2024-02-20_rgb_10m.png",
+      "status": 200,
+      "sha256": "a3751b5ad2ba35957e12735350f8d6f96a004a1679d7fe8b4dd90985425332c3"
+    },
+    {
+      "path": "/api/example-images/doukkala_ndvi_2025-02-14_rgb_10m.png",
+      "status": 200,
+      "sha256": "c0145173fe09ff77d35389afaf844ef62767298b30b2c2cee435f4779549d89a"
+    },
+    {
+      "path": "/.env",
+      "status": 404
+    },
+    {
+      "path": "/.git/config",
+      "status": 404
+    },
+    {
+      "path": "/app.py",
+      "status": 404
+    },
+    {
+      "path": "/model.py",
+      "status": 404
+    },
+    {
+      "path": "/prompts/doukkala_ndvi_v9.txt",
+      "status": 404
+    },
+    {
+      "path": "/demo_data/rag_documents/embedding_index.json",
+      "status": 404
+    },
+    {
+      "path": "/demo_data/doukkala_change/change/summary.json",
+      "status": 404
+    },
+    {
+      "path": "/demo_data/doukkala_change/change/ndvi_change_classes_10m.tif",
+      "status": 404
+    }
+  ],
+  "example_count": 5,
+  "ndvi_results": {
+    "formula": "NDVI = (NIR reflectance - red reflectance) / (NIR reflectance + red reflectance)",
+    "mask_policy": "Keep SCL 4 (vegetation) and 5 (not vegetated) on both dates; require valid red/NIR/SCL masks, nonzero raw DNs, nonnegative calibrated reflectance, and a finite positive denominator.",
+    "scope_note": "Common valid land in the fixed landscape crop, including nonvegetated surfaces; this is not a parcel or crop-type mask.",
+    "common_valid_pixels": 262140,
+    "excluded_pixels": 4,
+    "scenes": [
+      {
+        "date": "2024-02-20",
+        "mean": 0.466847137517314,
+        "median": 0.4031362980604172,
+        "min": -0.14364640414714813,
+        "max": 0.9453458786010742
+      },
+      {
+        "date": "2025-02-14",
+        "mean": 0.421006592909319,
+        "median": 0.2924245297908783,
+        "min": -0.04654731601476669,
+        "max": 0.9421470165252686
+      }
+    ],
+    "change": {
+      "before_date": "2024-02-20",
+      "after_date": "2025-02-14",
+      "formula": "NDVI change = after NDVI - before NDVI",
+      "threshold": 0.05,
+      "classification_rule": "Decreased < -threshold; stable includes both boundaries; increased > threshold. Comparisons use the saved float32 differences and a float32 threshold.",
+      "scope_note": "Demonstration tolerance, not a validated crop-change threshold. Shared valid land includes nonvegetated surfaces. Stable means within the tolerance, not proof of unchanged land or crops. SCL is automated at native 20 m resolution; two dates do not identify crop types or causes.",
+      "pixel_area_m2": 100.0,
+      "common_valid_pixels": 262140,
+      "excluded_pixels": 4,
+      "valid_area_ha": 2621.4,
+      "excluded_area_ha": 0.04,
+      "classes": [
+        {
+          "code": 1,
+          "label": "decreased",
+          "pixel_count": 89525,
+          "area_ha": 895.25,
+          "percentage_of_valid": 34.15159838254368
+        },
+        {
+          "code": 2,
+          "label": "stable",
+          "pixel_count": 127486,
+          "area_ha": 1274.86,
+          "percentage_of_valid": 48.632791638056
+        },
+        {
+          "code": 3,
+          "label": "increased",
+          "pixel_count": 45129,
+          "area_ha": 451.29,
+          "percentage_of_valid": 17.21560997940032
+        }
+      ]
+    }
+  },
+  "asset_bytes_match_local": true,
+  "private_paths_return_404": true,
+  "api_checks_passed": true
+}

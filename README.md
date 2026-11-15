@@ -56,6 +56,15 @@ medians, ranges, shared mask counts, and method information with the RGB preview
 Gemini explains those precomputed results. The NDVI method reference supports
 definitions; it is not the source of this app's measured values. No spectral
 calculation or download runs when opening the page or submitting the question.
+The same request also supplies the verified saved change summary, so Gemini can
+explain the increased, decreased and stable counts, hectares and percentages.
+
+The same example now has a **Display** choice: **Satellite images** or **NDVI
+change**. The precomputed colour view includes an increased/stable/decreased
+legend with pixel counts, hectares and percentages of valid pixels, an excluded-data
+key, actual dates, and the ±0.05 demo tolerance. Switching
+views preserves the question and context and makes no Gemini call. Choosing
+another example resets the display mode.
 
 Images must total at most **4 MiB**, shown as 4 MB, per assessment. Each image must
 be a complete, single-frame PNG/JPEG with at most 16 million pixels. Orientation
@@ -153,17 +162,28 @@ projected-grid areas, thresholds, and checksums. Stable means within the toleran
 these classes do not establish crop identity, crop loss, or causes. See the
 [change calculation walkthrough](demo_data/doukkala_change/README.md#ndvi-change-and-classification).
 
-Displaying the change map, legend, imagery/change switch, and area figures is the
-next increment. The NDVI example is already available in the interface and connected to
-Ask Gemini using a checksum-verified summary. Editable context cannot replace
+The coloured change view, legend, and imagery/change switch are now in the
+interface, including class percentages, hectares, and pixel counts copied from the
+saved summary. Percentages exclude the four masked pixels. Ask Gemini now receives
+both checksum-verified summaries with ordered acquisition dates. Editable context cannot replace
 those numbers, and client-supplied measurement fields are rejected. Raw bands,
 calculated rasters, original STAC/XML files, and the author scripts are excluded
-from deployment uploads. Only the two RGB previews, case metadata, summary, and
-runtime prompt are required for the NDVI web example.
+from deployment uploads. The NDVI example needs the two RGB previews, case metadata,
+both summaries, runtime prompt and display assets.
 See the [NDVI example verification](docs/ndvi_example.md) for browser and live-model
 checks of this integration.
-The new change rasters and summary are author-only outputs; they are not yet
-displayed or supplied to Gemini, and are excluded from deployment uploads.
+The change rasters remain author-only inputs. The command
+`uv run prepare_doukkala_change_view.py` renders them into the lossless PNG and
+display metadata under `assets/doukkala-change/`, preserving every class code's
+pixel position and transparency for excluded pixels. The generated assets ship
+with the app; raw rasters and the renderer are excluded from deployment uploads.
+The command refuses to replace an existing output directory. See the
+[change-view verification](docs/ndvi_change_view.md).
+See the [change-statistics integration](docs/ndvi_change_gemini.md) for validation,
+live prompt checks, and the Ask Gemini flow.
+The complete NDVI workflow is now live on
+[GeoScan](https://geoscan-morocco.vercel.app/); see the
+[production checks](docs/ndvi_vercel_verification.md).
 
 ## Verify and deploy
 

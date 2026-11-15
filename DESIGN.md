@@ -52,6 +52,15 @@ green-gray separates controls, help, and loading status from images. Border,
 muted-text, and error colors are CSS variables. Error text always accompanies its
 color. The fixed light theme honors forced colors and native focus behavior.
 
+NDVI change uses a semantic palette owned by `CLASS_STYLES` in
+`prepare_doukkala_change_view.py`: green `#236440` for increased, orange `#b15b3a`
+for decreased, grey `#d9ded8` for stable, and transparent for excluded pixels.
+The author command generates both the PNG and `assets/doukkala-change/view.json`;
+the image and legend consume this same palette. JavaScript sets each swatch's
+backgroundColor property from the metadata; CSS does not duplicate these values.
+Excluded pixels and their key use a hatch derived from the existing surface and
+border tokens. Text labels and threshold rules accompany every swatch.
+
 ## Typography
 
 Georgia/Times serif headings give the notebook its character. A system sans-serif
@@ -101,6 +110,7 @@ for this single screen.
 | Scrollbar | Global CSS rules | assets/site.css | document | Desktop and narrow-screen checks |
 | Toast | Inline alert/status regions | assets/index.html and assets/site.js | loading, error, ready | Browser feedback and API failure tests |
 | Measurements | Native semantic table | app.py load_ndvi_results and assets/site.js renderNdviResults | fixed two-date NDVI summary | tests/test_demo.py, SDK checks and browser |
+| Image/change view | Native radio fieldset and image figure | assets/site.js renderView/renderChangeView and generated assets/doukkala-change/view.json | Doukkala NDVI only | Pixel-colour tests, catalog test and real browser |
 
 The image-choice button starts disabled until its JavaScript event handler and
 initial state are ready. No inline event handler is used; the content security
@@ -118,7 +128,8 @@ Image selection and previews stay in the browser. Ask Gemini sends one complete
 multipart assessment request. During that request, input controls are disabled,
 the form exposes aria-busy, and the live status describes the actual assessment.
 A response is final text, not a private reasoning transcript. Failure preserves
-files and text for retry. Editing any input clears stale answers. Refresh discards
+files and text for retry. Editing assessment inputs clears stale answers; changing
+only the display mode preserves the question, context, and existing answer. Refresh discards
 browser state; there is no persistent image store or visitor authentication.
 
 The Python API validates each request independently, performs semantic retrieval,
@@ -128,12 +139,41 @@ The original NASA case keeps its verified acquisition-date metadata and pinned
 case report. The Doukkala NDVI case shows a fixed two-row table of saved means
 and medians with date row headers, column headers, tabular numerals, and a shared
 valid-pixel count. It uses existing color tokens and document scrolling; it has
-no sorting, paging, or new controls. Switching to another example or upload hides
+no sorting or paging. Switching to another example or upload hides
 the measurements. Dates use English labels and UTC date-only formatting,
 independent of the model's answer language.
 
-Selecting the NDVI example reads its saved summary for display and makes no
-Gemini call. Ask Gemini reads it again, verifies its pinned checksum and dates,
+Only the measured Doukkala example has a native Display fieldset with Satellite
+images and NDVI change radio choices. It starts in Satellite images mode. Switching
+views changes visibility locally and makes no assessment request. Changing the
+source resets the mode and clears the old change figure and legend. Both views
+retain the date-statistics table and source attribution below them.
+
+The change figure is a lossless precomputed 512 × 512 PNG, with source pixel order
+preserved and excluded pixels transparent. Its dimensions reserve square geometry;
+it is capped at 32rem and uses pixelated rendering. The legend sits beside it on
+wide screens and below it at 800px or less. It shows actual dates, after-minus-before
+direction, the ±0.05 demo tolerance, and the limits on crop and causal interpretation.
+Each legend entry also shows its saved pixel count and projected-grid area in
+hectares. Increased, stable, and decreased entries show their share of the common
+valid pixels; the excluded entry has no percentage. A coverage note states the
+valid denominator and area, including nonvegetated surfaces. These values are
+copied from the saved change summary into display metadata; the browser only
+formats them with English grouping and two decimal places for hectares/percentages.
+An image-loading alert offers Satellite images as a recovery path. The display
+controls share the parent form's disabled state during an assessment.
+
+The browser receives only public display metadata. Raw class rasters and calculation
+scripts remain excluded from deployment. The PNG and metadata ship through the
+existing assets route. Gemini still receives the two RGB previews and per-date
+NDVI summary with verified saved change-class counts, hectares and percentages.
+The request also carries a read-only display summary with application-formatted
+hectares and percentages, using class labels for the selected answer language.
+The coloured change image itself is not part of the model request.
+
+Selecting the NDVI example reads its two saved summaries for display and makes no
+Gemini call. Ask Gemini reads them again, verifies both pinned checksums, dates,
+shared mask, class arithmetic and the change summary's link to the NDVI inputs,
 and sends bounded measurements with the two RGB previews and the NDVI method
 reference. No band download or NDVI recalculation occurs in the web request.
 This measured case has a dedicated prompt and does not retrieve unrelated soil
@@ -150,8 +190,10 @@ metadata become HTTPS links. The server checks citation membership, not entailme
 No confidence badge or agronomic accuracy certification is implied.
 
 For the measured case, the evidence notice distinguishes saved application
-numbers from document citations. The table remains factual application output;
-the model explains it and states the limits. Web method references without a
+numbers from document citations. The table and class legend remain factual
+application output; the model explains the counts, areas, percentage denominator,
+demo tolerance and interpretation limits. Editable context cannot supply or replace
+measurement fields. Web method references without a
 publication date display "not stated" and crop-general methods display
 "not crop-specific".
 

@@ -1,0 +1,40 @@
+{
+  "checked_at": "2026-11-15T13:19:41.723Z",
+  "url": "https://geoscan-morocco.vercel.app/",
+  "responses": [
+    {
+      "language": "Français",
+      "text": "Observations\n\nLes aperçus RGB couvrent la même zone de 5,12 par 5,12 km près de Sidi Bennour dans les Doukkala, photographiée les 20 février 2024 et 14 février 2025 à une résolution de 10 m. Les résultats d'application précalculés mesurent 262 140 pixels valides communs et 4 pixels exclus couvrant une superficie de 0,04 ha. La moyenne NDVI est passée de 0,4668 à 0,4210, la médiane de 0,4031 à 0,2924, le minimum de -0,1436 à -0,0465, et le maximum de 0,9453 à 0,9421. La comparaison pixel par pixel avec un seuil de tolérance de 0,05 montre les catégories suivantes : NDVI en baisse : 895,25 ha (34,15%), 89 525 pixels. NDVI stable : 1 274,86 ha (48,63%), 127 486 pixels. NDVI en hausse : 451,29 ha (17,22%), 45 129 pixels.\n\nRéférences et interprétations\n\nL'indice NDVI est calculé à partir des bandes de réflectance proche infrarouge B08 et rouge B04 selon la formule NDVI = (B08 - B04) / (B08 + B04), variant de -1 à 1 MA_SENTINEL_NDVI_METHOD. Il sert d'indicateur proxy de la végétation verte vivante, les valeurs négatives étant associées à l'eau, les valeurs proches de zéro aux surfaces dénuées de végétation, et les valeurs positives à la végétation MA_SENTINEL_NDVI_METHOD. Ces interprétations restent générales et ne constituent pas un diagnostic spécifique MA_SENTINEL_NDVI_METHOD. Les modifications observées quantifient les différences de valeurs d'indice sur l'échantillon d'land validé et incluent des surfaces non végétalisées. Elles ne permettent pas d'identifier formellement les types de cultures, les pertes de rendement, les rotations, les conditions de parcelles, ni les causes sous-jacentes telles que la sécheresse ou l'irrigation.\n\nVérifications à réaliser\n\nPour affiner l'analyse, il convient d'obtenir les limites officielles des parcelles agricoles et d'intégrer des séries temporelles d'images plus denses. Il est également recommandé de consulter les registres météorologiques locaux et les carnets de gestion des exploitants, ainsi que de mener des observations de terrain directes pour identifier l'état réel des cultures."
+    },
+    {
+      "language": "English",
+      "text": "Observations\n\nThe application measurements cover a common valid land area of 2,621.40 ha from 262,140 pixels, with 0.04 ha across 4 pixels excluded. On 2024-02-20, the saved NDVI statistics show a mean of 0.4668, a median of 0.4031, a minimum of -0.1436, and a maximum of 0.9453. On 2025-02-14, the saved NDVI statistics show a mean of 0.4210, a median of 0.2924, a minimum of -0.0465, and a maximum of 0.9421. The pixelwise comparison against the 0.05 demonstration tolerance yields three saved classes. Decreased NDVI: 895.25 ha (34.15%). Stable NDVI: 1,274.86 ha (48.63%). Increased NDVI: 451.29 ha (17.22%).\n\nEvidence and interpretations\n\nNormalized Difference Vegetation Index calculates greenness using near-infrared and red reflectance bands as NDVI = (B08 - B04) / (B08 + B04), spanning from -1 to 1 MA_SENTINEL_NDVI_METHOD. Negative values generally relate to water, values around zero to barren ground, and positive values to live green vegetation MA_SENTINEL_NDVI_METHOD. These general bands serve only as general indicators rather than specific field diagnoses MA_SENTINEL_NDVI_METHOD. The lower mean and median in February 2025 reflect lower overall index values across the shared sample. However, the saved change classes quantify mathematical NDVI differences rather than direct crop loss, yield decline, soil nutrient levels, or specific causal agents. The demonstration threshold of 0.05 is a fixed numeric tolerance rather than a validated significance limit. Stable pixels fall within this tolerance band, which does not prove that crops, land cover, or management practices remained unchanged.\n\nNext checks\n\nPractical next checks should include verifying parcel boundaries against local land records, acquiring additional in-season image dates to establish a continuous temporal trend, and inspecting farm management logs detailing irrigation schedules and crop rotations. Ground-level field observations and regional weather records can help contextualize the observed index shifts without assuming specific causal factors from satellite snapshots alone."
+    }
+  ],
+  "checks": [
+    {
+      "language": "Français",
+      "increased": true,
+      "decreased": true,
+      "stable": true,
+      "validPixelDenominator": true
+    },
+    {
+      "language": "English",
+      "increased": true,
+      "decreased": true,
+      "stable": true,
+      "validPixelDenominator": true
+    }
+  ],
+  "console": [],
+  "narrow_layout": {
+    "legendWidth": 313,
+    "mapLoaded": true,
+    "mapWidth": 313,
+    "pageWidth": 345,
+    "viewport": 345
+  },
+  "answer_preserved_by_toggle": true,
+  "reference_panel_opens": true
+}

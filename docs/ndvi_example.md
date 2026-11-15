@@ -1,6 +1,7 @@
 # Doukkala NDVI example verification
 
-Checked locally on 14 November 2026. Production was not redeployed.
+Initially checked locally on 14 November 2026. The complete NDVI workflow was
+subsequently deployed on 15 November; see [production verification](ndvi_vercel_verification.md).
 
 ## Flow
 
@@ -54,8 +55,10 @@ by the other examples was not changed or rerun through its full live suite.
 
 Pixelwise NDVI change classification and area statistics have since been saved
 offline; see the [calculation walkthrough](../demo_data/doukkala_change/README.md#ndvi-change-and-classification).
-The change map, controls, and integration of those statistics remain the next
-increment. The web example includes only RGB previews and the per-date saved
-summary; raw bands, calculated rasters, source metadata, and author scripts remain
-excluded from deployment uploads. Runtime packaging was checked locally, without
-a new Vercel deployment.
+The coloured change view and display controls were added on 15 November 2026;
+see the [change-view verification](ndvi_change_view.md). Class counts, hectares,
+and valid-pixel percentages now appear in its legend. Integrating those statistics
+with Gemini is now implemented; see the [change-statistics integration](ndvi_change_gemini.md).
+Gemini receives the RGB previews and both saved summaries; raw bands, calculated rasters, source metadata, and author scripts remain
+excluded from deployment uploads. Runtime packaging and the complete NDVI workflow
+have now passed the [hosted checks](ndvi_vercel_verification.md).

@@ -127,6 +127,14 @@ These checks do not establish agronomic accuracy. No load test or complete
 ten-case live prompt evaluation was performed. Deployment uploaded the current
 working tree; it did not stage, commit, or push files.
 
+## Doukkala NDVI release: 15 November 2026
+
+The latest NDVI workflow is now live at the existing production URL.
+Deployment ID: `dpl_12zk4DbtvgPoPdcdh5FiBByknDwY`. The two-date imagery, change
+map, class statistics, and real English/French Ask Gemini assessments were checked
+online. All 118 offline tests passed before deployment. See the
+[release verification and rollback target](ndvi_vercel_verification.md).
+
 ## Remaining limits and rollback
 
 The demo remains public and uses the server's Gemini quota. Provider failures,

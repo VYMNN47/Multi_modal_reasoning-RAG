@@ -25,7 +25,18 @@ Mark a task complete only when its completion criteria pass.
   input provenance, and output hashes are saved under `demo_data/doukkala_change/change/`.
   Verification: 106 main tests and 18 author calculation/writer checks pass;
   the original source inputs and per-date NDVI files are unchanged.
-- [ ] Add a change map, legend, imagery/change switch, and area summary figures.
+- [x] Add a precomputed coloured change view, legend, and imagery/change switch.
+  Preserve every class pixel and excluded-data transparency; verify native keyboard
+  controls, source resets, image-error recovery, and desktop/narrow layouts.
+- [x] Display saved class pixel counts, hectares, and percentages in the change
+  legend, with the shared-valid-pixel denominator and excluded area identified.
+  Verification: 113 main tests, desktop/narrow layouts, keyboard toggle, and source resets.
+- [x] Supply the checksum-verified saved change summary and formatted class figures
+  to Gemini, preserving measurement/context boundaries and interpretation limits.
+  Verification: 118 offline tests, ten live cases, and a real Ask Gemini response.
+- [x] Deploy the latest NDVI workflow to Vercel and verify the public map,
+  statistics, both dated previews and consecutive real English/French assessments.
+  See the [production checks](../docs/ndvi_vercel_verification.md).
 - [ ] Prepare the ten-minute interview presentation and demonstration.
 
 ## Already completed

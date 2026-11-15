@@ -141,14 +141,17 @@ not needed for this case. The original RGB examples and NASA comparison retain
 their existing retrieval and v8 instruction. RGB-only uploads still cannot
 provide an NDVI measurement.
 
-The runtime deployment needs `case.json`, `ndvi/summary.json`, and the two
+The runtime deployment needs `case.json`, `ndvi/summary.json`, `change/summary.json`, and the two
 `*/rgb.png` previews. Raw bands, NDVI rasters, source STAC/XML metadata, and
 preparation scripts remain outside the deployment upload. Regenerating the NDVI
 summary requires reviewing and updating its pinned checksum in `case.json`.
+The change summary has its own pinned checksum and must reference the same NDVI summary.
 
-The web request still supplies only the per-date NDVI summary. The new offline
-change classification below is not yet displayed or supplied to Gemini. A change
-map, legend, imagery/change switch, and visible area figures are the next increment.
+The web request supplies the verified per-date NDVI and change summaries to Gemini.
+The offline change classification has a coloured display and legend, with a
+Satellite images / NDVI change toggle. The legend displays the saved class counts,
+areas, and valid-pixel percentages. Ask Gemini explains those same saved figures,
+their shared-valid denominator and demo tolerance, without calculating new indices.
 
 ## NDVI change and classification
 
@@ -207,6 +210,29 @@ errors, and residual atmospheric, timing, and registration differences remain.
 Stable means the chosen tolerance was not exceeded. No independent cloud detector
 or manual correction mask was added in this increment. The threshold's suitability
 has not been validated against independent reference observations.
+
+### Coloured web preview
+
+Run `uv run prepare_doukkala_change_view.py` to create
+`assets/doukkala-change/change.png` and `view.json` from the saved class GeoTIFF.
+This author-only renderer uses Pillow 13.0.0, already included in the project;
+neither Rasterio nor a map library is added to the web runtime.
+
+The renderer checks the classification checksum and counts, case dates, and
+NDVI-summary provenance before mapping codes directly to RGBA colours: 3 green
+(increased), 2 grey (stable), 1 orange (decreased), and 0 transparent (excluded).
+It performs no resampling or NDVI calculation. The metadata supplies the same
+palette to the legend, copies class counts/areas/percentages and valid coverage
+from the saved summary, and records source/image hashes. PNG and metadata publish
+together from a staging directory; an existing output directory is never replaced.
+Move only the derived `assets/doukkala-change/` directory aside to regenerate it.
+
+The app loads the precomputed display metadata and PNG through its existing
+assets routes. Selecting another example clears the change view; switching
+display mode preserves assessment inputs. The two RGB images and per-date
+statistics and the verified saved change-class summary are the Gemini inputs.
+See the [browser and artifact verification](../../docs/ndvi_change_view.md) and
+[model integration](../../docs/ndvi_change_gemini.md).
 
 ## Reproduce and verify
 
