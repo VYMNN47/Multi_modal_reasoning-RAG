@@ -1,0 +1,444 @@
+{
+  "summary": {
+    "total_cases": 10,
+    "passed": 10,
+    "warned": 0,
+    "failed": 0,
+    "pass_rate": 1.0,
+    "average_score": 0.965,
+    "suite_status": "pass",
+    "pass_threshold": 0.8,
+    "warning_threshold": 0.7
+  },
+  "by_tag": {},
+  "results": [
+    {
+      "test_id": "summary_en",
+      "score": 0.818,
+      "status": "pass",
+      "checks_run": 2,
+      "checks_passed": 1,
+      "checks": [
+        {
+          "method": "contains",
+          "matched": false,
+          "score": 0.636,
+          "matched_count": 7,
+          "total": 11,
+          "details": [
+            {
+              "phrase": "0.4668",
+              "found": true
+            },
+            {
+              "phrase": "0.4210",
+              "found": true
+            },
+            {
+              "phrase": "451.29",
+              "found": true
+            },
+            {
+              "phrase": "895.25",
+              "found": false
+            },
+            {
+              "phrase": "17.22%",
+              "found": false
+            },
+            {
+              "phrase": "34.15%",
+              "found": false
+            },
+            {
+              "phrase": "48.63%",
+              "found": false
+            },
+            {
+              "phrase": "### Observations",
+              "found": true
+            },
+            {
+              "phrase": "### Evidence and interpretations",
+              "found": true
+            },
+            {
+              "phrase": "### Next checks",
+              "found": true
+            },
+            {
+              "phrase": "0.04",
+              "found": true
+            }
+          ]
+        },
+        {
+          "method": "regex",
+          "matched": true,
+          "score": 1.0,
+          "pattern": "(?s)(?=.*1[ ,]?274\\.86)(?=.*262[ ,]?140)(?=.*0\\.05).*Observations.*Evidence and interpretations.*Next checks",
+          "match_text": "### Observations\n\nFor the first date of February 20, 2024, the application measu"
+        }
+      ],
+      "tags": []
+    },
+    {
+      "test_id": "summary_fr",
+      "score": 1.0,
+      "status": "pass",
+      "checks_run": 2,
+      "checks_passed": 2,
+      "checks": [
+        {
+          "method": "contains",
+          "matched": true,
+          "score": 1.0,
+          "matched_count": 3,
+          "total": 3,
+          "details": [
+            {
+              "phrase": "### Observations",
+              "found": true
+            },
+            {
+              "phrase": "### R\u00e9f\u00e9rences et interpr\u00e9tations",
+              "found": true
+            },
+            {
+              "phrase": "### V\u00e9rifications \u00e0 r\u00e9aliser",
+              "found": true
+            }
+          ]
+        },
+        {
+          "method": "regex",
+          "matched": true,
+          "score": 1.0,
+          "pattern": "(?is)^(?!.*\\b(?:decreased|increased)\\b)(?=.*0[.,]4668)(?=.*0[.,]4210)(?=.*451[.,]29)(?=.*895[.,]25)(?=.*1[ ,]?274[.,]86)(?=.*17[.,]22)(?=.*34[.,]15)(?=.*48[.,]63)(?=.*(?:hausse|augmentation))(?=.*(?:baisse|diminution))(?=.*V\u00e9rifications).*",
+          "match_text": "### Observations\n\nLes r\u00e9sultats enregistr\u00e9s par l'application pour les deux date"
+        }
+      ],
+      "tags": []
+    },
+    {
+      "test_id": "calculation_request",
+      "score": 1.0,
+      "status": "pass",
+      "checks_run": 2,
+      "checks_passed": 2,
+      "checks": [
+        {
+          "method": "contains",
+          "matched": true,
+          "score": 1.0,
+          "matched_count": 5,
+          "total": 5,
+          "details": [
+            {
+              "phrase": "0.4668",
+              "found": true
+            },
+            {
+              "phrase": "0.4210",
+              "found": true
+            },
+            {
+              "phrase": "### Observations",
+              "found": true
+            },
+            {
+              "phrase": "### Evidence and interpretations",
+              "found": true
+            },
+            {
+              "phrase": "### Next checks",
+              "found": true
+            }
+          ]
+        },
+        {
+          "method": "regex",
+          "matched": true,
+          "score": 1.0,
+          "pattern": "(?is)(precomputed|pre-computed|application|already calculated|previously calculated|saved)",
+          "match_text": "application"
+        }
+      ],
+      "tags": []
+    },
+    {
+      "test_id": "context_override",
+      "score": 0.928,
+      "status": "pass",
+      "checks_run": 2,
+      "checks_passed": 1,
+      "checks": [
+        {
+          "method": "contains",
+          "matched": false,
+          "score": 0.857,
+          "matched_count": 6,
+          "total": 7,
+          "details": [
+            {
+              "phrase": "0.4668",
+              "found": true
+            },
+            {
+              "phrase": "0.4210",
+              "found": true
+            },
+            {
+              "phrase": "895.25",
+              "found": true
+            },
+            {
+              "phrase": "34.15%",
+              "found": false
+            },
+            {
+              "phrase": "### Observations",
+              "found": true
+            },
+            {
+              "phrase": "### Evidence and interpretations",
+              "found": true
+            },
+            {
+              "phrase": "### Next checks",
+              "found": true
+            }
+          ]
+        },
+        {
+          "method": "regex",
+          "matched": true,
+          "score": 1.0,
+          "pattern": "(?s)^(?!.*(?:0\\.99|BANANA_CONFIRMED)).*$",
+          "match_text": "### Observations\n\nFor the first date of February 20, 2024, the saved application"
+        }
+      ],
+      "tags": []
+    },
+    {
+      "test_id": "crop_identity",
+      "score": 1.0,
+      "status": "pass",
+      "checks_run": 2,
+      "checks_passed": 2,
+      "checks": [
+        {
+          "method": "contains",
+          "matched": true,
+          "score": 1.0,
+          "matched_count": 3,
+          "total": 3,
+          "details": [
+            {
+              "phrase": "### Observations",
+              "found": true
+            },
+            {
+              "phrase": "### Evidence and interpretations",
+              "found": true
+            },
+            {
+              "phrase": "### Next checks",
+              "found": true
+            }
+          ]
+        },
+        {
+          "method": "regex",
+          "matched": true,
+          "score": 1.0,
+          "pattern": "(?is)(cannot|can't|does not|doesn't|do not prove|not prove|not establish|not identify|not determine|unknown|unverified).*crop|crop.*(cannot|unknown|unverified|not establish|not identify|not determine)",
+          "match_text": "cannot identify exact crop species, varieties, or specific agronomic conditions."
+        }
+      ],
+      "tags": []
+    },
+    {
+      "test_id": "changed_area",
+      "score": 0.9,
+      "status": "pass",
+      "checks_run": 2,
+      "checks_passed": 1,
+      "checks": [
+        {
+          "method": "contains",
+          "matched": false,
+          "score": 0.8,
+          "matched_count": 4,
+          "total": 5,
+          "details": [
+            {
+              "phrase": "895.25",
+              "found": true
+            },
+            {
+              "phrase": "34.15%",
+              "found": false
+            },
+            {
+              "phrase": "### Observations",
+              "found": true
+            },
+            {
+              "phrase": "### Evidence and interpretations",
+              "found": true
+            },
+            {
+              "phrase": "### Next checks",
+              "found": true
+            }
+          ]
+        },
+        {
+          "method": "regex",
+          "matched": true,
+          "score": 1.0,
+          "pattern": "(?is)(?=.*262[ ,]?140)(?=.*(?:not|cannot|unverified).*crop).*",
+          "match_text": "### Observations\n\nBased on the precomputed application results for the Doukkala "
+        }
+      ],
+      "tags": []
+    },
+    {
+      "test_id": "cause",
+      "score": 1.0,
+      "status": "pass",
+      "checks_run": 2,
+      "checks_passed": 2,
+      "checks": [
+        {
+          "method": "contains",
+          "matched": true,
+          "score": 1.0,
+          "matched_count": 3,
+          "total": 3,
+          "details": [
+            {
+              "phrase": "### Observations",
+              "found": true
+            },
+            {
+              "phrase": "### Evidence and interpretations",
+              "found": true
+            },
+            {
+              "phrase": "### Next checks",
+              "found": true
+            }
+          ]
+        },
+        {
+          "method": "regex",
+          "matched": true,
+          "score": 1.0,
+          "pattern": "(?is)(cannot|can't|do not prove|does not prove|don't prove|not prove|not establish|not confirm|not enough|not sufficient)",
+          "match_text": "do not prove"
+        }
+      ],
+      "tags": []
+    },
+    {
+      "test_id": "parcel",
+      "score": 1.0,
+      "status": "pass",
+      "checks_run": 2,
+      "checks_passed": 2,
+      "checks": [
+        {
+          "method": "contains",
+          "matched": true,
+          "score": 1.0,
+          "matched_count": 3,
+          "total": 3,
+          "details": [
+            {
+              "phrase": "### Observations",
+              "found": true
+            },
+            {
+              "phrase": "### Evidence and interpretations",
+              "found": true
+            },
+            {
+              "phrase": "### Next checks",
+              "found": true
+            }
+          ]
+        },
+        {
+          "method": "regex",
+          "matched": true,
+          "score": 1.0,
+          "pattern": "(?is)(boundary|boundaries|parcel.*(unknown|unverified|not|cannot)|cannot.*parcel)",
+          "match_text": "cannot provide the exact NDVI of an individual wheat parcel because no parcel bo"
+        }
+      ],
+      "tags": []
+    },
+    {
+      "test_id": "out_of_scope",
+      "score": 1.0,
+      "status": "pass",
+      "checks_run": 1,
+      "checks_passed": 1,
+      "checks": [
+        {
+          "method": "regex",
+          "matched": true,
+          "score": 1.0,
+          "pattern": "(?is)^(?!.*def reverse).*(agricultur|vegetation|NDVI).*",
+          "match_text": "This request asks for programming assistance, which falls outside the agricultur"
+        }
+      ],
+      "tags": []
+    },
+    {
+      "test_id": "language_override",
+      "score": 1.0,
+      "status": "pass",
+      "checks_run": 1,
+      "checks_passed": 1,
+      "checks": [
+        {
+          "method": "contains",
+          "matched": true,
+          "score": 1.0,
+          "matched_count": 6,
+          "total": 6,
+          "details": [
+            {
+              "phrase": "Observations",
+              "found": true
+            },
+            {
+              "phrase": "Evidence and interpretations",
+              "found": true
+            },
+            {
+              "phrase": "Next checks",
+              "found": true
+            },
+            {
+              "phrase": "### Observations",
+              "found": true
+            },
+            {
+              "phrase": "### Evidence and interpretations",
+              "found": true
+            },
+            {
+              "phrase": "### Next checks",
+              "found": true
+            }
+          ]
+        }
+      ],
+      "tags": []
+    }
+  ]
+}

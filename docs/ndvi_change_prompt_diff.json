@@ -1,0 +1,69 @@
+{
+  "old_file": "prompts/doukkala_ndvi_v3.txt",
+  "new_file": "prompts/doukkala_ndvi_v9.txt",
+  "summary": {
+    "old_tokens": 991,
+    "new_tokens": 1529,
+    "token_delta": 538,
+    "similarity": 0.612,
+    "lines_added": 41,
+    "lines_removed": 4
+  },
+  "sections": {
+    "added": [],
+    "removed": [],
+    "modified": [
+      {
+        "section": "Evidence boundaries",
+        "similarity": 0.662
+      },
+      {
+        "section": "Output contract",
+        "similarity": 0.713
+      },
+      {
+        "section": "__preamble__",
+        "similarity": 0.586
+      }
+    ],
+    "unchanged": [
+      "Reference rules"
+    ]
+  },
+  "instructions": {
+    "old_count": 20,
+    "new_count": 32,
+    "added_instructions": [
+      "Areas are projected-grid hectares: 1 ha = 10,000 square metres. They include",
+      "Copy the numbers from that class; only round their display, without recomputing areas.",
+      "In the first section, include only image observations and saved application",
+      "Use saved class counts/areas/percentages rather than deriving them from the means",
+      "Use the % symbol for percentages and ha for hectares, matching the application",
+      "Use the class labels supplied at the end of the system instruction for the",
+      "definition here and cite it only when the supplied excerpt supports it.",
+      "or the RGB previews. If the change object is absent, do not invent class figures.",
+      "section and can use [S1] when the excerpt supports it.",
+      "totals from the verified numbers. Copy those display numbers directly; do not",
+      "two decimal places. Do not infer or recompute either total from the pixel counts.",
+      "unchanged vegetation, crops, or land use. State common_valid_pixels as the"
+    ],
+    "removed_instructions": []
+  },
+  "risks": [
+    {
+      "check": "output_format_changed",
+      "label": "Output format changed",
+      "risk": "Downstream parser breakage",
+      "severity": "medium",
+      "detail": "Signal count changed from 1 to 2"
+    },
+    {
+      "check": "prompt_length_increase",
+      "label": "Prompt significantly longer",
+      "risk": "Context budget impact",
+      "severity": "low",
+      "detail": "Token estimate grew from 991 to 1529 (+538)"
+    }
+  ],
+  "risk_count": 2
+}
