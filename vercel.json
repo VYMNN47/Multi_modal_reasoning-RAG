@@ -5,7 +5,7 @@
     "api/index.py": {
       "maxDuration": 300,
       "excludeFiles": "{.env,.env.*,**/.env*,.streamlit/secrets.toml,.venv/**,.vercel/**,.git/**,tests/**,docs/**,tasks/**,demo_data/rag_documents/sources/**,demo_data/rag_documents/text/**,demo_data/sentinel2/*.tif,demo_data/sentinel2/*.zip}",
-      "includeFiles": "{app.py,asgi.py,model.py,rag.py,assets/**,prompts/*.txt,demo_data/rag_documents/*.json*,demo_data/sentinel2/*.png,demo_data/comparison/*,demo_data/doukkala_change/case.json,demo_data/doukkala_change/ndvi/summary.json,demo_data/doukkala_change/*/rgb.png}"
+      "includeFiles": "{app.py,asgi.py,model.py,rag.py,assets/**,prompts/*.txt,demo_data/rag_documents/*.json*,demo_data/sentinel2/*.png,demo_data/comparison/*,demo_data/doukkala_change/case.json,demo_data/doukkala_change/*/summary.json,demo_data/doukkala_change/*/rgb.png}"
     }
   },
   "rewrites": [{"source": "/(.*)", "destination": "/api/index"}]

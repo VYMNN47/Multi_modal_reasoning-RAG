@@ -1,7 +1,7 @@
 {
   "title": "Doukkala NDVI: February 2024 to February 2025",
-  "question": "Explain the saved NDVI results for these two Doukkala dates. What changed in average greenness, and what can we conclude about crops or the cause of the change?",
-  "context": "The two RGB views cover the same 5.12 by 5.12 km landscape near Sidi Bennour, Doukkala. Parcel boundaries and crop types have not been verified. The application supplies precomputed NDVI measurements separately from this editable context.",
+  "question": "Explain the saved NDVI change between these Doukkala dates. Give the increased, decreased and stable areas in hectares and percentages, explain their meaning, and state what we can conclude about crops or causes.",
+  "context": "The two RGB views cover the same 5.12 by 5.12 km landscape near Sidi Bennour, Doukkala. Parcel boundaries and crop types have not been verified. The application supplies precomputed NDVI and change-class measurements separately from this editable context.",
   "images": [
     {
       "file": "doukkala_ndvi_2024-02-20_rgb_10m.png",
@@ -20,6 +20,8 @@
   ],
   "ndvi_summary_file": "demo_data/doukkala_change/ndvi/summary.json",
   "ndvi_summary_sha256": "70dfb9253929fafd93c9936a4db13c5a3ae397ce4f500d8e93a2c4f19dd39b33",
+  "ndvi_change_summary_file": "demo_data/doukkala_change/change/summary.json",
+  "ndvi_change_summary_sha256": "2a9c73c403d13d5133429aa9555ca8b7a62f7e60e22b4fc9cd7179c6969805c5",
   "attribution": "Contains modified Copernicus Sentinel data 2024 and 2025. NDVI calculated by GeoScan from calibrated red and near-infrared bands.",
   "source_url": "https://custom-scripts.sentinel-hub.com/custom-scripts/sentinel-2/ndvi/",
   "reference": {

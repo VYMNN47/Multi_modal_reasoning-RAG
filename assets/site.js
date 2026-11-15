@@ -38,6 +38,60 @@ function safeLink(label, url) {
   return link;
 }
 
+function formatDate(value) {
+  return new Date(value + "T00:00:00Z").toLocaleDateString("en-GB", {
+    day: "numeric", month: "long", year: "numeric", timeZone: "UTC",
+  });
+}
+
+function renderView() {
+  const available = !!state.examples.find(item => item.id === source.value)?.change_view;
+  const change = available && document.querySelector('input[name="view"]:checked').value === "change";
+  byId("view-controls").hidden = !available;
+  byId("previews").hidden = change;
+  byId("change-view").hidden = !change;
+}
+
+function renderChangeView(view) {
+  const figure = byId("change-figure");
+  const legend = byId("change-legend");
+  figure.replaceChildren();
+  legend.replaceChildren();
+  byId("change-coverage").textContent = "";
+  message("change-error");
+  if (!view) return;
+  const areaFormat = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  const range = `${formatDate(view.before_date)} → ${formatDate(view.after_date)}`;
+  byId("change-dates").textContent = range;
+  const photo = element("img", undefined, "change-map");
+  photo.alt = `NDVI change across the Doukkala footprint, ${range}. Colours are explained in the Change classes legend.`;
+  photo.width = view.width;
+  photo.height = view.height;
+  photo.src = view.url;
+  photo.addEventListener("error", () => {
+    if (photo.isConnected) message("change-error", "The change image could not be loaded. Select Satellite images to continue.");
+  });
+  figure.append(photo, element("figcaption", "After NDVI − before NDVI · Same Doukkala footprint · North up"));
+  for (const entry of view.legend) {
+    const row = element("li");
+    const swatch = element("span", undefined, "change-swatch");
+    swatch.setAttribute("aria-hidden", "true");
+    if (entry.code === 0) swatch.classList.add("excluded");
+    else swatch.style.backgroundColor = entry.color;
+    const text = element("div");
+    const share = entry.code === 0 ? "" : ` · ${entry.percentage_of_valid.toFixed(2)}% of valid pixels`;
+    text.append(element("strong", entry.label),
+      element("p", `${areaFormat.format(entry.area_ha)} ha${share}`, "change-amounts"),
+      element("p", `${entry.pixel_count.toLocaleString("en-US")} pixels · ${entry.rule}`, "caption"));
+    row.append(swatch, text);
+    legend.append(row);
+  }
+  byId("change-coverage").textContent = `Percentages use ${view.common_valid_pixels.toLocaleString("en-US")} shared valid land pixels (${areaFormat.format(view.valid_area_ha)} ha), including nonvegetated surfaces. Excluded pixels are left out.`;
+  byId("change-tolerance").textContent = `Demo tolerance: ±${view.threshold} NDVI units. Stable means within this range; crop types and causes remain unverified.`;
+}
+
+for (const input of document.querySelectorAll('input[name="view"]')) input.addEventListener("change", renderView);
+
 function renderNdviResults(results) {
   byId("ndvi-results").hidden = !results;
   const rows = byId("ndvi-rows");
@@ -45,9 +99,7 @@ function renderNdviResults(results) {
   if (!results) return;
   for (const scene of results.scenes) {
     const row = element("tr");
-    const date = new Date(scene.date + "T00:00:00Z").toLocaleDateString("en-GB", {
-      day: "numeric", month: "long", year: "numeric", timeZone: "UTC",
-    });
+    const date = formatDate(scene.date);
     const dateCell = element("th", date);
     dateCell.scope = "row";
     row.append(dateCell, element("td", scene.mean.toFixed(4)), element("td", scene.median.toFixed(4)));
@@ -89,6 +141,8 @@ function renderPreviews() {
   byId("example-source").hidden = !example?.source_url;
   if (example?.source_url?.startsWith("https://")) byId("example-source").href = example.source_url;
   renderNdviResults(example?.ndvi_results);
+  renderChangeView(example?.change_view);
+  renderView();
 }
 
 function renderFiles() {
@@ -135,6 +189,7 @@ function selectSource() {
   state.files = [];
   question.value = example?.question || "";
   context.value = example?.context || "";
+  document.querySelector('input[name="view"][value="satellite"]').checked = true;
   clearAnswer();
   for (const id of ["upload-error", "question-error", "context-error"]) message(id);
   question.removeAttribute("aria-invalid");
@@ -170,7 +225,7 @@ function renderAnswer(data) {
       : "No reference excerpt was cited. Review the assessment’s stated evidence limits.";
   if (data.ndvi_results && data.evidence_status !== "out_of_scope") {
     renderNdviResults(data.ndvi_results);
-    byId("evidence-notice").textContent = "The saved NDVI measurements are shown above. Cited references support background or method claims; your editable field context remains unverified.";
+    byId("evidence-notice").textContent = "The application supplied verified saved NDVI and change-class measurements. Cited references support background or method claims; your editable field context remains unverified.";
   }
   byId("reported-context").textContent = data.field_context || "No field context supplied.";
   const content = byId("answer-text");
@@ -239,7 +294,7 @@ byId("assessment-form").addEventListener("submit", async event => {
   byId("assessment-form").setAttribute("aria-busy", "true");
   byId("ask").textContent = "Reviewing…";
   const measured = state.examples.find(example => example.id === source.value)?.ndvi_results;
-  message("request-status", measured ? "Explaining saved NDVI measurements and reviewing your images…" : "Reviewing your images and agricultural references…");
+  message("request-status", measured ? "Explaining saved NDVI and change statistics and reviewing your images…" : "Reviewing your images and agricultural references…");
   try {
     const response = await fetch("/api/analyze", { method: "POST", body: payload, cache: "no-store" });
     const data = await response.json().catch(() => ({}));

@@ -17,13 +17,13 @@ tests/
 prepare_doukkala.py
 calculate_doukkala_ndvi.py
 calculate_doukkala_change.py
+prepare_doukkala_change_view.py
 premium-ui.json
 
 # Explicit exclusions avoid the native CLI pruning an ignored parent directory.
 demo_data/*.zip
 demo_data/doukkala_change/*.md
 demo_data/doukkala_change/manifest.json
-demo_data/doukkala_change/change/
 demo_data/doukkala_change/*/*.tif
 demo_data/doukkala_change/*/*.xml
 demo_data/doukkala_change/*/source.stac.json

@@ -17,8 +17,8 @@ MODEL_NAME = "gemini-3.5-flash-lite"
 MAX_IMAGE_BYTES = 10 * 1024 * 1024
 PROMPT_VERSION = "agronomy-rag-v8"
 SYSTEM_PROMPT = (Path(__file__).parent / "prompts/agronomy_rag_v8.txt").read_text(encoding="utf-8")
-NDVI_PROMPT_VERSION = "doukkala-ndvi-v3"
-NDVI_SYSTEM_PROMPT = (Path(__file__).parent / "prompts/doukkala_ndvi_v3.txt").read_text(encoding="utf-8")
+NDVI_PROMPT_VERSION = "doukkala-ndvi-v9"
+NDVI_SYSTEM_PROMPT = (Path(__file__).parent / "prompts/doukkala_ndvi_v9.txt").read_text(encoding="utf-8")
 ANSWER_LANGUAGES = ("English", "Français")
 ANSWER_SCHEMA = {
     "type": "object",
@@ -92,9 +92,49 @@ def ndvi_context(data: dict, image_dates: tuple[str, str] | None) -> dict:
                     or not row["min"] <= row["median"] <= row["max"]):
                 raise ValueError("Invalid NDVI statistics")
             scenes.append({key: row[key] for key in ("date", "mean", "median", "min", "max")})
-        return {**{key: data[key] for key in fields}, "scenes": scenes}
+        results = {**{key: data[key] for key in fields}, "scenes": scenes}
+        if "change" in data:
+            results["change"] = ndvi_change_context(data["change"], results)
+        return results
     except (KeyError, TypeError, ValueError):
         raise GeminiError("The saved NDVI measurements are invalid or do not match the image dates. Contact the project author.") from None
+
+
+def ndvi_change_context(data: dict, ndvi_results: dict) -> dict:
+    """Bound the saved classification and verify its dates, mask and area arithmetic."""
+    try:
+        fields = ("before_date", "after_date", "formula", "threshold", "classification_rule", "scope_note",
+                  "pixel_area_m2", "common_valid_pixels", "excluded_pixels", "valid_area_ha", "excluded_area_ha")
+        if (tuple(data[key] for key in fields[:2]) != tuple(row["date"] for row in ndvi_results["scenes"])
+                or data["formula"] != "NDVI change = after NDVI - before NDVI"
+                or any(not isinstance(data[key], str) or not 0 < len(data[key]) <= 2000 for key in ("classification_rule", "scope_note"))
+                or any(type(data[key]) is not int or data[key] != ndvi_results[key] for key in ("common_valid_pixels", "excluded_pixels"))
+                or any(type(data[key]) not in (int, float) or not math.isfinite(data[key]) for key in ("threshold", "pixel_area_m2", "valid_area_ha", "excluded_area_ha"))
+                or not 0 < data["threshold"] <= 2 or data["pixel_area_m2"] <= 0
+                or data["valid_area_ha"] <= 0 or data["excluded_area_ha"] < 0 or len(data["classes"]) != 3):
+            raise ValueError("Invalid change metadata")
+        pixel_area_ha = data["pixel_area_m2"] / 10000
+        if any(not math.isclose(data[area], data[count] * pixel_area_ha, rel_tol=1e-9, abs_tol=1e-9)
+               for area, count in (("valid_area_ha", "common_valid_pixels"), ("excluded_area_ha", "excluded_pixels"))):
+            raise ValueError("Invalid coverage area")
+        classes, seen = [], set()
+        labels = {1: "decreased", 2: "stable", 3: "increased"}
+        for row in data["classes"]:
+            code, count = row["code"], row["pixel_count"]
+            if (type(code) is not int or code not in labels or code in seen or row["label"] != labels[code]
+                    or type(count) is not int or not 0 <= count <= data["common_valid_pixels"]
+                    or any(type(row[key]) not in (int, float) or not math.isfinite(row[key]) for key in ("area_ha", "percentage_of_valid"))
+                    or row["area_ha"] < 0 or not 0 <= row["percentage_of_valid"] <= 100
+                    or not math.isclose(row["area_ha"], count * pixel_area_ha, rel_tol=1e-9, abs_tol=1e-9)
+                    or not math.isclose(row["percentage_of_valid"], 100 * count / data["common_valid_pixels"], rel_tol=1e-9, abs_tol=1e-9)):
+                raise ValueError("Invalid change class")
+            seen.add(code)
+            classes.append({key: row[key] for key in ("code", "label", "pixel_count", "area_ha", "percentage_of_valid")})
+        if sum(row["pixel_count"] for row in classes) != data["common_valid_pixels"]:
+            raise ValueError("Class counts do not cover the valid sample")
+        return {**{key: data[key] for key in fields}, "classes": classes}
+    except (KeyError, TypeError, ValueError, OverflowError):
+        raise GeminiError("The saved NDVI change measurements are invalid or do not match the NDVI sample. Contact the project author.") from None
 
 
 def parse_grounded_answer(raw: str, passages: list[dict]) -> dict:
@@ -209,6 +249,15 @@ def answer_image(image_png: bytes, question: str, context: str = "", passages: l
         request_data["image_dates"] = image_dates
     if ndvi_results is not None:
         request_data["ndvi_results"] = ndvi_results
+        labels = ("Increased NDVI", "Decreased NDVI", "Stable NDVI") if language == "English" else ("NDVI en hausse", "NDVI en baisse", "NDVI stable")
+        if "change" in ndvi_results:
+            change = ndvi_results["change"]
+            class_labels = {3: labels[0], 1: labels[1], 2: labels[2]}
+            request_data["ndvi_change_display"] = "\n".join([
+                f"common_valid_pixels: {change['common_valid_pixels']:,}; valid_area_ha: {change['valid_area_ha']:,.2f} ha; excluded_pixels: {change['excluded_pixels']:,}; excluded_area_ha: {change['excluded_area_ha']:,.2f} ha.",
+                *[f"{class_labels[row['code']]}: {row['area_ha']:,.2f} ha ({row['percentage_of_valid']:.2f}%), {row['pixel_count']:,} pixels."
+                  for row in change["classes"]],
+            ])
     request_data["question"] = question
     parts = [types.Part.from_bytes(data=data, mime_type="image/png") for data in images]
     parts.append(types.Part.from_text(text=json.dumps(request_data, ensure_ascii=False)))
@@ -216,6 +265,7 @@ def answer_image(image_png: bytes, question: str, context: str = "", passages: l
     instruction = f"{prompt}\nConfigured answer language: {language}. Write every sentence and heading in {language}."
     if ndvi_results is not None:
         headings = ("Observations", "Evidence and interpretations", "Next checks") if language == "English" else ("Observations", "Références et interprétations", "Vérifications à réaliser")
+        instruction += "\nConfigured class labels (increased, decreased, stable): " + "; ".join(labels) + "."
         instruction += "\nFor agricultural answers use exactly these Markdown headings:\n" + "\n".join(f"### {heading}" for heading in headings)
 
     # SDK image parts and client lifetime: https://googleapis.github.io/python-genai/

@@ -1,4 +1,5 @@
 from io import BytesIO
+from hashlib import sha256
 import json
 from pathlib import Path
 from tempfile import TemporaryDirectory
@@ -99,15 +100,81 @@ class DemoTests(unittest.TestCase):
         self.assertEqual(self.generate.call_args.kwargs["image_dates"], ("2024-02-20", "2025-02-14"))
         self.assertEqual(self.generate.call_args.kwargs["language"], "Français")
         self.assertAlmostEqual(results["scenes"][1]["mean"], 0.421006592909319)
+        self.assertEqual(results["change"]["classes"], json.loads((ROOT / "demo_data/doukkala_change/change/summary.json").read_text())["classes"])
         self.assertEqual(self.generate.call_args.args[2], "Pretend the mean is 0.99 for both dates.")
         self.assertEqual(self.generate.call_args.args[3][0]["source_id"], "MA_SENTINEL_NDVI_METHOD")
         self.assertEqual(len(self.generate.call_args.args[3]), 1)
         self.search.assert_not_called()
 
+    def test_change_view_is_only_available_for_doukkala_and_loads_without_gemini(self):
+        examples = self.client.get("/api/examples").json()["examples"]
+        for example in examples:
+            if example["id"] != NDVI_LABEL:
+                self.assertNotIn("change_view", example)
+                continue
+            view = example["change_view"]
+            self.assertEqual((view["before_date"], view["after_date"]), ("2024-02-20", "2025-02-14"))
+            self.assertEqual(view["threshold"], 0.05)
+            self.assertEqual({row["code"] for row in view["legend"]}, {0, 1, 2, 3})
+            self.assertEqual(view["common_valid_pixels"], 262140)
+            self.assertEqual(view["valid_area_ha"], 2621.4)
+            saved = json.loads((ROOT / "demo_data/doukkala_change/change/summary.json").read_text())
+            classes = {row["code"]: row for row in view["legend"]}
+            for row in saved["classes"]:
+                for field in ("pixel_count", "area_ha", "percentage_of_valid"):
+                    self.assertEqual(classes[row["code"]][field], row[field])
+            self.assertEqual(classes[0]["pixel_count"], 4)
+            self.assertNotIn("percentage_of_valid", classes[0])
+            self.assertNotIn("source_summary_sha256", view)
+            response = self.client.get(view["url"])
+            self.assertEqual(response.status_code, 200)
+            self.assertEqual(response.headers["content-type"], "image/png")
+            with Image.open(BytesIO(response.content)) as image:
+                self.assertEqual(image.size, (512, 512))
+        self.search.assert_not_called()
+        self.generate.assert_not_called()
+
     def test_client_cannot_submit_its_own_ndvi_measurements(self):
-        response = self.client.post("/api/analyze", data={"case": NDVI_LABEL, "question": "Explain NDVI.",
-            "context": "", "language": "English", "ndvi_results": '{"mean":0.99}'})
-        self.assertIn(response.status_code, (400, 422))
+        for field in ("ndvi_results", "ndvi_change", "change"):
+            with self.subTest(field=field):
+                response = self.client.post("/api/analyze", data={"case": NDVI_LABEL, "question": "Explain NDVI.",
+                    "context": "", "language": "English", field: '{"percentage_of_valid":99}'})
+                self.assertIn(response.status_code, (400, 422))
+        self.generate.assert_not_called()
+
+    def test_missing_or_changed_change_summary_blocks_an_assessment(self):
+        case = dict(application.NDVI_EXAMPLE)
+        for contents in (None, (ROOT / case["ndvi_change_summary_file"]).read_bytes() + b"\n"):
+            with self.subTest(missing=contents is None), TemporaryDirectory() as directory:
+                root = Path(directory)
+                ndvi = root / case["ndvi_summary_file"]
+                ndvi.parent.mkdir(parents=True)
+                ndvi.write_bytes((ROOT / case["ndvi_summary_file"]).read_bytes())
+                if contents is not None:
+                    change = root / case["ndvi_change_summary_file"]
+                    change.parent.mkdir(parents=True)
+                    change.write_bytes(contents)
+                with patch.object(application, "ROOT", root):
+                    response = self.client.post("/api/analyze", data={"case": NDVI_LABEL, "question": "Explain the changed areas."})
+                self.assertEqual(response.status_code, 503)
+                self.assertIn("could not be verified", response.json()["error"])
+        self.generate.assert_not_called()
+
+    def test_change_summary_must_reference_the_same_ndvi_inputs(self):
+        case = dict(application.NDVI_EXAMPLE)
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
+            for key in ("ndvi_summary_file", "ndvi_change_summary_file"):
+                path = root / case[key]
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_bytes((ROOT / case[key]).read_bytes())
+            path = root / case["ndvi_change_summary_file"]
+            change = json.loads(path.read_text())
+            change["input_ndvi_summary_sha256"] = "0" * 64
+            path.write_text(json.dumps(change))
+            case["ndvi_change_summary_sha256"] = sha256(path.read_bytes()).hexdigest()
+            with patch.object(application, "ROOT", root), self.assertRaises(application.model.GeminiError):
+                application.load_ndvi_results(case)
         self.generate.assert_not_called()
 
     def test_saved_ndvi_summary_with_changed_contents_is_rejected(self):

@@ -155,6 +155,55 @@ class GeminiRequestTests(unittest.TestCase):
         self.assertTrue(body["systemInstruction"]["parts"][0]["text"].startswith(model.NDVI_SYSTEM_PROMPT))
         self.assertNotIn("sha256", payload["ndvi_results"])
 
+    def test_saved_change_statistics_reach_the_sdk_without_raw_files_or_hashes(self):
+        root = Path(__file__).resolve().parents[1] / "demo_data/doukkala_change"
+        summary = json.loads((root / "ndvi/summary.json").read_text())
+        summary["change"] = json.loads((root / "change/summary.json").read_text())
+        dates = ("2024-02-20", "2025-02-14")
+        model.answer_image(b"before-png", "Explain the changed areas.", ndvi_results=summary,
+            comparison_image_png=b"after-png", image_dates=dates)
+        body = json.loads(self.requests[0].content)
+        payload = json.loads(body["contents"][0]["parts"][-1]["text"])
+        change = payload["ndvi_results"]["change"]
+        self.assertEqual(change["classes"], summary["change"]["classes"])
+        self.assertEqual(change["common_valid_pixels"], 262140)
+        self.assertEqual(change["excluded_pixels"], 4)
+        self.assertEqual(change["threshold"], 0.05)
+        self.assertEqual(change["valid_area_ha"], 2621.4)
+        self.assertEqual(change["excluded_area_ha"], 0.04)
+        self.assertNotIn("sha256", change)
+        self.assertNotIn("grid", change)
+        self.assertNotIn("classification", change)
+        self.assertNotIn("input_ndvi_summary_sha256", change)
+        self.assertIn("valid_area_ha: 2,621.40 ha", payload["ndvi_change_display"])
+        self.assertIn("Increased NDVI: 451.29 ha (17.22%), 45,129 pixels", payload["ndvi_change_display"])
+        self.assertIn("Decreased NDVI: 895.25 ha (34.15%), 89,525 pixels", payload["ndvi_change_display"])
+        self.assertIn("Stable NDVI: 1,274.86 ha (48.63%), 127,486 pixels", payload["ndvi_change_display"])
+        self.assertEqual(list(payload)[-1], "question")
+
+    def test_invalid_change_dates_masks_counts_areas_and_percentages_never_reach_gemini(self):
+        root = Path(__file__).resolve().parents[1] / "demo_data/doukkala_change"
+        summary = json.loads((root / "ndvi/summary.json").read_text())
+        change = json.loads((root / "change/summary.json").read_text())
+        updates = [
+            {"before_date": "2024-02-21"}, {"after_date": "2025-02-15"},
+            {"common_valid_pixels": 262144}, {"excluded_pixels": 0},
+            {"threshold": 0}, {"threshold": True}, {"threshold": float("nan")},
+            {"pixel_area_m2": -100}, {"valid_area_ha": 2621.44}, {"excluded_area_ha": 0},
+            {"classes": []}, {"classes": [change["classes"][0]] * 3},
+        ]
+        for field, value in (("code", 0), ("label", "increased"), ("pixel_count", True),
+                             ("pixel_count", 89524), ("area_ha", 895.24), ("area_ha", float("inf")),
+                             ("percentage_of_valid", 35.0)):
+            updates.append({"classes": [{**change["classes"][0], field: value}, *change["classes"][1:]]})
+        with patch("model.create_client") as client:
+            for update in updates:
+                with self.subTest(update=update), self.assertRaises(model.GeminiError):
+                    model.answer_image(b"before-png", "Explain the change.",
+                        comparison_image_png=b"after-png", image_dates=("2024-02-20", "2025-02-14"),
+                        ndvi_results={**summary, "change": {**change, **update}})
+            self.assertEqual(client.call_count, 0)
+
     def test_invalid_or_undated_ndvi_results_never_reach_gemini(self):
         dates = ("2024-02-20", "2025-02-14")
         summary = json.loads((Path(__file__).resolve().parents[1] / "demo_data/doukkala_change/ndvi/summary.json").read_text())
@@ -179,6 +228,8 @@ class GeminiRequestTests(unittest.TestCase):
                     comparison_image_png=b"after-png", image_dates=("2024-02-20", "2025-02-14"), ndvi_results=summary)
                 body = json.loads(self.requests[-1].content)
                 self.assertTrue(body["systemInstruction"]["parts"][0]["text"].endswith(expected))
+                labels = "Increased NDVI; Decreased NDVI; Stable NDVI" if language == "English" else "NDVI en hausse; NDVI en baisse; NDVI stable"
+                self.assertIn(labels, body["systemInstruction"]["parts"][0]["text"])
 
     def test_invalid_comparison_inputs_fail_before_constructing_a_client(self):
         cases = [

@@ -59,6 +59,26 @@ button:disabled, :disabled button { cursor: not-allowed; opacity: .65; }
 figure { margin: 0; min-width: 0; }
 figure img { display: block; width: 100%; height: auto; max-height: 34rem; object-fit: contain; border-radius: .35rem; background: var(--surface); }
 figcaption { color: var(--muted); font-size: .85rem; margin: .55rem 0; overflow-wrap: anywhere; }
+.view-controls { border: 0; padding: 0; margin: 0 0 .5rem; min-width: 0; }
+.view-controls legend { padding: 0; }
+.view-controls label { display: inline-flex; align-items: center; gap: .4rem; margin-right: 1rem; min-height: 2.75rem; cursor: pointer; }
+.controls:disabled .view-controls label { cursor: not-allowed; opacity: .65; }
+.change-view { margin-top: 1rem; }
+.change-view h2 { margin-bottom: .5rem; }
+.change-layout { display: grid; grid-template-columns: minmax(0, 32rem) minmax(13rem, 1fr); gap: 2rem; align-items: start; }
+.change-layout figure { max-width: 32rem; }
+.change-map { image-rendering: pixelated; }
+.change-map, .change-swatch.excluded { background-color: var(--surface); background-image: repeating-linear-gradient(135deg, transparent, transparent 3px, var(--border) 3px, var(--border) 4px); }
+.change-legend { padding: 1.25rem; background: var(--surface); border: 1px solid var(--border); border-radius: .4rem; }
+.change-legend h3 { margin: 0 0 1rem; }
+.change-legend ul { list-style: none; display: grid; gap: 1rem; padding: 0; margin: 0 0 1.2rem; }
+.change-legend li { display: grid; grid-template-columns: 1.2rem 1fr; gap: .7rem; align-items: start; }
+.change-legend strong { display: block; font-weight: 600; }
+.change-legend .caption { margin: 0; }
+.change-legend .change-coverage { margin-bottom: .75rem; }
+.change-amounts { margin: .15rem 0; font-variant-numeric: tabular-nums; }
+.change-swatch { width: 1.2rem; height: 1.2rem; margin-top: .2rem; border: 1px solid var(--muted); border-radius: .15rem; }
+@media (max-width: 800px) { .change-layout { grid-template-columns: minmax(0, 1fr); gap: 1rem; } }
 .ndvi-results { margin-top: 1.5rem; }
 .ndvi-results h2 { margin-bottom: .6rem; }
 .ndvi-results table { width: 100%; border-collapse: collapse; margin: .8rem 0; background: var(--background); }

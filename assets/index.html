@@ -34,6 +34,11 @@
 
       <div id="workspace" class="workspace">
         <section class="image-area" aria-label="Field images">
+          <fieldset id="view-controls" class="view-controls" hidden>
+            <legend>Display</legend>
+            <label><input type="radio" name="view" value="satellite" aria-controls="previews" checked> Satellite images</label>
+            <label><input type="radio" name="view" value="change" aria-controls="change-view"> NDVI change</label>
+          </fieldset>
           <div id="upload-area" class="upload-area">
             <label for="image-files">Satellite images (up to 2)</label>
             <input id="image-files" class="visually-hidden" tabindex="-1" type="file" multiple accept=".png,.jpg,.jpeg,image/png,image/jpeg" aria-describedby="upload-help upload-error">
@@ -45,6 +50,20 @@
             <p id="upload-error" class="error" role="alert" hidden></p>
           </div>
           <div id="previews" class="previews" aria-live="polite"></div>
+          <section id="change-view" class="change-view" aria-labelledby="change-title" hidden>
+            <h2 id="change-title">NDVI change</h2>
+            <p id="change-dates" class="caption"></p>
+            <div class="change-layout">
+              <figure id="change-figure"></figure>
+              <section class="change-legend" aria-labelledby="change-legend-title">
+                <h3 id="change-legend-title">Change classes</h3>
+                <ul id="change-legend"></ul>
+                <p id="change-coverage" class="caption change-coverage"></p>
+                <p id="change-tolerance" class="caption"></p>
+              </section>
+            </div>
+            <p id="change-error" class="error" role="alert" hidden></p>
+          </section>
           <p id="attribution" class="caption" hidden></p>
           <details id="example-note" hidden>
             <summary>About these images</summary>
@@ -53,7 +72,7 @@
           </details>
           <section id="ndvi-results" class="ndvi-results" aria-labelledby="ndvi-title" hidden>
             <h2 id="ndvi-title">Measured NDVI</h2>
-            <p class="caption">Calculated beforehand from Sentinel-2 red and near-infrared bands. Ask Gemini to explain these saved measurements.</p>
+            <p class="caption">NDVI and change classes were calculated beforehand from Sentinel-2 red and near-infrared bands. Ask Gemini to explain the saved measurements, areas and percentages.</p>
             <table>
               <caption class="visually-hidden">NDVI over the same valid land pixels on both dates</caption>
               <thead><tr><th scope="col">Date</th><th scope="col">Mean NDVI</th><th scope="col">Median NDVI</th></tr></thead>

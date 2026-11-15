@@ -34,6 +34,7 @@ EXAMPLES = {
 COMPARISON = json.loads((ROOT / "demo_data/comparison/case.json").read_text(encoding="utf-8"))
 EXAMPLES["Casablanca: Drought, 2023–2024"] = COMPARISON
 NDVI_EXAMPLE = json.loads((ROOT / "demo_data/doukkala_change/case.json").read_text(encoding="utf-8"))
+NDVI_EXAMPLE["change_view"] = json.loads((ROOT / "assets/doukkala-change/view.json").read_text(encoding="utf-8"))
 EXAMPLES["Doukkala: NDVI, 2024–2025"] = NDVI_EXAMPLE
 
 
@@ -42,10 +43,17 @@ def load_ndvi_results(example: dict) -> dict:
         contents = (ROOT / example["ndvi_summary_file"]).read_bytes()
         if sha256(contents).hexdigest() != example["ndvi_summary_sha256"]:
             raise ValueError("NDVI summary checksum mismatch")
+        change_contents = (ROOT / example["ndvi_change_summary_file"]).read_bytes()
+        if sha256(change_contents).hexdigest() != example["ndvi_change_summary_sha256"]:
+            raise ValueError("NDVI change summary checksum mismatch")
+        data, change = json.loads(contents), json.loads(change_contents)
+        if change["input_ndvi_summary_sha256"] != example["ndvi_summary_sha256"]:
+            raise ValueError("NDVI change inputs do not match")
+        data["change"] = change
         dates = tuple(item["date"] for item in example["images"])
-        return model.ndvi_context(json.loads(contents), dates)
+        return model.ndvi_context(data, dates)
     except (OSError, KeyError, TypeError, ValueError):
-        raise model.GeminiError("The saved NDVI results could not be verified. Contact the project author.") from None
+        raise model.GeminiError("The saved NDVI and change results could not be verified. Contact the project author.") from None
 
 
 def load_image(data: bytes) -> Image.Image:
@@ -99,6 +107,9 @@ def example_catalog() -> list[dict]:
         })
         if "ndvi_summary_file" in example:
             result[-1]["ndvi_results"] = load_ndvi_results(example)
+        if "change_view" in example:
+            fields = ("url", "width", "height", "before_date", "after_date", "threshold", "legend", "common_valid_pixels", "valid_area_ha")
+            result[-1]["change_view"] = {key: example["change_view"][key] for key in fields}
     return result
 
 

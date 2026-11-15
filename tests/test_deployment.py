@@ -39,25 +39,26 @@ class DeploymentTests(unittest.TestCase):
         self.assertLessEqual(len(function["includeFiles"]), 256)
         self.assertEqual(config["rewrites"], [{"source": "/(.*)", "destination": "/api/index"}])
         allowed = ["api/index.py", "asgi.py", "app.py", "assets/site.css", "assets/site.js", "assets/index.html", "assets/topography.svg",
-                   "prompts/agronomy_rag_v8.txt", "prompts/doukkala_ndvi_v3.txt", "demo_data/rag_documents/passages.jsonl",
+                   "prompts/agronomy_rag_v8.txt", "prompts/doukkala_ndvi_v9.txt", "demo_data/rag_documents/passages.jsonl",
                    "demo_data/rag_documents/embedding_index.json",
                    "demo_data/comparison/case.json",
                    "demo_data/comparison/moroccodrought_amo_20230212_lrg.jpg",
                    "demo_data/comparison/moroccodrought_tmo_20240219_lrg.jpg",
                    "demo_data/sentinel2/gharb_2025-02-14_rgb_10m.png",
                    "demo_data/doukkala_change/case.json", "demo_data/doukkala_change/ndvi/summary.json",
-                   "demo_data/doukkala_change/2024-02-20/rgb.png", "demo_data/doukkala_change/2025-02-14/rgb.png"]
+                   "demo_data/doukkala_change/change/summary.json",
+                   "demo_data/doukkala_change/2024-02-20/rgb.png", "demo_data/doukkala_change/2025-02-14/rgb.png",
+                   "assets/doukkala-change/change.png", "assets/doukkala-change/view.json"]
         excluded = [".env", ".env.local", ".env.production", ".streamlit/secrets.toml", ".venv/bin/python",
                     ".vercel/cli/auth.json", ".aws/credentials",
                     "demo_data/rag_documents/sources/original.pdf", "demo_data/rag_documents/text/page.txt",
                     "demo_data/rag_documents/pages.jsonl", "demo_data/sentinel2/original.tif",
-                    "prepare_doukkala.py", "calculate_doukkala_ndvi.py", "calculate_doukkala_change.py",
+                    "prepare_doukkala.py", "calculate_doukkala_ndvi.py", "calculate_doukkala_change.py", "prepare_doukkala_change_view.py",
                     "demo_data/doukkala_change/2024-02-20/B04_10m.tif",
                     "demo_data/doukkala_change/ndvi/2024-02-20_ndvi_10m.tif",
                     "demo_data/doukkala_change/2024-02-20/source.stac.json",
                     "demo_data/doukkala_change/2024-02-20/product_metadata.xml",
                     "demo_data/doukkala_change/manifest.json", "demo_data/doukkala_change/README.md",
-                    "demo_data/doukkala_change/change/summary.json",
                     "demo_data/doukkala_change/change/ndvi_change_10m.tif",
                     "demo_data/doukkala_change/change/ndvi_change_classes_10m.tif"]
         result = subprocess.run(
